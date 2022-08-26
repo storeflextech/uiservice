@@ -1,0 +1,210 @@
+
+.app-bg {
+  background-color: white;
+}
+.font-white {
+  color: white;
+}
+
+.font-gray {
+  color: #273746;
+}
+
+.align-c {
+  text-align: center;
+}
+
+.f-regular {
+  font-weight: 400;
+}
+
+.f-bold {
+  font-weight: 700;
+}
+.f-12px {
+  font-size: 0.75rem;
+  line-height: 14px;
+}
+.f-14px {
+  font-size: 0.875rem;
+  line-height: 16px;
+}
+.f-16px {
+  font-size: 1rem;
+  line-height: 18px;
+}
+.f-18px {
+  font-size: 1.125rem;
+  line-height: 20px;
+}
+.f-24px {
+  font-size: 1.5rem;
+  line-height: 26px;
+}
+
+.red-gradient {
+  min-height: 30px;
+  background-image: radial-gradient(circle at 0 0,#ffbf76,#e6473d);
+}
+.blue-gradient {
+  min-height: 30px;
+  background-image: radial-gradient(circle at 0 0, #013ADF, #81BEF7);
+}
+
+.light-blue-gradient {
+  min-height: 30px;
+  background-image: radial-gradient(circle at 0 0,#ffbf76,#e6473d);
+}
+
+
+.p-sm {
+  padding: 8px;
+}
+.p-md {
+  padding: 16px;
+}
+.p-lg {
+  padding: 24px;
+}
+.p-xl {
+  padding: 32px;
+}
+
+.p-top-sm {
+  padding-top: 8px;
+}
+.p-top-md {
+  padding-top: 16px;
+}
+.p-top-lg {
+  padding-top: 24px;
+}
+.p-top-xl {
+  padding-top: 32px;
+}
+
+.p-left-sm {
+  padding-left: 8px;
+}
+.p-left-md {
+  padding-left: 16px;
+}
+.p-left-lg {
+  padding-left: 24px;
+}
+.p-left-xl {
+  padding-left: 32px;
+}
+.p-no {
+  padding: 0px !important;
+}
+
+.m-top-sm {
+  margin-top: 8px;
+}
+.m-top-md {
+  margin-top: 16px;
+}
+.m-top-lg {
+  margin-top: 24px;
+}
+.m-top-xl {
+  margin-top: 32px;
+}
+
+.m-bot-sm {
+  margin-bottom: 8px;
+}
+.m-bot-md {
+  margin-bottom: 16px;
+}
+.m-bot-lg {
+  margin-bottom: 24px;
+}
+.m-bot-xl {
+  margin-bottom: 32px;
+}
+
+.m-left-sm {
+  margin-left: 8px;
+}
+.m-left-md {
+  margin-left: 16px;
+}
+.m-left-lg {
+  margin-left: 24px;
+}
+.m-left-xl {
+  margin-left: 32px;
+}
+
+.m-right-sm {
+  margin-right: 8px;
+}
+.m-right-md {
+  margin-right: 16px;
+}
+.m-right-lg {
+  margin-right: 24px;
+}
+.m-right-xl {
+  margin-right: 32px;
+}
+
+.c-box-shadow {
+  box-sizing: border-box;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 30%);
+  border: 1px solid transparent;
+  border-top: 1px solid #f1f1f5;
+}
+
+.c-box-shadow-blue {
+  box-sizing: border-box;
+  box-shadow: 0 5px 10px 0 rgb(17 67 206 / 45%);
+  border: 1px solid transparent;
+  border-top: 1px solid #f1f1f5;
+}
+
+.image-container {
+  position: relative;
+  text-align: center;
+}
+.page-top-image {
+  max-width: 100%;
+  min-height: 100px;
+  max-height: 172px;
+}
+.page-image-content {
+  position: absolute;
+  bottom: 8px;
+}
+.sf-flex {
+  display: flex;
+}
+.sf-justify {
+  justify-content: space-between;
+}
+@media only screen and (max-width: 678px) {
+  .nopadding {
+    padding: 0px !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

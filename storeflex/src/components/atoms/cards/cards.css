@@ -1,0 +1,32 @@
+.sf-card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+  }
+  
+  .sf-card-container:hover {
+    box-shadow: 0 5px 5px 0 #2bafe2;
+    cursor: pointer;
+  }
+  
+  .sf-card-container {
+    border-radius: 10px;
+    width: 100%;
+    min-height: 80px;
+  }
+
+  .sf-card-content {
+    padding: 16px;
+  }
+  .sf-card-bg-blue {
+    background-image: radial-gradient(circle at 0 0, #CCCCFF, #CCCCFF);
+  }
+  .sf-card-bg-yellow {
+    background-image: radial-gradient(circle at 0 0,#DFFF00, #DFFF00);
+  }
+  .sf-card-bg-green {
+    background-image: radial-gradient(circle at 0 0, #9FE2BF, #9FE2BF);
+  }
+
+  .sf-card-bg-orange {
+    background-image: radial-gradient(circle at 0 0, #FFBF00, #FFBF00);
+  }

@@ -1,0 +1,43 @@
+
+
+{
+    "ADDED" : {
+        "storeStatus" : {
+            "status" : "success",
+            "businessid" : "B001"
+        },
+        "storeList" : [
+            {
+                "businessid": "B001",
+                "storeid": "S001",
+                "name": "Store Flex Service and Company",
+                "address": "Street Numner 200 Tower A Shop No 125",
+                "phone": 9998887766,
+                "gstn": "22AAAYYYYZZ123",
+                "city": "Noida",
+                "state": "UP",
+                "zip": 211003,
+                "description": "10,000 square ft space for storage"
+            },
+            {
+                "businessid": "B001",
+                "storeid": "S002",
+                "name": "Storge Service and Company",
+                "address": "GB Nagar Tower B Shop No 200",
+                "phone": 9998887766,
+                "gstn": "22AAAYYYYZZ123",
+                "city": "Noida",
+                "state": "UP",
+                "zip": 211003,
+                "description": "10,000 square ft space for storage"
+            }
+        ]
+    },
+    "EMPTY" : {
+        "storeStatus" : {
+            "status" : "success",
+            "businessid" : "B001"
+        },
+        "storeList" : []
+    }
+}

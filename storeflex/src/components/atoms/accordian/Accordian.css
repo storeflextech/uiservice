@@ -1,0 +1,25 @@
+.accsummary {
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: 0.4s;
+    border: 2px solid #e7e7e7;
+  }
+  
+  .ac-gradient {
+    min-height: 20px;
+    background-image: radial-gradient(circle at 0 0,#74ceec, #c9d4f3);
+  }
+  .active, .accordion:hover {
+    background-color: #ccc; 
+  }
+  
+  .ac-details {
+    overflow: hidden;
+    border-left: 2px solid #e7e7e7;
+    border-right: 2px solid #e7e7e7;
+  }
