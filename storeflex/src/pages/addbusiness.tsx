@@ -3,7 +3,7 @@ import {  Box, Container } from '@mui/material';
 import PageBanner from '../components/atoms/banner/PageBanner';
 import Dashboards from '../components/panels/dashboards/dashboards';
 
-const Dashboard = () => {
+const AddBusiness = () => {
     return(
         <>
             <Container component="main" maxWidth="md" className='p-no'>
@@ -20,4 +20,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard;
+export default AddBusiness;

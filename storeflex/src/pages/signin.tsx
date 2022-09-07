@@ -1,4 +1,4 @@
-import React  from 'react';
+import React, {useState, useEffect} from 'react';
 import {useNavigate} from "react-router-dom"
 import Container from '@mui/material/Container';
 import { TextField, Typography, Avatar, Box, Button, Link, Grid} from '@mui/material';
@@ -8,13 +8,23 @@ import CheckBoxR from '../components/atoms/checkbox/CheckBoxR';
 import AppleIcon from '@mui/icons-material/Apple';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GoogleIcon from '@mui/icons-material/Google';
+import Api from '../api/Api';
  
 const SignIn = () => {
-
   const navigate = useNavigate();
+  const api =  new Api();
+  const [count, setCount] = useState(0);
   const submitSignIn = () => {
     navigate('/dashboard');
   }
+
+  useEffect(() => {
+    api.signIn().then((response) => {
+      console.log(" >>>>>> repons >>>  " , JSON.stringify(response));
+    });
+    setCount(1);
+  },[])
+
     return (
       <>
       <Container component="main" maxWidth="xs" className='c-box-shadow p-no'>
