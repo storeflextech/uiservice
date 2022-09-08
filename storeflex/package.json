@@ -28,7 +28,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start:express": "nodemon mock-server/server.js",
+    "start:dev": "concurrently \"yarn start:express\" \"yarn start\""
   },
   "eslintConfig": {
     "extends": [
@@ -49,7 +51,8 @@
     ]
   },
   "devDependencies": {
-    "http-proxy-middleware": "^2.0.6"
+    "http-proxy-middleware": "^2.0.6",
+    "concurrently": "^3.5.1"
   },
   "proxy": "http://localhost:8088"
 }
