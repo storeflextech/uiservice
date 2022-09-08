@@ -28,7 +28,16 @@ const AddProfile = (props: AddProfileProps) => {
         setProfileSaved(true);
         onProfileSave(true)
     }
-
+    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const {name, value } = e.currentTarget;
+        console.log(' #### name ', name);
+        console.log(' #### name ', value);
+    }
+    const handelOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        const {name, value } = e.currentTarget;
+        console.log(' #### name ', name);
+        console.log(' #### name ', value);
+    }
     const showSavedProfile = () => {
         return(
           <div className='f-14px'>
@@ -58,18 +67,26 @@ const AddProfile = (props: AddProfileProps) => {
             <div className='m-bot-md'>
                 <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                 <Grid item xs={6}>
-                    <InputBox data={{name:'companyname', label:'Company Name' , value: businessProfile.name}}/>
+                    <InputBox data={{name:'companyname', label:'Company Name' , value: businessProfile.name}}
+                        onChange={handleOnChange} onBlur={handelOnBlur} 
+                    />
                 </Grid>
                 <Grid item xs={6}>
-                    <InputBox data={{name:'companyurl', label:'Company URL',  value: businessProfile.weburl}}/>
+                    <InputBox data={{name:'companyurl', label:'Company URL',  value: businessProfile.weburl}}
+                        onChange={handleOnChange} onBlur={handelOnBlur} 
+                    />
                 </Grid>
                 </Grid>
                 <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                 <Grid item xs={6}>
-                    <InputBox data={{name:'phone', label:'Business Phone*', value: businessProfile.phone}}/>
+                    <InputBox data={{name:'phone', label:'Business Phone*', value: businessProfile.phone}}
+                        onChange={handleOnChange} onBlur={handelOnBlur}
+                    />
                 </Grid>
                 <Grid item xs={6}>
-                    <InputBox data={{name:'gstid', label:'GST Number*', value: businessProfile.gstn}}/>
+                    <InputBox data={{name:'gstid', label:'GST Number*', value: businessProfile.gstn}}
+                        onChange={handleOnChange} onBlur={handelOnBlur}
+                    />
                 </Grid>
                 </Grid>
             </div>

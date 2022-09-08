@@ -1,9 +1,11 @@
 import React from 'react';
-import DeleteIcon from '@mui/icons-material/Delete';
+// import DeleteIcon from '@mui/icons-material/Delete';
 import './InputBox.css';
 
 interface InputBoxProps {
     data?: Data;
+    onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 interface Data {
@@ -20,8 +22,16 @@ const InputBox = (props?: InputBoxProps) => {
         value: props?.data?.value || '',
         label: props?.data?.label
     } ;
-    const handleChange = () => {
-        // console.log();
+    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if(props?.onChange) {
+            // console.log(' ### ' , JSON.stringify(e.currentTarget));
+            props.onChange(e);
+        }
+    }
+    const handelOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        if(props?.onBlur) {
+            props.onBlur(e);
+        }
     }
     return (
         <>
@@ -31,6 +41,8 @@ const InputBox = (props?: InputBoxProps) => {
                 type="text" 
                 name={data.name}
                 defaultValue={data.value}
+                onChange={handleOnChange}
+                onBlur={handelOnBlur}
             />
         </div>
         </>
