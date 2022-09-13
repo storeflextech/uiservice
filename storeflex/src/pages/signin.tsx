@@ -8,6 +8,7 @@ import CheckBoxR from '../components/atoms/checkbox/CheckBoxR';
 import AppleIcon from '@mui/icons-material/Apple';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GoogleIcon from '@mui/icons-material/Google';
+import {validateFirstName} from '../utils/CommonUtils'
 import Api from '../api/Api';
  
 const SignIn = () => {
@@ -18,6 +19,9 @@ const SignIn = () => {
     navigate('/dashboard');
   }
 
+  const isFirstNameValid = validateFirstName('Am');
+
+  console.log("  First Name ", isFirstNameValid);
   useEffect(() => {
     api.signIn().then((response) => {
       console.log(" >>>>>> repons >>>  " , JSON.stringify(response));

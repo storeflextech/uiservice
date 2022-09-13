@@ -10,6 +10,7 @@ import AddStore from './pages/addstore';
 import Dashboard from './pages/dashboard';
 import BusinessInfo from './pages/businessinfo';
 import './App.css';
+import '../src/styles/sfglobal.scss';
 import {PAGES} from './utils/Constants';
 
 function App() {
