@@ -1,5 +1,5 @@
 import React from 'react';
-import {  Box, Container } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import PageBanner from '../components/atoms/banner/PageBanner';
 import Dashboards from '../components/panels/dashboards/dashboards';
 
