@@ -42,21 +42,6 @@
   line-height: 26px;
 }
 
-.red-gradient {
-  min-height: 30px;
-  background-image: radial-gradient(circle at 0 0,#ffbf76,#e6473d);
-}
-.blue-gradient {
-  min-height: 30px;
-  background-image: radial-gradient(circle at 0 0, #013ADF, #81BEF7);
-}
-
-.light-blue-gradient {
-  min-height: 30px;
-  background-image: radial-gradient(circle at 0 0,#ffbf76,#e6473d);
-}
-
-
 .p-sm {
   padding: 8px;
 }
@@ -149,20 +134,6 @@
 }
 .m-right-xl {
   margin-right: 32px;
-}
-
-.c-box-shadow {
-  box-sizing: border-box;
-  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 30%);
-  border: 1px solid transparent;
-  border-top: 1px solid #f1f1f5;
-}
-
-.c-box-shadow-blue {
-  box-sizing: border-box;
-  box-shadow: 0 5px 10px 0 rgb(17 67 206 / 45%);
-  border: 1px solid transparent;
-  border-top: 1px solid #f1f1f5;
 }
 
 .image-container {
