@@ -16,7 +16,6 @@ export const validateLastName = (lastName: string) => {
 }
 
 export const validateEmail = (email: string) => {
-    
     let isValid = false;
 
     return isValid;

@@ -146,7 +146,7 @@ const AddProfile = (props: AddProfileProps) => {
         }
     }
     return(
-        <div className='c-box-shadow-blue  m-bot-md'>
+        <div className='c-box-shadow-blue m-bot-md'>
             <div className='blue-gradient'>
                 <div className='font-white p-md f-18px f-bold'>Business Information</div>
             </div>
