@@ -32,13 +32,13 @@ const BusinessInfo = () => {
     return (
         <>
         <Container component="main" maxWidth="md" className='p-no'>
-        {<PageBanner content='GROW YOUR BUSINESS WITH US'/>}
-        <Box sx={{ backgroundColor: '#F8F9F9' }} className='m-top-md m-bot-md'>
-        {
-          <AddProfile profileData={profile} onSave={() => {onBusinessInfoSave()}}/>
-        }
-        {showStoreDetails()}
-        </Box>
+          {<PageBanner content='GROW YOUR BUSINESS WITH US'/>}
+          <Box sx={{ backgroundColor: '#F8F9F9' }} className='m-top-md m-bot-md'>
+          {
+            <AddProfile profileData={profile} onSave={() => {onBusinessInfoSave()}}/>
+          }
+          {showStoreDetails()}
+          </Box>
         </Container>
         </>
     );
