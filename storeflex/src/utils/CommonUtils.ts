@@ -3,7 +3,7 @@ export const validateFirstName = (firstName: string) => {
     const minLen = 4;
     const maxLen = 50;
     let isValid = false;
-
+// comment line
     return isValid;
 }
 
