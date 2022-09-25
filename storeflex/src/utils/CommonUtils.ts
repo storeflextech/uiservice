@@ -17,9 +17,7 @@ export const validateSpecialCharExistance= (text: string) => {
 }
 
 export const validateEmail = (email: string) => {
-
     let isValid = regex_email.test(String(email).toLocaleLowerCase())?true:false;
-
     return isValid;
 }
 
