@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Grid } from '@mui/material';
 import Cards, { CARD_COLOR } from '../../atoms/cards/cards'; 
 import InputBox from '../../atoms/textfield/InputBox';
-import Searchresult from '../../atoms/Searchresult/serachresult'
+import Searchresult from '../../atoms/Searchresult/searchresult'
 
 
 const SearchInfo = () => {
