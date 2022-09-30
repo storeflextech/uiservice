@@ -1,0 +1,25 @@
+.homeNavContainer {
+    justify-content: space-around;
+    display: flex;
+    @media only screen and (max-width: 678px) {
+        display: inline-block;
+      }
+}
+.homeNavConent {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.square-list {
+    list-style-type: square;
+    li {
+        margin-bottom: 10px;
+    }
+}
+
+.space-img {
+    display: block;
+    width: 100%;
+}

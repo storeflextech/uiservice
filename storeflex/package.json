@@ -23,15 +23,17 @@
     "sass": "^1.54.9",
     "serve": "^14.0.1",
     "typescript": "^4.7.4",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "typed-scss-modules": "^7.0.1"
   },
   "scripts": {
+    "styles:tsw": "yarn typed-scss-modules src --watch",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start:express": "nodemon mock-server/server.js",
-    "start:dev": "concurrently \"yarn start:express\" \"yarn start\""
+    "start:dev": "concurrently \"yarn start:express\" \"yarn start\" \"yarn styles:tsw\""
   },
   "eslintConfig": {
     "extends": [
@@ -53,7 +55,8 @@
   },
   "devDependencies": {
     "concurrently": "^3.5.1",
-    "http-proxy-middleware": "^2.0.6"
+    "http-proxy-middleware": "^2.0.6",
+    "typed-scss-modules": "^7.0.1"
   },
   "proxy": "http://localhost:8088"
 }

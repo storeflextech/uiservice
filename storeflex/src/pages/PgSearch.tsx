@@ -3,7 +3,7 @@ import { Container } from '@mui/material';
 import PageBanner from '../components/atoms/banner/PageBanner';
 import SearchInfo from '../components/panels/search/SearchInfo';
 
-const pg_search = () => {
+const PgSearch = () => {
 
     return(
         <>
@@ -15,4 +15,4 @@ const pg_search = () => {
     )
 }
 
-export default pg_search;
+export default PgSearch;
