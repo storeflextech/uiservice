@@ -18,7 +18,6 @@ function App() {
     <React.StrictMode>
     <BrowserRouter>
       <div className='app-bg'>
-          <Container component="main" maxWidth="lg" className='nopadding'>
           <Routes>
             <Route path="/" element={<PAGES.HOME.component />} />
             <Route path={PAGES.HOME.path} element={<PAGES.HOME.component />} />
@@ -31,7 +30,6 @@ function App() {
             <Route path="/addstore" element={<AddStore />} />
             <Route path="account" element={<Account />} />
           </Routes>
-          </Container>
       </div>
     </BrowserRouter>
   </React.StrictMode>
