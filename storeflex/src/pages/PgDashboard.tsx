@@ -4,7 +4,7 @@ import PageBanner from '../components/atoms/banner/PageBanner';
 import Dashboards from '../components/panels/dashboards/dashboards';
 import { AppMenuBar } from '../components/atoms/header/AppHeader';
 
-const pg_dashboard = () => {
+const PgDashboard = () => {
     return(
         <>
             <Container component="main" maxWidth="md" className='p-no'>
@@ -23,4 +23,4 @@ const pg_dashboard = () => {
     )
 }
 
-export default pg_dashboard;
+export default PgDashboard;
