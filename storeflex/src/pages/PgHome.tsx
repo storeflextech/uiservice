@@ -13,9 +13,10 @@ const PgHome = () => {
     return (
       <>
       <header className='headerContainer'>
-         <div className='font-white f-18px f-bold'>
-          <p> Sign In / Sign Up</p>
-          </div>
+        <div>
+          <Button variant="text" className="font-white f-bold font-md" onClick={() => {goToNextPage('/signin')}}>Sign In </Button>
+          <Button variant="text" className="font-white f-bold font-md" onClick={() => {goToNextPage('/signup')}}> Sign Up </Button>
+         </div>
       </header>
       <section className='homepage-s'>
         <div >
@@ -57,8 +58,6 @@ const PgHome = () => {
       </div>
       </section>
         <div>
-        <Button variant="outlined" onClick={() => {goToNextPage('/signin')}}>Sign In</Button>
-        <Button variant="outlined" onClick={() => {goToNextPage('/signup')}}> Sign Up </Button>
         <Button variant="outlined" onClick={() => {goToNextPage('/dashboard')}}> Dashboard </Button>  
         <Button variant="outlined" onClick={() => {goToNextPage('/addprofile')}}>Register</Button>
         <Button variant="outlined" onClick={() => {goToNextPage('/addstore')}}>AddStore</Button>
