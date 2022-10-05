@@ -1,10 +1,22 @@
 import React from 'react';
+import './banner.scss';
 
 interface PageBannerProps {
     content?: string;
     imageUlr?: string;
     children?: React.ReactNode;
 
+}
+
+export const MainBanner = (props?: PageBannerProps) => {
+  return(
+    <div className=''>
+      <div className='banner-container'>
+      <img className='banner-img'src='../static/images/sfbanner.jpeg' alt='busines inforamtion'/>
+      {props?.children}
+    </div>
+    </div>
+    )
 }
 const PageBanner = (props?: PageBannerProps) => {
     // GROW YOUR BUSINESS WITH US

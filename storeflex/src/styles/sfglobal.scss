@@ -4,28 +4,52 @@
   background-color: white;
 }
 
+@mixin mediabreakpoint ($point) {
+  @if $point == desktop {
+    @media (min-width: 1025px) { @content;}
+  }
+  @if $point == tablet {
+    @media (min-width: 768px) and  (max-width: 1024px) { @content;}
+  }
+  @if $point == mobile {
+    @media (max-width: 767px) { @content;}
+  }
+}
+
 .align-c {
   text-align: center;
 }
-
+.position-fixed{
+  position: fixed;
+}
 .f-regular {
-  font-weight: 400;
+  font-weight: 400 !important;
 }
 
 .f-bold {
-  font-weight: 700;
+  font-weight: 700 !important;
 }
-.f-12px {
-  font-size: 0.75rem;
-  line-height: 14px;
+
+.font-xsm {
+  font-size: 12px;
+  line-height:normal;
+  @include mediabreakpoint(mobile) {
+    font-size: 11px;
+  }
 }
-.f-14px {
-  font-size: 0.875rem;
-  line-height: 16px;
+.font-sm {
+  font-size: 14px;
+  line-height:normal;
+  @include mediabreakpoint(mobile) {
+    font-size: 14px;
+  }
 }
-.f-16px {
-  font-size: 1rem;
-  line-height: 18px;
+.font-md {
+  font-size: 18px !important;
+  line-height:normal;
+  @include mediabreakpoint(mobile) {
+    font-size: 16px !important;
+  }
 }
 .f-18px {
   font-size: 1.125rem;
@@ -42,6 +66,10 @@
 .f-80px {
   font-size: 5rem;
   line-height: normal;
+}
+.orange-gradient {
+  min-height: 30px;
+  background-image: radial-gradient(circle at 0 0, rgb(255, 94, 0), orange);
 }
 .red-gradient {
   min-height: 30px;
@@ -307,7 +335,7 @@
     width: 100%;
 }
 .font-white {
-    color: white;
+    color: white !important;
 }
 
 .font-gray {
