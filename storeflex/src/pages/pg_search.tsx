@@ -7,7 +7,7 @@ const pg_search = () => {
 
     return(
         <>
-            <Container component="main" maxWidth="md" className='p-no'>
+            <Container component="main" maxWidth="lg" className='p-no'>
             {<PageBanner content='STORE FLEX'/>}
             {SearchInfo()}
             </Container>
