@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from "react-router-dom";
 import { Grid } from '@mui/material';
 import Cards, { CARD_COLOR } from '../../atoms/cards/cards'; 
+import { PAGES } from '../../../utils/Constants';
 
 const Dashboards = () => {
 
@@ -9,15 +10,17 @@ const Dashboards = () => {
 
     const addBusiness = () => {
         console.log(' addBusiness ');
-        navigate('/businessinfo');
+        navigate(PAGES.BUSINESS_INFO.path);
     }
 
     const searchBusiness = () => {
         console.log(' searchBusiness ');
+        navigate(PAGES.PG_SEARCH.path);
     }
 
-    const addSfUser = () => {
+    const addUser = () => {
         console.log(' addSfUser ');
+        navigate(PAGES.ADD_INFO.path);
     }
 
     return(
@@ -34,8 +37,8 @@ const Dashboards = () => {
                     </Cards>
                 </Grid>
                 <Grid item xs={12} sm={4} md={4}>
-                    <Cards cardBg={CARD_COLOR.GREEN} onCardClick={() => {addSfUser()}}>
-                    <span> Add Storeflex user </span>
+                    <Cards cardBg={CARD_COLOR.GREEN} onCardClick={() => {addUser()}}>
+                    <span> Add  user </span>
                     </Cards>
                 </Grid>
                 <Grid item xs={12} sm={4} md={4}>

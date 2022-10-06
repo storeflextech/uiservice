@@ -4,7 +4,7 @@ import './Accordian.css';
 interface AccordianProps {
     summaryTxt?: string;
     isOpen?: boolean;
-    children: React.ReactNode;
+    children?: React.ReactNode;
 }
 
 const Accordian = (props: AccordianProps) => {

@@ -1,15 +1,18 @@
-import Home from '../pages/home';
+import PgHome from '../pages/PgHome';
 // import Account from './pages/accout';
 import SignIn from "../pages/signin";
 import SignUp from '../pages/signup';
 // import AddStore from '../pages/addstore';
-import Dashboard from '../pages/dashboard';
+import PgDashboard from '../pages/PgDashboard';
 import BusinessInfo from '../pages/businessinfo';
+import AddInfo from '../pages/addinfo';
+import PgSearch from '../pages/PgSearch';
+
 
 export const PAGES = {
     HOME : {
         path: '/home',
-        component: Home
+        component: PgHome
     },
     SIGN_IN : {
         path: '/signin',
@@ -21,7 +24,7 @@ export const PAGES = {
     },
     DASHBOARD : {
         path: '/dashboard',
-        component: Dashboard
+        component: PgDashboard
     },
     BUSINESS_INFO : {
         path: '/businessinfo',
@@ -30,5 +33,14 @@ export const PAGES = {
     ADD_BUSINESS :{
         path: '/addbusiness',
         component: ''
+    },
+    ADD_INFO :{
+        path: '/addinfo',
+        component: AddInfo
+    },
+    PG_SEARCH :{
+        path: '/search',
+        component: PgSearch
     }
+
 }

@@ -23,6 +23,27 @@ const [errors, setErrors] = useState({
 
 });
 
+const setNodeRef = (provider: any, node: any) => {
+  // if (node) {
+  //   this.nodes[ provider ] = node
+  // }
+}
+
+const onLoginSuccess = (user: any) => {
+  console.log("Login Success====",user)
+}
+
+const onLoginFailure = (err: any) => {
+  console.error("Login Failure",err)
+}
+
+const onLogoutSuccess = () => {
+}
+
+const onLogoutFailure = (err: any) => {
+  console.error(err)
+}
+
 const handleChange = (event: any) =>{
   setValues({
     ...values,
@@ -64,27 +85,6 @@ const validation = (values:any) => {
     event.preventDefault();
     setErrors(validation(values));
   };
-
-  const setNodeRef = (provider: any, node: any) => {
-    // if (node) {
-    //   this.nodes[ provider ] = node
-    // }
-  }
-
-  const onLoginSuccess = (user: any) => {
-    console.log("Login Success====",user)
-  }
-
-  const onLoginFailure = (err: any) => {
-    console.error("Login Failure",err)
-  }
-
-  const onLogoutSuccess = () => {
-  }
-
-  const onLogoutFailure = (err: any) => {
-    console.error(err)
-  }
   
     return (
       <>
