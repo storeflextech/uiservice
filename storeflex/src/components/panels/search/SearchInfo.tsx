@@ -75,6 +75,7 @@ const SearchInfo = () => {
             <Searchresult />
 
 
+
         </div>
     );
 

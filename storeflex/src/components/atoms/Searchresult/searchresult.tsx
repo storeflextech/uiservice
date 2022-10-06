@@ -8,7 +8,6 @@ import './searchresult.css';
 import { Container, Button, AppBar, Toolbar } from '@mui/material';
 import BeenhereIcon from '@mui/icons-material/Beenhere';
 import HourglassTopIcon from '@mui/icons-material/HourglassTop';
-import Divider from '@mui/material/Divider';
 import Filter from './filter';
 
 
@@ -22,36 +21,10 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 
-
-
-// const sortAscending = () => {
-//   console.log("clicked");
-//   
-//   let sortedData = office.sort((a, b) =>  b.rate - a.rate)
-//   setOffice(sortedData)
-// }
-// const sortDescending = () => {
-//     let sortedData = office.sort((a, b) => b - a)
-//     setoffice(sortedData)
-// }
-
-
-
-
 export default function Searchresult() {
 
 
-//   const [example, setExample] = useState([]);
-// 
-//   useEffect(()=>{
-//     fetch('https://jsonplaceholder.typicode.com/users')
-//   .then(response => response.json())
-//   .then(json => setExample(json))
-//     
-// 
-//   })
   
-
 const [office, setOffice] = useState<Array<any>>([]);
 const [filter, setFilter] = useState('asc');
 
@@ -125,21 +98,21 @@ console.log("status");
 
     <Box sx={{ width: '100%' }}>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
-        <Container>        
+        <Container maxWidth="xl">        
           <Box sx={{
             display: 'flex',
             flexDirection: 'row',
             borderRadius: 1,
           }}>
 
-            <Filter />
+            <Filter/>
             
-            <Grid item xs={9}>
+            <Grid item xs={10} sx={{ pl: 1 }}>
 
               {office.map((data) => (
 
-                <Item key={data.id}>
-                  <Grid item xs={12}>
+                <Item key={data.id} sx={{mb:1}}>
+                  <Grid item xs={12} sx={{ p: 2 }}>
                     <div className='text-left'>
                       <div className='header'> <BeenhereIcon /> AAA Self Storage </div>
                     </div>
@@ -184,8 +157,6 @@ console.log("status");
                       </Grid>
                     </Grid>
                   </Grid>
-
-                  <Divider />
                 </Item>
 
               ))}

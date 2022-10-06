@@ -22,7 +22,7 @@ const PageBanner = (props?: PageBannerProps) => {
     // GROW YOUR BUSINESS WITH US
     return(
         <div className='image-container c-box-shadow'>
-          <img className='page-top-image '
+          <img className='page-top-image'
             src='../static/images/img3.jpg'
             alt='busines inforamtion'
           />
