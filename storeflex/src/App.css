@@ -2,25 +2,11 @@
 .app-bg {
   background-color: white;
 }
-.font-white {
-  color: white;
-}
-
-.font-gray {
-  color: #273746;
-}
 
 .align-c {
   text-align: center;
 }
 
-.f-regular {
-  font-weight: 400;
-}
-
-.f-bold {
-  font-weight: 700;
-}
 .f-12px {
   font-size: 0.75rem;
   line-height: 14px;
@@ -41,21 +27,14 @@
   font-size: 1.5rem;
   line-height: 26px;
 }
-
-.red-gradient {
-  min-height: 30px;
-  background-image: radial-gradient(circle at 0 0,#ffbf76,#e6473d);
+.f-40px {
+  font-size: 2.5rem;
+  line-height: normal;
 }
-.blue-gradient {
-  min-height: 30px;
-  background-image: radial-gradient(circle at 0 0, #013ADF, #81BEF7);
+.f-80px {
+  font-size: 5rem;
+  line-height: normal;
 }
-
-.light-blue-gradient {
-  min-height: 30px;
-  background-image: radial-gradient(circle at 0 0,#ffbf76,#e6473d);
-}
-
 
 .p-sm {
   padding: 8px;
