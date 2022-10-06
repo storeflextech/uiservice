@@ -2,25 +2,11 @@
 .app-bg {
   background-color: white;
 }
-.font-white {
-  color: white;
-}
-
-.font-gray {
-  color: #273746;
-}
 
 .align-c {
   text-align: center;
 }
 
-.f-regular {
-  font-weight: 400;
-}
-
-.f-bold {
-  font-weight: 700;
-}
 .f-12px {
   font-size: 0.75rem;
   line-height: 14px;
@@ -40,6 +26,14 @@
 .f-24px {
   font-size: 1.5rem;
   line-height: 26px;
+}
+.f-40px {
+  font-size: 2.5rem;
+  line-height: normal;
+}
+.f-80px {
+  font-size: 5rem;
+  line-height: normal;
 }
 
 .p-sm {
@@ -136,6 +130,20 @@
   margin-right: 32px;
 }
 
+.c-box-shadow {
+  box-sizing: border-box;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 30%);
+  border: 1px solid transparent;
+  border-top: 1px solid #f1f1f5;
+}
+
+.c-box-shadow-blue {
+  box-sizing: border-box;
+  box-shadow: 0 5px 10px 0 rgb(17 67 206 / 45%);
+  border: 1px solid transparent;
+  border-top: 1px solid #f1f1f5;
+}
+
 .image-container {
   position: relative;
   text-align: center;
@@ -169,6 +177,24 @@
 
 .App-link {
   color: #61dafb;
+}
+.text-red{
+  color:#e6473d;
+}
+.border-red{
+ border:  5px solid red;
+}
+
+.label {
+  display: block;
+  margin-top: 1em;
+}
+
+.input:invalid {
+  background-color: ivory;
+  border: none;
+  outline: 2px solid red;
+  border-radius: 5px;
 }
 
 @keyframes App-logo-spin {
