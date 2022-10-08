@@ -1,0 +1,40 @@
+.text-left{
+    text-align: left;
+}
+.text-right{
+    text-align: right;
+}
+
+
+.header {
+    font-weight: bold;
+    color: rgb(86, 81, 249);
+}
+.sub-header{
+    color: black;
+    font-weight: bold;
+}
+
+.greenText{
+    color: rgb(20, 229, 20);
+}
+
+.card{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    width: 100%;
+    min-height: 100px;
+}
+
+.text-brown{
+    color: brown;
+}
+
+.pt-2{
+    padding-top: 20px;
+}
+
+.bg-gray{
+    background-color: gray;
+}
