@@ -1,5 +1,8 @@
 import React from 'react';
 import './homepage.scss';
+import ResponsiveAppBar from './navbar'
+import { Container, AppBar, Toolbar } from '@mui/material';
+
 export const HpSearchSpace = () => {
     return (
         <div>
@@ -25,7 +28,7 @@ export const HpListSpace = () => {
     return (
         <div>
             <div>
-                <img className='space-img'  src='../static/images/list.jpeg' alt='list warehouse'
+                <img className='space-img' src='../static/images/list.jpeg' alt='list warehouse'
                 />
             </div>
             <div>
@@ -44,14 +47,17 @@ export const HpListSpace = () => {
 
 export const HomePageNavBar = () => {
     return (
-        <div className='m-top-md'>
-            <div className='homeNavContainer'>
-                <div className='homeNavConent f-bold'> Home </div>
-                <div className='homeNavConent f-bold'> Search Space </div>
-                <div className='homeNavConent f-bold'>List Space </div>
-                <div className='homeNavConent f-bold'> How To/FAQs </div>
-                <div className='homeNavConent f-bold'> Contact Us </div>
-            </div>
-        </div>
+        <>
+            <ResponsiveAppBar />
+            {/* <div className='m-top-md'>
+                <div className='homeNavContainer'>
+                    <div className='homeNavConent f-bold'> Home </div>
+                    <div className='homeNavConent f-bold'> Search Space </div>
+                    <div className='homeNavConent f-bold'>List Space </div>
+                    <div className='homeNavConent f-bold'> How To/FAQs </div>
+                    <div className='homeNavConent f-bold'> Contact Us </div>
+                </div>
+            </div> */}
+        </>
     )
 }

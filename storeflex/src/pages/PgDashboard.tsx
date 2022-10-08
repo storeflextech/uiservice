@@ -9,7 +9,7 @@ const PgDashboard = () => {
         <>
             <Container component="main" maxWidth="xl" className='p-no'>
             {<MainBanner content='STORE FLEX' />}
-            {<AppMenuBar />}
+            {/* {<AppMenuBar />} */}
             <div className='c-box-shadow-blue'>
                 <Box className='m-top-md m-bot-md m-left-md m-right-md'>
                     <div>
