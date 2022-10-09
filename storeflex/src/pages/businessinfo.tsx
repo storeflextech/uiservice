@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {  Box, Container } from '@mui/material';
-import PageBanner from '../components/atoms/banner/PageBanner';
+import PageBanner, {MainBanner} from '../components/atoms/banner/PageBanner';
 import {BusinessDetails} from '../utils/ResponseSchema';
 import AddStore from './addstore';
 import AddProfile from '../components/panels/profile/addProfile';
@@ -31,8 +31,8 @@ const BusinessInfo = () => {
   }
     return (
         <>
-        <Container component="main" maxWidth="md" className='p-no'>
-          {<PageBanner content='GROW YOUR BUSINESS WITH US'/>}
+        <Container component="main" maxWidth="xl" className='p-no'>
+          {<MainBanner content='GROW YOUR BUSINESS WITH US'/>}
           <Box sx={{ backgroundColor: '#F8F9F9' }} className='m-top-md m-bot-md'>
           {
             <AddProfile profileData={profile} onSave={() => {onBusinessInfoSave()}}/>

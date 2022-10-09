@@ -22,12 +22,9 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 export default function Searchresult() {
-
-
   
 const [office, setOffice] = useState<Array<any>>([]);
 const [filter, setFilter] = useState('asc');
-
 
   useEffect(()=>{
     const data = ([
@@ -68,7 +65,6 @@ const [filter, setFilter] = useState('asc');
 
 
   }, [])
-
 
 
   function sortAscending() {
@@ -151,7 +147,7 @@ console.log("status");
                             <span> From ${data.rate} </span>
                           </div>
                           <div className='text-left'>
-                            <Button variant="contained" color="success" size="small"> View Rates </Button>
+                            <Button variant="contained" color="success" size="small"> Select </Button>
                           </div>
                         </div>
                       </Grid>
@@ -171,12 +167,7 @@ console.log("status");
             </Grid>
           </Box>
         </Container>
-
       </Grid>
-
-
-
-
 
 
     </Box>

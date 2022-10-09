@@ -6,7 +6,7 @@ import Dashboards from '../components/panels/dashboards/dashboards';
 const AddBusiness = () => {
     return(
         <>
-            <Container component="main" maxWidth="md" className='p-no'>
+            <Container component="main" maxWidth="xl" className='p-no'>
             {<PageBanner content='STORE FLEX'/>}
             <div className='c-box-shadow-blue'>
                 <Box className='m-top-md m-bot-md m-left-md m-right-md'>
