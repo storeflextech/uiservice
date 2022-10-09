@@ -62,9 +62,9 @@ const SearchInfo = () => {
 
     return (
         <div className='c-box-shadow-blue m-bot-md'>
-            <div className='blue-gradient'>
+            {/* <div className='blue-gradient'>
                 <div className='font-white p-md f-18px f-bold'> Search Business </div>
-            </div>
+            </div> */}
             <div className='p-md'>
                 {searchOptions()}
                 <div className='p-top-md'>

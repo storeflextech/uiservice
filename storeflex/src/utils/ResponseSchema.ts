@@ -23,3 +23,9 @@ export interface StoreDetails {
     zip: number;
     description: string;
 }
+
+export interface officeData {
+    id: number;
+    name: string;
+    rate: number;
+}
