@@ -15,8 +15,12 @@ import Slider from '@mui/material/Slider';
 import Divider from '@mui/material/Divider';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
+import {officeData} from '../../../utils/ResponseSchema';
 
 
+interface filterData {
+    allData: officeData;
+}
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',

@@ -8,7 +8,10 @@ const PgSearch = () => {
     return(
         <>
             <Container component="main" maxWidth="xl" className='p-no'>
-            {<MainBanner content='STORE FLEX'/>}
+            
+            {<MainBanner content='Search Business'/>}
+
+
             {SearchInfo()}
             </Container>
         </>
