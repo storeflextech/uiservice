@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom"
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
@@ -27,7 +28,7 @@ export default function Searchresult() {
   
 const [office, setOffice] = useState<Array<any>>([]);
 const [filter, setFilter] = useState('asc');
-
+const navigate = useNavigate();
 
   useEffect(()=>{
     const data = ([
@@ -92,7 +93,10 @@ const [filter, setFilter] = useState('asc');
     setOffice(sortedData);
   }
 
-console.log("status");
+ function addToCart(e:any,selectedItem:any){
+   console.log("Selected Item===",selectedItem);
+   navigate('/cart');
+ }
 
   return (
 
@@ -151,7 +155,7 @@ console.log("status");
                             <span> From ${data.rate} </span>
                           </div>
                           <div className='text-left'>
-                            <Button variant="contained" color="success" size="small"> View Rates </Button>
+                            <Button variant="contained" color="success" size="small" onClick={(e) => { addToCart(e,data) }}> Add to Cart </Button>
                           </div>
                         </div>
                       </Grid>
