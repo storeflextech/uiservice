@@ -69,11 +69,11 @@ const validation = (values:any) => {
       <>
       <Container component="main" maxWidth="xs" className='c-box-shadow p-no'>
       <div className='blue-gradient'> 
-      <div className='font-white p-md'><b>
-      <Typography component="h1" variant="h4">
-            Sign in
-          </Typography>
-        </b></div>
+        <div className='font-white p-md'><b>
+        <Typography component="h1" variant="h4">
+              Sign in
+            </Typography>
+          </b></div>
       </div>
       <div className='p-md'>
         <Box sx={{ marginTop: 4, display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
