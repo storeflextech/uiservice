@@ -71,11 +71,7 @@ const SearchInfo = () => {
                     {showSearchOption()}
                 </div>
             </div>
-
             <Searchresult />
-
-
-
         </div>
     );
 
