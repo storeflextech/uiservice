@@ -1,6 +1,6 @@
 import React from 'react';
 import './banner.scss';
-import ProfileBtn from '../button/profilebtn';
+import {ProfileBtn} from '../button/button';
 import { Container, AppBar, Toolbar } from '@mui/material';
 
 interface PageBannerProps {

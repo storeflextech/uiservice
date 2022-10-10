@@ -44,9 +44,8 @@ export const PAGES = {
         path: '/search',
         component: PgSearch
     },
-
-    PG_CONTACT :{
-        path: '/contact',
+    PG_CONTACT_US :{
+        path: '/contactus',
         component: PgContactUs
     },
     FAQ :{
