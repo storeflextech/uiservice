@@ -1,4 +1,5 @@
 export const alignC: string;
+export const alignRight: string;
 export const appBg: string;
 export const appLink: string;
 export const appLogo: string;
@@ -73,7 +74,10 @@ export const sfFlex: string;
 export const sfJustify: string;
 export const sflogo: string;
 export const sflogoContainer: string;
+export const sflogoS: string;
+export const sflogoSContainer: string;
 export const sfwarehouseImg: string;
+export const sfwarehouseSImg: string;
 export const textRed: string;
 export const w100: string;
 export const whContainer: string;
