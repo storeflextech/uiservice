@@ -7,6 +7,7 @@ import PgDashboard from '../pages/PgDashboard';
 import BusinessInfo from '../pages/businessinfo';
 import AddInfo from '../pages/addinfo';
 import PgSearch from '../pages/PgSearch';
+import Cart from '../pages/cart';
 import PgContactUs from '../pages/PgContactUs';
 import faq from '../pages/faq';
 
@@ -44,6 +45,10 @@ export const PAGES = {
         path: '/search',
         component: PgSearch
     },
+    CART :{
+        path: '/cart',
+        component: Cart
+    },
     PG_CONTACT_US :{
         path: '/contactus',
         component: PgContactUs
@@ -51,6 +56,6 @@ export const PAGES = {
     FAQ :{
         path: '/faq',
         component: faq
-    },
+    }
 
 }

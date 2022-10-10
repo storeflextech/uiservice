@@ -27,6 +27,7 @@ function App() {
             <Route path={PAGES.BUSINESS_INFO.path} element={<PAGES.BUSINESS_INFO.component />} />
             <Route path={PAGES.ADD_INFO.path} element={<PAGES.ADD_INFO.component />} />
             <Route path={PAGES.PG_SEARCH.path} element={<PAGES.PG_SEARCH.component />} />
+            <Route path={PAGES.CART.path} element={<PAGES.CART.component />} />
             <Route path={PAGES.PG_CONTACT_US.path} element={<PAGES.PG_CONTACT_US.component />} />
             <Route path={PAGES.FAQ.path} element={<PAGES.FAQ.component />} />
             
