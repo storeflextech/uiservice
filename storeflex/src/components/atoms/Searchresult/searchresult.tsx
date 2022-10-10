@@ -23,8 +23,6 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 export default function Searchresult() {
-
-
   
 const [office, setOffice] = useState<Array<any>>([]);
 const [filter, setFilter] = useState('asc');
@@ -71,7 +69,6 @@ const navigate = useNavigate();
   }, [])
 
 
-
   function sortAscending() {
     var sortedData = office.sort((a, b) => 
     { 
@@ -99,7 +96,6 @@ const navigate = useNavigate();
  }
 
   return (
-
     <Box sx={{ width: '100%' }}>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
         <Container maxWidth="xl">        
@@ -175,12 +171,7 @@ const navigate = useNavigate();
             </Grid>
           </Box>
         </Container>
-
       </Grid>
-
-
-
-
 
 
     </Box>

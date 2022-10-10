@@ -86,36 +86,20 @@ const SignIn = () => {
   return (
     <>
       <Container component="main" maxWidth="xs" className='c-box-shadow p-no'>
-        <div className='blue-gradient'>
-          <div className='font-white p-md'><b>
-            <Typography component="h1" variant="h4">
+      <div className='blue-gradient'> 
+        <div className='font-white p-md'><b>
+        <Typography component="h1" variant="h4">
               Sign in
             </Typography>
           </b></div>
-        </div>
-        <div className='p-md'>
-          <Box sx={{ marginTop: 4, display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
-            <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-              <Grid container spacing={2}> </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  // margin="normal"
-                  // required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  value={values.email}
-                  onChange={handleChange}
-                  autoFocus
-                />
-                {errors.email && <p className="text-red">{errors.email}</p>}
-              </Grid>
-              <br></br>
+      </div>
+      <div className='p-md'>
+        <Box sx={{ marginTop: 4, display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
+          <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            <Grid container spacing={2}> </Grid>
               <Grid item xs={12}>
                 <TextField
                   // margin="normal"

@@ -8,6 +8,8 @@ import BusinessInfo from '../pages/businessinfo';
 import AddInfo from '../pages/addinfo';
 import PgSearch from '../pages/PgSearch';
 import Cart from '../pages/cart';
+import PgContactUs from '../pages/PgContactUs';
+import faq from '../pages/faq';
 
 
 export const PAGES = {
@@ -46,6 +48,14 @@ export const PAGES = {
     CART :{
         path: '/cart',
         component: Cart
+    },
+    PG_CONTACT_US :{
+        path: '/contactus',
+        component: PgContactUs
+    },
+    FAQ :{
+        path: '/faq',
+        component: faq
     }
 
 }
