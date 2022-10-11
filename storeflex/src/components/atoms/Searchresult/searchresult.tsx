@@ -22,34 +22,34 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 export default function Searchresult() {
-  
-const [office, setOffice] = useState<Array<any>>([]);
-const [filter, setFilter] = useState('asc');
 
-  useEffect(()=>{
+  const [office, setOffice] = useState<Array<any>>([]);
+  const [filter, setFilter] = useState('asc');
+
+  useEffect(() => {
     const data = ([
       {
-        id:1,
+        id: 1,
         name: "Office 1",
         rate: 58,
       },
       {
-        id:2,
+        id: 2,
         name: "Office 2",
         rate: 56,
       },
       {
-        id:3,
+        id: 3,
         name: "Office 3",
         rate: 59,
       },
       {
-        id:4,
+        id: 4,
         name: "Office 4",
         rate: 54,
       },
       {
-        id:5,
+        id: 5,
         name: "Office 5",
         rate: 64,
       }
@@ -59,7 +59,7 @@ const [filter, setFilter] = useState('asc');
 
     // let sortedData = data.sort((a, b) =>  b.rate - a.rate
     // );
-    
+
 
     setOffice(data);
 
@@ -68,8 +68,7 @@ const [filter, setFilter] = useState('asc');
 
 
   function sortAscending() {
-    var sortedData = office.sort((a, b) => 
-    { 
+    var sortedData = office.sort((a, b) => {
       return a.rate - b.rate
     });
 
@@ -78,9 +77,8 @@ const [filter, setFilter] = useState('asc');
 
   }
 
-  function sortDecending(){
-    var sortedData = office.sort((a, b) => 
-    { 
+  function sortDecending() {
+    var sortedData = office.sort((a, b) => {
       return b.rate - a.rate
     });
 
@@ -88,26 +86,28 @@ const [filter, setFilter] = useState('asc');
     setOffice(sortedData);
   }
 
-console.log("status");
+  console.log("status");
 
   return (
 
     <Box sx={{ width: '100%' }}>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
-        <Container maxWidth="xl">        
+        <Container maxWidth="xl">
           <Box sx={{
             display: 'flex',
             flexDirection: 'row',
             borderRadius: 1,
           }}>
 
-            <Filter/>
-            
-            <Grid item xs={10} sx={{ pl: 1 }}>
+            <Grid item md={2}>
+              <Filter />
+            </Grid>
+
+            <Grid item md={10} sx={{ pl: 1 }}>
 
               {office.map((data) => (
 
-                <Item key={data.id} sx={{mb:1}}>
+                <Item key={data.id} sx={{ mb: 1 }}>
                   <Grid item xs={12} sx={{ p: 2 }}>
                     <div className='text-left'>
                       <div className='header'> <BeenhereIcon /> AAA Self Storage </div>

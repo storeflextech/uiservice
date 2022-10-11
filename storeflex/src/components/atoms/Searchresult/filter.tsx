@@ -121,7 +121,7 @@ const CheckboxLabels = () => {
 export default function Filter() {
     return (
         <>
-            <Grid item xs={2}>
+            
 
                 <Item sx={{ p: 0 }}>
                     <Grid item xs={12}>
@@ -152,7 +152,6 @@ export default function Filter() {
                 </Item>
 
 
-            </Grid>
         </>
     )
 }
