@@ -30,11 +30,11 @@ const PgHome = () => {
                 </div>
                 <div className='font-white font-arial w100 align-c'>
                     <div>
-                      <span className='f-80px red-border'>
+                      <span className='font-xxxl red-border'>
                         <strong>Store Flex</strong>
                       </span>
                     </div>
-                    <div className='f-24px p-top-md'>
+                    <div className='font-lg p-top-md'>
                       <span>
                         <strong>Logistics Management</strong></span></div>
                   </div>

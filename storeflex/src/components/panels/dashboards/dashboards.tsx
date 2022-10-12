@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
-import { Grid } from '@mui/material';
-import Cards, { CARD_COLOR } from '../../atoms/cards/cards'; 
+import { Grid, Button } from '@mui/material';
 import { PAGES } from '../../../utils/Constants';
 
 const Dashboards = () => {
@@ -27,34 +26,22 @@ const Dashboards = () => {
         <>
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={4} md={4}>
-                    <Cards cardBg={CARD_COLOR.BLUE} onCardClick={() => {addBusiness()}}>
-                        <span> Add Bussiness </span>
-                    </Cards>
+                    <Button fullWidth variant="contained" size="large" onClick={() => {addBusiness()}}><b>Add Bussiness</b></Button>
                 </Grid>
                 <Grid item xs={12} sm={4} md={4}>
-                    <Cards cardBg={CARD_COLOR.ORANGE} onCardClick={() => {searchBusiness()}}>
-                    <span> Search Bussiness </span>
-                    </Cards>
+                <Button fullWidth variant="contained" size="large" onClick={() => {searchBusiness()}}><b>Search Bussiness</b></Button>
                 </Grid>
                 <Grid item xs={12} sm={4} md={4}>
-                    <Cards cardBg={CARD_COLOR.GREEN} onCardClick={() => {addUser()}}>
-                    <span> Add  user </span>
-                    </Cards>
+                <Button fullWidth variant="contained" size="large" onClick={() => {addUser()}}><b>Add  user </b></Button>
                 </Grid>
                 <Grid item xs={12} sm={4} md={4}>
-                    <Cards cardBg={CARD_COLOR.YELLOW}>
-                    <span> Add Location </span>
-                    </Cards>
+                <Button fullWidth variant="contained" size="large" onClick={() => {addUser()}}><b>Add Location</b></Button>
                 </Grid>
                 <Grid item xs={12} sm={4} md={4}>
-                    <Cards cardBg={CARD_COLOR.BLUE}>
-                    <span> Reports </span>
-                    </Cards>
+                <Button fullWidth variant="contained" size="large" onClick={() => {addUser()}}><b>Reports</b></Button>
                 </Grid>
                 <Grid item xs={12} sm={4} md={4}>
-                    <Cards cardBg={CARD_COLOR.ORANGE}>
-                    <span> Content Update </span>
-                    </Cards>
+                <Button fullWidth variant="contained" size="large" onClick={() => {addUser()}}><b>Content Update</b></Button>
                 </Grid>
             </Grid>
         </>

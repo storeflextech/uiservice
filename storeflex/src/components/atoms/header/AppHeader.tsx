@@ -1,6 +1,7 @@
 import React  from 'react';
 import { Container, AppBar, Toolbar } from '@mui/material';
-import ProfileBtn from '../button/profilebtn';
+import {ProfileBtn} from '../button/button';
+import './AppHeader.scss';
 
 export const PageHeader = () => {
 
@@ -17,7 +18,7 @@ export const AppMenuBar = () => {
             <Container maxWidth="xl">
             <Toolbar disableGutters>
             <div className='logoicon'>
-            <ProfileBtn />
+                <ProfileBtn />
             </div> 
             </Toolbar>
             </Container>

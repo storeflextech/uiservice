@@ -1,15 +1,18 @@
 import React from 'react';
 import { Box, Container } from '@mui/material';
-import PageBanner, {MainBanner} from '../components/atoms/banner/PageBanner';
+import {MainBanner, AppNavBar} from '../components/atoms/banner/PageBanner';
 import Dashboards from '../components/panels/dashboards/dashboards';
-import { AppMenuBar } from '../components/atoms/header/AppHeader';
+import { ProfileMenu } from '../components/atoms/menu/menu';
 
 const PgDashboard = () => {
+    const profileImgUrl ="../../../static/images/AVT_1.png";
     return(
         <>
             <Container component="main" maxWidth="xl" className='p-no'>
-            {<MainBanner content='STORE FLEX' />}
-            {/* {<AppMenuBar />} */}
+            <div>
+                <MainBanner content='DASHBOARD' />
+                <AppNavBar content='DASHBOARD'> {<ProfileMenu isSigned={true} profileImg={profileImgUrl}/>} </AppNavBar>
+            </div>
             <div className='c-box-shadow-blue'>
                 <Box className='m-top-md m-bot-md m-left-md m-right-md'>
                     <div>

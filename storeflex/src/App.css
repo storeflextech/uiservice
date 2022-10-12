@@ -1,11 +1,4 @@
 
-.app-bg {
-  background-color: white;
-}
-
-.align-c {
-  text-align: center;
-}
 
 .f-12px {
   font-size: 0.75rem;
@@ -29,10 +22,6 @@
 }
 .f-40px {
   font-size: 2.5rem;
-  line-height: normal;
-}
-.f-80px {
-  font-size: 5rem;
   line-height: normal;
 }
 

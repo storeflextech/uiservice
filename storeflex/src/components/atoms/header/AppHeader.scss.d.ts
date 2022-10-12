@@ -1,0 +1,1 @@
+export const inputboxField: string;

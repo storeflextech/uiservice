@@ -1,13 +1,18 @@
 import React from 'react';
 import './banner.scss';
-import ProfileBtn from '../button/profilebtn';
+import {ProfileBtn} from '../button/button';
 import { Container, AppBar, Toolbar } from '@mui/material';
 
 interface PageBannerProps {
   content?: string;
   imageUlr?: string;
   children?: React.ReactNode;
+}
 
+interface AppNavBarProps {
+  content?: string;
+  imageUlr?: string;
+  children?: React.ReactNode;
 }
 
 export const MainBanner = (props?: PageBannerProps) => {
@@ -15,32 +20,30 @@ export const MainBanner = (props?: PageBannerProps) => {
     <>
     <div className='sfwarehouse-s-img'>
       <div className='banner-container'>
-        {/* <img className='banner-img'src='../static/images/sfbanner.jpeg' alt='busines inforamtion'/> */}
         <div className='sflogo-s-container flex relative-p'>
           <img className='sflogo-s' src='../static/images/sflogo.png' alt='storefles logo' />
-
         </div>
-
-
         {props?.children}
-
-
       </div>
     </div>
-    
-    <AppBar position="static" color='primary'>
-            <Container maxWidth="xl">
-            <Toolbar disableGutters>
-              <div className='page-image-content font-white p-md f-24px f-bold'>{props?.content}</div>
-            <div className='logoicon align-right'>
-            <ProfileBtn />
-            </div> 
-            </Toolbar>
-            </Container>
-        </AppBar>
-
     </>
-    
+  )
+}
+
+export const AppNavBar = (props?: AppNavBarProps) => {
+  return(
+    <AppBar position="static" color='primary'>
+      <div> 
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <div className='page-image-content font-white p-md f-24px f-bold'>{props?.content}</div>
+          <div className='logoicon align-right'>
+            {props?.children}
+          </div> 
+          </Toolbar>
+        </Container>
+        </div> 
+    </AppBar>
   )
 }
 const PageBanner = (props?: PageBannerProps) => {

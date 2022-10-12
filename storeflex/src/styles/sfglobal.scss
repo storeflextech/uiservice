@@ -1,9 +1,5 @@
 
 
-.app-bg {
-  background-color: white;
-}
-
 @mixin mediabreakpoint ($point) {
   @if $point == desktop {
     @media (min-width: 1025px) { @content;}
@@ -15,7 +11,26 @@
     @media (max-width: 767px) { @content;}
   }
 }
+.app-bg {
+  background-color: white;
+}
+.primary-gradient {
+  min-height: 30px;
+  background-image: radial-gradient(circle at 0 0, rgb(255, 94, 0), orange);
+}
+.red-gradient {
+  min-height: 30px;
+  background-image: radial-gradient(circle at 0 0,#ffbf76,#e6473d);
+}
+.blue-gradient {
+  min-height: 30px;
+  background-image: radial-gradient(circle at 0 0, #013ADF, #81BEF7);
+}
 
+.light-blue-gradient {
+  min-height: 30px;
+  background-image: radial-gradient(circle at 0 0,#ffbf76,#e6473d);
+}
 .align-c {
   text-align: center;
 }
@@ -51,6 +66,21 @@
     font-size: 16px !important;
   }
 }
+
+.font-lg {
+  font-size: 24px !important;
+  line-height:normal;
+  @include mediabreakpoint(mobile) {
+    font-size: 20px!important;
+  }
+}
+.font-xxxl {
+  font-size: 5rem !important;
+  line-height:normal;
+  @include mediabreakpoint(mobile) {
+    font-size: 3rem !important;
+  }
+}
 .f-18px {
   font-size: 1.125rem;
   line-height: 20px;
@@ -63,28 +93,6 @@
   font-size: 2.5rem;
   line-height: normal;
 }
-.f-80px {
-  font-size: 5rem;
-  line-height: normal;
-}
-.orange-gradient {
-  min-height: 30px;
-  background-image: radial-gradient(circle at 0 0, rgb(255, 94, 0), orange);
-}
-.red-gradient {
-  min-height: 30px;
-  background-image: radial-gradient(circle at 0 0,#ffbf76,#e6473d);
-}
-.blue-gradient {
-  min-height: 30px;
-  background-image: radial-gradient(circle at 0 0, #013ADF, #81BEF7);
-}
-
-.light-blue-gradient {
-  min-height: 30px;
-  background-image: radial-gradient(circle at 0 0,#ffbf76,#e6473d);
-}
-
 
 .p-sm {
   padding: 8px;
@@ -260,27 +268,6 @@
   border-radius: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.red-gradient {
-    min-height: 30px;
-    background-image: radial-gradient(circle at 0 0,#ffbf76,#e6473d);
-}
-.blue-gradient {
-    min-height: 30px;
-    background-image: radial-gradient(circle at 0 0, #013ADF, #81BEF7);
-}
-.light-blue-gradient {
-    min-height: 30px;
-    background-image: radial-gradient(circle at 0 0,#ffbf76,#e6473d);
-}
 .c-box-shadow {
     box-sizing: border-box;
     box-shadow: 0 2px 4px 0 rgb(0 0 0 / 30%);
