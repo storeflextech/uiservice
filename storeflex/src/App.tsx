@@ -21,8 +21,11 @@ function App() {
           <Routes>
             <Route path="/" element={<PAGES.HOME.component />} />
             <Route path={PAGES.HOME.path} element={<PAGES.HOME.component />} />
+            <Route path={PAGES.GUESTHOME.path} element={<PAGES.GUESTHOME.component />} />
+            <Route path={PAGES.CUSTOMERHOME.path} element={<PAGES.CUSTOMERHOME.component />} />
             <Route path={PAGES.SIGN_UP.path} element={<PAGES.SIGN_UP.component />} />
             <Route path={PAGES.SIGN_IN.path} element={<PAGES.SIGN_IN.component />} />
+            <Route path={PAGES.SIGN_IN_NEW.path} element={<PAGES.SIGN_IN_NEW.component />} />
             <Route path={PAGES.DASHBOARD.path} element={<PAGES.DASHBOARD.component />} />
             <Route path={PAGES.BUSINESS_INFO.path} element={<PAGES.BUSINESS_INFO.component />} />
             <Route path={PAGES.ADD_INFO.path} element={<PAGES.ADD_INFO.component />} />

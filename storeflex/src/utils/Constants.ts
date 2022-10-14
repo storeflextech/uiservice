@@ -1,6 +1,9 @@
 import PgHome from '../pages/PgHome';
+import GuestHome from '../pages/GuestHome';
+import CustomerHome from '../pages/CustomerHome';
 // import Account from './pages/accout';
 import SignIn from "../pages/signin";
+import SignInNew from "../pages/signin-new";
 import SignUp from '../pages/signup';
 // import AddStore from '../pages/addstore';
 import PgDashboard from '../pages/PgDashboard';
@@ -17,9 +20,21 @@ export const PAGES = {
         path: '/home',
         component: PgHome
     },
+    GUESTHOME : {
+        path: '/guesthome',
+        component: GuestHome
+    },
+    CUSTOMERHOME : {
+        path: '/customerhome',
+        component: CustomerHome
+    },
     SIGN_IN : {
         path: '/signin',
         component: SignIn
+    },
+    SIGN_IN_NEW : {
+        path: '/signin-new',
+        component: SignInNew
     },
     SIGN_UP : {
         path: '/signup',

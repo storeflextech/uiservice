@@ -62,6 +62,7 @@ const PgHome = () => {
         <Button variant="outlined" onClick={() => {goToNextPage('/addprofile')}}>Register</Button>
         <Button variant="outlined" onClick={() => {goToNextPage('/addstore')}}>AddStore</Button>
         <Button variant="outlined" onClick={() => {goToNextPage('/businessinfo')}}> Business Info </Button>
+        <Button variant="outlined" onClick={() => {goToNextPage('/guesthome')}}> Guest Home </Button>
         </div>
       </>
     );
