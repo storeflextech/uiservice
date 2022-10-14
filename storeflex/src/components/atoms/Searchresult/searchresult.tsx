@@ -70,6 +70,7 @@ const navigate = useNavigate();
 
     setOffice(data);
     console.log(office)
+    console.log('load');
 
   }, [])
 

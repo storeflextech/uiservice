@@ -15,7 +15,6 @@ import Slider from '@mui/material/Slider';
 import Divider from '@mui/material/Divider';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
-import { officeData } from '../../../utils/ResponseSchema';
 
 // interface content{
 //     id: any;
@@ -51,7 +50,7 @@ export default function Filter(props?: parentProps) {
         var filterValue = (event.target as HTMLInputElement).value;
         setRadioValue(filterValue);
 
-        if (filterValue == 'ascending') {
+        if (filterValue === 'ascending') {
             var office = props?.officeData;
             var sortedData = office.sort((a: any, b: any) => {
                 return a.rate - b.rate
@@ -59,7 +58,7 @@ export default function Filter(props?: parentProps) {
             props?.handleFilte(sortedData, filterValue);
         }
 
-        if (filterValue == 'descending') {
+        if (filterValue === 'descending') {
             var office = props?.officeData;
             var sortedData = office.sort((a: any, b: any) => {
                 return b.rate - a.rate
