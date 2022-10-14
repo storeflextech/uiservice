@@ -100,7 +100,7 @@ const navigate = useNavigate();
             borderRadius: 1,
           }}>
 
-            {<Filter officeData={office} handleFilte={handleFilte}/>}
+            <Filter officeData={office} handleFilte={handleFilte} />
             
             <Grid item xs={10} sx={{ pl: 1 }}>
 
