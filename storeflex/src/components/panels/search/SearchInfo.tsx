@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid } from '@mui/material';
+import { Grid, Button } from '@mui/material';
 import Cards, { CARD_COLOR } from '../../atoms/cards/cards';
 import InputBox from '../../atoms/textfield/InputBox';
 import Searchresult from '../../atoms/Searchresult/searchresult'
@@ -41,19 +41,14 @@ const SearchInfo = () => {
             <>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={4} md={4}>
-                        <Cards cardBg={CARD_COLOR.BLUE} onCardClick={() => { onButtonClick('location') }}>
-                            <span> Search By Location </span>
-                        </Cards>
+                        <Button fullWidth variant="contained" size="large" onClick={() => { onButtonClick('location') }}><b>Search By Location</b></Button>
                     </Grid>
                     <Grid item xs={12} sm={4} md={4}>
-                        <Cards cardBg={CARD_COLOR.ORANGE} onCardClick={() => { onButtonClick('warehouse_type') }}>
-                            <span> Search By Warehouse </span>
-                        </Cards>
+                        
+                        <Button fullWidth variant="contained" size="large" onClick={() => { onButtonClick('warehouse_type') }}><b>Search By Warehouse</b></Button>
                     </Grid>
                     <Grid item xs={12} sm={4} md={4}>
-                        <Cards cardBg={CARD_COLOR.GREEN} onCardClick={() => { onButtonClick('company_type') }}>
-                            <span> Search By Company </span>
-                        </Cards>
+                        <Button fullWidth variant="contained" size="large" onClick={() => { onButtonClick('company_type') }}><b>Search By Company</b></Button>
                     </Grid>
                 </Grid>
             </>
