@@ -32,7 +32,8 @@ export const MainBanner = (props?: PageBannerProps) => {
 
 export const AppNavBar = (props?: AppNavBarProps) => {
   return(
-    <AppBar position="static" color='primary'>
+    <div className='sf-aap-bar'>    
+    <AppBar position="static" className='sf-aap-bar'>
       <div> 
         <Container maxWidth="xl">
           <Toolbar disableGutters>
@@ -44,6 +45,7 @@ export const AppNavBar = (props?: AppNavBarProps) => {
         </Container>
         </div> 
     </AppBar>
+    </div>
   )
 }
 const PageBanner = (props?: PageBannerProps) => {

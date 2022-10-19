@@ -14,7 +14,7 @@ import Api from '../api/Api';
 import { SignInProps } from '../api/ApiConfig';
 
 const SignInNew = () => {
-
+  const navigate = useNavigate();
   /*
   gapi.load("client:auth2", () => {
     gapi.client.init({
@@ -46,9 +46,14 @@ const SignInNew = () => {
       const data: SignInProps = {
         username: 'storeflextest',
         password: 'storeflex#123'
-    }
+      }
       api.signIn(data).then((response) => {
         console.log(' signIn >>>>>> ', response );
+        if(response && response.status === 200 && response?.data?.statusCode === 600) {
+          navigate('/dashboard');
+        } else {
+          navigate('/error');
+        }
       });
 
     } else {
