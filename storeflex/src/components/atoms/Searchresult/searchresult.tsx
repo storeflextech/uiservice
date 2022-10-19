@@ -28,11 +28,7 @@ const [office, setOffice] = useState<Array<any>>([]);
 const [filter, setFilter] = useState('');
 const navigate = useNavigate();
 
-  const [office, setOffice] = useState<Array<any>>([]);
-  const [filter, setFilter] = useState('asc');
-  const navigate = useNavigate();
-
-  useEffect(() => {
+  useEffect(()=>{
     const data = ([
       {
         id:1,
@@ -78,9 +74,6 @@ const navigate = useNavigate();
 
   }, [])
 
-  const goToNextPage = (pagePath: string) => {
-    navigate(pagePath);
-  }
 
 
  const addToCart=(e:any,selectedItem:any) => {
@@ -100,7 +93,7 @@ const navigate = useNavigate();
   return (
     <Box sx={{ width: '100%' }}>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
-        <Container maxWidth="xl">
+        <Container maxWidth="xl">        
           <Box sx={{
             display: 'flex',
             flexDirection: 'row',
@@ -113,7 +106,7 @@ const navigate = useNavigate();
 
               {office.map((data) => (
 
-                <Item key={data.id} sx={{ mb: 1 }}>
+                <Item key={data.id} sx={{mb:1}}>
                   <Grid item xs={12} sx={{ p: 2 }}>
                     <div className='text-left'>
                       <div className='header'> <BeenhereIcon /> {data.business} </div>
@@ -141,9 +134,6 @@ const navigate = useNavigate();
                       <Grid item sm={3}>
                         <div className='card'>
                           <div className='text-left'>
-                            <span> From ${data.rate} </span>
-                          </div>
-                          <div className='text-left'>
                             <div className='sub-header'>Access Hours</div>
                             <div>Mon-Sun:</div>
                             <div>6am - 9pm</div>
@@ -156,12 +146,7 @@ const navigate = useNavigate();
                              From<span className='sub-header'> ${data.rate} </span>
                           </div>
                           <div className='text-left'>
-                            {/* <Button variant="contained" color="success" size="small" onClick={(e) => { addToCart(e,data) }}> Select </Button> */}
-                            {/* <Button variant="contained" color="success" className='btn primary-btn' onClick={() => { goToNextPage('/signin-new') }}> Select </Button> */}
-                            
-                            <button type="button" className="btn primary-btn-outline" data-bs-toggle="modal" data-bs-target="#myModal">
-                              Select
-                            </button>
+                            <Button variant="contained" color="success" size="small" onClick={(e) => { addToCart(e,data) }}> Add to Cart </Button>
                           </div>
                         </div>
                       </Grid>
@@ -177,25 +162,6 @@ const navigate = useNavigate();
         </Container>
       </Grid>
 
-
-      <div id="myModal" className="modal">
-        <div className="modal-dialog">
-            <div className="modal-content">
-                <div className="modal-header">
-                    <h5 className="modal-title">Message</h5>
-                <button type="button" className="close" data-dismiss="modal">&times;</button> 
-                </div>
-                <div className="modal-body">
-                    <p>In order to purchase you need to register with storeflex and sign the lease aggrement.</p>
-                    <p className="text-primary"><small>Do you want to continue?</small></p>
-                </div>
-                <div className="modal-footer">
-                    <button type="button" className="btn" data-dismiss="modal">Cancel</button>
-                    <button onClick={() => { goToNextPage('/signin-new') }} type="button" className="btn primary-btn-outline">Proceed</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     </Box>
   );
