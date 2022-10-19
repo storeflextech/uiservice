@@ -10,6 +10,8 @@ import { ApiConfig, SignInProps } from './ApiConfig';
 //     }
 //   };
 
+
+
 export default class Api {
     apiUrl: ApiConfig;
     constructor() {
@@ -19,13 +21,10 @@ export default class Api {
     async getTest() {
         const url = this.apiUrl.testApi;
         return await axios.get(url).then((response)=> {
-            console.log(' response >> ', response.data);
-            return response.data;
-            // return Promise.resolve(response.data);
+            return Promise.resolve(response);
         }).catch((error)=>{
             console.log(' error >> ', error);
-            return error;
-            // return Promise.reject(error);
+            return Promise.reject(error);
         });
     }
 
@@ -33,21 +32,11 @@ export default class Api {
         const url = this.apiUrl.signinTestApi;
         try {
             const response = await axios.post(url, postData);
-            console.log(' response : signIn ', response);
-            return Promise.resolve(response.data);
+            return Promise.resolve(response);
         }
         catch (error) {
             console.log(' error : signIn', error);
             return Promise.reject(error);
         }
-        // const response = await axios.post(url, data).then((response)=> {
-        //     console.log(' response >> ', response.data);
-        //     return response.data;
-        //     // return Promise.resolve(response.data);
-        // }).catch((error)=>{
-        //     console.log(' error >> ', error);
-        //     return error;
-        //     // return Promise.reject(error);
-        // });
     }
 }
