@@ -50,7 +50,7 @@ const SignInNew = () => {
       api.signIn(data).then((response) => {
         console.log(' signIn >>>>>> ', response );
         if(response && response.status === 200 && response?.data?.statusCode === 600) {
-          navigate('/dashboard');
+          navigate('/guesthome');
         } else {
           navigate('/error');
         }
