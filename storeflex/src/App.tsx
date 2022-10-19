@@ -20,6 +20,7 @@ function App() {
       <div className='app-bg'>
           <Routes>
             <Route path="/" element={<PAGES.HOME.component />} />
+            <Route path={PAGES.CPANEL.path} element={<PAGES.CPANEL.component />} />
             <Route path={PAGES.HOME.path} element={<PAGES.HOME.component />} />
             <Route path={PAGES.GUESTHOME.path} element={<PAGES.GUESTHOME.component />} />
             <Route path={PAGES.CUSTOMERHOME.path} element={<PAGES.CUSTOMERHOME.component />} />
@@ -30,6 +31,7 @@ function App() {
             <Route path={PAGES.BUSINESS_INFO.path} element={<PAGES.BUSINESS_INFO.component />} />
             <Route path={PAGES.ADD_INFO.path} element={<PAGES.ADD_INFO.component />} />
             <Route path={PAGES.PG_SEARCH.path} element={<PAGES.PG_SEARCH.component />} />
+            <Route path={PAGES.PG_SEARCH_NEW.path} element={<PAGES.PG_SEARCH_NEW.component />} />
             <Route path={PAGES.CART.path} element={<PAGES.CART.component />} />
             <Route path={PAGES.PG_CONTACT_US.path} element={<PAGES.PG_CONTACT_US.component />} />
             <Route path={PAGES.FAQ.path} element={<PAGES.FAQ.component />} />

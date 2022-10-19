@@ -13,7 +13,15 @@ const storeDetails=[
     price:"4500.00",
     location:"Six mile, Guwahati, 781005",
     displayImage:""
-    }
+    },
+    {
+        companyName:"My-Hall Self Storage Provider",
+        storeTitle:"Self Storage - 1",
+        size:"5'x5'x8'",
+        price:"4500.00",
+        location:"Six mile, Guwahati, 781005",
+        displayImage:""
+        }
 ]
 
 
