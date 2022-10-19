@@ -41,7 +41,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start:express": "nodemon mock-server/server.js",
-    "start:dev": "concurrently \"yarn start:express\" \"yarn start\" \"yarn styles:tsw\""
+    "start:dev": "concurrently \"yarn start:express\" \"yarn start\""
   },
   "eslintConfig": {
     "extends": [

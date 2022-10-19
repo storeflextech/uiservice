@@ -1,5 +1,14 @@
 {
     "serverResponse": {
         "status": "sucess"
+    },
+    "logintest": {
+        "methodReturnValue": {
+            "redirect": "/storeflexhome",
+            "username": "storeflextest"
+        },
+        "statusCode": 600,
+        "message": "Login Success",
+        "status": "SUCCESS"
     }
 }

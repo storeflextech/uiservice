@@ -11,6 +11,14 @@
     @media (max-width: 767px) { @content;}
   }
 }
+
+$sf-primary-btn-color: #f66711;
+$sf-primary-color: #f66711;
+
+.sf-aap-bar {
+  background-color: $sf-primary-color !important;
+}
+
 .app-bg {
   background-color: white;
 }
