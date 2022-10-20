@@ -1,4 +1,4 @@
-import PgHome from '../pages/PgHome';
+// import PgHome from '../pages/PgHome';
 import GuestHome from '../pages/GuestHome';
 import CustomerHome from '../pages/CustomerHome';
 // import Account from './pages/accout';
@@ -16,10 +16,6 @@ import faq from '../pages/faq';
 
 
 export const PAGES = {
-    HOME : {
-        path: '/home',
-        component: PgHome
-    },
     GUESTHOME : {
         path: '/guesthome',
         component: GuestHome
