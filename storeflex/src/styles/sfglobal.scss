@@ -15,6 +15,9 @@
 $sf-primary-btn-color: #f66711;
 $sf-primary-color: #f66711;
 
+.sf-btn-primary-color {
+  background-color: $sf-primary-color !important;
+}
 .sf-aap-bar {
   background-color: $sf-primary-color !important;
 }
