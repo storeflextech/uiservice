@@ -48,25 +48,9 @@ const SuNavbar = () => {
                   <span className="toggler-icon"></span>
                 </button>
 
-                {/* <div className="collapse navbar-collapse sub-menu-bar" id="navbarOne">
-                  <ul className="navbar-nav m-auto">
-                    <li className="nav-item">
-                      <a className="active page-scroll" href="#hero-area">Home</a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="page-scroll" href="#search">Advance Search</a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="page-scroll" href="#profile">My Profile</a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="page-scroll" href="#bookings">My Bookings</a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="page-scroll" href="#payments">My Payments</a>
-                    </li>
-                  </ul>
-                </div> */}
+                <div className="collapse navbar-collapse sub-menu-bar" id="navbarOne">
+                  <h3 style={{color:'white'}}>C-Panel</h3>
+                </div>
 
                 <div className="navbar-btn d-none d-sm-inline-block">
                   <ul>

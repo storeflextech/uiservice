@@ -11,7 +11,7 @@ const PgDashboard = () => {
             <Container component="main" maxWidth="xl" className='p-no'>
             <div>
                 <MainBanner content='DASHBOARD' />
-                <AppNavBar content='DASHBOARD'> {<ProfileMenu isSigned={true} profileImg={profileImgUrl}/>} </AppNavBar>
+                <AppNavBar content='DASHBOARD'> {<ProfileMenu isSigned={false} profileImg={profileImgUrl}/>} </AppNavBar>
             </div>
             <div className='c-box-shadow-blue'>
                 <Box className='m-top-md m-bot-md m-left-md m-right-md'>
