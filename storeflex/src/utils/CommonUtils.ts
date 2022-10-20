@@ -22,9 +22,11 @@ export const validateEmail = (email: string) => {
     return isValid;
 }
 
-export const validateSignInPassword = (password: string) => {
-    if(password ) {
-        return regex_minlen.test(String(password.trim()));
+export const validateMinLen = (val: string, trim?: boolean) => {
+    const minLen = 4;
+    if(val) {
+        const value  = trim ? val.trim() : val;
+        return value.length >= minLen ? true : false;
     } else {
         return false;
     }
@@ -87,9 +89,9 @@ export const validateCountry = (country: string) => {
     return isValid;
 }
 
-export const setUserLoggedIn = (response: string | boolean) => {
-    if(response) {
-        sessionStorage.setItem('isLoggedIn', 'true');
+export const setUserLoggedIn = (val: string | boolean) => {
+    if(val) {
+        sessionStorage.setItem('isLoggedIn', String(val));
     } else {
         sessionStorage.setItem('isLoggedIn', 'false');
     }
