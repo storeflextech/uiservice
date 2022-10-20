@@ -1,4 +1,5 @@
-// import PgHome from '../pages/PgHome';
+import CPanel from '../cPanel/index';
+import PgHome from '../pages/PgHome';
 import GuestHome from '../pages/GuestHome';
 import CustomerHome from '../pages/CustomerHome';
 // import Account from './pages/accout';
@@ -10,12 +11,21 @@ import PgDashboard from '../pages/PgDashboard';
 import BusinessInfo from '../pages/businessinfo';
 import AddInfo from '../pages/addinfo';
 import PgSearch from '../pages/PgSearch';
+import PgSearchNew from '../pages/PgSearchNew';
 import Cart from '../pages/cart';
 import PgContactUs from '../pages/PgContactUs';
 import faq from '../pages/faq';
 
 
 export const PAGES = {
+    HOME : {
+        path: '/home',
+        component: PgHome
+    },
+    CPANEL : {
+        path: '/cPanel',
+        component: CPanel
+    },
     GUESTHOME : {
         path: '/guesthome',
         component: GuestHome
@@ -55,6 +65,10 @@ export const PAGES = {
     PG_SEARCH :{
         path: '/search',
         component: PgSearch
+    },
+    PG_SEARCH_NEW :{
+        path: '/search-new',
+        component: PgSearchNew
     },
     CART :{
         path: '/cart',
