@@ -1,29 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom"
-// import Container from '@mui/material/Container';
-// import { TextField, Typography, Avatar, Box, Button, Link, Grid } from '@mui/material';
-// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-// import CheckBoxR from '../components/atoms/checkbox/CheckBoxR';
-import { validateEmail, validateSignInPassword } from '../utils/CommonUtils';
-// import AppleIcon from '@mui/icons-material/Apple';
-// import FacebookIcon from '@mui/icons-material/Facebook';
-// import GoogleIcon from '@mui/icons-material/Google';
-// import GoogleLogin from 'react-google-login';
-import { gapi } from "gapi-script";
+import { validateMinLen, setUserLoggedIn } from '../utils/CommonUtils';
 import Api from '../api/Api';
 import { SignInProps } from '../api/ApiConfig';
 
 const SignInNew = () => {
-
-  /*
-  gapi.load("client:auth2", () => {
-    gapi.client.init({
-      clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-      plugin_name: "storeflex",
-      scope: 'email',
-    });
-  });
-  */
+  const navigate = useNavigate();
 
   const [values, setValues] = useState({
     email: "",
@@ -39,16 +21,26 @@ const SignInNew = () => {
 
   const submitSignIn = () => {
     const api = new Api();
-    const emailValid = validateEmail(values.email);
-    const passwordValid = validateSignInPassword(values.password);
+    const emailValid = validateMinLen(values.email, true);
+    const passwordValid = validateMinLen(values.password, true);
+    setUserLoggedIn('false');
     if (emailValid && passwordValid) {
       console.log(' Submit Signin ')
       const data: SignInProps = {
-        username: 'storeflextest',
-        password: 'storeflex#123'
-    }
+        username: values.email,
+        password: values.password
+      }
       api.signIn(data).then((response) => {
         console.log(' signIn >>>>>> ', response );
+        if(response && response.status === 200 && response?.data?.statusCode === 600) {
+          setUserLoggedIn('true');
+          // navigate('/guesthome');
+          window.location.href = '/guesthome';
+        } else {
+          setUserLoggedIn('false');
+          window.location.href = '/error'
+          // navigate('/error');
+        }
       });
 
     } else {
@@ -78,8 +70,7 @@ const SignInNew = () => {
                             <img src="assets/images/white-logo.jpg" alt="Logo"  style={{height:'8vh'}}/>
                               <label>Your account will be under this email</label>
                               <div className="input-items default">
-                                  <input type="text" placeholder="Email" name="email" onChange={handleChange}/>
-                                  <i className="lni lni-envelope"></i>
+                                  <input type="text" placeholder="User Id" name="email" onChange={handleChange}/> 
                               </div>
                             </div>
                         </div>
@@ -88,7 +79,6 @@ const SignInNew = () => {
                               <label>Password for your account</label>
                               <div className="input-items default">
                                   <input type="password" placeholder="Password" name="password" onChange={handleChange}/>
-                                  <i className="lni lni-key"></i>
                               </div>
                             </div>
                         </div>

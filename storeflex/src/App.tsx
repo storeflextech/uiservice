@@ -4,11 +4,13 @@ import './App.css';
 import '../src/styles/sfglobal.scss';
 import { PAGES } from './utils/Constants';
 // import {RouterHelper} from './utils/RouterHelper';
+import { getUserLoggedIn} from  './utils/CommonUtils';
 
 function App() {
   return (
     <React.StrictMode>
       <BrowserRouter>
+
           <Routes>
             <Route path="/*" element={<PAGES.SIGN_IN_NEW.component />} />
             <Route path={PAGES.HOME.path} element={<PAGES.HOME.component />} />
@@ -28,7 +30,7 @@ function App() {
             <Route path={PAGES.PG_CONTACT_US.path} element={<PAGES.PG_CONTACT_US.component />} />
             <Route path={PAGES.FAQ.path} element={<PAGES.FAQ.component />} />
         </Routes>
-      </BrowserRouter>
+</BrowserRouter>
   </React.StrictMode>
   );
 }

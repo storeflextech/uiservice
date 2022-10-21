@@ -13,6 +13,14 @@
 }
 
 $sf-primary-btn-color: #f66711;
+$sf-primary-color: #f66711;
+
+.sf-btn-primary-color {
+  background-color: $sf-primary-color !important;
+}
+.sf-aap-bar {
+  background-color: $sf-primary-color !important;
+}
 
 .app-bg {
   background-color: white;
@@ -525,4 +533,8 @@ $sf-primary-btn-color: #f66711;
   line-height: 24px;
   color: var(--dark-3);
   margin-top: 8px;
+}
+
+.position-r {
+  position: relative !important;
 }

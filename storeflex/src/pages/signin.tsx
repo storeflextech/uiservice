@@ -86,11 +86,9 @@ const SignIn = () => {
   return (
     <>
       <Container component="main" maxWidth="xs" className='c-box-shadow p-no'>
-      <div className='blue-gradient'> 
-        <div className='font-white p-md'><b>
-        <Typography component="h1" variant="h4">
-              Sign in
-            </Typography>
+      <div className='sf-aap-bar'> 
+        <div className='font-white p-md f-40px'><b>
+        Sign in
           </b></div>
       </div>
       <div className='p-md'>
@@ -135,11 +133,19 @@ const SignIn = () => {
                   </div>
                 </div>
               </div>
-              <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}
-                onClick={() => { submitSignIn() }}>
-                Sign In
-              </Button>
             </Box>
+            <div className="row">
+              <div className="col-md-12 col-lg-12 col-xs-12">
+                  <div className="form-input rounded-buttons">
+                    <button onClick={() => {submitSignIn()}}
+                        className="btn primary-btn rounded-full"
+                        type="submit"
+                        >
+                    Sign In
+                    </button>
+                  </div>
+              </div>
+            </div>
             <div className='font-12px p-top-md'>
               <Link href="#" underline="none">{'Forgot password'}</Link>
             </div>
