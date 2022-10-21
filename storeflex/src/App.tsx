@@ -25,6 +25,7 @@ function App() {
               <Route path={PAGES.CART.path} element={<PAGES.CART.component />} />
               <Route path={PAGES.PG_CONTACT_US.path} element={<PAGES.PG_CONTACT_US.component />} />
               <Route path={PAGES.FAQ.path} element={<PAGES.FAQ.component />} />
+              <Route path={PAGES.ERROR.path} element={<PAGES.ERROR.component />} />
             </Routes>
             } 
             { !getUserLoggedIn() && 

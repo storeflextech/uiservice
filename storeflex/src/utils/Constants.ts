@@ -15,6 +15,7 @@ import PgSearchNew from '../pages/PgSearchNew';
 import Cart from '../pages/cart';
 import PgContactUs from '../pages/PgContactUs';
 import faq from '../pages/faq';
+import ErrorPage from '../pages/errorPage';
 
 
 export const PAGES = {
@@ -81,6 +82,10 @@ export const PAGES = {
     FAQ :{
         path: '/faq',
         component: faq
+    },
+    ERROR :{
+        path: '/error',
+        component: ErrorPage
     }
 
 }
