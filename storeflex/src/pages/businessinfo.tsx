@@ -3,6 +3,7 @@ import {  Box, Container } from '@mui/material';
 import {BusinessDetails} from '../utils/ResponseSchema';
 import AddStore from './addstore';
 import AddProfile from '../components/panels/profile/addProfile';
+import GuestNavbar from '../components/navbar/guest-navbar';
 
 const storeData = require('../mockData/storeinfoData.json');
 
@@ -30,14 +31,13 @@ const BusinessInfo = () => {
   }
     return (
         <>
-        <Container component="main" maxWidth="xl" className='p-no'>
-          <Box sx={{ backgroundColor: '#F8F9F9' }} className='m-top-md m-bot-md'>
-          {
-            <AddProfile profileData={profile} onSave={() => {onBusinessInfoSave()}}/>
-          }
+        <div>
+          <GuestNavbar />
+        </div>
+       <div className="container">
+          <AddProfile profileData={profile} onSave={() => {onBusinessInfoSave()}}/>
           {showStoreDetails()}
-          </Box>
-        </Container>
+          </div>
         </>
     );
 }
