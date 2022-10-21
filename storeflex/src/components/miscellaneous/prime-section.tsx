@@ -1,6 +1,13 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 const imgUrl = "assets/images/header/04.jpg";
+
+
 const PrimeSection = () => {
+  const navigate = useNavigate();
+  const goToNextPage = (pagePath: string) => {
+    navigate(pagePath);
+  }
   return (
     <>
       <section id="hero-area" className="header-area header-ten">
@@ -25,7 +32,7 @@ const PrimeSection = () => {
                       <input className="input-search-size form-control" name="name" type="text" placeholder="Enter Pin or City" style={{ height: '8vh' }} />
                     </div>
                     <div className="light-rounded-buttons float-end">
-                      <a href="javascript:void(0)" className="btn primary-btn-outline"> Start Search </a>
+                      <a href="javascript:void(0)" onClick={() => { goToNextPage('/search-new') }} className="btn primary-btn-outline"> Start Search </a>
                     </div>
                   </div>
                 </div>

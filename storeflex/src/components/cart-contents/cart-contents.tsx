@@ -154,7 +154,7 @@ const CartContents = (props: CartContentsProps) => {
                                                     <Divider sx={{ m: 2 }} />
                                                 </div>
                                                 <div >
-                                                    <Button variant="contained" color="warning" size="small"> Checkout </Button>
+                                                    <Button variant="contained" color="warning" size="small"> Make Payment </Button>
                                                 </div>
 
                                             </div>

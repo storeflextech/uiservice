@@ -1,26 +1,30 @@
 import React from 'react';
-import { Box, Container } from '@mui/material';
-import {MainBanner, AppNavBar} from '../components/atoms/banner/PageBanner';
+import { Box } from '@mui/material';
 import Dashboards from '../components/panels/dashboards/dashboards';
+import DashboardChart from '../components/panels/chart/dashboardChart';
 import { ProfileMenu } from '../components/atoms/menu/menu';
+import GuestNavbar from '../components/navbar/guest-navbar';
 
 const PgDashboard = () => {
     const profileImgUrl ="../../../static/images/AVT_1.png";
     return(
         <>
-            <Container component="main" maxWidth="xl" className='p-no'>
             <div>
-                <MainBanner content='DASHBOARD' />
-                <AppNavBar content='DASHBOARD'> {<ProfileMenu isSigned={true} profileImg={profileImgUrl}/>} </AppNavBar>
+              <GuestNavbar />
+            </div>
+            <div>
+                <ProfileMenu isSigned={false} profileImg={profileImgUrl}/>
+            </div>
+            <div>
             </div>
             <div className='c-box-shadow-blue'>
                 <Box className='m-top-md m-bot-md m-left-md m-right-md'>
                     <div>
                         <Dashboards />
+                        <DashboardChart />
                     </div>
                 </Box>
             </div>
-            </Container>
         </>
     )
 }
