@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {  Box, Grid, Container ,TextareaAutosize, Button } from '@mui/material';
 import InputBox from '../components/atoms/textfield/InputBox';
 import AddressDetails from '../components/atoms/addressforms/AddressDetails';
-import PageBanner from '../components/atoms/banner/PageBanner';
 import {BusinessDetails} from '../utils/ResponseSchema';
 import AddStore from './addstore';
 
@@ -61,7 +60,6 @@ const AddProfileTemp = () => {
     return (
         <>
         <Container component="main" maxWidth="md" className='p-no'>
-        {<PageBanner content='GROW YOUR BUSINESS WITH US'/>}
         <Box sx={{ backgroundColor: '#F8F9F9' }} className='m-top-md m-bot-md'>
         <div className='c-box-shadow-blue  m-bot-md'>
           <div className='blue-gradient'>

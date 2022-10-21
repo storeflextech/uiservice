@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container } from '@mui/material';
-import PageBanner, {MainBanner} from '../components/atoms/banner/PageBanner';
 import CartContents from '../components/cart-contents/cart-contents';
 
 
@@ -30,7 +29,6 @@ const Cart = () => {
     return(
         <>
             <Container component="main" maxWidth="xl" className='p-no'>
-            {<MainBanner content='STORE FLEX'/>}
             <div className='font-gray f-24px p-top-xl'>Your Shopping Cart(1)</div>
             {<CartContents storeInfo={storeDetails}/>}
             </Container>
