@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom"
+//import { useNavigate } from "react-router-dom"
 import { validateMinLen, setUserLoggedIn } from '../utils/CommonUtils';
 import Api from '../api/Api';
 import { SignInProps } from '../api/ApiConfig';
 
 const SignInNew = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [values, setValues] = useState({
     email: "",
@@ -35,7 +35,7 @@ const SignInNew = () => {
         if(response && response.status === 200 && response?.data?.statusCode === 600) {
           setUserLoggedIn('true');
           // navigate('/guesthome');
-          window.location.href = '/guesthome';
+          window.location.href = '/home';
         } else {
           setUserLoggedIn('false');
           window.location.href = '/error'

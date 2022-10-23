@@ -16,8 +16,6 @@ export const RouterHelper = () => {
         // Procted   Pages 
         return (
             <Routes>
-            <Route path={PAGES.GUESTHOME.path} element={<PAGES.GUESTHOME.component />} />
-            <Route path={PAGES.GUESTHOME.path} element={<PAGES.GUESTHOME.component />} />
             <Route path={PAGES.CUSTOMERHOME.path} element={<PAGES.CUSTOMERHOME.component />} />
             <Route path={PAGES.SIGN_UP.path} element={<PAGES.SIGN_UP.component />} />
             <Route path={PAGES.SIGN_IN.path} element={<PAGES.SIGN_IN.component />} />
