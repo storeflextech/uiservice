@@ -12,7 +12,7 @@ function App() {
       <BrowserRouter>
             {getUserLoggedIn() && 
             <Routes>
-              <Route path={PAGES.GUESTHOME.path} element={<PAGES.GUESTHOME.component />} />
+              <Route path={PAGES.HOME.path} element={<PAGES.HOME.component />} />
               <Route path={PAGES.CUSTOMERHOME.path} element={<PAGES.CUSTOMERHOME.component />} />
               <Route path={PAGES.CPANEL.path} element={<PAGES.CPANEL.component />} />
               <Route path={PAGES.SIGN_UP.path} element={<PAGES.SIGN_UP.component />} />
@@ -31,7 +31,7 @@ function App() {
             } 
             { !getUserLoggedIn() && 
               <Routes>
-               <Route path="/*" element={<PAGES.SIGN_IN_NEW.component />} />
+                <Route path="/*" element={<PAGES.SIGN_IN_NEW.component />} />
               </Routes>
             }
        

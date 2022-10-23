@@ -18,10 +18,26 @@ $sf-primary-color: #f66711;
 .sf-btn-primary-color {
   background-color: $sf-primary-color !important;
 }
-.sf-aap-bar {
+.sf-bg-color {
   background-color: $sf-primary-color !important;
 }
 
+.sf-bg {
+  background: $sf-primary-color !important;
+}
+
+.sf-split-pane-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding-top: 80px;
+  padding-right: 0px;
+  padding-bottom: 50px;
+  padding-left: 0px;
+  @include mediabreakpoint(mobile) {
+    padding-top: 130px;
+  }
+}
 .app-bg {
   background-color: white;
 }
