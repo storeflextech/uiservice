@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.0",
+    "@emotion/style": "^0.8.0",
     "@emotion/styled": "^11.10.0",
+    "@mdi/font": "^7.0.96",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.9.3",
     "@testing-library/jest-dom": "^5.16.4",
@@ -18,15 +20,20 @@
     "axios": "^0.27.2",
     "cdbreact": "^1.5.3",
     "clsx": "^1.2.1",
+    "compass-mixins": "^0.12.12",
     "gapi-script": "^1.2.0",
     "http-proxy-middleware": "^2.0.6",
+    "nouislider-react": "^3.4.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-bootstrap-drawer": "^1.0.1",
     "react-bootstrap-sidebar-menu": "^2.0.3",
+    "react-bootstrap-table-next": "^4.0.3",
+    "react-bootstrap-table2-paginator": "^2.1.2",
     "react-dom": "^18.2.0",
     "react-google-charts": "^4.0.0",
     "react-google-login": "^5.2.2",
+    "react-i18next": "^11.18.6",
     "react-router": "^6.4.2",
     "react-router-dom": "6",
     "react-scripts": "5.0.1",
@@ -67,6 +74,7 @@
   "devDependencies": {
     "concurrently": "^3.5.1",
     "http-proxy-middleware": "^2.0.6",
+    "node-sass": "^7.0.3",
     "typed-scss-modules": "^7.0.1"
   },
   "proxy": "http://localhost:8088"
