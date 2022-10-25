@@ -1,4 +1,4 @@
-.navbar {
+.side-navbar {
   font-weight: $font-weight-light;
   background: $navbar-bg;
   transition:background $action-transition-duration $action-transition-timing-function;
@@ -6,7 +6,7 @@
   -moz-transition:background $action-transition-duration $action-transition-timing-function;
   -ms-transition:background $action-transition-duration $action-transition-timing-function;
 
-  .navbar-brand {
+  .side-navbar-brand {
     width: 110px;
   }
   .navbar-brand-wrapper {
@@ -24,7 +24,7 @@
     @media (max-width: 991px) {
       width: 55px;
     }
-    .navbar-brand {
+    .side-navbar-brand {
       color: $navbar-menu-color;
       font-size: 1.5rem;
       line-height: 48px;
@@ -298,11 +298,11 @@
   }
 }
 @media (max-width:991px) {
-  .navbar {
+  .side-navbar {
     flex-direction: row;
     .navbar-brand-wrapper {
       width: 75px;
-      .navbar-brand {
+      .side-navbar-brand {
         &.brand-logo {
           display: none;
         }
@@ -320,7 +320,7 @@
 }
 
 @media (max-width:480px) {
-  .navbar {
+  .side-navbar {
     .navbar-brand-wrapper {
       width: 55px;
       .brand-logo-mini{
@@ -332,8 +332,8 @@
 
 /* Navbar color variations */
 @each $color, $value in $theme-gradient-colors {
-  .navbar {
-    &.navbar-#{$color} {
+  .side-navbar {
+    &.side-navbar-#{$color} {
       .navbar-menu-wrapper {
         background: $value;
         color: $white;

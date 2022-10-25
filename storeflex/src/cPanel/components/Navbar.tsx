@@ -11,10 +11,10 @@ const Navbar = () => {
     // document.querySelector('.right-sidebar').classList.toggle('open');
   }
     return (
-      <nav className="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <nav className="side-navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div className="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-          <Link className="navbar-brand brand-logo" to="/"><img src='/cpanel/images/brand.png' alt="logo" /></Link>
-          <Link className="navbar-brand brand-logo-mini" to="/"><img src='/cpanel/images/logo.png' alt="logo" /></Link>
+          <Link className="side-navbar-brand brand-logo" to="/"><img src='/cpanel/images/brand.png' alt="logo" /></Link>
+          <Link className="side-navbar-brand brand-logo-mini" to="/"><img src='/cpanel/images/logo.png' alt="logo" /></Link>
         </div>
         <div className="navbar-menu-wrapper d-flex align-items-stretch">
           <button className="navbar-toggler navbar-toggler align-self-center" type="button" onClick={ () => document.body.classList.toggle('sidebar-icon-only') }>
