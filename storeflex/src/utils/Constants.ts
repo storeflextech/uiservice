@@ -13,6 +13,23 @@ import Cart from '../pages/cart';
 import PgContactUs from '../pages/PgContactUs';
 import faq from '../pages/faq';
 import ErrorPage from '../pages/ErrorPage';
+import AddBusiness from '../pages/addbusiness';
+import AddWarehouse from '../pages/addwarehouse';
+import PendingBusiness from '../pages/pendingbusiness';
+import DeleteWarehouse from '../pages/deletewarehouse';
+import UpdateWarehouse from '../pages/updatewarehouse';
+import DeleteUser from '../pages/deleteuser';
+import UpdateUser from '../pages/updateuser';
+import AddPayment from '../pages/addpayment';
+import DeletePayment from '../pages/deletepayment';
+import UpdatePayment from '../pages/updatepayment';
+import SearchBusiness from '../pages/searchbusiness';
+import SearchWarehouse from '../pages/searchwarehouse';
+import BusinessReport from '../pages/businessreport';
+import WarehouseReport from '../pages/warehousereport';
+import LocationReport from '../pages/locationreport';
+
+
 
 
 export const PAGES = {
@@ -50,7 +67,7 @@ export const PAGES = {
     },
     ADD_BUSINESS :{
         path: '/addbusiness',
-        component: ''
+        component: AddBusiness
     },
     ADD_INFO :{
         path: '/addinfo',
@@ -79,6 +96,62 @@ export const PAGES = {
     ERROR :{
         path: '/error',
         component: ErrorPage
+    },
+    ADD_WAREHOUSE:{
+        path: '/addwarehouse',
+        component: AddWarehouse
+    },
+    PENDING_BUSINESS:{
+        path:'/pendingbusiness',
+        component: PendingBusiness
+    },
+    DELETE_WAREHOUSE:{
+        path:'/deletewarehouse',
+        component: DeleteWarehouse
+    },
+    UPDATE_WAREHOUSE:{
+        path:'/updatewarehouse',
+        component: UpdateWarehouse
+    },
+    DELETE_USER:{
+        path:'/deleteuser',
+        component: DeleteUser
+    },
+    UPDATE_USER:{
+        path:'/updateuser',
+        component: UpdateUser
+    },
+    ADD_PAYMENT:{
+        path:'/addpayment',
+        component:AddPayment
+    },
+    DELETE_PAYMENT:{
+        path:'/deletepayment',
+        component: DeletePayment
+    },
+    UPDATE_PAYMENT:{
+        path:'/updatepayment',
+        component: UpdatePayment
+    },
+    SEARCH_BUSINESS:{
+        path:'/searchbusiness',
+        component: SearchBusiness
+    },
+    SEARCH_WAREHOUSE:{
+        path:'/searchwarehouse',
+        component: SearchWarehouse
+    },
+    BUSINESS_REPORT:{
+    path:'/businessreport',
+    component:BusinessReport
+    },
+    WAREHOUSE_REPORT:{
+        path:'/warehousereport',
+        component: WarehouseReport
+    },
+    LOCARTION_REPORT:{
+        path:'/locationreport',
+        component: LocationReport
     }
 
 }
