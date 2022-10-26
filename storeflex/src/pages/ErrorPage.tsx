@@ -10,7 +10,7 @@ const ErrorPage = () => {
                     <div>
                         Error ! 
                     </div>
-                    <p> Somthin went wrong !!!!</p>
+                    <p> Somthing went wrong !!!!</p>
                 </Box>
             </div>
             </Container>
