@@ -36,7 +36,7 @@ const BusinessInfo = () => {
       <SplitPaneContainer
           left={<SideNavBar />}
           right={
-              <div className='c-box-shadow-blue'>
+              <div className='c-box-shadow-blue m-left-md'>
                   <AddProfile profileData={profile} onSave={() => {onBusinessInfoSave()}}/>
                     {showStoreDetails()}
               </div>    

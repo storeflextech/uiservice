@@ -205,8 +205,8 @@ const AddProfile = (props: AddProfileProps) => {
                 {showAddProfile()}
                 </div>
                 <div className='m-bot-lg'>
-                    <div className='blue-gradient m-bot-md'>
-                    <div className='font-white p-md f-18px f-bold'>Business Address</div>
+                    <div className='primary-gradient m-bot-md'>
+                    <div className='font-white p-sm f-18px f-bold'>Business Address</div>
                     </div>
                     {showBusinessAddress()}
                 </div>
@@ -221,8 +221,8 @@ const AddProfile = (props: AddProfileProps) => {
     }
     return(
         <div className='m-bot-md'>
-            <div className='blue-gradient'>
-                <div className='font-white p-md f-18px f-bold'>Business Information</div>
+            <div className='primary-gradient'>
+                <div className='font-white p-sm f-18px f-bold'>Business Information</div>
             </div>
             {showBusinessInfo()}
         </div>

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Collapse } from 'react-bootstrap';
 import { Trans } from 'react-i18next';
+import { PAGES } from '../../utils/Constants';
 
 const SideNavBar = ()=> {
 
@@ -15,6 +16,10 @@ const SideNavBar = ()=> {
       reportMenuOpen: false,
     };
     return menuObject;
+  }
+  const navigate = useNavigate();
+  const handelOnClick = (path: string) => {
+    navigate(path);
   }
 
   const [values, setValues] = useState(initialization);
@@ -60,10 +65,10 @@ const SideNavBar = ()=> {
             </a>
           </li>
           <li className={ isPathActive('/cPanel') ? 'nav-item active' : 'nav-item' }>
-            <Link className="nav-link" to="/cPanel">
+            <div className="nav-link" onClick={() => {handelOnClick(PAGES.DASHBOARD.path)}}>
               <span className="menu-title"><Trans>Dashboard</Trans></span>
               <i className="mdi mdi-home menu-icon"></i>
-            </Link>
+            </div>
           </li>
           <li className='nav-item'>
             <div className={ 'nav-link' } onClick={ () => toggleMenuState('businessMenuOpen') } data-toggle="collapse">
