@@ -72,7 +72,7 @@ const AddUser = () => {
     return(
         <div className='c-box-shadow-blue m-bot-md'>
             <div className='sf-aap-bar'>
-                <div className='font-white p-md f-18px f-bold'>Add User</div>
+                <div className='text-red p-lg'>Add User</div>
             </div>
             <div className='p-md'>
                 {selectDetails()}
