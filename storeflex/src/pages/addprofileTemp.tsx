@@ -63,7 +63,7 @@ const AddProfileTemp = () => {
         <Box sx={{ backgroundColor: '#F8F9F9' }} className='m-top-md m-bot-md'>
         <div className='c-box-shadow-blue  m-bot-md'>
           <div className='blue-gradient'>
-            <div className='font-white p-md f-18px f-bold'>Business Information</div>
+            <div className='font-white p-sm f-18px f-bold'>Business Information </div>
           </div>
           <div className='p-md'>
             {profileSaved && showSavedProfile()}
@@ -92,7 +92,7 @@ const AddProfileTemp = () => {
         <div>
           <div className='c-box-shadow-blue m-bot-lg'>
             <div className='blue-gradient m-bot-md'>
-              <div className='font-white p-md f-18px f-bold'>Business Address</div>
+              <div className='font-white p-sm f-18px f-bold'>Business Address</div>
             </div>
             <div className='p-md'>
             <div>{

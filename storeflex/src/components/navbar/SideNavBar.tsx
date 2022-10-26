@@ -17,6 +17,10 @@ const SideNavBar = ()=> {
     };
     return menuObject;
   }
+  const navigate = useNavigate();
+  const handelOnClick = (path: string) => {
+    navigate(path);
+  }
 
   const navigate = useNavigate();
   const handleOnClick = (path:string)=>{
@@ -65,8 +69,10 @@ const SideNavBar = ()=> {
               <i className="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
             </a>
           </li>
+
           <li className={ isPathActive('/dashboard') ? 'nav-item active' : 'nav-item' }>
             <div className="nav-link" onClick= {() => {handleOnClick(PAGES.DASHBOARD.path)}}>
+
               <span className="menu-title"><Trans>Dashboard</Trans></span>
               <i className="mdi mdi-home menu-icon"></i>
             </div>
