@@ -4,7 +4,7 @@ const Services = () => {
     return (
       <>
       <section id="services" className="services-area services-seven">
-        <div className="section-title-three">
+        <div className="section-title-four">
           <div className="container">
             <div className="row">
               <div className="col-12">
@@ -23,23 +23,22 @@ const Services = () => {
         <div className="container">
           <div className="single-head">
             <div className="row">
-              <div className="col-lg-4 col-md-6 col-12">
+              <div className="col-lg-3 col-md-4 col-12">
                 <div className="single-service">
                   <span className="serial">01</span>
-                  <h4>Digital Product Development</h4>
+                  <h4>Listing Platform</h4>
                   <p>
-                    We dejoy working with discerning clients, people for whom
-                    qualuty, service, integrity & aesthetics.
+                    Empowering Consumers with data,inspiration & knowlwdge for leasing.
                   </p>
                   <div className="light-rounded-buttons">
                     <a href="javascript:void(0)" className="btn primary-btn"> Read More </a>
                   </div>
                 </div>
               </div>
-              <div className="col-lg-4 col-md-6 col-12">
+              <div className="col-lg-3 col-md-6 col-12">
                 <div className="single-service">
                   <span className="serial">02</span>
-                  <h4>General Consulting Process</h4>
+                  <h4>Resource Management</h4>
                   <p>
                     We dejoy working with discerning clients, people for whom
                     qualuty, service, integrity & aesthetics.
@@ -49,13 +48,25 @@ const Services = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-4 col-md-6 col-12">
+              <div className="col-lg-3 col-md-6 col-12">
                 <div className="single-service">
                   <span className="serial">03</span>
-                  <h4>Hire in Fixed Contracting</h4>
+                  <h4>Technology backed warehousing solution</h4>
                   <p>
-                    We dejoy working with discerning clients, people for whom
-                    qualuty, service, integrity & aesthetics.
+                    Browse rentals with up-to-date information,tools
+                    and resources to help you stress less,detailed description,floorplans and more.
+                  </p>
+                  <div className="light-rounded-buttons">
+                    <a href="javascript:void(0)" className="btn primary-btn"> Read More </a>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-3 col-md-6 col-12">
+                <div className="single-service">
+                  <span className="serial">04</span>
+                  <h4>Accounting & Transaction Services</h4>
+                  <p>
+                    We take care of the lease and payment processing.
                   </p>
                   <div className="light-rounded-buttons">
                     <a href="javascript:void(0)" className="btn primary-btn"> Read More </a>
