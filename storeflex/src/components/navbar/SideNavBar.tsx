@@ -17,11 +17,7 @@ const SideNavBar = ()=> {
     };
     return menuObject;
   }
-  const navigate = useNavigate();
-  const handelOnClick = (path: string) => {
-    navigate(path);
-  }
-
+ 
   const navigate = useNavigate();
   const handleOnClick = (path:string)=>{
     navigate(path);
