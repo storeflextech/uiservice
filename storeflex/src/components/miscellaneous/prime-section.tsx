@@ -24,8 +24,11 @@ const PrimeSection = () => {
                 <div className="home-slider">
                   <div className="header-text align-items-center">
                     <h1>
-                      We are making world a<br />
-                      Better place for you.
+                      Smarter search for space at your fingertips under one roof<br />
+                      <h4><i>We are a leading market place for warehouse & logistics management solutions.</i></h4>
+                      <div className="light-rounded-buttons">
+                         <a href="javascript:void(0)" className="btn primary-btn"> Discover More </a>
+                      </div>
                     </h1>
                     <h6>LET’S FIND WAREHOUSE YOU ARE LOOKING FOR</h6>
                     <div className="form-group">
