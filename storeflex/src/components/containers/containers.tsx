@@ -10,10 +10,10 @@ export const AppContainer = (props) => {
 export const SplitPaneContainer = (props) => {
     return(
         <div className="sf-split-pane-container">
-            <div className="SplitPane-left">
+            <div className="sf-splitPane-left">
                 {props.left}
             </div>
-            <div className="SplitPane-right">
+            <div className="sf-splitPane-right">
                 {props.right}
             </div>
         </div>
