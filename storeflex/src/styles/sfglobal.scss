@@ -38,6 +38,19 @@ $sf-primary-color: #f66711;
     padding-top: 130px;
   }
 }
+.sf-splitPane-right {
+  width: 100%;
+  margin-top: 20px;
+  @include mediabreakpoint(mobile) {
+    margin-top: 10px;
+  }
+}
+.sf-splitPane-left {
+  margin-top: 20px;
+  @include mediabreakpoint(mobile) {
+    margin-top: 10px;
+  }
+}
 .app-bg {
   background-color: white;
 }
@@ -176,6 +189,9 @@ $sf-primary-color: #f66711;
   padding: 0px !important;
 }
 
+.m-sm {
+  margin: 8px;
+}
 .m-top-sm {
   margin-top: 8px;
 }
@@ -413,6 +429,7 @@ $sf-primary-color: #f66711;
   }
 }
 
+
 .headerContainer{
   display: block;
   position: fixed;
@@ -553,4 +570,22 @@ $sf-primary-color: #f66711;
 
 .position-r {
   position: relative !important;
+}
+
+.sf-btn {
+  border-color: #9d3e03 !important;
+  background-color: $sf-primary-btn-color !important;
+  text-transform: none !important;
+  padding: 10px 15px !important;
+}
+
+.sf-btn:hover {
+  background-color: #c85107 !important;
+}
+
+.sf-flex-grid {
+  display: flex;
+  @media only screen and (max-width: 678px) {
+    display: block;
+  }
 }

@@ -1,16 +1,15 @@
 import React from 'react';
 import { Box, Container } from '@mui/material';
 
-const ErrorPage = () => {
+const UpdatePayment = () => {
     return(
         <>
             <Container component="main" maxWidth="xl" className='p-no'>
             <div className='c-box-shadow-blue'>
                 <Box className='m-top-md m-bot-md m-left-md m-right-md'>
                     <div>
-                        Error ! 
+                         Update Payment Details
                     </div>
-                    <p> Somthing went wrong !!!!</p>
                 </Box>
             </div>
             </Container>
@@ -18,4 +17,4 @@ const ErrorPage = () => {
     )
 }
 
-export default ErrorPage;
+export default UpdatePayment;
