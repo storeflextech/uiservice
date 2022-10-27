@@ -22,7 +22,9 @@ const SideNavBar = () => {
     };
     return menuObject;
   }
+
   const navigate = useNavigate();
+
   const [values, setValues] = useState(initialization);
   const [listItems, setListItems] = useState<Array<any>>([]);
 
