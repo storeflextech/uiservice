@@ -24,7 +24,7 @@ const SideNavBar = ()=> {
   }
 
   const [values, setValues] = useState(initialization);
-  const [listItems, setListItems] = useState<Array<any>>([]);
+  const [listItems, setListItems] = useState({});
 
   const getUserMenu = () =>{
     
@@ -74,22 +74,6 @@ const SideNavBar = ()=> {
               <i className="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
             </a>
           </li>
-          {listItems.map((element)=>(
-            <li className='nav-item'>
-            <div className={ 'nav-link' } onClick={ () => toggleMenuState('businessMenuOpen') } data-toggle="collapse">
-              <span className="menu-title"><Trans>{element.Label}</Trans></span>
-              <i className="menu-arrow"></i>
-              <i className="mdi mdi-crosshairs-gps menu-icon"></i>
-            </div>
-            <Collapse in={ values.businessMenuOpen }>
-              <ul className="nav flex-column sub-menu">
-                <li className="nav-item"> <Link className={  'nav-link' } to="/basic-ui/buttons"><Trans> Add Business</Trans></Link></li>
-                <li className="nav-item"> <Link className={  'nav-link' } to="/basic-ui/dropdowns"><Trans>Add Warehouse</Trans></Link></li>
-                <li className="nav-item"> <Link className={  'nav-link' } to="/basic-ui/typography"><Trans>View Pending Business</Trans></Link></li>
-              </ul>
-            </Collapse>
-          </li>
-          ))}
           <li className={ isPathActive('/cPanel') ? 'nav-item active' : 'nav-item' }>
             <Link className="nav-link" to="/cPanel">
               <span className="menu-title"><Trans>Dashboard</Trans></span>
