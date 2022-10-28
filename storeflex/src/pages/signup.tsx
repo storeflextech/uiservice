@@ -23,13 +23,6 @@ const SignUp = () => {
     email: "",
     password: ""
   });
-
-  const handleChange = (event: any) => {
-    setValues({
-      ...values,
-      [event.target.name]: event.target.value,
-    });
-  };
   
   const validation = (values: any) => {
     console.log("Values==", values)
@@ -40,41 +33,6 @@ const SignUp = () => {
       password: ""
     };
     
-    // Firstname validation check
-    if (!values.firstName) {
-      errors.firstName = "*Firstname is required."
-    } else if (!validateCharacterLength(values.firstName, 4, 50)) {
-      errors.firstName = "Firstname should have atleast 4 letters and should not grater than 50"
-    }
-    else if (!validateSpecialCharExistance(values.firstName)) {
-      errors.firstName = "Firstname should not contain any special character or number "
-    }
-
-    // Lastname validation check
-    if (!values.lastName) {
-      errors.lastName = "*Lastname is required."
-    } else if (!validateCharacterLength(values.lastName, 2, 30)) {
-      errors.lastName = "Lastname should have atleast 2 letters and should not grater than 30"
-    }
-    else if (!validateSpecialCharExistance(values.lastName)) {
-      errors.lastName = "Lastname should not contain any special character or number "
-    }
-
-    // Email validation check
-    if (!values.email) {
-      errors.email = "*Email is required."
-    }
-    else if (!validateEmail(values.email)) {
-      errors.email = "Enter a valid mail"
-    }
-
-    // Password validation check
-    if (!values.password) {
-      errors.password = "*Password is required."
-    }
-    else if (!validatePassword(values.password)) {
-      errors.password = "Enter valid password"
-    }
     return errors;
   }
 
@@ -91,6 +49,85 @@ const SignUp = () => {
       password: data.get('password'),
     });
   };
+
+  //Validate First name
+  const validateFirstName = (event:any) => {
+   
+    const firstNameTemp = event.target.value;
+    setValues({
+      ...values,
+      [event.target.name]: event.target.value,
+    });
+    // console.log("Name is ",firstNameTemp)
+    if (!firstNameTemp) {
+      errors.firstName = "*Firstname is required."
+    } else if (!validateCharacterLength(firstNameTemp, 4, 50)) {
+      errors.firstName = "Firstname should have atleast 4 letters and should not grater than 50"
+    }
+    else if (!validateSpecialCharExistance(firstNameTemp)) {
+      errors.firstName = "Firstname should not contain any special character or number "
+    }else{
+      errors.firstName=""
+    }
+
+  }
+
+  //Validate Last Name
+  const validateLastName = (event:any) => {
+  const lastNameTemp = event.target.value;
+  setValues({
+    ...values,
+    [event.target.name] : event.target.value,
+  });
+  if (!lastNameTemp) {
+    errors.lastName = "*Lastname is required."
+  } else if (!validateCharacterLength(lastNameTemp, 2, 30)) {
+    errors.lastName = "Lastname should have atleast 2 letters and should not grater than 30"
+  }
+  else if (!validateSpecialCharExistance(lastNameTemp)) {
+    errors.lastName = "Lastname should not contain any special character or number "
+  }else{
+    errors.lastName = ""
+  }
+}
+
+//Validate Email
+const validateEmailId = (event:any) => {
+  const emailTemp = event.target.value;
+  setValues({
+    ...values,
+    [event.target.name] : event.target.value,
+  });
+  if (!emailTemp) {
+    errors.email = "*Email is required."
+  }
+  else if (!validateEmail(emailTemp)) {
+    errors.email = "Enter a valid mail"
+  }else{
+    errors.email = ""
+  }
+
+}
+
+//ValidatePassword
+const passwordValidation = (event:any) => {
+  const passwordTemp = event.target.value;
+  setValues({
+    ...values,
+    [event.target.name] : event.target.value,
+  });
+  if (!passwordTemp) {
+    errors.password = "*Password is required."
+  }
+  else if (!validatePassword(passwordTemp)) {
+    errors.password = "Enter valid password"
+  }
+  else{
+    errors.password = ""
+  }
+
+}
+  
   return (
     <Container component="main" maxWidth="xs" className='c-box-shadow p-no'>
       <div className='blue-gradient'>
@@ -115,13 +152,14 @@ const SignUp = () => {
                   id="firstName"
                   label="First Name"
                   value={values.firstName}
-                  onChange={handleChange}
+                  onChange={validateFirstName}
                   autoFocus
                 />
                 {errors.firstName && <p className="text-red">{errors.firstName}</p>}
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                className={errors.lastName ? "border-red" : ""}
                   // required
                   fullWidth
                   id="lastName"
@@ -129,12 +167,14 @@ const SignUp = () => {
                   name="lastName"
                   autoComplete="family-name"
                   value={values.lastName}
-                  onChange={handleChange}
+                  onChange={validateLastName}
+                  autoFocus
                 />
                 {errors.lastName && <p className="text-red">{errors.lastName}</p>}
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                className={errors.email ? "border-red" : ""}
                   // required
                   fullWidth
                   id="email"
@@ -142,12 +182,13 @@ const SignUp = () => {
                   name="email"
                   autoComplete="email"
                   value={values.email}
-                  onChange={handleChange}
+                  onChange={validateEmailId}
                 />
                 {errors.email && <p className="text-red">{errors.email}</p>}
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                className={errors.password ? "border-red" : ""}
                   // required
                   fullWidth
                   name="password"
@@ -156,7 +197,7 @@ const SignUp = () => {
                   id="password"
                   autoComplete="new-password"
                   value={values.password}
-                  onChange={handleChange}
+                  onChange={passwordValidation}
                 />
                 {errors.password && <p className="text-red">{errors.password}</p>}
               </Grid>
