@@ -29,6 +29,7 @@ function App() {
               <Route path={PAGES.ERROR.path} element={<PAGES.ERROR.component />} />
               <Route path={PAGES.ADD_BUSINESS.path} element={<PAGES.ADD_BUSINESS.component/>}/>
               <Route path={PAGES.ADD_WAREHOUSE.path} element={<PAGES.ADD_WAREHOUSE.component/>}/>
+              <Route path={PAGES.VIEW_WAREHOUSE.path} element={<PAGES.VIEW_WAREHOUSE.component/>}/>
               <Route path={PAGES.PENDING_BUSINESS.path} element={<PAGES.PENDING_BUSINESS.component/>}/>
               <Route path={PAGES.DELETE_WAREHOUSE.path} element={<PAGES.DELETE_WAREHOUSE.component/>}/>
               <Route path={PAGES.UPDATE_WAREHOUSE.path} element={<PAGES.UPDATE_WAREHOUSE.component/>}/>
@@ -42,6 +43,8 @@ function App() {
               <Route path={PAGES.BUSINESS_REPORT.path} element={<PAGES.BUSINESS_REPORT.component/>}/>
               <Route path={PAGES.WAREHOUSE_REPORT.path} element={<PAGES.WAREHOUSE_REPORT.component/>}/>
               <Route path={PAGES.LOCARTION_REPORT.path} element={<PAGES.LOCARTION_REPORT.component/>}/>
+              <Route path={PAGES.TERMSANDCONDITIONS.path} element={<PAGES.TERMSANDCONDITIONS.component/>}/>
+              <Route path={PAGES.PRIVACYPOLICY.path} element={<PAGES.PRIVACYPOLICY.component/>}/>
             </Routes>
             } 
             { !getUserLoggedIn() && 

@@ -5,8 +5,10 @@ import { Collapse } from 'react-bootstrap';
 import { Trans } from 'react-i18next';
 import MenuItems from './menu-items';
 
-const SideNavBar = () => {
-
+const SideNavBar = (props) => {
+  const userType=props.userType; // SL-Storeflex User, CL- Storeflex Client, CU- Storeflex Customer
+  console.log(props.userType);
+  
   const initialization = () => {
     let menuObject = {
       BusinessMenu: false,
@@ -34,7 +36,7 @@ const SideNavBar = () => {
 
   const getUserMenu = () => {
     MenuItems.map(ele => {
-      if (ele.UserType == 'SL') {
+      if (ele.UserType == userType) {
         setListItems(ele.Menus.SidebarMenu)
       }
     });
@@ -111,7 +113,7 @@ const SideNavBar = () => {
                       </li>
                     ))}
                   </ul>
-                </Collapse>
+                </Collapse>   
 
               </li>
             )

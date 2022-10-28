@@ -135,13 +135,13 @@ const AddProfile = (props: AddProfileProps) => {
             <div className='m-bot-md'>
                 <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                 <Grid item xs={6}>
-                    <InputBox data={{name:'companyname', label:'Company Name' , value: businessProfile.name }}
+                    <InputBox data={{name:'companyname', label:'Company Name*' , value: businessProfile.name }}
                         onChange={handleChange} onBlur={handelOnBlur} 
                     />
                     {errors.companyname && <p className="text-red">{errors.companyname}</p>}
                 </Grid>
                 <Grid item xs={6}>
-                    <InputBox data={{name:'companyurl', label:'Company URL',  value: businessProfile.weburl}}
+                    <InputBox data={{name:'companyurl', label:'Company URL*',  value: businessProfile.weburl}}
                         onChange={handleChange} onBlur={handelOnBlur} 
                     />
                     {errors.companyurl && <p className="text-red">{errors.companyurl}</p>}

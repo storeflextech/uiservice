@@ -28,6 +28,9 @@ import SearchWarehouse from '../pages/searchwarehouse';
 import BusinessReport from '../pages/businessreport';
 import WarehouseReport from '../pages/warehousereport';
 import LocationReport from '../pages/locationreport';
+import ViewWarehouse from '../pages/ViewWarehouse';
+import TermsAndConditions from '../pages/termsandconditions';
+import PrivacyPolicy from '../pages/privacy';
 
 
 
@@ -98,8 +101,12 @@ export const PAGES = {
         component: ErrorPage
     },
     ADD_WAREHOUSE:{
-        path: '/addwarehouse',
+        path: '/add-warehouse',
         component: AddWarehouse
+    },
+    VIEW_WAREHOUSE:{
+        path: '/view-warehouse',
+        component: ViewWarehouse
     },
     PENDING_BUSINESS:{
         path:'/pendingbusiness',
@@ -152,6 +159,14 @@ export const PAGES = {
     LOCARTION_REPORT:{
         path:'/locationreport',
         component: LocationReport
+    },
+    TERMSANDCONDITIONS:{
+        path:'/termsandconditions',
+        component: TermsAndConditions
+    },
+    PRIVACYPOLICY:{
+        path:'/privacypolicy',
+        component: PrivacyPolicy
     }
 
 }
