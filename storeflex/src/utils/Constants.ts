@@ -28,6 +28,7 @@ import SearchWarehouse from '../pages/searchwarehouse';
 import BusinessReport from '../pages/businessreport';
 import WarehouseReport from '../pages/warehousereport';
 import LocationReport from '../pages/locationreport';
+import ViewWarehouse from '../pages/ViewWarehouse';
 
 
 
@@ -98,8 +99,12 @@ export const PAGES = {
         component: ErrorPage
     },
     ADD_WAREHOUSE:{
-        path: '/addwarehouse',
+        path: '/add-warehouse',
         component: AddWarehouse
+    },
+    VIEW_WAREHOUSE:{
+        path: '/view-warehouse',
+        component: ViewWarehouse
     },
     PENDING_BUSINESS:{
         path:'/pendingbusiness',
