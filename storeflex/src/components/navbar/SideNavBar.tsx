@@ -113,7 +113,7 @@ const SideNavBar = (props) => {
                       </li>
                     ))}
                   </ul>
-                </Collapse>
+                </Collapse>   
 
               </li>
             )
