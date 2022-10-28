@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import {  Box, Container } from '@mui/material';
 import {BusinessDetails} from '../utils/ResponseSchema';
 import AddStore from './addstore';
 import AddProfile from '../components/panels/profile/addProfile';
-import GuestNavbar from '../components/navbar/guest-navbar';
+import TopNavbar from '../components/navbar/TopNavBar';
+import SideNavBar from '../components/navbar/SideNavBar';
+import { AppContainer, SplitPaneContainer } from '../components/containers/containers';
 
 const storeData = require('../mockData/storeinfoData.json');
 
@@ -29,17 +30,20 @@ const BusinessInfo = () => {
   const onBusinessInfoSave = () =>  {
     setProfileSaved(true);
   }
-    return (
-        <>
-        <div>
-          <GuestNavbar />
-        </div>
-       <div className="container">
-          <AddProfile profileData={profile} onSave={() => {onBusinessInfoSave()}}/>
-          {showStoreDetails()}
-          </div>
-        </>
-    );
+    return(
+      <AppContainer>
+      <TopNavbar />
+      <SplitPaneContainer
+          left={<SideNavBar />}
+          right={
+              <div className='c-box-shadow-blue m-left-md'>
+                  <AddProfile profileData={profile} onSave={() => {onBusinessInfoSave()}}/>
+                    {showStoreDetails()}
+              </div>    
+          }
+      />
+  </AppContainer>
+  )
 }
 
 export default BusinessInfo;

@@ -135,13 +135,13 @@ const AddProfile = (props: AddProfileProps) => {
             <div className='m-bot-md'>
                 <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                 <Grid item xs={6}>
-                    <InputBox data={{name:'companyname', label:'Company Name' , value: businessProfile.name }}
+                    <InputBox data={{name:'companyname', label:'Company Name*' , value: businessProfile.name }}
                         onChange={handleChange} onBlur={handelOnBlur} 
                     />
                     {errors.companyname && <p className="text-red">{errors.companyname}</p>}
                 </Grid>
                 <Grid item xs={6}>
-                    <InputBox data={{name:'companyurl', label:'Company URL',  value: businessProfile.weburl}}
+                    <InputBox data={{name:'companyurl', label:'Company URL*',  value: businessProfile.weburl}}
                         onChange={handleChange} onBlur={handelOnBlur} 
                     />
                     {errors.companyurl && <p className="text-red">{errors.companyurl}</p>}
@@ -201,10 +201,12 @@ const AddProfile = (props: AddProfileProps) => {
         } else {
             return(
                 <>
+                <div className='p-md'>
                 {showAddProfile()}
-                <div className='c-box-shadow-blue m-bot-lg'>
-                    <div className='blue-gradient m-bot-md'>
-                    <div className='font-white p-md f-18px f-bold'>Business Address</div>
+                </div>
+                <div className='m-bot-lg'>
+                    <div className='primary-gradient m-bot-md'>
+                    <div className='font-white p-sm f-18px f-bold'>Business Address</div>
                     </div>
                     {showBusinessAddress()}
                 </div>
@@ -218,13 +220,11 @@ const AddProfile = (props: AddProfileProps) => {
         }
     }
     return(
-        <div className='c-box-shadow-blue m-bot-md'>
-            <div className='blue-gradient'>
-                <div className='font-white p-md f-18px f-bold'>Business Information</div>
+        <div className='m-bot-md'>
+            <div className='primary-gradient'>
+                <div className='font-white p-sm f-18px f-bold'>Business Information</div>
             </div>
-            <div className='p-md'>
-                {showBusinessInfo()}
-            </div>
+            {showBusinessInfo()}
         </div>
     );
 }

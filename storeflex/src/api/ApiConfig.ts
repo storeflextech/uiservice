@@ -8,6 +8,6 @@ export class ApiConfig {
     endPointGateWay = '/';
     testApi = '/test';
     signinApi = '/login';
-    signinTestApi = 'http://ec2-43-205-199-154.ap-south-1.compute.amazonaws.com:8082/storeflexservice/logintest';
+    signinTestApi = 'http://ec2-13-232-148-204.ap-south-1.compute.amazonaws.com:8082/storeflexservice/logintest';
     signUpUrl = '///'
 }

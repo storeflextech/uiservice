@@ -3,6 +3,9 @@ import { useState, useEffect } from 'react';
 import { Button, Grid, Box, Container, styled, Paper, Divider } from '@mui/material';
 import BeenhereIcon from '@mui/icons-material/Beenhere';
 import './cart-content.scss';
+import Axios from 'axios';
+import { useNavigate } from "react-router-dom";
+
 interface CartContentsProps {
     storeInfo: any
 }
@@ -46,6 +49,55 @@ const CartContents = (props: CartContentsProps) => {
     // useEffect(()=>{
     //     setStoreData(data);  
     // },[])
+
+    const [inputField, setInputField] = useState({
+        orderId: '1211',
+        orderAmount: '100',
+        customerName: 'a',
+        customerEmail: 'a@a.a',
+        paymentType: 'MERCHANTHOSTED',
+        customerPhone: '1234512345'
+
+    });
+
+
+    const handaleInput = (Event) => {
+        console.log(Event.target.value);
+        setInputField({ ...inputField, [Event.target.name]: Event.target.value })
+
+    }
+
+    const handleSubmit = async (e) => {
+        const url = "http://127.0.0.1:8000/test";
+        console.log(JSON.stringify({ inputField }));
+        e.preventDefault();
+
+        Axios.post(url, {
+            orderId: inputField.orderId,
+            orderAmount: inputField.orderAmount,
+            customerName: inputField.customerName,
+            customerEmail: inputField.customerEmail,
+            paymentType: inputField.paymentType,
+            customerPhone: inputField.customerPhone
+        })
+            .then(res => {
+                console.log(res.data);
+
+            })
+
+    };
+
+//     const handleSuccess = () => {
+//         console.log("working");
+// 
+//     }
+
+    const navigate = useNavigate();
+    const goToNextPage = (pagePath: string) => {
+        navigate(pagePath);
+    }
+
+
     return (
         // <div>
         //     <Grid container  className='p-top-xl' spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
@@ -78,6 +130,8 @@ const CartContents = (props: CartContentsProps) => {
 
 
 
+        <>
+        
 
 
 
@@ -153,8 +207,46 @@ const CartContents = (props: CartContentsProps) => {
                                                     Total Amount: 45000.00
                                                     <Divider sx={{ m: 2 }} />
                                                 </div>
+
+                                                
+                                                <form id="merchantHostedForm">
+                                                    <table className="mainForm">
+                                                        <tbody>
+                                                            <tr>
+                                                                {/* <td>order id</td> */}
+                                                                <td><input type="hidden" onChange={handaleInput} name="orderId" value={inputField.orderId} /></td>
+                                                            </tr>
+                                                            <tr>
+                                                                {/* <td>order amount</td> */}
+                                                                <td><input type="hidden" onChange={handaleInput} name="orderAmount" value={inputField.orderAmount} /></td>
+                                                            </tr>
+                                                            <tr>
+                                                                {/* <td>customer name</td> */}
+                                                                <td><input type="hidden" onChange={handaleInput} name="customerName" value={inputField.customerName} /></td>
+                                                            </tr>
+                                                            <tr>
+                                                                {/* <td>customer email</td> */}
+                                                                <td><input type="hidden" onChange={handaleInput} name="customerEmail" value={inputField.customerEmail} /></td>
+                                                            </tr>
+                                                            <tr>
+                                                                {/* <td>MERCHANTHOSTED</td> */}
+                                                                <td><input type="hidden" onChange={handaleInput} name="paymentType" value={inputField.paymentType} /></td>
+                                                            </tr>
+                                                            <tr>
+                                                                {/* <td>customer phone</td> */}
+                                                                <td><input type="hidden" onChange={handaleInput} name="customerPhone" value={inputField.customerPhone} /></td>
+                                                            </tr>
+
+
+                                                        </tbody>
+                                                    </table>
+                                                </form>
                                                 <div >
                                                     <Button variant="contained" color="warning" size="small"> Make Payment </Button>
+                                                </div>
+
+                                                <div >
+                                                    <Button variant="contained" onClick={() => { goToNextPage('/paymentstatus') }} color="warning" size="small"> Sucess </Button>
                                                 </div>
 
                                             </div>
@@ -174,7 +266,7 @@ const CartContents = (props: CartContentsProps) => {
         </Box>
 
 
-
+        </>
 
     )
 

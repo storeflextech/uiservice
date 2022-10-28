@@ -1,20 +1,28 @@
-import 'react-bootstrap-drawer/src/style.scss';
-import React from 'react';
-import {
-	Col,
-	Container,
-	Row,
-} from 'react-bootstrap';
 
-import {CustomDrawer} from './CustomDrawer';
-import SuNavbar from '../components/navbar/su-navbar';
+
+import React from 'react';
+import './index.scss';
+import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
+import Footer from './components/Footer';
+import Pricing from '../components/miscellaneous/pricing';
+
 
 const CPanel = (props) => {
 	return (
-		<>
-       {<SuNavbar />}
-       {<CustomDrawer/>}
-		</>
+		<div className="container-scroller">
+        { <Navbar/> }
+        <div className="container-fluid page-body-wrapper">
+          { <Sidebar/> }
+          <div className="main-panel">
+            <div className="content-wrapper">
+              {/* <AppRoutes/> */}
+              {<Pricing />}
+            </div>
+            { <Footer/> }
+          </div>
+        </div>
+      </div>
 	);
 };
 
