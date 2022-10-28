@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import { validateMinLen, setUserLoggedIn } from '../utils/CommonUtils';
+import { validateMinLen, setUserLoggedIn, setUserType } from '../utils/CommonUtils';
 import Api from '../api/Api';
 import { SignInProps } from '../api/ApiConfig';
 
@@ -37,14 +37,17 @@ const SignInNew = () => {
           if(response.data.methodReturnValue.redirect=='/storeflexhome'){  
             // navigate('/home');
             window.location.href = '/home';
-          }else if(response.data.methodReturnValue.redirect=='/storeflexuserdashboard'){    // Storeflex User Dashboard
+          }else if(response.data.methodReturnValue.redirect==='/storeflexuserdashboard'){    // Storeflex User Dashboard
+            setUserType('SL');
             window.location.href = '/dashboard';
-          }else if(response.data.methodReturnValue.redirect=='/storeflexclientdashboard'){  // Storeflex Client Dashboard
+          }else if(response.data.methodReturnValue.redirect==='/storeflexclientdashboard'){  // Storeflex Client Dashboard
+            setUserType('CL');
             window.location.href = '/dashboard';
-          }else if(response.data.methodReturnValue.redirect=='/storeflexcustdashboard'){    // Storeflex Customer Dashboard
+          }else if(response.data.methodReturnValue.redirect==='/storeflexcustdashboard'){    // Storeflex Customer Dashboard
+            setUserType('CU');
             window.location.href = '/dashboard';
           }else{
-            window.location.href = '/home';       // If redirect url s missing then redirect to home
+            window.location.href = '/home';       // If redirect url is missing then redirect to home
           }
           
           // window.location.href = '/home';
