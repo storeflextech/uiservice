@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
+import { useNavigate } from "react-router-dom";
 import Dashboards from '../components/panels/dashboards/dashboards';
 import DashboardChart from '../components/panels/chart/dashboardChart';
 import Table from 'react-bootstrap/Table';
@@ -10,7 +11,10 @@ import AddStore from './addstore';
 import Footer from '../components/miscellaneous/footer'
 
 const ViewWarehouse = () => {
-    
+  const navigate = useNavigate();
+  const goToNextPage = (pagePath: string) => {
+    navigate(pagePath);
+  }
     return (
         <AppContainer>
             <TopNavbar />

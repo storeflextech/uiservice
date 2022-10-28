@@ -13,7 +13,7 @@ const PgDashboard = () => {
         <AppContainer>
             <TopNavbar />
             <SplitPaneContainer
-                left={<SideNavBar />}
+                left={<SideNavBar userType={'SL'}/>}
                 right={
                     <div className='c-box-shadow-blue'>
                         <Box className='m-top-md m-bot-md m-left-md m-right-md'>
