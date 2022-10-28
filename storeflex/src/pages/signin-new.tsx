@@ -118,9 +118,10 @@ const SignInNew = () => {
                             <div className="form-input text-center">
                               <p className="text">
                                   By signing in you agree with the
-                                  <a href="javascript:void(0)">Terms and Conditions</a>
+                                  <a href="/termsandconditions">Terms and Conditions </a> <br></br>
                                   and
-                                  <a href="javascript:void(0)">Privacy</a>
+                                  <br></br>
+                                  <a href="/privacypolicy"> Privacy</a>
                               </p>
                             </div>
                         </div>
