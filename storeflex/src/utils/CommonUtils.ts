@@ -103,4 +103,15 @@ export const getUserLoggedIn = () => {
     } else {
         return false;
     }
+
+
+export const setUserType = (val: string) => {
+    sessionStorage.setItem('userType', String(val));
 }
+
+export const getUserType = () => {
+    const userType = sessionStorage.getItem('userType');
+    return userType;
+}
+
+
