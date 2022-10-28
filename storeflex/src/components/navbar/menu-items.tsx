@@ -90,7 +90,7 @@ const MenuItems = [
                         {
                             "Label": "Delete Warehouse",
                             "Name": "",
-                            "NavigateTo": "/delete-warehouse"
+                            "NavigateTo": "/view-warehouse"
                         },
                         {
                             "Label": "Update Warehouse",

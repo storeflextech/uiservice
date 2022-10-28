@@ -9,25 +9,25 @@ import { AppContainer, SplitPaneContainer } from '../components/containers/conta
 
 const PgDashboard = () => {
     // const profileImgUrl ="../../../static/images/AVT_1.png";
-    return(
+    return (
         <AppContainer>
-        <TopNavbar />
-        <SplitPaneContainer
-            left={<SideNavBar />}
-            right={
-                <div className='c-box-shadow-blue'>
-                <Box className='m-top-md m-bot-md m-left-md m-right-md'>
-                    <div>
-                        <div className='p-bot-lg'>
-                        <DashboardChart />
-                        </div>
-                        <Dashboards />
+            <TopNavbar />
+            <SplitPaneContainer
+                left={<SideNavBar userType={'SL'}/>}
+                right={
+                    <div className='c-box-shadow-blue'>
+                        <Box className='m-top-md m-bot-md m-left-md m-right-md'>
+                            <div>
+                                <div className='p-bot-lg'>
+                                    <DashboardChart />
+                                </div>
+                                <Dashboards />
+                            </div>
+                        </Box>
                     </div>
-                </Box>
-            </div>    
-            }
-        />
-    </AppContainer>
+                }
+            />
+        </AppContainer>
     )
 }
 

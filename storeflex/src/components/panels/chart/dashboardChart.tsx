@@ -57,13 +57,22 @@ const DashboardChart = () => {
         <>
         <Container className="p-bot-md">
             <Row>
-                <Col sm={12} md={6}>
+                {/* <Col sm={12} md={6}>
                 <Chart
                     chartType="BubbleChart"
                     width="100%"
                     height="400px"
                     data={bubbleChartData}
                     options={bubbleChartOptions}
+                    />
+                </Col> */}
+                 <Col sm={12} md={6}>
+                    <Chart
+                    chartType="PieChart"
+                    data={pieChartData}
+                    options={pieChartOptions}
+                    width={"100%"}
+                    height={"400px"}
                     />
                 </Col>
                 <Col sm={12} md={6}>
@@ -75,11 +84,12 @@ const DashboardChart = () => {
                     options={options}
                 />
                 </Col>
+
             </Row>
         </Container>
         <Container className="p-bot-md">
             <Row>
-                <Col sm={12} md={6}>
+                {/* <Col sm={12} md={6}>
                     <Chart
                     chartType="PieChart"
                     data={pieChartData}
@@ -87,7 +97,7 @@ const DashboardChart = () => {
                     width={"100%"}
                     height={"400px"}
                     />
-                </Col>
+                </Col> */}
                 <Col sm={12} md={6}>
                 </Col>
             </Row>
