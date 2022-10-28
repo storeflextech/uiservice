@@ -113,5 +113,3 @@ export const getUserType = () => {
     const userType = sessionStorage.getItem('userType');
     return userType;
 }
-
-
