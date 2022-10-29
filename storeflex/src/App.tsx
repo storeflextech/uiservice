@@ -45,6 +45,8 @@ function App() {
               <Route path={PAGES.LOCARTION_REPORT.path} element={<PAGES.LOCARTION_REPORT.component/>}/>
               <Route path={PAGES.TERMSANDCONDITIONS.path} element={<PAGES.TERMSANDCONDITIONS.component/>}/>
               <Route path={PAGES.PRIVACYPOLICY.path} element={<PAGES.PRIVACYPOLICY.component/>}/>
+              <Route path={PAGES.PAYMENT_STATUS.path} element={<PAGES.PAYMENT_STATUS.component />} />
+              <Route path={PAGES.MY_ORDERS.path} element={<PAGES.MY_ORDERS.component />} />
             </Routes>
             } 
             { !getUserLoggedIn() && 
