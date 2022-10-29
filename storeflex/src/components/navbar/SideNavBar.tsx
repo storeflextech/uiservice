@@ -29,6 +29,7 @@ const SideNavBar = (props) => {
 
   const [values, setValues] = useState(initialization);
   const [listItems, setListItems] = useState<Array<any>>([]);
+  const [selectedFile, setSelectedFile] = useState("");
 
   useEffect(() => {
     getUserMenu();
@@ -78,6 +79,10 @@ const SideNavBar = (props) => {
     return true;
   }
 
+  const imageHandler = (e) => {
+    setSelectedFile(e.target.files[0]);
+  };
+
   return (
     <nav className="sidebar sidebar-offcanvas" id="sidebar">
       <ul className="nav">
@@ -85,6 +90,8 @@ const SideNavBar = (props) => {
           <a href="!#" className="nav-link" onClick={evt => evt.preventDefault()}>
             <div className="nav-profile-image">
               <img src="/cpanel/images/faces/face1.jpg" alt="profile" />
+              <input className="d-none" type="file" />
+              <form> <input type="file" name="myfile" /></form>
               <span className="login-status online"></span> {/* change to offline or busy as needed */}
             </div>
             <div className="nav-profile-text">
