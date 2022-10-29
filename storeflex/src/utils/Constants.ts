@@ -29,6 +29,8 @@ import BusinessReport from '../pages/businessreport';
 import WarehouseReport from '../pages/warehousereport';
 import LocationReport from '../pages/locationreport';
 import ViewWarehouse from '../pages/ViewWarehouse';
+import TermsAndConditions from '../pages/termsandconditions';
+import PrivacyPolicy from '../pages/privacy';
 
 
 
@@ -157,6 +159,14 @@ export const PAGES = {
     LOCARTION_REPORT:{
         path:'/locationreport',
         component: LocationReport
+    },
+    TERMSANDCONDITIONS:{
+        path:'/termsandconditions',
+        component: TermsAndConditions
+    },
+    PRIVACYPOLICY:{
+        path:'/privacypolicy',
+        component: PrivacyPolicy
     }
 
 }
