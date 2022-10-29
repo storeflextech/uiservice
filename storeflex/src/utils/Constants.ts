@@ -8,7 +8,9 @@ import PgDashboard from '../pages/PgDashboard';
 import BusinessInfo from '../pages/businessinfo';
 import AddInfo from '../pages/addinfo';
 import PgSearch from '../pages/PgSearch';
+
 import PgSearchNew from '../pages/PgSearchNew';
+
 import Cart from '../pages/cart';
 import PgContactUs from '../pages/PgContactUs';
 import faq from '../pages/faq';
@@ -31,6 +33,8 @@ import LocationReport from '../pages/locationreport';
 import ViewWarehouse from '../pages/ViewWarehouse';
 import TermsAndConditions from '../pages/termsandconditions';
 import PrivacyPolicy from '../pages/privacy';
+import paymentStatus from '../pages/paymentStatus';
+import MyOrders from '../pages/myOrders';
 
 
 
@@ -80,9 +84,11 @@ export const PAGES = {
         path: '/search',
         component: PgSearch
     },
+
     PG_SEARCH_NEW :{
         path: '/search-new',
         component: PgSearchNew
+
     },
     CART :{
         path: '/cart',
@@ -167,6 +173,14 @@ export const PAGES = {
     PRIVACYPOLICY:{
         path:'/privacypolicy',
         component: PrivacyPolicy
+    },
+    PAYMENT_STATUS :{
+        path: '/paymentStatus',
+        component: paymentStatus
+    },
+    MY_ORDERS :{
+        path: '/myorders',
+        component: MyOrders
     }
 
 }
