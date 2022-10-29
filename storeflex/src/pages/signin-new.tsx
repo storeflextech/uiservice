@@ -34,16 +34,16 @@ const SignInNew = () => {
         console.log(' signIn >>>>>> ', response );
         if(response && response.status === 200 && response?.data?.statusCode === 600) {
           setUserLoggedIn('true');
-          if(response.data.methodReturnValue.redirect=='/storeflexhome'){  
-            // navigate('/home');
+          const redirectUrl:any=response.data.methodReturnValue.redirect;
+          if(redirectUrl==='/storeflexhome'){  
             window.location.href = '/home';
-          }else if(response.data.methodReturnValue.redirect==='/storeflexuserdashboard'){    // Storeflex User Dashboard
+          }else if(redirectUrl==='/storeflexuserdashboard'){    // Storeflex User Dashboard
             setUserType('SL');
             window.location.href = '/dashboard';
-          }else if(response.data.methodReturnValue.redirect==='/storeflexclientdashboard'){  // Storeflex Client Dashboard
+          }else if(redirectUrl==='/storeflexclientdashboard'){  // Storeflex Client Dashboard
             setUserType('CL');
             window.location.href = '/dashboard';
-          }else if(response.data.methodReturnValue.redirect==='/storeflexcustdashboard'){    // Storeflex Customer Dashboard
+          }else if(redirectUrl==='/storeflexcustdashboard'){    // Storeflex Customer Dashboard
             setUserType('CU');
             window.location.href = '/dashboard';
           }else{

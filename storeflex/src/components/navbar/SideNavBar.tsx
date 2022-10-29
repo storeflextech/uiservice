@@ -6,9 +6,9 @@ import { Trans } from 'react-i18next';
 import MenuItems from './menu-items';
 
 const SideNavBar = (props) => {
-  const userType=props.userType; // SL-Storeflex User, CL- Storeflex Client, CU- Storeflex Customer
+  const userType = props.userType; //SL-Storeflex User, CL- Storeflex Client, CU- Storeflex Customer
   console.log(props.userType);
-  
+
   const initialization = () => {
     let menuObject = {
       BusinessMenu: false,
@@ -29,7 +29,7 @@ const SideNavBar = (props) => {
 
   const [values, setValues] = useState(initialization);
   const [listItems, setListItems] = useState<Array<any>>([]);
-  const [selectedFile, setSelectedFile] = useState("");
+  const [selectedFile, setSelectedFile] = useState<Blob>();
 
   useEffect(() => {
     getUserMenu();
@@ -89,9 +89,14 @@ const SideNavBar = (props) => {
         <li className="nav-item nav-profile">
           <a href="!#" className="nav-link" onClick={evt => evt.preventDefault()}>
             <div className="nav-profile-image">
+              {selectedFile && (
+                <div>
+                  <img src={URL.createObjectURL(selectedFile)} alt="Thumb" />
+                </div>
+              )}
               <img src="/cpanel/images/faces/face1.jpg" alt="profile" />
               <input className="d-none" type="file" />
-              <form> <input type="file" name="myfile" /></form>
+              <form> <input type="file" name="myfile" onChange={imageHandler} /></form>
               <span className="login-status online"></span> {/* change to offline or busy as needed */}
             </div>
             <div className="nav-profile-text">
@@ -120,7 +125,7 @@ const SideNavBar = (props) => {
                       </li>
                     ))}
                   </ul>
-                </Collapse>   
+                </Collapse>
 
               </li>
             )
