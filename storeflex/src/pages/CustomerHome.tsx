@@ -1,7 +1,6 @@
 import React from 'react';
-import { Button } from '@mui/material';
 import { useNavigate } from "react-router-dom";
-import Footer from '../components/miscellaneous/footer';
+import Footer from '../components/footer/footer';
 import CustomerNavbar from '../components/navbar/customer-navbar';
 import PrimeSection from '../components/miscellaneous/prime-section';
 import Contact from '../components/miscellaneous/contact';
