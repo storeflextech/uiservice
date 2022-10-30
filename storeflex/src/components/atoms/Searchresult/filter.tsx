@@ -1,30 +1,10 @@
 import * as React from 'react';
-import { useState } from 'react';
 import { styled } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
 import './searchresult.css';
-import { Container, Button, AppBar, Toolbar } from '@mui/material';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
-import Slider from '@mui/material/Slider';
-import Divider from '@mui/material/Divider';
-import Checkbox from '@mui/material/Checkbox';
-import FormGroup from '@mui/material/FormGroup';
 
-// interface content{
-//     id: any;
-//     name: string;
-//     rate: number;
-// 
-// }
 
 interface parentProps {
-    // officeData?: Array<any>;
     officeData?: any;
     handleFilte?: any;
 }
@@ -68,107 +48,97 @@ export default function Filter(props?: parentProps) {
 
     }
 
-
-
-    function filterRange(value: number) {
-        return `${value}°C`;
-    }
-
-    const filterHeader = () => {
-        return (
-            <>
-                <Box sx={{
-                    p: 1,
-                    bgcolor: (theme) =>
-                        theme.palette.mode === 'dark' ? '#101010' : 'grey.50',
-                    color: (theme) =>
-                        theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
-                    border: '1px solid',
-                    borderColor: (theme) =>
-                        theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
-                    // fontSize: '0.875rem',
-                    fontSize: '1rem',
-                    fontWeight: '700',
-
-                }}>
-                    <span>
-                        Filter And Sort Locations
-                    </span>
-                </Box>
-            </>
-        )
-    }
-
-    const FIlterRadioButtons = () => {
-
-        return (
-            <FormControl>
-                <FormLabel id="demo-radio-buttons-group-label" sx={{ fontSize: '0.875rem', }}>Sorts Results By:
-
-                </FormLabel>
-                <RadioGroup
-                    aria-labelledby="demo-radio-buttons-group-label"
-                    // defaultValue="filter"
-                    value={radioValue}
-                    onChange={handleRadioFilter}
-                    name="radio-buttons-group"
-                >
-                    <FormControlLabel value="distance" control={<Radio size="small" />} label="Distance" />
-
-                    <FormControlLabel value="ascending" control={<Radio size="small" />} label="Price (Lowest to Highest)" />
-
-                    <FormControlLabel value="descending" control={<Radio size="small" />} label="Price (Highest to Lowest)" />
-                </RadioGroup>
-            </FormControl>
-        );
-    }
-
-    const FIlterSliderRange = () => {
-
-        const [value, setValue] = React.useState<number[]>([0, 537]);
-
-        const handleChange = (event: Event, newValue: number | number[]) => {
-            setValue(newValue as number[]);
-            console.log(newValue); 
-        };
-        return (
-            <Box>
-                <FormLabel id="demo-radio-buttons-group-label" sx={{ fontSize: '0.875rem', }}>Sort By Range: ( {value[0]}, {value[1]}  )</FormLabel>
-                <Slider
-                    getAriaLabel={() => 'Price Range'}
-                    value={value}
-                    onChange={handleChange}
-                    valueLabelDisplay="auto"
-                    getAriaValueText={filterRange}
-                    min={0}
-                    max={1000}
-                />
-            </Box>
-
-        );
-    }
-
-    const CheckboxLabels = () => {
-        return (
-            <FormGroup>
-                <FormLabel id="demo-radio-buttons-group-label" sx={{ fontSize: '0.875rem', }}>Storage Layout:</FormLabel>
-
-                <FormControlLabel control={<Checkbox defaultChecked size="small" />} label="Floor Space" />
-                <FormControlLabel control={<Checkbox size="small" />} label="Racking" />
-                <FormControlLabel control={<Checkbox size="small" />} label="Secured Room" />
-                <FormControlLabel control={<Checkbox size="small" />} label="Pick Module" />
-                <FormControlLabel control={<Checkbox size="small" />} label="Pick Dedicated Room" />
-            </FormGroup>
-        );
-    }
-
-
-
     return (
         <>
 
+            <div className="col-md-2 pr-1" style={{ backgroundColor: '#eee' }}>
+                <div className="card m-0">
+                    <div className="col-md-12 p-1">
+                        <span>
+                            Filter And Sort Locations
+                        </span>
+                        <hr />
 
-            <Item sx={{ p: 0 }}>
+                        <div className="card-group-item">
+
+                            <header className="card-header p-0">
+                                <h6 className="title">Sorts By Price:</h6>
+                            </header>
+
+
+                            <div className="filter-content ml-2">
+                                <div className="card-body">
+                                    <label className="form-check">
+                                        <input className="form-check-input" onChange={handleRadioFilter} type="radio" name="price" value="ascending" />
+                                        <span className="form-check-label m-0">
+                                            Lowest to Highest
+                                        </span>
+                                    </label>
+
+                                    <label className="form-check">
+                                        <input className="form-check-input" onChange={handleRadioFilter} type="radio" name="price" value="descending" />
+                                        <span className="form-check-label m-0">
+                                            Highest to Lowest
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <article className="card-group-item">
+                            <header className="card-header p-0">
+                                <h6 className="title">Choose by Storage Layout: </h6>
+                            </header>
+                            <div className="filter-content  ml-2">
+                                <div className="card-body">
+                                    <form>
+                                        <label className="form-check">
+                                            <input className="form-check-input" type="checkbox" value="Floor Space" />
+                                            <span className="form-check-label m-0">
+                                                Floor Space
+                                            </span>
+                                        </label>
+                                        <label className="form-check">
+                                            <input className="form-check-input" type="checkbox" value="Racking" />
+                                            <span className="form-check-label m-0">
+                                                Racking
+                                            </span>
+                                        </label>
+                                        <label className="form-check">
+                                            <input className="form-check-input" type="checkbox" value="Secured Room" />
+                                            <span className="form-check-label m-0">
+                                                Secured Room
+                                            </span>
+                                        </label>
+                                        <label className="form-check">
+                                            <input className="form-check-input" type="checkbox" value="Pick Module" />
+                                            <span className="form-check-label m-0">
+                                                Pick Module
+                                            </span>
+                                        </label>
+                                        <label className="form-check">
+                                            <input className="form-check-input" type="checkbox" value="Pick Dedicated Room" />
+                                            <span className="form-check-label m-0">
+                                                Pick Dedicated Room
+                                            </span>
+                                        </label>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </article>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            {/* <Item sx={{ p: 0 }}>
+
+            
                 <Grid item xs={12}>
 
                     {filterHeader()}
@@ -193,7 +163,7 @@ export default function Filter(props?: parentProps) {
 
                     </Grid>
                 </Grid>
-            </Item>
+            </Item> */}
 
 
         </>
