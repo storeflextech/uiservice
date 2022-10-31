@@ -22,7 +22,7 @@ const PgDashboard = () => {
                                 <div className='p-bot-lg'>
                                     <DashboardChart userType={getUserType()}/>
                                 </div>
-                                <Dashboards userType={getUserType()} />
+                                <Dashboards userType={getUserType()}/>
                             </div>
                         </Box>
                     </div>

@@ -31,25 +31,24 @@ const SignInNew = () => {
         password: values.password
       }
       api.signIn(data).then((response) => {
-        console.log(' signIn >>>>>> ', response );
-        if(response && response.status === 200 && response?.data?.statusCode === 600) {
+          console.log(' signIn >>>>>> ', response);
+          if (response && response.status === 200 && response?.data?.statusCode === 600) {
           setUserLoggedIn('true');
-          const redirectUrl:any=response.data.methodReturnValue.redirect;
-          if(redirectUrl==='/storeflexhome'){  
+          const redirectUrl: any = response.data.methodReturnValue.redirect;
+          if (redirectUrl === '/storeflexhome') {
             window.location.href = '/home';
-          }else if(redirectUrl==='/storeflexuserdashboard'){    // Storeflex User Dashboard
+          } else if (redirectUrl === '/storeflexuserdashboard') {    // Storeflex User Dashboard
             setUserType('SL');
             window.location.href = '/dashboard';
-          }else if(redirectUrl==='/storeflexclientdashboard'){  // Storeflex Client Dashboard
+          } else if (redirectUrl === '/storeflexclientdashboard') {  // Storeflex Client Dashboard
             setUserType('CL');
             window.location.href = '/dashboard';
-          }else if(redirectUrl==='/storeflexcustdashboard'){    // Storeflex Customer Dashboard
+          } else if (redirectUrl === '/storeflexcustdashboard') {    // Storeflex Customer Dashboard
             setUserType('CU');
             window.location.href = '/dashboard';
-          }else{
+          } else {
             window.location.href = '/home';       // If redirect url is missing then redirect to home
           }
-          
           // window.location.href = '/home';
         } else {
           setUserLoggedIn('false');
@@ -76,62 +75,62 @@ const SignInNew = () => {
   return (
     <section className="signin-area signin-one">
       <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-lg-5">
-                  <div className="signin-form form-style-two rounded-buttons">
-                      <div className="row">
-                        <div className="col-md-12 justify-content-center">
-                            <div className="form-input justify-content-center">
-                            <img src="assets/images/white-logo.jpg" alt="Logo"  style={{height:'8vh'}}/>
-                              <label>Your account will be under this email</label>
-                              <div className="input-items default">
-                                  <input type="text" placeholder="User Id" name="email" onChange={handleChange}/> 
-                              </div>
-                            </div>
-                        </div>
-                        <div className="col-md-12">
-                            <div className="form-input">
-                              <label>Password for your account</label>
-                              <div className="input-items default">
-                                  <input type="password" placeholder="Password" name="password" onChange={handleChange}/>
-                              </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6">
-                            <div className="form-input rounded-buttons">
-                              <button onClick={() => {submitSignIn()}}
-                                  className="btn primary-btn rounded-full"
-                                  type="submit"
-                                  >
-                              Sign In!
-                              </button>
-                            </div>
-                        </div>
-                        <div className="col-md-6">
-                            <div className="form-input rounded-buttons">
-                              <button
-                                  className="btn primary-btn-outline rounded-full"
-                                  type="submit"
-                                  >
-                              Sign Up
-                              </button>
-                            </div>
-                        </div>
-                        <div className="col-md-12">
-                            <div className="form-input text-center">
-                              <p className="text">
-                                  By signing in you agree with the
-                                  <a href="/termsandconditions">Terms and Conditions </a> <br></br>
-                                  and
-                                  <br></br>
-                                  <a href="/privacypolicy"> Privacy</a>
-                              </p>
-                            </div>
-                        </div>
-                      </div>
+        <div className="row justify-content-center">
+          <div className="col-lg-5">
+            <div className="signin-form form-style-two rounded-buttons">
+              <div className="row">
+                <div className="col-md-12 justify-content-center">
+                  <div className="form-input justify-content-center">
+                    <img src="assets/images/white-logo.jpg" alt="Logo" style={{ height: '8vh' }} />
+                    <label>Your account will be under this email</label>
+                    <div className="input-items default">
+                      <input type="text" placeholder="User Id" name="email" onChange={handleChange} />
+                    </div>
                   </div>
+                </div>
+                <div className="col-md-12">
+                  <div className="form-input">
+                    <label>Password for your account</label>
+                    <div className="input-items default">
+                      <input type="password" placeholder="Password" name="password" onChange={handleChange} />
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="form-input rounded-buttons">
+                    <button onClick={() => { submitSignIn() }}
+                      className="btn primary-btn rounded-full"
+                      type="submit"
+                    >
+                      Sign In!
+                    </button>
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="form-input rounded-buttons">
+                    <button
+                      className="btn primary-btn-outline rounded-full"
+                      type="submit"
+                    >
+                      Sign Up
+                    </button>
+                  </div>
+                </div>
+                <div className="col-md-12">
+                  <div className="form-input text-center">
+                    <p className="text">
+                      By signing in you agree with the
+                      <a href="/termsandconditions">Terms and Conditions </a> <br></br>
+                      and
+                      <br></br>
+                      <a href="/privacypolicy"> Privacy</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
       </div>
     </section>
   )
