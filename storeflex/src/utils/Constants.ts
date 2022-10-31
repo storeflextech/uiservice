@@ -37,8 +37,6 @@ import paymentStatus from '../pages/paymentStatus';
 import MyOrders from '../pages/myOrders';
 
 
-
-
 export const PAGES = {
     HOME : {
         path: '/home',
