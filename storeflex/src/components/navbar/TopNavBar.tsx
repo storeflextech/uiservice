@@ -8,7 +8,7 @@ const TopNavbar = () => {
   }
   return (
     <>
-      <section className="navbar-area navbar-one sf-bg">
+      <section className="navbar-area navbar-one sf-bg-primary">
         <div className="container">
           <div className="row">
             <div className="col-lg-12">

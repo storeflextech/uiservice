@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {useNavigate} from "react-router-dom"
 import Container from '@mui/material/Container';
-import { TextField, Typography, Avatar, Box, Button, Link, Grid} from '@mui/material';
+import { TextField, Avatar, Box, Button, Link, Grid} from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import CheckBoxR from '../components/atoms/checkbox/CheckBoxR';
 import { validateEmail, validatePassword } from '../utils/CommonUtils';
@@ -118,16 +118,14 @@ const onGoogleLoginFailure = (err: any) => {
     return (
       <>
       <Container component="main" maxWidth="xs" className='c-box-shadow p-no'>
-      <div className='blue-gradient'> 
-      <div className='font-white p-md'><b>
-      <Typography component="h1" variant="h4">
-            Sign in
-          </Typography>
-        </b></div>
+      <div className='primary-gradient'> 
+      <div className='font-white p-md'>
+        <div className='font-white p-sm f-40px f-bold'>Sign In</div>
+      </div>
       </div>
       <div className='p-md'>
         <Box sx={{ marginTop: 4, display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
-          <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
+          <Avatar sx={{ m: 1}} className='sf-bg-color-primary'>
             <LockOutlinedIcon />
           </Avatar>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
@@ -186,9 +184,9 @@ const onGoogleLoginFailure = (err: any) => {
                 </div>
               </div>
             </div>
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} 
+            <Button className='sf-bg-color-primary' type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} 
               onClick= {() =>{ submitSignIn()}}>
-              Sign In
+              <b>Sign In</b>
             </Button>
             </Box>
             <div className='font-12px p-top-md'>
