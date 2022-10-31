@@ -202,7 +202,7 @@ export default function Searchresult() {
               {/* </div> */}
               <input type="text" className="form-control" placeholder='ABC Company' />
               {/* <div className="input-group-append"> */}
-              <span className="input-group-text btn btn-primary py-0 d-flex align-items-center">
+              <span className="input-group-text btn btn-primary py-0 d-flex align-items-center" style={{backgroundColor: '#f66711'}}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
                   <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                 </svg>
@@ -269,8 +269,8 @@ export default function Searchresult() {
                             </div>
                             <h6 className="text-success"> Few rooms left.</h6>
                             <div className="d-flex flex-column mt-4">
-                              <button className="btn btn-primary btn-sm" type="button">Details</button>
-                              <button className="btn btn-outline-primary btn-sm mt-2" type="button" onClick={(e) => { addToCart(e, data) }}>
+                              <button className="btn btn-primary btn-sm" style={{backgroundColor: '#f66711'}} type="button">Details</button>
+                              <button className="btn btn-outline-primary btn-sm mt-2" style={{borderColor: '#f66711'}} type="button" onClick={(e) => { addToCart(e, data) }}>
                                 Add to wishlist
                               </button>
                             </div>
