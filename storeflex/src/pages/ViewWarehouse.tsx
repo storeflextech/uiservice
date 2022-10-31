@@ -7,8 +7,7 @@ import Table from 'react-bootstrap/Table';
 import TopNavbar from '../components/navbar/TopNavBar';
 import SideNavBar from '../components/navbar/SideNavBar';
 import { AppContainer, SplitPaneContainer } from '../components/containers/containers';
-import AddStore from './addstore';
-import Footer from '../components/miscellaneous/footer'
+import Footer from '../components/footer/footer';
 
 const ViewWarehouse = () => {
   const navigate = useNavigate();
@@ -86,7 +85,7 @@ const ViewWarehouse = () => {
                     </div>
                 }
             />
-            <Footer />
+        <Footer />
         </AppContainer>
     )
 }

@@ -18,11 +18,11 @@ $sf-primary-color: #f66711;
 .sf-btn-primary-color {
   background-color: $sf-primary-color !important;
 }
-.sf-bg-color {
+.sf-bg-color-primary {
   background-color: $sf-primary-color !important;
 }
 
-.sf-bg {
+.sf-bg-primary {
   background: $sf-primary-color !important;
 }
 
@@ -587,5 +587,12 @@ $sf-primary-color: #f66711;
   display: flex;
   @media only screen and (max-width: 678px) {
     display: block;
+  }
+}
+
+.sf-footer-container {
+  padding: 25px 0 25px 0;
+  @include mediabreakpoint(mobile) {
+    padding: 15px 0 25px 0;
   }
 }
