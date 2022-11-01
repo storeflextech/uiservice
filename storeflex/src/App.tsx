@@ -19,6 +19,7 @@ function App() {
               <Route path={PAGES.SIGN_IN.path} element={<PAGES.SIGN_IN.component />} />
               <Route path={PAGES.SIGN_IN_NEW.path} element={<PAGES.SIGN_IN_NEW.component />} />
               <Route path={PAGES.DASHBOARD.path} element={<PAGES.DASHBOARD.component />} />
+              <Route path={PAGES.BUSINESS.VIEW.path} element={<PAGES.BUSINESS.VIEW.component />} />
               <Route path={PAGES.BUSINESS_INFO.path} element={<PAGES.BUSINESS_INFO.component />} />
               <Route path={PAGES.ADD_INFO.path} element={<PAGES.ADD_INFO.component />} />
               <Route path={PAGES.PG_SEARCH.path} element={<PAGES.PG_SEARCH.component />} />
