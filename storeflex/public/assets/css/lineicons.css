@@ -18,6 +18,26 @@ Author: lineicons.com
 /*------------------------
 	base class definition
 -------------------------*/
+
+
+
+
+.lni-large {
+  font-size: large !important;
+  font-weight: bold !important;
+  display: inline-block;
+  font: normal normal normal 1em/1 "LineIcons";
+  color: inherit;
+  flex-shrink: 0;
+  speak: none;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: -0.125em;
+  /* Better Font Rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .lni {
   display: inline-block;
   font: normal normal normal 1em/1 "LineIcons";
