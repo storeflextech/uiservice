@@ -24,7 +24,7 @@ const Dashboards = (props) => {
                             Search Bussiness
                         </Button>
 
-                        <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.ADD_INFO.path) }}>
+                        <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.VIEW_USER.path) }}>
                             Add  user
                         </Button>
                     </div>
