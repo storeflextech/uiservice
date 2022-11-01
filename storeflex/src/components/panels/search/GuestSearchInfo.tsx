@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Grid, Button } from '@mui/material';
-import Cards, { CARD_COLOR } from '../../atoms/cards/cards';
 import InputBox from '../../atoms/textfield/InputBox';
 import Searchresult from '../../atoms/Searchresult/Guest_searchresult';
 import GuestNavbar from '../../../components/navbar/guest-navbar';
 
-import Footer from '../../../components/miscellaneous/footer';
+import Footer from '../../../components/footer/footer';
 
 
 const SearchInfo = () => {

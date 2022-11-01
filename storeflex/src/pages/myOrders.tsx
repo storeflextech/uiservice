@@ -11,8 +11,6 @@ const MyOrders = () => {
 
             {<OrderTable/>}
 
-            
-
         </>
     )
 }

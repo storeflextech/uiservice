@@ -1,13 +1,13 @@
 import React from "react";
 
-import './myorders.css'
+// import './myorders.css'
 
 
 
 
-const OrderTable=()=>{
+const OrderTable = () => {
 
-    const orderData=([
+    const orderData = ([
         {
             orderID: 12387,
             product_name: "ABC House",
@@ -47,58 +47,59 @@ const OrderTable=()=>{
     ])
 
 
-    return(
+    return (
         <>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <div className="card container mt-5">
-            <div className="text-center m-2 bg-gray"><h3>My Orders</h3></div>
-        <div className="d-flex justify-content-center row">
-            <div className="col-md-12">
-                <div className="rounded">
-                    <div className="table-responsive table-borderless">
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                    
-                                    <th>Order #</th>
-                                    <th>Product name</th>
-                                    <th>Area Size</th>
-                                    <th>Price</th>
-                                    <th>Order Date</th>
-                                    <th>From - TO</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody className="table-body">
+            <br />
+            <br />
+            <br />
+            <br />
 
-                                {orderData.map((data)=>(
+            <div className="card container mt-5">
+                <div className="text-center m-2 bg-gray"><h3>My Orders</h3></div>
+                <div className="d-flex justify-content-center row">
+                    <div className="col-md-12">
+                        <div className="rounded">
+                            <div className="table-responsive table-borderless">
+                                <table className="table">
+                                    <thead>
+                                        <tr>
 
-                                <tr className="cell-1" key={data.orderID}>
-                                    
-                                    <td>{data.orderID}</td>
-                                    <td>{data.product_name}</td>
-                                    <td>{data.size}</td>
-                                    <td>{data.price}</td>
-                                    <td>{data.orderDate}</td>
-                                    <td>{data.from}
-                                    
-                                    </td>
-                                    <td><span className={data.status=='success'? 'badge badge-success':'badge badge-danger'}>{data.status}</span></td>
-                                </tr>
-                                ))}
+                                            <th>Order #</th>
+                                            <th>Product name</th>
+                                            <th>Area Size</th>
+                                            <th>Price</th>
+                                            <th>Order Date</th>
+                                            <th>From - TO</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="table-body">
 
-                            </tbody>
-                        </table>
+                                        {orderData.map((data) => (
+
+                                            <tr className="cell-1" key={data.orderID}>
+
+                                                <td>{data.orderID}</td>
+                                                <td>{data.product_name}</td>
+                                                <td>{data.size}</td>
+                                                <td>{data.price}</td>
+                                                <td>{data.orderDate}</td>
+                                                <td>{data.from}
+
+                                                </td>
+                                                <td><span className={data.status == 'success' ? 'badge badge-success' : 'badge badge-danger'}>{data.status}</span></td>
+                                            </tr>
+                                        ))}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-   
+
         </>
     )
 }

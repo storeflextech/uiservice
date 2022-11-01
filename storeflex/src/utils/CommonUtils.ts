@@ -113,3 +113,21 @@ export const getUserType = () => {
     const userType = sessionStorage.getItem('userType');
     return userType;
 }
+
+export const getRedirectionPage = (redirectUrl?: string) => {
+    if(redirectUrl === '/storeflexhome'){  
+        return '/home';
+    }else if(redirectUrl === '/storeflexuserdashboard'){    // Storeflex User Dashboard
+        setUserType('SL');
+        return '/dashboard';
+    }else if(redirectUrl === '/storeflexclientdashboard'){  // Storeflex Client Dashboard
+        setUserType('CL');
+        return '/dashboard';
+    }else if(redirectUrl === '/storeflexcustdashboard'){    // Storeflex Customer Dashboard
+        setUserType('CU');
+        return '/dashboard';
+    } else {
+        setUserType('NA');
+        return '/home';       // If redirect url is missing then redirect to home
+    }
+}

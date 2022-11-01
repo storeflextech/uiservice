@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { validateMinLen, setUserLoggedIn, setUserType } from '../utils/CommonUtils';
+import { validateMinLen, setUserLoggedIn, setUserType, getRedirectionPage } from '../utils/CommonUtils';
 import Api from '../api/Api';
 import { SignInProps } from '../api/ApiConfig';
 
@@ -34,26 +34,11 @@ const SignInNew = () => {
           console.log(' signIn >>>>>> ', response);
           if (response && response.status === 200 && response?.data?.statusCode === 600) {
           setUserLoggedIn('true');
-          const redirectUrl: any = response.data.methodReturnValue.redirect;
-          if (redirectUrl === '/storeflexhome') {
-            window.location.href = '/home';
-          } else if (redirectUrl === '/storeflexuserdashboard') {    // Storeflex User Dashboard
-            setUserType('SL');
-            window.location.href = '/dashboard';
-          } else if (redirectUrl === '/storeflexclientdashboard') {  // Storeflex Client Dashboard
-            setUserType('CL');
-            window.location.href = '/dashboard';
-          } else if (redirectUrl === '/storeflexcustdashboard') {    // Storeflex Customer Dashboard
-            setUserType('CU');
-            window.location.href = '/dashboard';
-          } else {
-            window.location.href = '/home';       // If redirect url is missing then redirect to home
-          }
-          // window.location.href = '/home';
+          const redirectUrl = getRedirectionPage(response?.data?.methodReturnValue?.redirect)
+          window.location.href = redirectUrl;
         } else {
           setUserLoggedIn('false');
-          // window.location.href = '/error'
-          navigate('/error');
+          window.location.href = '/error';
         }
       });
 

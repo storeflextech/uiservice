@@ -39,17 +39,16 @@ const SearchInfo = () => {
     const searchOptions = () => {
         return (
             <>
-            <div className='col-md-12 d-flex justify-content-center mt-4'>
+
+                {/* <div className='col-md-12 d-flex justify-content-center mt-4'>
                     <div className="col-md-8 input-group mb-3">
                         <div className="input-group-prepend">
-                            {/* <span className="input-group-text"> */}
                             <select className="input-group-text">
                                 <option value="">All</option>
                                 <option value="">Search By Location</option>
                                 <option value="">Search By Warehouse</option>
                                 <option value="">Search By Company</option>
                             </select>
-                            {/* </span> */}
                         </div>
                         <input type="text" className="form-control" aria-label="Amount (to the nearest dollar)" />
                         <div className="input-group-append">
@@ -60,7 +59,7 @@ const SearchInfo = () => {
                             </span>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
                 {/* <Grid container spacing={2}>
                     <Grid item xs={12} sm={4} md={4}>
