@@ -36,6 +36,7 @@ import PrivacyPolicy from '../pages/privacy';
 import paymentStatus from '../pages/paymentStatus';
 import MyOrders from '../pages/myOrders';
 import UserProfile from '../pages/userProfile';
+import ViewBusiness from '../components/business/view-business';
 
 
 export const PAGES = {
@@ -66,6 +67,20 @@ export const PAGES = {
     DASHBOARD : {
         path: '/dashboard',
         component: PgDashboard
+    },
+    BUSINESS:{
+        ADD:{
+            path: '/add-business',
+            component: BusinessInfo
+        },
+        VIEW:{
+            path: '/view-business',
+            component: ViewBusiness
+        },
+        UPDATE:{
+            path: '/update-business',
+            component: BusinessInfo
+        },
     },
     BUSINESS_INFO : {
         path: '/businessinfo',

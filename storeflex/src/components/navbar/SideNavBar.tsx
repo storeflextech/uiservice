@@ -84,19 +84,23 @@ const SideNavBar = (props) => {
   };
 
   return (
-    <nav className="sidebar sidebar-offcanvas" id="sidebar">
+  <>
+   <nav className="sidebar sidebar-offcanvas" id="sidebar">
       <ul className="nav">
         <li className="nav-item nav-profile">
-          <a href="!#" className="nav-link" onClick={evt => evt.preventDefault()}>
+          <span className="nav-link" onClick={evt => evt.preventDefault()}>
             <div className="nav-profile-image">
               {selectedFile && (
                 <div>
                   <img src={URL.createObjectURL(selectedFile)} alt="Thumb" />
                 </div>
               )}
-              <img src="/cpanel/images/faces/face1.jpg" alt="profile" />
-              <input className="d-none" type="file" />
-              <form> <input type="file" name="myfile" onChange={imageHandler} /></form>
+              {!selectedFile && (
+                <div>
+                 <img src="/cpanel/images/faces/face1.jpg" alt="profile" />
+                </div>
+              )}
+              
               <span className="login-status online"></span> {/* change to offline or busy as needed */}
             </div>
             <div className="nav-profile-text">
@@ -104,7 +108,8 @@ const SideNavBar = (props) => {
               <span className="text-secondary text-small"><Trans>Storeflex User</Trans></span>
             </div>
             <i className="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
-          </a>
+          </span>
+          <input type="file" name="myfile" onChange={imageHandler} />
         </li>
         {listItems.map((element) => {
           if (element.SubMenu.length >= 1) {
@@ -143,6 +148,9 @@ const SideNavBar = (props) => {
         })}
       </ul>
     </nav>
+  
+  </>
+   
   );
 }
 

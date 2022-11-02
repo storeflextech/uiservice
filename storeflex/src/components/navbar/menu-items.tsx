@@ -62,12 +62,12 @@ const MenuItems = [
                         {
                             "Label": "Add Business",
                             "Name": "",
-                            "NavigateTo": "/businessinfo"
+                            "NavigateTo": "/add-business"
                         },
                         {
-                            "Label": "Delete Business",
+                            "Label": "View Business",
                             "Name": "",
-                            "NavigateTo": "/delete-business"
+                            "NavigateTo": "/view-business"
                         },
                         {
                             "Label": "Update Business",
