@@ -35,8 +35,8 @@ import TermsAndConditions from '../pages/termsandconditions';
 import PrivacyPolicy from '../pages/privacy';
 import paymentStatus from '../pages/paymentStatus';
 import MyOrders from '../pages/myOrders';
-import ViewBusiness from '../pages/viewbusiness';
-import ViewUser from '../pages/viewuser';
+import ViewBusiness from '../components/business/view-business';
+
 
 export const PAGES = {
     HOME : {
@@ -194,14 +194,6 @@ export const PAGES = {
     MY_ORDERS :{
         path: '/myorders',
         component: MyOrders
-    },
-    VIEW_BUSINESS:{
-        path:'/viewbusiness',
-        component: ViewBusiness
-    },
-    VIEW_USER:{
-        path:'/viewuser',
-        component: ViewUser
     }
 
 }
