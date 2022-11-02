@@ -49,6 +49,9 @@ function App() {
               <Route path={PAGES.MY_ORDERS.path} element={<PAGES.MY_ORDERS.component />} />
               <Route path={PAGES.VIEW_BUSINESS.path} element={<PAGES.VIEW_BUSINESS.component />} />
               <Route path={PAGES.VIEW_USER.path} element={<PAGES.VIEW_USER.component />} />
+              <Route path={PAGES.DISCOVER_MORE.path} element={<PAGES.DISCOVER_MORE.component />} />
+              <Route path={PAGES.BOOKINGS.path} element={<PAGES.BOOKINGS.component />} />
+              <Route path={PAGES.PAYMENT_DETAILS.path} element={<PAGES.PAYMENT_DETAILS.component />} />
             </Routes>
             } 
             { !getUserLoggedIn() && 

@@ -37,6 +37,9 @@ import paymentStatus from '../pages/paymentStatus';
 import MyOrders from '../pages/myOrders';
 import ViewBusiness from '../pages/viewbusiness';
 import ViewUser from '../pages/viewuser';
+import DiscoverMore from '../pages/doscovermore';
+import Bookings from '../pages/bookings';
+import PaymentDetails from '../pages/paymentDetails'
 
 
 
@@ -190,6 +193,19 @@ export const PAGES = {
     VIEW_USER:{
         path:'/viewuser',
         component: ViewUser
+    },
+    DISCOVER_MORE:{
+        path:'/discovermore',
+        component: DiscoverMore
+    },
+    BOOKINGS:{
+        path:'/bookings',
+        component: Bookings
+    },
+    PAYMENT_DETAILS:{
+        path:'/paymentdetails',
+        component:PaymentDetails
+
     }
 
 }

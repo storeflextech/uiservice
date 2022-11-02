@@ -44,7 +44,11 @@ const ViewUser = () => {
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td>Mrityunjoy Deka</td>
+                                            <td><div className="nav-profile-image">
+                                                 <img src="/cpanel/images/faces/face1.jpg" alt="profile" />
+                                                 <input className="d-none" type="file" />&nbsp;
+                                                    Mrityunjoy Deka
+                                                </div></td>
                                             <td>Storeflex</td>
                                             <td>UP, Noida</td>
                                             <td>9998887777</td>
@@ -56,7 +60,11 @@ const ViewUser = () => {
                                         </tr>
                                         <tr>
                                             <td>2</td>
-                                            <td>Subham</td>
+                                            <td><div className="nav-profile-image">
+                                                 <img src="/cpanel/images/faces/face3.jpg" alt="profile" />
+                                                 <input className="d-none" type="file" /> &nbsp;
+                                                Subham
+                                                </div></td>
                                             <td>Reliance Digital</td>
                                             <td>Assam, Guwahati</td>
                                             <td>78956476589</td>
@@ -68,7 +76,11 @@ const ViewUser = () => {
                                         </tr>
                                         <tr>
                                             <td>3</td>
-                                            <td>Imon Gogoi</td>
+                                            <td><div className="nav-profile-image">
+                                                 <img src="/cpanel/images/faces/face2.jpg " alt="profile" />
+                                                 <input className="d-none" type="file" /> &nbsp;
+                                                Imon Gogoi
+                                                </div></td>
                                             <td>Hajmola India Ltd.</td>
                                             <td>WB, Kolkata</td>
                                             <td>9888978976</td>
