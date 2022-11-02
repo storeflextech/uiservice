@@ -102,89 +102,8 @@ export default function Searchresult() {
 
       <div className="row">
 
-      <Filter officeData={office} handleFilte={handleFilte} />
-        {/* <div className="col-md-2 pr-1" style={{ backgroundColor: '#eee' }}>
-          <div className="card m-0">
-            <div className="col-md-12 p-1">
-              <span>
-                Filter And Sort Locations
-              </span>
-              <hr />
+        <Filter officeData={office} handleFilte={handleFilte} />
 
-              <div className="card-group-item">
-
-                <header className="card-header p-0">
-                  <h6 className="title">Sorts By Price:</h6>
-                </header>
-
-
-                <div className="filter-content ml-2">
-                  <div className="card-body">
-                    <label className="form-check">
-                      <input className="form-check-input" type="radio" name="price" value="ascending" />
-                      <span className="form-check-label m-0">
-                      Lowest to Highest
-                      </span>
-                    </label>
-
-                    <label className="form-check">
-                      <input className="form-check-input" type="radio" name="price" value="descending" />
-                      <span className="form-check-label m-0">
-                      Highest to Lowest
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <article className="card-group-item">
-                <header className="card-header p-0">
-                  <h6 className="title">Choose by Storage Layout: </h6>
-                </header>
-                <div className="filter-content  ml-2">
-                  <div className="card-body">
-                    <form>
-                      <label className="form-check">
-                        <input className="form-check-input" type="checkbox" value="Floor Space" />
-                        <span className="form-check-label m-0">
-                        Floor Space
-                        </span>
-                      </label>
-                      <label className="form-check">
-                        <input className="form-check-input" type="checkbox" value="Racking" />
-                        <span className="form-check-label m-0">
-                        Racking
-                        </span>
-                      </label>
-                      <label className="form-check">
-                        <input className="form-check-input" type="checkbox" value="Secured Room" />
-                        <span className="form-check-label m-0">
-                        Secured Room
-                        </span>
-                      </label>
-                      <label className="form-check">
-                        <input className="form-check-input" type="checkbox" value="Pick Module" />
-                        <span className="form-check-label m-0">
-                        Pick Module
-                        </span>
-                      </label>
-                      <label className="form-check">
-                        <input className="form-check-input" type="checkbox" value="Pick Dedicated Room" />
-                        <span className="form-check-label m-0">
-                        Pick Dedicated Room
-                        </span>
-                      </label>
-                    </form>
-
-                  </div>
-                </div>
-              </article>
-
-
-            </div>
-          </div>
-
-        </div> */}
 
 
 
@@ -202,10 +121,8 @@ export default function Searchresult() {
               {/* </div> */}
               <input type="text" className="form-control" placeholder='ABC Company' />
               {/* <div className="input-group-append"> */}
-              <span className="input-group-text btn btn-primary py-0 d-flex align-items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
-                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                </svg>
+              <span className="input-group-text btn btn-primary py-0 d-flex align-items-center" style={{ backgroundColor: '#f66711', fontWeight:'bold' }}>
+              <i className="lni-large lni-search-alt"></i>
               </span>
               {/* </div> */}
             </div>
@@ -264,13 +181,13 @@ export default function Searchresult() {
                           </div>
                           <div className="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
                             <div className="d-flex flex-row align-items-center mb-1">
-                              <h4 className="mb-1 me-1">{data.rate} Rs</h4>
-                              <span className="text-danger"><s> 200.99 Rs</s></span>
+                              <h4 className="mb-1 me-1"><i className="lni lni-rupee"></i> {data.rate}.00 </h4>
+                              <span className="text-danger"><s><i className="lni lni-rupee"></i> 200.99 </s></span>
                             </div>
                             <h6 className="text-success"> Few rooms left.</h6>
                             <div className="d-flex flex-column mt-4">
-                              <button className="btn btn-primary btn-sm" type="button">Details</button>
-                              <button className="btn btn-outline-primary btn-sm mt-2" type="button" onClick={(e) => { addToCart(e, data) }}>
+                              <button className="btn btn-primary btn-sm font-white" style={{ backgroundColor: '#f66711' }} type="button">Details</button>
+                              <button className="btn btn-outline-primary btn-sm mt-2" style={{ borderColor: '#f66711' }} type="button" onClick={(e) => { addToCart(e, data) }}>
                                 Add to wishlist
                               </button>
                             </div>

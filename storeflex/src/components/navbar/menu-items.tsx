@@ -73,6 +73,11 @@ const MenuItems = [
                             "Label": "Update Business",
                             "Name": "",
                             "NavigateTo": "/update-business"
+                        },
+                        {
+                            "Label": "View Business",
+                            "Name": "",
+                            "NavigateTo": "/viewbusiness"
                         }
                     ],
                     "Icon": "mdi mdi-chart-areaspline menu-icon"

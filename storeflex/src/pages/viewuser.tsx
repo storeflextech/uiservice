@@ -8,8 +8,9 @@ import TopNavbar from '../components/navbar/TopNavBar';
 import SideNavBar from '../components/navbar/SideNavBar';
 import { AppContainer, SplitPaneContainer } from '../components/containers/containers';
 import Footer from '../components/footer/footer';
+import { PAGES } from '../utils/Constants';
 
-const ViewWarehouse = () => {
+const ViewUser = () => {
   const navigate = useNavigate();
   const goToNextPage = (pagePath: string) => {
     navigate(pagePath);
@@ -25,15 +26,15 @@ const ViewWarehouse = () => {
                             <div>
                                 <div className='primary-gradient'>
                                     <div className='font-white p-sm f-18px f-bold'>
-                                        Warehouses
-                                        <button  className="primary-btn-outline" style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-plus menu-icon'></i> Add New</button>
+                                        Active Users
+                                        <button  className="primary-btn-outline" onClick={() => { goToNextPage('/addinfo')}} style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}} ><i className='mdi mdi-plus menu-icon'></i> Add New</button>
                                     </div>
                                 </div>
                                 <Table striped bordered hover>
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Store Name</th>
+                                            <th>ID</th>
+                                            <th>Name</th>
                                             <th>Company</th>
                                             <th>Address</th>
                                             <th>Phone</th>
@@ -43,11 +44,11 @@ const ViewWarehouse = () => {
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td>Store Flex Service and Company: Noida</td>
+                                            <td>Mrityunjoy Deka</td>
                                             <td>Storeflex</td>
                                             <td>UP, Noida</td>
                                             <td>9998887777</td>
-                                            <td>info@storeflex.co</td>
+                                            <td>mrityunjoy@storeflex.co</td>
                                             <td>
                                                 <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-cup menu-icon'></i> Delete</button>
                                                 <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-pencil menu-icon'></i> Edit</button> &nbsp; &nbsp;
@@ -55,11 +56,11 @@ const ViewWarehouse = () => {
                                         </tr>
                                         <tr>
                                             <td>2</td>
-                                            <td>Store Flex Service and Company: Guwahati</td>
-                                            <td>Storeflex</td>
+                                            <td>Subham</td>
+                                            <td>Reliance Digital</td>
                                             <td>Assam, Guwahati</td>
                                             <td>78956476589</td>
-                                            <td>info@storeflex.co</td>
+                                            <td>info@reliance.co</td>
                                             <td>
                                                 <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-cup menu-icon'></i> Delete</button>
                                                 <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-pencil menu-icon'></i> Edit</button> &nbsp; &nbsp;
@@ -67,11 +68,11 @@ const ViewWarehouse = () => {
                                         </tr>
                                         <tr>
                                             <td>3</td>
-                                            <td>Store Flex Service and Company: Kolkata</td>
-                                            <td>Storeflex</td>
+                                            <td>Imon Gogoi</td>
+                                            <td>Hajmola India Ltd.</td>
                                             <td>WB, Kolkata</td>
                                             <td>9888978976</td>
-                                            <td>info@storeflex.in</td>
+                                            <td>imon@hajmola.in</td>
                                             <td>
                                                 <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-cup menu-icon'></i> Delete</button>
                                                 <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-pencil menu-icon'></i> Edit</button> &nbsp; &nbsp;
@@ -89,4 +90,8 @@ const ViewWarehouse = () => {
     )
 }
 
-export default ViewWarehouse;
+export default ViewUser;
+function handelOnClick(path: any) {
+    throw new Error('Function not implemented.');
+}
+
