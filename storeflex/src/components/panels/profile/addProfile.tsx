@@ -5,10 +5,6 @@ import AddressDetails from '../../atoms/addressforms/AddressDetails';
 import { BusinessDetails } from '../../../utils/ResponseSchema';
 import { validateCharacterLength, validatePhone, validateWebUrl, validateGst } from '../../../utils/CommonUtils';
 
-import Facility from '../warehouseInfo/facility';
-import PricingFrom from '../warehouseInfo/pricing';
-import FacilityHours from '../warehouseInfo/facilityHours';
-
 interface AddProfileProps {
     profileData: BusinessDetails;
     onSave?(isSaved: boolean): void;
@@ -189,7 +185,7 @@ const AddProfile = (props: AddProfileProps) => {
                     />}</div>
                 <Grid container spacing={2} columns={{ xs: 12, sm: 12, md: 12 }}>
                     <Grid item xs={12}>
-                        <div> Business Description</div>
+                        <div> Business Description </div>
                     </Grid>
                     <Grid item xs={12}>
                         <TextareaAutosize
@@ -203,7 +199,7 @@ const AddProfile = (props: AddProfileProps) => {
                         />
                         <div className='float-md-right'> {charCount}/{maxiLength}</div>
                     </Grid>
-
+                    
                 </Grid>
             </div>
         )
@@ -225,24 +221,11 @@ const AddProfile = (props: AddProfileProps) => {
                         </div>
                         {showBusinessAddress()}
                     </div>
-
-                    {<Facility />}
-                    
-                    {<PricingFrom/>}
-
-                    {<FacilityHours/>}
-
-
-
                     <div className='p-top-md align-c'>
                         <Button variant="contained" onClick={() => { alert('Cancel') }}> Cancel </Button>
                         <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
                         <Button className="btn primary-btn" variant="contained" onClick={() => { saveBusinessInfo() }}> Save </Button>
                     </div>
-
-
-                    
-
                 </>
             )
         }
@@ -254,9 +237,6 @@ const AddProfile = (props: AddProfileProps) => {
             </div>
             {showBusinessInfo()}
         </div>
-
-
-
     );
 }
 
