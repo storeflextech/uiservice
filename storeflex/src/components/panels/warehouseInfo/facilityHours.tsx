@@ -16,16 +16,16 @@ const FacilityHours = () => {
                         <div>
 
                             <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-                                <Grid item xs={3}>
+                                <Grid item xs={4}>
                                 <input type="radio" name="week" id="" /> Select Days Of Works
 
                                 </Grid>
-                                <Grid item xs={3}>
+                                <Grid item xs={4}>
                                     <input type="radio" name="week" id="" /> Available 7 days a week
                                 </Grid>
                             </Grid>
 
-                            <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
+                            <Grid container spacing={2}  columns={{ xs: 6, sm: 12, md: 12 }} sx={{ p: 2 }}>
                                 <Grid item xs={1}>
                                 <input type="checkbox" name="" id="" /> Mon
                                 </Grid>
@@ -50,6 +50,33 @@ const FacilityHours = () => {
                                 <Grid item xs={1}>
                                 <input type="checkbox" name="" id="" /> Sun
                                 </Grid>
+
+
+                            </Grid>
+
+                            <br/>
+                            <br/>
+                            <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
+                                <Grid item xs={4}>
+                                <input type="radio" name="time" id="" /> Select Time Range
+
+                                </Grid>
+                                <Grid item xs={4}>
+                                    <input type="radio" name="time" id="" /> Available 24x7
+                                </Grid>
+                            </Grid>
+
+                            <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }} sx={{ p: 2 }}>
+                                <Grid item xs={2}>
+                                    <label htmlFor="">From</label>
+                                <input type="time" className="form-control" name="" id="" />    
+                                </Grid>
+
+                                <Grid item xs={2}>
+                                    <label htmlFor="">To</label>
+                                <input type="time" className="form-control" name="" id="" /> 
+                                </Grid>
+
 
 
                             </Grid>

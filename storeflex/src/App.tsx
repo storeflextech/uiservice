@@ -47,6 +47,7 @@ function App() {
               <Route path={PAGES.PRIVACYPOLICY.path} element={<PAGES.PRIVACYPOLICY.component/>}/>
               <Route path={PAGES.PAYMENT_STATUS.path} element={<PAGES.PAYMENT_STATUS.component />} />
               <Route path={PAGES.MY_ORDERS.path} element={<PAGES.MY_ORDERS.component />} />
+              <Route path={PAGES.USER_PROFILE.path} element={<PAGES.USER_PROFILE.component />} />
             </Routes>
             } 
             { !getUserLoggedIn() && 

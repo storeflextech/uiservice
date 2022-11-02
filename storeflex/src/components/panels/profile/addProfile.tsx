@@ -8,6 +8,9 @@ import { validateCharacterLength, validatePhone, validateWebUrl, validateGst } f
 import Facility from '../warehouseInfo/facility';
 import PricingFrom from '../warehouseInfo/pricing';
 import FacilityHours from '../warehouseInfo/facilityHours';
+import FacilityLayout from '../warehouseInfo/facilityLayout';
+import Services from '../warehouseInfo/services';
+
 
 interface AddProfileProps {
     profileData: BusinessDetails;
@@ -231,6 +234,9 @@ const AddProfile = (props: AddProfileProps) => {
                     {<PricingFrom/>}
 
                     {<FacilityHours/>}
+
+                    {<FacilityLayout/>}
+                    {<Services/>}
 
 
 
