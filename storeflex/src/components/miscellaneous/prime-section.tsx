@@ -38,7 +38,7 @@ const PrimeSection = () => {
                     </div>
                     <div className="light-rounded-buttons float-end">
 
-                      <a href="javascript:void(0)" onClick={() => { goToNextPage('/search-new') }} className="btn primary-btn"><i className="lni-large lni-search-alt"></i> </a>
+                      <a href="javascript:void(0)" onClick={() => { goToNextPage('/search-new') }} className="btn primary-btn-outline"> Start Search </a>
 
                     </div>
                   </div>

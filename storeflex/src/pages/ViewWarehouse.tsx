@@ -34,20 +34,21 @@ const ViewWarehouse = () => {
                                         <tr>
                                             <th>#</th>
                                             <th>Store Name</th>
-                                            <th>Company</th>
-                                            <th>Address</th>
+                                            <th>State</th>
+                                            <th>City</th>
+                                            <th>Pincode</th>
                                             <th>Phone</th>
-                                            <th>Email</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>1</td>
                                             <td>Store Flex Service and Company: Noida</td>
-                                            <td>Storeflex</td>
-                                            <td>UP, Noida</td>
-                                            <td>9998887777</td>
-                                            <td>info@storeflex.co</td>
+                                            <td>UP</td>
+                                            <td>Noida</td>
+                                            <td>211003</td>
+                                            <td>9998887766</td>
                                             <td>
                                                 <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-cup menu-icon'></i> Delete</button>
                                                 <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-pencil menu-icon'></i> Edit</button> &nbsp; &nbsp;
@@ -56,10 +57,10 @@ const ViewWarehouse = () => {
                                         <tr>
                                             <td>2</td>
                                             <td>Store Flex Service and Company: Guwahati</td>
-                                            <td>Storeflex</td>
-                                            <td>Assam, Guwahati</td>
-                                            <td>78956476589</td>
-                                            <td>info@storeflex.co</td>
+                                            <td>ASM</td>
+                                            <td>Guwahati</td>
+                                            <td>781003</td>
+                                            <td>78956498765</td>
                                             <td>
                                                 <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-cup menu-icon'></i> Delete</button>
                                                 <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-pencil menu-icon'></i> Edit</button> &nbsp; &nbsp;
@@ -68,10 +69,10 @@ const ViewWarehouse = () => {
                                         <tr>
                                             <td>3</td>
                                             <td>Store Flex Service and Company: Kolkata</td>
-                                            <td>Storeflex</td>
-                                            <td>WB, Kolkata</td>
-                                            <td>9888978976</td>
-                                            <td>info@storeflex.in</td>
+                                            <td>KOL</td>
+                                            <td>Kolkata</td>
+                                            <td>881005</td>
+                                            <td>68956498765</td>
                                             <td>
                                                 <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-cup menu-icon'></i> Delete</button>
                                                 <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-pencil menu-icon'></i> Edit</button> &nbsp; &nbsp;
