@@ -27,9 +27,6 @@ const AddBusiness = (props)=> {
             <Modal.Body>
             <AddProfile profileData={profile} onSave={() => {onBusinessInfoSave()}}/>
             </Modal.Body>
-            {/* <Modal.Footer>
-                <button onClick={props.onHide}>Close</button>
-            </Modal.Footer> */}
         </Modal>
     );
 }
