@@ -224,7 +224,7 @@ const AddProfile = (props: AddProfileProps) => {
                     <div className='p-top-md align-c'>
                         <Button variant="contained" onClick={() => { alert('Cancel') }}> Cancel </Button>
                         <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                        <Button variant="contained" onClick={() => { saveBusinessInfo() }}> Save </Button>
+                        <Button className="btn primary-btn" variant="contained" onClick={() => { saveBusinessInfo() }}> Save </Button>
                     </div>
                 </>
             )

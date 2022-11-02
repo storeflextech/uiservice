@@ -6,7 +6,6 @@ import Divider from '@mui/material/Divider';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
-
 import {ProfileBtn} from '../button/button';
 import './menu.scss';
 

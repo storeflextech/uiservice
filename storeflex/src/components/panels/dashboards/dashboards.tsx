@@ -24,7 +24,7 @@ const Dashboards = (props) => {
                             Search Bussiness
                         </Button>
 
-                        <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.VIEW_USER.path) }}>
+                        <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.ADD_INFO.path) }}>
                             Add  user
                         </Button>
                     </div>
@@ -80,7 +80,7 @@ const Dashboards = (props) => {
                     </div>
                 </>
             )}
-             {userType === 'CU' && (
+            {userType === 'CU' && (
                 <>
                     <div className='sf-flex-grid sf-justify'>
                         <Button className='m-sm sf-btn w100' size="lg" active>

@@ -134,7 +134,7 @@ const AddUser = () => {
 
     return(
         <div className='c-box-shadow-blue m-bot-md'>
-            <div className='primary-gradient'>
+            <div className='blue-gradient'>
                 <div className='font-white p-md f-18px f-bold'>Add User</div>
             </div>
             <div className='p-md'>
