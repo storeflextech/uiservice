@@ -1,14 +1,30 @@
 {
-    "serverResponse": {
-        "status": "sucess"
-    },
-    "logintest": {
+    "SL" : {
         "methodReturnValue": {
-            "redirect": "/storeflexhome",
-            "username": "storeflextest"
+          "redirect": "/storeflexuserdashboard",
+          "username": "storeflextest_SL"
+        },
+        "statusCode": 600,
+        "message": "Login Success",
+        "status": "SUCCESS"
+    },
+    "CL" : {
+        "methodReturnValue": {
+          "redirect": "/storeflexclientdashboard",
+          "username": "storeflextest_CL"
+        },
+        "statusCode": 600,
+        "message": "Login Success",
+        "status": "SUCCESS"
+    },
+    "CU" : {
+        "methodReturnValue": {
+          "redirect": "/storeflexcustdashboard",
+          "username": "storeflextest_CU"
         },
         "statusCode": 600,
         "message": "Login Success",
         "status": "SUCCESS"
     }
-}
+  
+  }

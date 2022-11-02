@@ -35,7 +35,8 @@ import TermsAndConditions from '../pages/termsandconditions';
 import PrivacyPolicy from '../pages/privacy';
 import paymentStatus from '../pages/paymentStatus';
 import MyOrders from '../pages/myOrders';
-
+import ViewBusiness from '../pages/viewbusiness';
+import ViewUser from '../pages/viewuser';
 
 export const PAGES = {
     HOME : {
@@ -65,6 +66,20 @@ export const PAGES = {
     DASHBOARD : {
         path: '/dashboard',
         component: PgDashboard
+    },
+    BUSINESS:{
+        ADD:{
+            path: '/add-business',
+            component: BusinessInfo
+        },
+        VIEW:{
+            path: '/view-business',
+            component: ViewBusiness
+        },
+        UPDATE:{
+            path: '/update-business',
+            component: BusinessInfo
+        },
     },
     BUSINESS_INFO : {
         path: '/businessinfo',
@@ -179,6 +194,14 @@ export const PAGES = {
     MY_ORDERS :{
         path: '/myorders',
         component: MyOrders
+    },
+    VIEW_BUSINESS:{
+        path:'/viewbusiness',
+        component: ViewBusiness
+    },
+    VIEW_USER:{
+        path:'/viewuser',
+        component: ViewUser
     }
 
 }
