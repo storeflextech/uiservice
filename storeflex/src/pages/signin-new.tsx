@@ -108,7 +108,7 @@ const SignInNew = () => {
                       <a href="/termsandconditions">Terms and Conditions </a> <br></br>
                       and
                       <br></br>
-                      <a href="/privacypolicy"> Privacy</a>
+                      <a href="/privacypolicy"> Privacy Policy</a>
                     </p>
                   </div>
                 </div>

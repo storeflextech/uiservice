@@ -9,13 +9,15 @@ const TopNavbar = () => {
   return (
     <>
       <section className="navbar-area navbar-one sf-bg-primary">
-        <div className="container">
+        <div className="">
           <div className="row">
             <div className="col-lg-12">
               <nav className="navbar navbar-expand-lg">
-                <a className="navbar-brand" href="/guesthome">
-                  <img src="assets/images/white-logo.jpg" alt="Logo" style={{ height: '8vh' }} />
+                <div className="p-left-sm">
+                <a className="navbar-brand" href="/home">
+                  <img src="assets/images/white-logo.jpg" alt="Logo" style={{ height: '6vh' }} />
                 </a>
+                </div>
 
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarOne"
                   aria-controls="navbarOne" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,7 +55,7 @@ const TopNavbar = () => {
                       <a className="btn primary-btn-outline" href="javascript:;" onClick={() => { goToNextPage('/signin-new') }}>Sign In</a>
                     </li>
                     <li>
-                      <a className="btn primary-btn" href="javascript:void(0)"
+                      <a className="btn primary-btn m-right-xl" href="javascript:void(0)"
                       >Sign Up</a>
                     </li>
                   </ul>

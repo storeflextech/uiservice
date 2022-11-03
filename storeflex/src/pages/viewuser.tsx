@@ -8,9 +8,10 @@ import TopNavbar from '../components/navbar/TopNavBar';
 import SideNavBar from '../components/navbar/SideNavBar';
 import { AppContainer, SplitPaneContainer } from '../components/containers/containers';
 import Footer from '../components/footer/footer';
+import { PAGES } from '../utils/Constants';
 import { getUserType } from '../utils/CommonUtils';
 
-const ViewWarehouse = () => {
+const ViewUser = () => {
   const navigate = useNavigate();
   const goToNextPage = (pagePath: string) => {
     navigate(pagePath);
@@ -26,30 +27,33 @@ const ViewWarehouse = () => {
                             <div>
                                 <div className='primary-gradient'>
                                     <div className='font-white p-sm f-18px f-bold'>
-                                        Warehouses
-                                        <button  className="primary-btn-outline" style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-plus menu-icon'></i> Add New</button>
+                                        Active Users
+                                        <button  className="primary-btn-outline" onClick={() => { goToNextPage('/addinfo')}} style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}} ><i className='mdi mdi-plus menu-icon'></i> Add New</button>
                                     </div>
                                 </div>
                                 <Table striped bordered hover>
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Store Name</th>
-                                            <th>State</th>
-                                            <th>City</th>
-                                            <th>Pincode</th>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Company</th>
+                                            <th>Address</th>
                                             <th>Phone</th>
-                                            <th>Action</th>
+                                            <th>Email</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td>Store Flex Service and Company: Noida</td>
-                                            <td>UP</td>
-                                            <td>Noida</td>
-                                            <td>211003</td>
-                                            <td>9998887766</td>
+                                            <td><div className="nav-profile-image">
+                                                 <img src="/cpanel/images/faces/face1.jpg" alt="profile" />
+                                                 <input className="d-none" type="file" />&nbsp;
+                                                    Mrityunjoy Deka
+                                                </div></td>
+                                            <td>Storeflex</td>
+                                            <td>UP, Noida</td>
+                                            <td>9998887777</td>
+                                            <td>mrityunjoy@storeflex.co</td>
                                             <td>
                                                 <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-cup menu-icon'></i> Delete</button>
                                                 <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-pencil menu-icon'></i> Edit</button> &nbsp; &nbsp;
@@ -57,11 +61,15 @@ const ViewWarehouse = () => {
                                         </tr>
                                         <tr>
                                             <td>2</td>
-                                            <td>Store Flex Service and Company: Guwahati</td>
-                                            <td>ASM</td>
-                                            <td>Guwahati</td>
-                                            <td>781003</td>
-                                            <td>78956498765</td>
+                                            <td><div className="nav-profile-image">
+                                                 <img src="/cpanel/images/faces/face3.jpg" alt="profile" />
+                                                 <input className="d-none" type="file" /> &nbsp;
+                                                Subham
+                                                </div></td>
+                                            <td>Reliance Digital</td>
+                                            <td>Assam, Guwahati</td>
+                                            <td>78956476589</td>
+                                            <td>info@reliance.co</td>
                                             <td>
                                                 <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-cup menu-icon'></i> Delete</button>
                                                 <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-pencil menu-icon'></i> Edit</button> &nbsp; &nbsp;
@@ -69,11 +77,15 @@ const ViewWarehouse = () => {
                                         </tr>
                                         <tr>
                                             <td>3</td>
-                                            <td>Store Flex Service and Company: Kolkata</td>
-                                            <td>KOL</td>
-                                            <td>Kolkata</td>
-                                            <td>881005</td>
-                                            <td>68956498765</td>
+                                            <td><div className="nav-profile-image">
+                                                 <img src="/cpanel/images/faces/face2.jpg " alt="profile" />
+                                                 <input className="d-none" type="file" /> &nbsp;
+                                                Imon Gogoi
+                                                </div></td>
+                                            <td>Hajmola India Ltd.</td>
+                                            <td>WB, Kolkata</td>
+                                            <td>9888978976</td>
+                                            <td>imon@hajmola.in</td>
                                             <td>
                                                 <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-cup menu-icon'></i> Delete</button>
                                                 <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-pencil menu-icon'></i> Edit</button> &nbsp; &nbsp;
@@ -91,4 +103,8 @@ const ViewWarehouse = () => {
     )
 }
 
-export default ViewWarehouse;
+export default ViewUser;
+function handelOnClick(path: any) {
+    throw new Error('Function not implemented.');
+}
+

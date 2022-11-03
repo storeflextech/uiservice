@@ -8,6 +8,7 @@ import SideNavBar from '../components/navbar/SideNavBar';
 import { AppContainer, SplitPaneContainer } from '../components/containers/containers';
 import AddStore from './addstore';
 import Footer from '../cPanel/components/Footer';
+import { getUserType } from '../utils/CommonUtils';
 
 const AddWarehouse = () => {
     // const profileImgUrl ="../../../static/images/AVT_1.png";
@@ -15,7 +16,7 @@ const AddWarehouse = () => {
         <AppContainer>
             <TopNavbar />
             <SplitPaneContainer
-                left={<SideNavBar />}
+                left={<SideNavBar userType={getUserType()}/>}
                 right={
                     <div className='c-box-shadow-blue'>
                         <AddStore />
