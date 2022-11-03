@@ -48,6 +48,11 @@ function App() {
               <Route path={PAGES.PRIVACYPOLICY.path} element={<PAGES.PRIVACYPOLICY.component/>}/>
               <Route path={PAGES.PAYMENT_STATUS.path} element={<PAGES.PAYMENT_STATUS.component />} />
               <Route path={PAGES.MY_ORDERS.path} element={<PAGES.MY_ORDERS.component />} />
+              <Route path={PAGES.VIEW_BUSINESS.path} element={<PAGES.VIEW_BUSINESS.component />} />
+              <Route path={PAGES.VIEW_USER.path} element={<PAGES.VIEW_USER.component />} />
+              <Route path={PAGES.DISCOVER_MORE.path} element={<PAGES.DISCOVER_MORE.component />} />
+              <Route path={PAGES.BOOKINGS.path} element={<PAGES.BOOKINGS.component />} />
+              <Route path={PAGES.PAYMENT_DETAILS.path} element={<PAGES.PAYMENT_DETAILS.component />} />
               <Route path={PAGES.USER_PROFILE.path} element={<PAGES.USER_PROFILE.component />} />
             </Routes>
             } 

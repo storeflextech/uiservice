@@ -29,12 +29,11 @@ const PrimeSection = () => {
                       Smarter search for space at your fingertips under one roof<br />
                       <h4><i>We are a leading market place for warehouse & logistics management solutions.</i></h4>
                       <div className="light-rounded-buttons">
-                         <a href="javascript:void(0)" className="btn primary-btn"> Discover More </a>
+                         <a href="javascript:void(0)" className="btn primary-btn" onClick = {()=> goToNextPage('/discovermore')}> Discover More </a>
                       </div>
                     </h1>
-                    <h6>LET’S FIND WAREHOUSE YOU ARE LOOKING FOR</h6>
-                  
-                  
+                    <h6>LET’S FIND THE WAREHOUSE YOU ARE LOOKING FOR</h6>
+                
                     <div className="form-group d-flex flex-row">
 
                       <input className="input-search-size form-control p-2" name="name" type="text" placeholder="Enter Pin or City" style={{ height: '50px' }} />
@@ -42,7 +41,6 @@ const PrimeSection = () => {
                       <div className="light-rounded-buttons float-end m-0 p-2">
                       <a href="javascript:void(0)" onClick={() => { goToNextPage('/search-new') }} className="btn primary-btn"><i className="lni-large lni-search-alt"></i> </a>
                     </div>
-
                     </div>
 
 {/* 
