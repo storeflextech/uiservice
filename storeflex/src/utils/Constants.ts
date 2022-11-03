@@ -35,6 +35,7 @@ import TermsAndConditions from '../pages/termsandconditions';
 import PrivacyPolicy from '../pages/privacy';
 import paymentStatus from '../pages/paymentStatus';
 import MyOrders from '../pages/myOrders';
+import UserProfile from '../pages/userProfile';
 import ViewBusiness from '../components/business/view-business';
 
 
@@ -194,6 +195,10 @@ export const PAGES = {
     MY_ORDERS :{
         path: '/myorders',
         component: MyOrders
+    },
+    USER_PROFILE :{
+        path: '/view-profile',
+        component: UserProfile
     }
 
 }

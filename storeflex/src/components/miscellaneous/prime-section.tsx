@@ -33,14 +33,25 @@ const PrimeSection = () => {
                       </div>
                     </h1>
                     <h6>LET’S FIND WAREHOUSE YOU ARE LOOKING FOR</h6>
-                    <div className="form-group">
-                      <input className="input-search-size form-control" name="name" type="text" placeholder="Enter Pin or City" style={{ height: '8vh' }} />
+                  
+                  
+                    <div className="form-group d-flex flex-row">
+
+                      <input className="input-search-size form-control p-2" name="name" type="text" placeholder="Enter Pin or City" style={{ height: '50px' }} />
+
+                      <div className="light-rounded-buttons float-end m-0 p-2">
+                      <a href="javascript:void(0)" onClick={() => { goToNextPage('/search-new') }} className="btn primary-btn"><i className="lni-large lni-search-alt"></i> </a>
                     </div>
+
+                    </div>
+
+{/* 
                     <div className="light-rounded-buttons float-end">
+                      <a href="javascript:void(0)" onClick={() => { goToNextPage('/search-new') }} className="btn primary-btn"><i className="lni-large lni-search-alt"></i> </a>
+                    </div> */}
 
-                      <a href="javascript:void(0)" onClick={() => { goToNextPage('/search-new') }} className="btn primary-btn-outline"> Start Search </a>
 
-                    </div>
+
                   </div>
                 </div>
               </div>
