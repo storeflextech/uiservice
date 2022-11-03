@@ -124,24 +124,26 @@ const MenuItems = [
                     "Icon": "mdi mdi-account-multiple-outline menu-icon"
                 },
                 {
+                    "Label": "Order Details",
+                    "Name": "OrderDetailsMenu",
+                    "NavigateTo":"/bookings",
+                    "SubMenu":[],
+                    "Icon": "mdi mdi-checkbox-marked-outline menu-icon"
+                },
+                {
                     "Label": "Payment Details",
                     "Name": "PaymentDetailsMenu",
                     "NavigateTo": "self",
                     "SubMenu": [
                         {
-                            "Label": "Add Payment",
+                            "Label": "My Payment",
                             "Name": "",
                             "NavigateTo": "/add-payment"
                         },
                         {
-                            "Label": "Delete Payment",
+                            "Label": "Payment History",
                             "Name": "",
-                            "NavigateTo": "/delete-payment"
-                        },
-                        {
-                            "Label": "Update Payment",
-                            "Name": "",
-                            "NavigateTo": "/update-payment"
+                            "NavigateTo": "/paymentdetails"
                         }
                     ],
                     "Icon": "mdi mdi-cash menu-icon"

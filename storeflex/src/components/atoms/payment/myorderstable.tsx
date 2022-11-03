@@ -1,5 +1,6 @@
 import React from "react";
-
+import { Box } from '@mui/material';
+import Table from 'react-bootstrap/Table';
 // import './myorders.css'
 
 
@@ -53,15 +54,18 @@ const OrderTable = () => {
             <br />
             <br />
             <br />
-
-            <div className="card container mt-5">
-                <div className="text-center m-2 bg-gray"><h3>My Orders</h3></div>
-                <div className="d-flex justify-content-center row">
-                    <div className="col-md-12">
-                        <div className="rounded">
-                            <div className="table-responsive table-borderless">
-                                <table className="table">
-                                    <thead>
+            <div className="container mt-4">
+                <div className='c-box-shadow-blue'>
+                    <Box className='m-top-md m-bot-md m-left-md m-right-md'>
+                        <div>
+                            <div className='primary-gradient'>
+                                <div className='font-white p-sm f-18px f-bold'>
+                                    My Orders
+                                   
+                                </div>
+                            </div>
+                            <Table striped bordered hover>
+                            <thead>
                                         <tr>
 
                                             <th>Order #</th>
@@ -92,11 +96,11 @@ const OrderTable = () => {
                                         ))}
 
                                     </tbody>
-                                </table>
-                            </div>
+                            </Table>
                         </div>
-                    </div>
+                    </Box>
                 </div>
+
             </div>
 
 
