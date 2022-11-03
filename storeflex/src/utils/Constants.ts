@@ -36,6 +36,7 @@ import PrivacyPolicy from '../pages/privacy';
 import paymentStatus from '../pages/paymentStatus';
 import MyOrders from '../pages/myOrders';
 import ViewBusiness from '../components/business/view-business';
+import SiteMap from '../pages/SiteMap';
 
 
 export const PAGES = {
@@ -194,6 +195,10 @@ export const PAGES = {
     MY_ORDERS :{
         path: '/myorders',
         component: MyOrders
+    },
+    SITE_MAP :{
+        path: '/sitemap',
+        component: SiteMap
     }
 
 }

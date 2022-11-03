@@ -53,6 +53,7 @@ function App() {
             { !getUserLoggedIn() && 
               <Routes>
                 <Route path="/*" element={<PAGES.SIGN_IN_NEW.component />} />
+                <Route path={PAGES.SITE_MAP.path} element={<PAGES.SITE_MAP.component />} />
               </Routes>
             }
        
