@@ -8,6 +8,7 @@ import TopNavbar from '../components/navbar/TopNavBar';
 import SideNavBar from '../components/navbar/SideNavBar';
 import { AppContainer, SplitPaneContainer } from '../components/containers/containers';
 import Footer from '../components/footer/footer';
+import { getUserType } from '../utils/CommonUtils';
 
 const ViewWarehouse = () => {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ const ViewWarehouse = () => {
         <AppContainer>
             <TopNavbar />
             <SplitPaneContainer
-                left={<SideNavBar />}
+                left={<SideNavBar userType={getUserType()}/>}
                 right={
                     <div className='c-box-shadow-blue'>
                         <Box className='m-top-md m-bot-md m-left-md m-right-md'>
