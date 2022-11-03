@@ -5,8 +5,8 @@ import AddressDetails from '../../atoms/addressforms/AddressDetails';
 import { BusinessDetails } from '../../../utils/ResponseSchema';
 import { validateCharacterLength, validatePhone, validateWebUrl, validateGst } from '../../../utils/CommonUtils';
 
-// import Facility from '../warehouseInfo/facility';
-// import PricingFrom from '../warehouseInfo/pricing';
+import Facility from '../warehouseInfo/facility';
+import PricingFrom from '../warehouseInfo/pricing';
 import FacilityHours from '../warehouseInfo/facilityHours';
 import FacilityLayout from '../warehouseInfo/facilityLayout';
 import Services from '../warehouseInfo/services';
@@ -229,9 +229,9 @@ const AddProfile = (props: AddProfileProps) => {
                         {showBusinessAddress()}
                     </div>
 
-                    {/* {<Facility />}
+                    {<Facility />}
                     
-                    {<PricingFrom/>} */}
+                    {<PricingFrom/>}
 
                     {<FacilityHours/>}
 
