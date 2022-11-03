@@ -53,6 +53,7 @@ function App() {
               <Route path={PAGES.DISCOVER_MORE.path} element={<PAGES.DISCOVER_MORE.component />} />
               <Route path={PAGES.BOOKINGS.path} element={<PAGES.BOOKINGS.component />} />
               <Route path={PAGES.PAYMENT_DETAILS.path} element={<PAGES.PAYMENT_DETAILS.component />} />
+              <Route path={PAGES.USER_PROFILE.path} element={<PAGES.USER_PROFILE.component />} />
             </Routes>
             } 
             { !getUserLoggedIn() && 

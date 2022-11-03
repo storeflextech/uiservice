@@ -39,9 +39,8 @@ import ViewUser from '../pages/viewuser';
 import DiscoverMore from '../pages/doscovermore';
 import Bookings from '../pages/bookings';
 import PaymentDetails from '../pages/paymentDetails'
-
+import UserProfile from '../pages/userProfile';
 import ViewBusiness from '../components/business/view-business';
-
 
 export const PAGES = {
     HOME : {
@@ -219,7 +218,10 @@ export const PAGES = {
     PAYMENT_DETAILS:{
         path:'/paymentdetails',
         component:PaymentDetails
-
+    },
+    USER_PROFILE :{
+        path: '/view-profile',
+        component: UserProfile
     }
 
 }
