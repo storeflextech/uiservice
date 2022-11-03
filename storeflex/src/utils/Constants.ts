@@ -4,7 +4,7 @@ import CustomerHome from '../pages/CustomerHome';
 import SignIn from "../pages/signin";
 import SignInNew from "../pages/signin-new";
 import SignUp from '../pages/signup';
-import PgDashboard from '../pages/PgDashboard';
+import DashboardPage from '../pages/DashboardPage';
 import BusinessInfo from '../pages/businessinfo';
 import AddInfo from '../pages/addinfo';
 import PgSearch from '../pages/PgSearch';
@@ -43,6 +43,12 @@ import UserProfile from '../pages/userProfile';
 import ViewBusiness from '../components/business/view-business';
 import SiteMap from '../pages/SiteMap';
 
+export enum USER_TYPE {
+    SfUser = 'SL',
+    SfClient = 'CL',
+    SfCustomer = 'CU'
+}
+
 export const PAGES = {
     HOME : {
         path: '/home',
@@ -70,7 +76,7 @@ export const PAGES = {
     },
     DASHBOARD : {
         path: '/dashboard',
-        component: PgDashboard
+        component: DashboardPage
     },
     BUSINESS:{
         ADD:{

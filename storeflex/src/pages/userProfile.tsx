@@ -1,7 +1,5 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import Dashboards from '../components/panels/dashboards/dashboards';
-import DashboardChart from '../components/panels/chart/dashboardChart';
 import TopNavbar from '../components/navbar/TopNavBar';
 import SideNavBar from '../components/navbar/SideNavBar';
 import { AppContainer, SplitPaneContainer } from '../components/containers/containers';
@@ -9,14 +7,6 @@ import { getUserType } from '../utils/CommonUtils';
 import Footer from '../components/footer/footer';
 
 import { useEffect, useState } from 'react';
-
-
-
-
-
-
-
-
 
 const UserProfile = () => {
     const [isDisabled, setIsDisabled] = useState(true);
