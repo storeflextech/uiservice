@@ -1,8 +1,10 @@
+import { PAGES } from './Constants';
+
 export const CHARACTER_ONLY = /^[A-Za-z ,.'-]+$/;
-export const regex_email = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+export const regex_email = /^((^<>()\[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 export const regex_specialChar = /^[A-Za-z ]+$/;
 export const regex_pass = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})/gm;
-export const regex_url = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/;
+export const regex_url = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[~%\w-_]*)?\??(?:[-=&;%@.\w_]*)#?(?:[\w]*))?)/;
 export const regex_phone = /^[6789]\d{9}$/;
 export const regex_gstid = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
 export const regex_city = /^[A-Za-z]+$/;
@@ -116,18 +118,18 @@ export const getUserType = () => {
 
 export const getRedirectionPage = (redirectUrl?: string) => {
     if(redirectUrl === '/storeflexhome'){  
-        return '/home';
+        return PAGES.HOME.path;
     }else if(redirectUrl === '/storeflexuserdashboard'){    // Storeflex User Dashboard
         setUserType('SL');
-        return '/dashboard';
+        return PAGES.DASHBOARD.path;
     }else if(redirectUrl === '/storeflexclientdashboard'){  // Storeflex Client Dashboard
         setUserType('CL');
-        return '/dashboard';
+        return PAGES.DASHBOARD.path;
     }else if(redirectUrl === '/storeflexcustdashboard'){    // Storeflex Customer Dashboard
         setUserType('CU');
-        return '/dashboard';
+        return PAGES.DASHBOARD.path;
     } else {
         setUserType('NA');
-        return '/home';       // If redirect url is missing then redirect to home
+        return PAGES.HOME.path;      // If redirect url is missing then redirect to home
     }
 }

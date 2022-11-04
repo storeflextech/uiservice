@@ -1,14 +1,11 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { useNavigate } from "react-router-dom";
-import Dashboards from '../components/panels/dashboards/dashboards';
-import DashboardChart from '../components/panels/chart/dashboardChart';
 import Table from 'react-bootstrap/Table';
 import TopNavbar from '../components/navbar/TopNavBar';
 import SideNavBar from '../components/navbar/SideNavBar';
 import { AppContainer, SplitPaneContainer } from '../components/containers/containers';
 import Footer from '../components/footer/footer';
-import { PAGES } from '../utils/Constants';
 import { getUserType } from '../utils/CommonUtils';
 
 const ViewUser = () => {
