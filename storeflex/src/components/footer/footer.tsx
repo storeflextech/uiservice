@@ -1,6 +1,13 @@
 import React from 'react';
+import {useNavigate} from "react-router-dom"
+import Nav from 'react-bootstrap/Nav';
+import { PAGES } from '../../utils/Constants';
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const onLinkClick = (url) => {
+    navigate(url);
+  }
     return (
       <>
        <section className="footer-area footer-five">
@@ -31,6 +38,22 @@ const Footer = () => {
                 </ul>
                 {/* <!-- social --> */}
               </div>
+              <Nav className="justify-content-center">
+                <Nav.Item>
+                  <Nav.Link onClick={() => {onLinkClick(PAGES.SITE_MAP.path)}}>Site map</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                <Nav.Link onClick={() => {onLinkClick(PAGES.TERMSANDCONDITIONS.path)}}>Terms of condition</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                <Nav.Link onClick={() => {onLinkClick(PAGES.SITE_MAP.path)}}>Privacy Policy</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link>
+                  <Nav.Link onClick={() => {onLinkClick(PAGES.SITE_MAP.path)}}>Cookie Policy</Nav.Link>
+                  </Nav.Link>
+                </Nav.Item>
+              </Nav>
             </div>
           </div>
           {/* <!-- row --> */}

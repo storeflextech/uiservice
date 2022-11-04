@@ -19,3 +19,12 @@ export const SplitPaneContainer = (props) => {
         </div>
     )
 }
+
+export const BoxContainer = (props) => {
+    const boxStyle = "sf-box-shadow-orange";
+    return(
+        <div className={boxStyle}>
+            {props.children}
+        </div>
+    )
+}
