@@ -87,12 +87,12 @@ const ViewBusiness = () => {
                                 <div className='primary-gradient'>
                                     <div className='font-white p-sm f-18px f-bold'>
                                         Business
-                                        <button className="primary-btn-outline" style={{ fontSize: '14px', float: 'right', marginTop:'-10px', borderRadius: 20, right:'0px', padding:'7px 12px 7px 12px' }} onClick={() => setModalShow(true)}><strong><i className='mdi mdi-plus menu-icon'></i> Add New</strong></button>
+                                        {/* <button className="primary-btn-outline" style={{ fontSize: '14px', float: 'right', marginTop:'-10px', borderRadius: 20, right:'0px', padding:'7px 12px 7px 12px' }} onClick={() => setModalShow(true)}><strong><i className='mdi mdi-plus menu-icon'></i> Add New</strong></button> */}
                                     </div>
-                                    <AddBusiness
+                                    {/* <AddBusiness
                                         show={modalShow}
                                         onHide={() => setModalShow(false)}
-                                    />
+                                    /> */}
                                 </div>
                                 <Table striped bordered hover>
                                     <thead>

@@ -1,7 +1,7 @@
 
 export const AppContainer = (props) => {
     return(
-        <div className="container-fluid">
+        <div className="container-fluid" style={{padding:'0px'}}>
             {props.children}
         </div>
     )

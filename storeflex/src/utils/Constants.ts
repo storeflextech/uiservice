@@ -1,4 +1,3 @@
-import CPanel from '../cPanel/index';
 import HomePage from '../pages/HomePage';
 import CustomerHome from '../pages/CustomerHome';
 import SignIn from "../pages/signin";
@@ -15,7 +14,6 @@ import Cart from '../pages/cart';
 import PgContactUs from '../pages/PgContactUs';
 import faq from '../pages/faq';
 import ErrorPage from '../pages/ErrorPage';
-import AddBusiness from '../pages/addbusiness';
 import AddWarehouse from '../pages/addwarehouse';
 import PendingBusiness from '../pages/pendingbusiness';
 import DeleteWarehouse from '../pages/deletewarehouse';
@@ -42,6 +40,7 @@ import PaymentDetails from '../pages/paymentDetails'
 import UserProfile from '../pages/userProfile';
 import ViewBusiness from '../components/business/view-business';
 import SiteMap from '../pages/SiteMap';
+import AddBusiness from '../components/business/add-business';
 
 export enum USER_TYPE {
     SfUser = 'SL',
@@ -53,10 +52,6 @@ export const PAGES = {
     HOME : {
         path: '/home',
         component: HomePage
-    },
-    CPANEL : {
-        path: '/cPanel',
-        component: CPanel
     },
     CUSTOMERHOME : {
         path: '/customerhome',
@@ -81,7 +76,7 @@ export const PAGES = {
     BUSINESS:{
         ADD:{
             path: '/add-business',
-            component: BusinessInfo
+            component: AddBusiness
         },
         VIEW:{
             path: '/view-business',
