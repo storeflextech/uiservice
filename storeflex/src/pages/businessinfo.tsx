@@ -5,6 +5,7 @@ import AddProfile from '../components/panels/profile/addProfile';
 import TopNavbar from '../components/navbar/TopNavBar';
 import SideNavBar from '../components/navbar/SideNavBar';
 import { AppContainer, SplitPaneContainer } from '../components/containers/containers';
+import { getUserType } from '../utils/CommonUtils';
 
 const storeData = require('../mockData/storeinfoData.json');
 
@@ -34,7 +35,7 @@ const BusinessInfo = () => {
       <AppContainer>
       <TopNavbar />
       <SplitPaneContainer
-          left={<SideNavBar />}
+          left={<SideNavBar userType={getUserType()}/>}
           right={
               <div className='c-box-shadow-blue m-left-md'>
                   <AddProfile profileData={profile} onSave={() => {onBusinessInfoSave()}}/>
