@@ -101,7 +101,7 @@ const ViewUser = () => {
 }
 
 export default ViewUser;
-function handelOnClick(path: any) {
-    throw new Error('Function not implemented.');
-}
+// function handelOnClick(path: any) {
+//     throw new Error('Function not implemented.');
+// }
 
