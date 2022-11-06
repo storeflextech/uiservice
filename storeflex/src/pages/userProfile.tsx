@@ -6,7 +6,7 @@ import { AppContainer, SplitPaneContainer } from '../components/containers/conta
 import { getUserType } from '../utils/CommonUtils';
 import Footer from '../components/footer/footer';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const UserProfile = () => {
     const [isDisabled, setIsDisabled] = useState(true);
@@ -22,7 +22,7 @@ const UserProfile = () => {
     
 
 
-    const [success, setSuccess] = useState("success");
+    // const [success, setSuccess] = useState("success");
 
     const handleClick = (event) => {
         setIsDisabled(!isDisabled)

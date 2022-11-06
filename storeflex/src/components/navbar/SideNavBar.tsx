@@ -1,14 +1,13 @@
-import React, { useState, useEffect,useRef } from 'react';
-import { Box } from '@mui/material';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
 import { Collapse } from 'react-bootstrap';
-import MenuItems from './menu-items';
 import './index.scss';
-import { margin } from '@mui/system';
+import MenuItems from '../../utils/MenuIItems.json'
+
 const SideNavBar = (props) => {
   const userType = props.userType; //SL-Storeflex User, CL- Storeflex Client, CU- Storeflex Customer
-  console.log(props.userType);
+  // console.log(props.userType);
+  const navigate = useNavigate();
 
   const initialization = () => {
     let menuObject = {
@@ -26,7 +25,6 @@ const SideNavBar = (props) => {
     return menuObject;
   }
 
-  const navigate = useNavigate();
 
   const [values, setValues] = useState(initialization);
   const [listItems, setListItems] = useState<Array<any>>([]);
@@ -38,11 +36,15 @@ const SideNavBar = (props) => {
 
   const getUserMenu = () => {
     MenuItems.map(ele => {
-      if (ele.UserType == userType) {
+      if (ele.UserType === userType) {
         setListItems(ele.Menus.SidebarMenu)
       }
     });
     console.log("listItems==", listItems);
+  }
+
+  const handleOnClick = (path: string) => {
+    navigate(path);
   }
 
   const toggleMenuState = (menuState) => {
@@ -71,11 +73,6 @@ const SideNavBar = (props) => {
     }
   }
 
-
-  const handleOnClick = (path: string) => {
-    navigate(path);
-  }
-
   const isPathActive = (path) => {
     return true;
   }
@@ -94,8 +91,7 @@ const SideNavBar = (props) => {
   };
 
   return (
-    <div className='c-box-shadow-blue'>
-      <Box className='m-top-md m-bot-md m-left-md m-right-md'>
+    <div className='sf-box-shadow-orange'>
         <div>
           <nav className="sidebar sidebar-offcanvas" id="sidebar">
             <ul className="nav">
@@ -170,7 +166,6 @@ const SideNavBar = (props) => {
             </ul>
           </nav>
         </div>
-      </Box>
     </div>
   );
 }

@@ -118,18 +118,18 @@ export const getUserType = () => {
 
 export const getRedirectionPage = (redirectUrl?: string) => {
     if(redirectUrl === '/storeflexhome'){  
-        return PAGES.HOME.path;
+        return PAGES.Home.path;
     }else if(redirectUrl === '/storeflexuserdashboard'){    // Storeflex User Dashboard
         setUserType('SL');
-        return PAGES.DASHBOARD.path;
+        return PAGES.Dashboard.path;
     }else if(redirectUrl === '/storeflexclientdashboard'){  // Storeflex Client Dashboard
         setUserType('CL');
-        return PAGES.DASHBOARD.path;
+        return PAGES.Dashboard.path;
     }else if(redirectUrl === '/storeflexcustdashboard'){    // Storeflex Customer Dashboard
         setUserType('CU');
-        return PAGES.DASHBOARD.path;
+        return PAGES.Dashboard.path;
     } else {
         setUserType('NA');
-        return PAGES.HOME.path;      // If redirect url is missing then redirect to home
+        return PAGES.Home.path;      // If redirect url is missing then redirect to home
     }
 }
