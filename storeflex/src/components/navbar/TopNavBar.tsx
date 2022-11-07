@@ -15,7 +15,7 @@ const TopNavbar = () => {
               <nav className="navbar navbar-expand-lg">
                 <div className="p-left-sm">
                 <a className="navbar-brand" href="/home">
-                  <img src="assets/images/white-logo.jpg" alt="Logo" style={{ height: '6vh' }} />
+                  <img src="../../assets/images/white-logo.jpg" alt="Logo" style={{ height: '6vh' }} />
                 </a>
                 </div>
 
@@ -32,19 +32,16 @@ const TopNavbar = () => {
                       <a className="active page-scroll" href="#hero-area">Home</a>
                     </li>
                     <li className="nav-item">
-                      <a className="page-scroll" href="#services">Services</a>
+                      <a className="page-scroll" href="/home#services">Services</a>
                     </li>
                     <li className="nav-item">
-                      <a className="page-scroll" href="#pricing">Pricing</a>
+                      <a className="page-scroll" href="/home#pricing">Pricing</a>
                     </li>
                     <li className="nav-item">
-                      <a className="page-scroll" href="#team">Team</a>
+                      <a className="page-scroll" href="/home#team">Clients</a>
                     </li>
                     <li className="nav-item">
-                      <a className="page-scroll" href="#testimonial">Testimonial</a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="page-scroll" href="#contact">Contact</a>
+                      <a className="page-scroll" href="/home#contact">Contact</a>
                     </li>
                   </ul>
                 </div>

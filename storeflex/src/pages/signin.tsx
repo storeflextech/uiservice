@@ -31,12 +31,12 @@ const [errors, setErrors] = useState({
 
 });
 
-const handleChange = (event: any) =>{
-  setValues({
-    ...values,
-    [event.target.name]: event.target.value,
-  });
-};
+// const handleChange = (event: any) =>{
+//   setValues({
+//     ...values,
+//     [event.target.name]: event.target.value,
+//   });
+// };
 
 const validation = (values:any) => {
   console.log("Values==", values)

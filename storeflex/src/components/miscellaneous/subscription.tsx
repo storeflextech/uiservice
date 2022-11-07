@@ -3,7 +3,7 @@ import React from 'react';
 const Subscription = () => {
   return (
     <>
-      <section className="call-action-area call-action-four">
+      {/* <section className="call-action-area call-action-four">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-8">
@@ -24,14 +24,14 @@ const Subscription = () => {
                   </form>
                 </div>
                 {/* <!-- call action form --> */}
-              </div>
+              {/* </div>
               {/* <!-- call action content --> */}
-            </div>
-          </div>
+            {/* </div> */}
+          {/* </div> */}
           {/* <!-- row --> */}
-        </div>
+        {/* </div> */}
         {/* <!-- container --> */}
-      </section>
+      {/* </section> */}
     </>
   );
 };

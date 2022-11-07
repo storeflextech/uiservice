@@ -18,7 +18,7 @@ const CustomerDashboard = (props) => {
                     Profile
                 </Button>
 
-                <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.PG_SEARCH.path) }}>
+                <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.PgSearch.path) }}>
                     Search Warehouse
                 </Button>
 

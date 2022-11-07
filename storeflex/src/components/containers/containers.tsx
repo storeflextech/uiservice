@@ -1,7 +1,7 @@
 
 export const AppContainer = (props) => {
     return(
-        <div className="container-fluid">
+        <div className='w100'>
             {props.children}
         </div>
     )

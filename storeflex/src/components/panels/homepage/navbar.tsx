@@ -38,10 +38,10 @@ const ResponsiveAppBar = () => {
   function buttonNab(key: any){
     console.log(key.page);
     if(key.page === 'Search Space'){
-        navigate(PAGES.PG_SEARCH.path);
+        navigate(PAGES.PgSearch.path);
     }
     if(key.page === 'Contact Us'){
-        navigate(PAGES.PG_CONTACT_US.path);
+        navigate(PAGES.PgContactUs.path);
     }
     if(key.page === 'How To/FAQs'){
         navigate(PAGES.FAQ.path);

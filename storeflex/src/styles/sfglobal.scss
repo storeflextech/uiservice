@@ -244,13 +244,6 @@ $sf-primary-color: #f66711;
   margin-right: 32px;
 }
 
-.c-box-shadow {
-  box-sizing: border-box;
-  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 30%);
-  border: 1px solid transparent;
-  border-top: 1px solid #f1f1f5;
-}
-
 .sf-box-shadow-orange {
   box-sizing: border-box;
   box-shadow: 0 0px 5px 0 rgba(220, 96, 12, 0.45);
@@ -316,18 +309,6 @@ $sf-primary-color: #f66711;
   border-radius: 5px;
 }
 
-.c-box-shadow {
-    box-sizing: border-box;
-    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 30%);
-    border: 1px solid transparent;
-    border-top: 1px solid #f1f1f5;
-}
-.c-box-shadow-blue {
-    box-sizing: border-box;
-    box-shadow: 0 5px 10px 0 rgb(17 67 206 / 45%);
-    border: 1px solid transparent;
-    border-top: 1px solid #f1f1f5;
-}
 .logoicon{ 
 	position:absolute; 
 } 
@@ -379,7 +360,7 @@ $sf-primary-color: #f66711;
 
 
 .w100 {
-    width: 100%;
+    width: 100% !important;
 }
 .font-white {
     color: white !important;

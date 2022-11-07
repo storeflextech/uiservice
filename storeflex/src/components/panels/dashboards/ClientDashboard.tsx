@@ -14,18 +14,18 @@ const ClientDashboard = (props) => {
     return (
         <>
             <div className='sf-flex-grid sf-justify'>
-                <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.BUSINESS_INFO.path) }}>
+                <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.Business.path) }}>
                     Business
                 </Button>
 
-                <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.PG_SEARCH.path) }}>
+                <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.PgSearch.path) }}>
                     Warehouse
                 </Button>
 
-                <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.ADD_INFO.path) }}>
+                <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.AddInfo.path) }}>
                     User Management
                 </Button>
-                <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.ADD_INFO.path) }}>
+                <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.AddInfo.path) }}>
                     Payments
                 </Button>
             </div>

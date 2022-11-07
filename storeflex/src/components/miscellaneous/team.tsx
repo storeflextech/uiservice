@@ -10,11 +10,10 @@ const Team = () => {
             <div className="row">
               <div className="col-12">
                 <div className="content">
-                  <h5>Meet Our Team</h5>
-                  <h2 className="fw-bold">Our Creative Team</h2>
+                  <h5>Meet Our Clients</h5>
+                  <h2 className="fw-bold">Our Awesome Clients</h2>
                   <p>
-                    There are many variations of passages of Lorem Ipsum available,
-                    but the majority have suffered alteration in some form.
+                    We built best solutions for your company
                   </p>
                 </div>
               </div>

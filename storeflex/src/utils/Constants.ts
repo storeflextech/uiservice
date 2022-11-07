@@ -1,11 +1,9 @@
-import CPanel from '../cPanel/index';
 import HomePage from '../pages/HomePage';
-import CustomerHome from '../pages/CustomerHome';
 import SignIn from "../pages/signin";
 import SignInNew from "../pages/signin-new";
 import SignUp from '../pages/signup';
 import DashboardPage from '../pages/DashboardPage';
-import BusinessInfo from '../pages/businessinfo';
+import BusinessPage from '../pages/BusinessPage';
 import AddInfo from '../pages/addinfo';
 import PgSearch from '../pages/PgSearch';
 
@@ -15,7 +13,6 @@ import Cart from '../pages/cart';
 import PgContactUs from '../pages/PgContactUs';
 import faq from '../pages/faq';
 import ErrorPage from '../pages/ErrorPage';
-import AddBusiness from '../pages/addbusiness';
 import AddWarehouse from '../pages/addwarehouse';
 import PendingBusiness from '../pages/pendingbusiness';
 import DeleteWarehouse from '../pages/deletewarehouse';
@@ -36,11 +33,10 @@ import PrivacyPolicy from '../pages/privacy';
 import paymentStatus from '../pages/paymentStatus';
 import MyOrders from '../pages/myOrders';
 import ViewUser from '../pages/viewuser';
-import DiscoverMore from '../pages/doscovermore';
+import DiscoverMore from '../pages/discovermore';
 import Bookings from '../pages/bookings';
 import PaymentDetails from '../pages/paymentDetails'
 import UserProfile from '../pages/userProfile';
-import ViewBusiness from '../components/business/view-business';
 import SiteMap from '../pages/SiteMap';
 
 export enum USER_TYPE {
@@ -49,190 +45,179 @@ export enum USER_TYPE {
     SfCustomer = 'CU'
 }
 
+export enum ACTIONS_TYPE {
+    add = 'ADD',
+    delete = 'DELETE',
+    edit = 'EDIT',
+    view = 'VIEW'
+}
+
 export const PAGES = {
-    HOME : {
+    Home : {
         path: '/home',
-        component: HomePage
+        Component: HomePage
     },
-    CPANEL : {
-        path: '/cPanel',
-        component: CPanel
-    },
-    CUSTOMERHOME : {
-        path: '/customerhome',
-        component: CustomerHome
-    },
-    SIGN_IN : {
+    SignIn : {
         path: '/signin',
-        component: SignIn
+        Component: SignIn
     },
-    SIGN_IN_NEW : {
+    SignInNew : {
         path: '/signin-new',
-        component: SignInNew
+        Component: SignInNew
     },
-    SIGN_UP : {
+    SignUp : {
         path: '/signup',
-        component: SignUp
+        Component: SignUp
     },
-    DASHBOARD : {
+    Dashboard : {
         path: '/dashboard',
-        component: DashboardPage
+        Component: DashboardPage
     },
-    BUSINESS:{
+    Business : {
+        path: '/business',
+        Component: BusinessPage,
         ADD:{
-            path: '/add-business',
-            component: BusinessInfo
+            path: '/business/add',
+            Component: BusinessPage
         },
         VIEW:{
-            path: '/view-business',
-            component: ViewBusiness
+            path: '/business/view',
+            Component: BusinessPage
         },
         UPDATE:{
-            path: '/update-business',
-            component: BusinessInfo
+            path: '/update',
+            Component: BusinessPage
         },
     },
-    BUSINESS_INFO : {
-        path: '/businessinfo',
-        component: BusinessInfo
-    },
-    ADD_BUSINESS :{
-        path: '/addbusiness',
-        component: AddBusiness
-    },
-    ADD_INFO :{
+    AddInfo :{
         path: '/addinfo',
-        component: AddInfo
+        Component: AddInfo
     },
-    PG_SEARCH :{
+    PgSearch :{
         path: '/search',
-        component: PgSearch
+        Component: PgSearch
     },
 
-    PG_SEARCH_NEW :{
+    PgSearchNew :{
         path: '/search-new',
-        component: PgSearchNew
+        Component: PgSearchNew
 
     },
-    CART :{
+    Cart :{
         path: '/cart',
-        component: Cart
+        Component: Cart
     },
-    PG_CONTACT_US :{
+    PgContactUs :{
         path: '/contactus',
-        component: PgContactUs
+        Component: PgContactUs
     },
     FAQ :{
         path: '/faq',
-        component: faq
+        Component: faq
     },
-    ERROR :{
+    Error :{
         path: '/error',
-        component: ErrorPage
+        Component: ErrorPage
     },
     ADD_WAREHOUSE:{
         path: '/add-warehouse',
-        component: AddWarehouse
+        Component: AddWarehouse
     },
     VIEW_WAREHOUSE:{
         path: '/view-warehouse',
-        component: ViewWarehouse
+        Component: ViewWarehouse
     },
     PENDING_BUSINESS:{
         path:'/pendingbusiness',
-        component: PendingBusiness
+        Component: PendingBusiness
     },
     DELETE_WAREHOUSE:{
         path:'/deletewarehouse',
-        component: DeleteWarehouse
+        Component: DeleteWarehouse
     },
     UPDATE_WAREHOUSE:{
         path:'/updatewarehouse',
-        component: UpdateWarehouse
+        Component: UpdateWarehouse
     },
     DELETE_USER:{
         path:'/deleteuser',
-        component: DeleteUser
+        Component: DeleteUser
     },
     UPDATE_USER:{
         path:'/updateuser',
-        component: UpdateUser
+        Component: UpdateUser
     },
     ADD_PAYMENT:{
         path:'/addpayment',
-        component:AddPayment
+        Component:AddPayment
     },
     DELETE_PAYMENT:{
         path:'/deletepayment',
-        component: DeletePayment
+        Component: DeletePayment
     },
     UPDATE_PAYMENT:{
         path:'/updatepayment',
-        component: UpdatePayment
+        Component: UpdatePayment
     },
     SEARCH_BUSINESS:{
         path:'/searchbusiness',
-        component: SearchBusiness
+        Component: SearchBusiness
     },
     SEARCH_WAREHOUSE:{
         path:'/searchwarehouse',
-        component: SearchWarehouse
+        Component: SearchWarehouse
     },
     BUSINESS_REPORT:{
     path:'/businessreport',
-    component:BusinessReport
+    Component:BusinessReport
     },
     WAREHOUSE_REPORT:{
         path:'/warehousereport',
-        component: WarehouseReport
+        Component: WarehouseReport
     },
     LOCARTION_REPORT:{
         path:'/locationreport',
-        component: LocationReport
+        Component: LocationReport
     },
     TERMSANDCONDITIONS:{
         path:'/termsandconditions',
-        component: TermsAndConditions
+        Component: TermsAndConditions
     },
     PRIVACYPOLICY:{
         path:'/privacypolicy',
-        component: PrivacyPolicy
+        Component: PrivacyPolicy
     },
     PAYMENT_STATUS :{
         path: '/paymentStatus',
-        component: paymentStatus
+        Component: paymentStatus
     },
     MY_ORDERS :{
         path: '/myorders',
-        component: MyOrders
+        Component: MyOrders
     },
     SITE_MAP :{
         path: '/sitemap',
-        component: SiteMap
+        Component: SiteMap
    },
-    VIEW_BUSINESS:{
-        path:'/view-business',
-        component: ViewBusiness
-    },
     VIEW_USER:{
         path:'/viewuser',
-        component: ViewUser
+        Component: ViewUser
     },
     DISCOVER_MORE:{
         path:'/discovermore',
-        component: DiscoverMore
+        Component: DiscoverMore
     },
     BOOKINGS:{
         path:'/bookings',
-        component: Bookings
+        Component: Bookings
     },
     PAYMENT_DETAILS:{
         path:'/paymentdetails',
-        component:PaymentDetails
+        Component:PaymentDetails
     },
     USER_PROFILE :{
         path: '/view-profile',
-        component: UserProfile
+        Component: UserProfile
     }
 
 }
