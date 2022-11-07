@@ -5,6 +5,7 @@ import '../src/styles/sfglobal.scss';
 import { PAGES } from './utils/Constants';
 // import {RouterHelper} from './utils/RouterHelper';
 import { getUserLoggedIn} from  './utils/CommonUtils';
+// import BusinessPage from './pages/BusinessPage';
 
 function App() {
   return (
@@ -12,54 +13,55 @@ function App() {
       <BrowserRouter>
             {getUserLoggedIn() && 
             <Routes>
-              <Route path={PAGES.HOME.path} element={<PAGES.HOME.component />} />
-              <Route path={PAGES.CUSTOMERHOME.path} element={<PAGES.CUSTOMERHOME.component />} />
-              <Route path={PAGES.SIGN_UP.path} element={<PAGES.SIGN_UP.component />} />
-              <Route path={PAGES.SIGN_IN.path} element={<PAGES.SIGN_IN.component />} />
-              <Route path={PAGES.SIGN_IN_NEW.path} element={<PAGES.SIGN_IN_NEW.component />} />
-              <Route path={PAGES.DASHBOARD.path} element={<PAGES.DASHBOARD.component />} />
-              <Route path={PAGES.BUSINESS.ADD.path} element={<PAGES.BUSINESS.ADD.component />} />
-              <Route path={PAGES.BUSINESS.VIEW.path} element={<PAGES.BUSINESS.VIEW.component />} />
-              <Route path={PAGES.BUSINESS_INFO.path} element={<PAGES.BUSINESS_INFO.component />} />
-              <Route path={PAGES.ADD_INFO.path} element={<PAGES.ADD_INFO.component />} />
-              <Route path={PAGES.PG_SEARCH.path} element={<PAGES.PG_SEARCH.component />} />
-              <Route path={PAGES.PG_SEARCH_NEW.path} element={<PAGES.PG_SEARCH_NEW.component />} />
-              <Route path={PAGES.CART.path} element={<PAGES.CART.component />} />
-              <Route path={PAGES.PG_CONTACT_US.path} element={<PAGES.PG_CONTACT_US.component />} />
-              <Route path={PAGES.FAQ.path} element={<PAGES.FAQ.component />} />
-              <Route path={PAGES.ERROR.path} element={<PAGES.ERROR.component />} />
-              <Route path={PAGES.ADD_BUSINESS.path} element={<PAGES.ADD_BUSINESS.component/>}/>
-              <Route path={PAGES.ADD_WAREHOUSE.path} element={<PAGES.ADD_WAREHOUSE.component/>}/>
-              <Route path={PAGES.VIEW_WAREHOUSE.path} element={<PAGES.VIEW_WAREHOUSE.component/>}/>
-              <Route path={PAGES.PENDING_BUSINESS.path} element={<PAGES.PENDING_BUSINESS.component/>}/>
-              <Route path={PAGES.DELETE_WAREHOUSE.path} element={<PAGES.DELETE_WAREHOUSE.component/>}/>
-              <Route path={PAGES.UPDATE_WAREHOUSE.path} element={<PAGES.UPDATE_WAREHOUSE.component/>}/>
-              <Route path={PAGES.DELETE_USER.path} element={<PAGES.DELETE_USER.component/>}/>
-              <Route path={PAGES.UPDATE_USER.path} element={<PAGES.UPDATE_USER.component/>}/>
-              <Route path={PAGES.ADD_PAYMENT.path} element={<PAGES.ADD_PAYMENT.component/>}/>
-              <Route path={PAGES.DELETE_PAYMENT.path} element={<PAGES.DELETE_PAYMENT.component/>}/>
-              <Route path={PAGES.UPDATE_PAYMENT.path} element={<PAGES.UPDATE_PAYMENT.component/>}/>
-              <Route path={PAGES.SEARCH_BUSINESS.path} element={<PAGES.SEARCH_BUSINESS.component/>}/>
-              <Route path={PAGES.SEARCH_WAREHOUSE.path} element={<PAGES.SEARCH_WAREHOUSE.component/>}/>
-              <Route path={PAGES.BUSINESS_REPORT.path} element={<PAGES.BUSINESS_REPORT.component/>}/>
-              <Route path={PAGES.WAREHOUSE_REPORT.path} element={<PAGES.WAREHOUSE_REPORT.component/>}/>
-              <Route path={PAGES.LOCARTION_REPORT.path} element={<PAGES.LOCARTION_REPORT.component/>}/>
-              <Route path={PAGES.TERMSANDCONDITIONS.path} element={<PAGES.TERMSANDCONDITIONS.component/>}/>
-              <Route path={PAGES.PRIVACYPOLICY.path} element={<PAGES.PRIVACYPOLICY.component/>}/>
-              <Route path={PAGES.PAYMENT_STATUS.path} element={<PAGES.PAYMENT_STATUS.component />} />
-              <Route path={PAGES.MY_ORDERS.path} element={<PAGES.MY_ORDERS.component />} />
-              <Route path={PAGES.VIEW_BUSINESS.path} element={<PAGES.VIEW_BUSINESS.component />} />
-              <Route path={PAGES.VIEW_USER.path} element={<PAGES.VIEW_USER.component />} />
-              <Route path={PAGES.DISCOVER_MORE.path} element={<PAGES.DISCOVER_MORE.component />} />
-              <Route path={PAGES.BOOKINGS.path} element={<PAGES.BOOKINGS.component />} />
-              <Route path={PAGES.PAYMENT_DETAILS.path} element={<PAGES.PAYMENT_DETAILS.component />} />
-              <Route path={PAGES.USER_PROFILE.path} element={<PAGES.USER_PROFILE.component />} />
+
+              <Route path={PAGES.Home.path} element={<PAGES.Home.Component />} />
+              <Route path={PAGES.Business.path} element={<PAGES.Business.Component id=''/>} />
+              <Route path={PAGES.Business.ADD.path} element={<PAGES.Business.Component id='ADD'/>} />
+              <Route path={PAGES.Business.VIEW.path} element={<PAGES.Business.Component id='VIEW'/>} />
+              <Route path={PAGES.CustomerHome.path} element={<PAGES.CustomerHome.Component />} />
+              <Route path={PAGES.SignUp.path} element={<PAGES.SignUp.Component />} />
+              <Route path={PAGES.SignUp.path} element={<PAGES.SignUp.Component />} />
+              <Route path={PAGES.SignInNew.path} element={<PAGES.SignInNew.Component />} />
+              <Route path={PAGES.Dashboard.path} element={<PAGES.Dashboard.Component />} />
+              <Route path={PAGES.AddInfo.path} element={<PAGES.AddInfo.Component />} />
+              <Route path={PAGES.PgSearch.path} element={<PAGES.PgSearch.Component />} />
+              <Route path={PAGES.PgSearchNew.path} element={<PAGES.PgSearchNew.Component />} />
+              <Route path={PAGES.Cart.path} element={<PAGES.Cart.Component />} />
+              <Route path={PAGES.PgContactUs.path} element={<PAGES.PgContactUs.Component />} />
+              <Route path={PAGES.FAQ.path} element={<PAGES.FAQ.Component />} />
+              <Route path={PAGES.Error.path} element={<PAGES.Error.Component />} />
+    
+              <Route path={PAGES.ADD_WAREHOUSE.path} element={<PAGES.ADD_WAREHOUSE.Component/>}/>
+              <Route path={PAGES.VIEW_WAREHOUSE.path} element={<PAGES.VIEW_WAREHOUSE.Component/>}/>
+              <Route path={PAGES.PENDING_BUSINESS.path} element={<PAGES.PENDING_BUSINESS.Component/>}/>
+              <Route path={PAGES.DELETE_WAREHOUSE.path} element={<PAGES.DELETE_WAREHOUSE.Component/>}/>
+              <Route path={PAGES.UPDATE_WAREHOUSE.path} element={<PAGES.UPDATE_WAREHOUSE.Component/>}/>
+              <Route path={PAGES.DELETE_USER.path} element={<PAGES.DELETE_USER.Component/>}/>
+              <Route path={PAGES.UPDATE_USER.path} element={<PAGES.UPDATE_USER.Component/>}/>
+              <Route path={PAGES.ADD_PAYMENT.path} element={<PAGES.ADD_PAYMENT.Component/>}/>
+              <Route path={PAGES.DELETE_PAYMENT.path} element={<PAGES.DELETE_PAYMENT.Component/>}/>
+              <Route path={PAGES.UPDATE_PAYMENT.path} element={<PAGES.UPDATE_PAYMENT.Component/>}/>
+              <Route path={PAGES.SEARCH_BUSINESS.path} element={<PAGES.SEARCH_BUSINESS.Component/>}/>
+              <Route path={PAGES.SEARCH_WAREHOUSE.path} element={<PAGES.SEARCH_WAREHOUSE.Component/>}/>
+              <Route path={PAGES.BUSINESS_REPORT.path} element={<PAGES.BUSINESS_REPORT.Component/>}/>
+              <Route path={PAGES.WAREHOUSE_REPORT.path} element={<PAGES.WAREHOUSE_REPORT.Component/>}/>
+              <Route path={PAGES.LOCARTION_REPORT.path} element={<PAGES.LOCARTION_REPORT.Component/>}/>
+              <Route path={PAGES.TERMSANDCONDITIONS.path} element={<PAGES.TERMSANDCONDITIONS.Component/>}/>
+              <Route path={PAGES.PRIVACYPOLICY.path} element={<PAGES.PRIVACYPOLICY.Component/>}/>
+              <Route path={PAGES.PAYMENT_STATUS.path} element={<PAGES.PAYMENT_STATUS.Component />} />
+              <Route path={PAGES.MY_ORDERS.path} element={<PAGES.MY_ORDERS.Component />} />
+
+              <Route path={PAGES.VIEW_USER.path} element={<PAGES.VIEW_USER.Component />} />
+              <Route path={PAGES.DISCOVER_MORE.path} element={<PAGES.DISCOVER_MORE.Component />} />
+              <Route path={PAGES.BOOKINGS.path} element={<PAGES.BOOKINGS.Component />} />
+              <Route path={PAGES.PAYMENT_DETAILS.path} element={<PAGES.PAYMENT_DETAILS.Component />} />
+              <Route path={PAGES.USER_PROFILE.path} element={<PAGES.USER_PROFILE.Component />} />
             </Routes>
             } 
             { !getUserLoggedIn() && 
               <Routes>
-                <Route path="/*" element={<PAGES.SIGN_IN_NEW.component />} />
-                <Route path={PAGES.SITE_MAP.path} element={<PAGES.SITE_MAP.component />} />
+                <Route path="/*" element={<PAGES.SignInNew.Component />} />
+                <Route path={PAGES.SITE_MAP.path} element={<PAGES.SITE_MAP.Component />} />
               </Routes>
             }
        

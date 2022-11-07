@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 import Container from '@mui/material/Container';
 import { TextField, Typography, Avatar, Box, Button, Grid, Link } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -36,7 +36,7 @@ const SignUp = () => {
     return errors;
   }
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const onSignUp = () => {
     setErrors(validation(values));
     // navigate('addprofile');

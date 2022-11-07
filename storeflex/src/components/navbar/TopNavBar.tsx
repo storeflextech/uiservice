@@ -15,7 +15,7 @@ const TopNavbar = () => {
               <nav className="navbar navbar-expand-lg">
                 <div className="p-left-sm">
                 <a className="navbar-brand" href="/home">
-                  <img src="assets/images/white-logo.jpg" alt="Logo" style={{ height: '6vh' }} />
+                  <img src="../../assets/images/white-logo.jpg" alt="Logo" style={{ height: '6vh' }} />
                 </a>
                 </div>
 

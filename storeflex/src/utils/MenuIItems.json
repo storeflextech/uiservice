@@ -1,4 +1,4 @@
-const MenuItems = [
+[
     {
         "UserType": "SL",
         "Menus": {
@@ -62,12 +62,12 @@ const MenuItems = [
                         {
                             "Label": "Add Business",
                             "Name": "",
-                            "NavigateTo": "/add-business"
+                            "NavigateTo": "/business/add"
                         },
                         {
                             "Label": "View Business",
                             "Name": "",
-                            "NavigateTo": "/view-business"
+                            "NavigateTo": "/business/view"
                         },
                         {
                             "Label": "Update Business",
@@ -527,10 +527,8 @@ const MenuItems = [
                         }
                     ],
                     "Icon": "mdi mdi-cash menu-icon"
-                },  
+                } 
             ]
         } 
-    },
+    }
 ]
-
-export default MenuItems;

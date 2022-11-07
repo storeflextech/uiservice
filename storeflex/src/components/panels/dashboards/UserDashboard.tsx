@@ -21,11 +21,11 @@ const UserDashboard = (props) => {
             </div>
             <div>
                 <div className='sf-flex-grid sf-justify'>
-                    <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.BUSINESS_INFO.path) }}>
+                    <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.Business.path) }}>
                         Add Business
                     </Button>
 
-                    <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.PG_SEARCH.path) }}>
+                    <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.PgSearch.path) }}>
                         Search Bussiness
                     </Button>
 
@@ -34,15 +34,15 @@ const UserDashboard = (props) => {
                     </Button>
                 </div>
                 <div className='sf-flex-grid sf-justify'>
-                    <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.ADD_INFO.path) }}>
+                    <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.AddInfo.path) }}>
                         Add  Location
                     </Button>
 
-                    <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.ADD_INFO.path) }}>
+                    <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.AddInfo.path) }}>
                         Reports
                     </Button>
 
-                    <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.ADD_INFO.path) }}>
+                    <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.AddInfo.path) }}>
                         Contact update
                     </Button>
                 </div>
