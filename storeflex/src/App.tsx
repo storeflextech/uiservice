@@ -13,12 +13,10 @@ function App() {
       <BrowserRouter>
             {getUserLoggedIn() && 
             <Routes>
-
               <Route path={PAGES.Home.path} element={<PAGES.Home.Component />} />
               <Route path={PAGES.Business.path} element={<PAGES.Business.Component id=''/>} />
               <Route path={PAGES.Business.ADD.path} element={<PAGES.Business.Component id='ADD'/>} />
               <Route path={PAGES.Business.VIEW.path} element={<PAGES.Business.Component id='VIEW'/>} />
-              <Route path={PAGES.CustomerHome.path} element={<PAGES.CustomerHome.Component />} />
               <Route path={PAGES.SignUp.path} element={<PAGES.SignUp.Component />} />
               <Route path={PAGES.SignUp.path} element={<PAGES.SignUp.Component />} />
               <Route path={PAGES.SignInNew.path} element={<PAGES.SignInNew.Component />} />
@@ -62,6 +60,7 @@ function App() {
               <Routes>
                 <Route path="/*" element={<PAGES.SignInNew.Component />} />
                 <Route path={PAGES.SITE_MAP.path} element={<PAGES.SITE_MAP.Component />} />
+                <Route path={PAGES.Error.path} element={<PAGES.Error.Component />} />
               </Routes>
             }
        

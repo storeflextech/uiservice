@@ -1,5 +1,4 @@
 import HomePage from '../pages/HomePage';
-import CustomerHome from '../pages/CustomerHome';
 import SignIn from "../pages/signin";
 import SignInNew from "../pages/signin-new";
 import SignUp from '../pages/signup';
@@ -57,10 +56,6 @@ export const PAGES = {
     Home : {
         path: '/home',
         Component: HomePage
-    },
-    CustomerHome : {
-        path: '/customerhome',
-        Component: CustomerHome
     },
     SignIn : {
         path: '/signin',
