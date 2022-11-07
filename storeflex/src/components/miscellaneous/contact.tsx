@@ -73,27 +73,16 @@ const Contact = () => {
                       <div className="single-info">
                         <i className="lni lni-map-marker"></i>
                         <ul>
-                          <li><span>Location</span></li>
+                          <li><span>Smart HUB</span></li>
                           <li>76/A, Green valle, Califonia <br />United State</li>
                         </ul>
                       </div>
                       <div className="single-info">
-                        <i className="lni lni-phone"></i>
-                        <ul>
-                          <li><span>Call Us</span></li>
-                          <li><a href="javascript:void(0)">+1 756 445 5658</a></li>
-                          <li><a href="javascript:void(0)">+1 125 458 5555</a></li>
-                        </ul>
-                      </div>
-                      <div className="single-info">
-                        <i className="lni lni-envelope"></i>
+                        <a href="mailto:support@storeflex.com"><i className="lni lni-envelope"></i></a>
                         <ul>
                           <li><span>Mail Us</span></li>
                           <li>
-                            <a href="javascript:void(0)"> support@yourmail.com </a>
-                          </li>
-                          <li>
-                            <a href="javascript:void(0)"> contact@yourmail.com </a>
+                            <a href="mailto:support@storeflex.com"> support@storeflex.com</a>
                           </li>
                         </ul>
                       </div>

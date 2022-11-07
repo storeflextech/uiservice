@@ -33,7 +33,7 @@ import PrivacyPolicy from '../pages/privacy';
 import paymentStatus from '../pages/paymentStatus';
 import MyOrders from '../pages/myOrders';
 import ViewUser from '../pages/viewuser';
-import DiscoverMore from '../pages/doscovermore';
+import DiscoverMore from '../pages/discovermore';
 import Bookings from '../pages/bookings';
 import PaymentDetails from '../pages/paymentDetails'
 import UserProfile from '../pages/userProfile';
