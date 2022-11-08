@@ -3,7 +3,7 @@ import { Grid, TextareaAutosize, Button } from '@mui/material';
 import InputBox from '../../atoms/textfield/InputBox';
 import GetState from '../../atoms/state/GetState';
 
-const FacilityHours = () => {
+const WarehouseHours = () => {
     return (
         <>
             <div className='m-bot-lg'>
@@ -94,4 +94,4 @@ const FacilityHours = () => {
 }
 
 
-export default FacilityHours;
+export default WarehouseHours;

@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, TextareaAutosize, Button } from '@mui/material';
-import InputBox from '../../atoms/textfield/InputBox';
+import InputBox from '../components/atoms/textfield/InputBox';
 
 const Services = () => {
     return (

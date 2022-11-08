@@ -1,9 +1,8 @@
 import React from "react";
 import { Grid, TextareaAutosize, Button } from '@mui/material';
 import InputBox from '../../atoms/textfield/InputBox';
-import GetState from '../../atoms/state/GetState';
 
-const PricingFrom=()=>{
+const WearehousePricing=()=>{
     return(
     <>
      <div className='m-bot-lg'>
@@ -50,4 +49,4 @@ const PricingFrom=()=>{
 }
 
 
-export default PricingFrom;
+export default WearehousePricing;

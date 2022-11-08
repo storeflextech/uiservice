@@ -5,14 +5,6 @@ import AddressDetails from '../../atoms/addressforms/AddressDetails';
 import { BusinessDetails } from '../../../utils/ResponseSchema';
 import { validateCharacterLength, validatePhone, validateWebUrl, validateGst } from '../../../utils/CommonUtils';
 
-import Facility from '../warehouseInfo/facility';
-import PricingFrom from '../warehouseInfo/pricing';
-import FacilityHours from '../warehouseInfo/facilityHours';
-import FacilityLayout from '../warehouseInfo/facilityLayout';
-import Services from '../warehouseInfo/services';
-
-import {ACTIONS_TYPE} from '../../../utils/Constants';
-
 
 interface AddBusinessProps {
     profileData?: BusinessDetails;
@@ -231,18 +223,6 @@ const AddBusiness = (props: AddBusinessProps) => {
                         </div>
                         {showBusinessAddress()}
                     </div>
-
-                    {<Facility />}
-                    
-                    {<PricingFrom/>}
-
-                    {<FacilityHours/>}
-
-                    {<FacilityLayout/>}
-                    {<Services/>}
-
-
-
                     <div className='p-top-md align-c'>
                         <Button variant="contained" onClick={() => { alert('Cancel') }}> Cancel </Button>
                         <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
