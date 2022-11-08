@@ -1,24 +1,24 @@
 import React from 'react';
-import BusinessInfo from '../components/panels/businessinfo/businessinfo';
 import TopNavbar from '../components/navbar/TopNavBar';
 import SideNavBar from '../components/navbar/SideNavBar';
 import { AppContainer, SplitPaneContainer, BoxContainer } from '../components/containers/containers';
 import { getUserType } from '../utils/CommonUtils';
+import WarehouseInfo from '../components/panels/warehouseInfo/warehouseinfo';
 
-const BusinessPage = (props) => {
+const WarehousePage = (props) => {
     return(
       <AppContainer>
       <TopNavbar />
       <SplitPaneContainer
           left={<SideNavBar userType={getUserType()}/>}
           right={
-              <BoxContainer>
-                  <BusinessInfo  action={props?.id} />
-              </BoxContainer>    
+            <BoxContainer>
+                 <WarehouseInfo  action={props?.id} />
+            </BoxContainer>   
           }
       />
   </AppContainer>
   )
 }
 
-export default BusinessPage;
+export default WarehousePage;

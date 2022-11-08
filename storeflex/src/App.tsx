@@ -17,6 +17,11 @@ function App() {
               <Route path={PAGES.Business.path} element={<PAGES.Business.Component id=''/>} />
               <Route path={PAGES.Business.ADD.path} element={<PAGES.Business.Component id='ADD'/>} />
               <Route path={PAGES.Business.VIEW.path} element={<PAGES.Business.Component id='VIEW'/>} />
+
+              <Route path={PAGES.Warehouse.path} element={<PAGES.Warehouse.Component id=''/>} />
+              <Route path={PAGES.Warehouse.ADD.path} element={<PAGES.Warehouse.Component id='ADD'/>} />
+              <Route path={PAGES.Warehouse.VIEW.path} element={<PAGES.Warehouse.Component id='VIEW'/>} />
+
               <Route path={PAGES.SignUp.path} element={<PAGES.SignUp.Component />} />
               <Route path={PAGES.SignUp.path} element={<PAGES.SignUp.Component />} />
               <Route path={PAGES.SignInNew.path} element={<PAGES.SignInNew.Component />} />
@@ -29,20 +34,14 @@ function App() {
               <Route path={PAGES.FAQ.path} element={<PAGES.FAQ.Component />} />
               <Route path={PAGES.Error.path} element={<PAGES.Error.Component />} />
     
-              <Route path={PAGES.ADD_WAREHOUSE.path} element={<PAGES.ADD_WAREHOUSE.Component/>}/>
-              <Route path={PAGES.VIEW_WAREHOUSE.path} element={<PAGES.VIEW_WAREHOUSE.Component/>}/>
               <Route path={PAGES.PENDING_BUSINESS.path} element={<PAGES.PENDING_BUSINESS.Component/>}/>
-              <Route path={PAGES.DELETE_WAREHOUSE.path} element={<PAGES.DELETE_WAREHOUSE.Component/>}/>
-              <Route path={PAGES.UPDATE_WAREHOUSE.path} element={<PAGES.UPDATE_WAREHOUSE.Component/>}/>
               <Route path={PAGES.DELETE_USER.path} element={<PAGES.DELETE_USER.Component/>}/>
               <Route path={PAGES.UPDATE_USER.path} element={<PAGES.UPDATE_USER.Component/>}/>
               <Route path={PAGES.ADD_PAYMENT.path} element={<PAGES.ADD_PAYMENT.Component/>}/>
               <Route path={PAGES.DELETE_PAYMENT.path} element={<PAGES.DELETE_PAYMENT.Component/>}/>
               <Route path={PAGES.UPDATE_PAYMENT.path} element={<PAGES.UPDATE_PAYMENT.Component/>}/>
               <Route path={PAGES.SEARCH_BUSINESS.path} element={<PAGES.SEARCH_BUSINESS.Component/>}/>
-              <Route path={PAGES.SEARCH_WAREHOUSE.path} element={<PAGES.SEARCH_WAREHOUSE.Component/>}/>
               <Route path={PAGES.BUSINESS_REPORT.path} element={<PAGES.BUSINESS_REPORT.Component/>}/>
-              <Route path={PAGES.WAREHOUSE_REPORT.path} element={<PAGES.WAREHOUSE_REPORT.Component/>}/>
               <Route path={PAGES.LOCARTION_REPORT.path} element={<PAGES.LOCARTION_REPORT.Component/>}/>
               <Route path={PAGES.TERMSANDCONDITIONS.path} element={<PAGES.TERMSANDCONDITIONS.Component/>}/>
               <Route path={PAGES.PRIVACYPOLICY.path} element={<PAGES.PRIVACYPOLICY.Component/>}/>

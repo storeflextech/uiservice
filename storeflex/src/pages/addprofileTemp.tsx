@@ -3,7 +3,7 @@ import {  Box, Grid, Container ,TextareaAutosize, Button } from '@mui/material';
 import InputBox from '../components/atoms/textfield/InputBox';
 import AddressDetails from '../components/atoms/addressforms/AddressDetails';
 import {BusinessDetails} from '../utils/ResponseSchema';
-import AddStore from './addstore';
+import AddStore from '../components/panels/warehouseInfo/addstore';
 
 const storeData = require('../mockData/storeinfoData.json');
 
