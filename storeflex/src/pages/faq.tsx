@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container } from '@mui/material';
+import Footer from '../components/footer/footer';
 
 const faq = () => {
     return (
@@ -10,5 +11,6 @@ const faq = () => {
     </>
     )
   };
+  <Footer/>
   
   export default faq;

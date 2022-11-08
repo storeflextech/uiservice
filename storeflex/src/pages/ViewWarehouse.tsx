@@ -31,23 +31,25 @@ const ViewWarehouse = () => {
                                 <Table striped bordered hover>
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Store Name</th>
-                                            <th>State</th>
-                                            <th>City</th>
-                                            <th>Pincode</th>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Company</th>
+                                            <th>Address</th>
                                             <th>Phone</th>
-                                            <th>Action</th>
+                                            <th>Email</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td>Store Flex Service and Company: Noida</td>
-                                            <td>UP</td>
-                                            <td>Noida</td>
-                                            <td>211003</td>
-                                            <td>9998887766</td>
+                                            <td><div className="nav-profile-image">
+                                                 <img src="/images/face1.jpg" alt="profile" />
+                                                 <input className="d-none" type="file" />&nbsp;
+                                                 Mrityunjoy Deka</div></td>
+                                            <td>MJOY and SONS</td>
+                                            <td>Noid</td>
+                                            <td>9707665343</td>
+                                            <td>mjoysupport@gmail.com</td>
                                             <td>
                                                 <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-cup menu-icon'></i> Delete</button>
                                                 <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-pencil menu-icon'></i> Edit</button> &nbsp; &nbsp;
@@ -55,11 +57,14 @@ const ViewWarehouse = () => {
                                         </tr>
                                         <tr>
                                             <td>2</td>
-                                            <td>Store Flex Service and Company: Guwahati</td>
-                                            <td>ASM</td>
+                                            <td><div className="nav-profile-image">
+                                                 <img src="/images/face1.jpg" alt="profile" />
+                                                 <input className="d-none" type="file" />&nbsp;
+                                                Nishanta Kakati</div></td>
+                                            <td>WEBS</td>
                                             <td>Guwahati</td>
-                                            <td>781003</td>
-                                            <td>78956498765</td>
+                                            <td>6009876353</td>
+                                            <td>support@gmail.com</td>
                                             <td>
                                                 <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-cup menu-icon'></i> Delete</button>
                                                 <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-pencil menu-icon'></i> Edit</button> &nbsp; &nbsp;
@@ -67,11 +72,14 @@ const ViewWarehouse = () => {
                                         </tr>
                                         <tr>
                                             <td>3</td>
-                                            <td>Store Flex Service and Company: Kolkata</td>
-                                            <td>KOL</td>
+                                            <td><div className="nav-profile-image">
+                                                 <img src="/images/face1.jpg" alt="profile" />
+                                                 <input className="d-none" type="file" />&nbsp;
+                                                 Sofi Iqbal</div></td>
+                                            <td>Sofi Brothers</td>
                                             <td>Kolkata</td>
-                                            <td>881005</td>
-                                            <td>68956498765</td>
+                                            <td>5004333213</td>
+                                            <td>sofisupport@proton.me</td>
                                             <td>
                                                 <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-cup menu-icon'></i> Delete</button>
                                                 <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-pencil menu-icon'></i> Edit</button> &nbsp; &nbsp;
