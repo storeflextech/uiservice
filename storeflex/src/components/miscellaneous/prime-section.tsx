@@ -27,7 +27,7 @@ const PrimeSection = () => {
                   <div className="header-text align-items-center">
                     <h1>
                       Smarter search for space at your fingertips under one roof<br />
-                      <h4><i>We are a leading market place for warehouse & logistics management solutions.</i></h4>
+                      <h4><i> Global marketplace for warehouse & logistics management solutions</i></h4>
                       <div className="light-rounded-buttons">
                          <a href="javascript:void(0)" className="btn primary-btn" onClick = {()=> goToNextPage('/discovermore')}> Discover More </a>
                       </div>

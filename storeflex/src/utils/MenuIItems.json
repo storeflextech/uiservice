@@ -108,7 +108,7 @@
                         {
                             "Label": "Add User",
                             "Name": "",
-                            "NavigateTo": "/add-user"
+                            "NavigateTo": "/viewuser"
                         },
                         {
                             "Label": "Delete User",

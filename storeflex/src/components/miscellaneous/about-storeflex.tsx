@@ -20,21 +20,21 @@ const AboutStoreflex = () => {
                     <span className="number">1</span>
                     <div className="content">
                       <h4 className="list-title">Easy Booking</h4>
-                      <p>With lots of unique blocks, you can easily build a page without coding.</p>
+                      <p>Search, Compare, Book with peace of mind</p>
                     </div>
                   </li>
                   <li>
                     <span className="number">2</span>
                     <div className="content">
                       <h4 className="list-title">Free Expert Opinion</h4>
-                      <p>With lots of unique blocks, you can easily build a page without coding.</p>
+                      <p>Learn from industry experts, customer care who is there for you</p>
                     </div>
                   </li>
                   <li>
                     <span className="number">3</span>
                     <div className="content">
                       <h4 className="list-title">Get Your Results</h4>
-                      <p>With lots of unique blocks, you can easily build a page without coding.</p>
+                      <p>Fast, best value for money, qulity service</p>
                     </div>
                   </li>
                 </ul>

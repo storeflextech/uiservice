@@ -24,7 +24,7 @@ const ViewWarehouse = () => {
                             <div>
                                 <div className='primary-gradient'>
                                     <div className='font-white p-sm f-18px f-bold'>
-                                        Bookings
+                                        Payment Details
                                         <button  className="primary-btn-outline" style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-plus menu-icon'></i> Add New</button>
                                     </div>
                                 </div>
