@@ -1,6 +1,7 @@
 import React from 'react';
 import {ACTIONS_TYPE} from '../../../utils/Constants';
 import AddWarehouse from './AddWarehouse';
+import ViewWarehouse from './ViewWarehouse'
 
 
 interface WarehouseInfoProps {
@@ -18,7 +19,7 @@ const WarehouseInfo = (props: WarehouseInfoProps) => {
     } else {
         return (
             <div>
-                View  
+                <ViewWarehouse />  
             </div>
          );
     }
