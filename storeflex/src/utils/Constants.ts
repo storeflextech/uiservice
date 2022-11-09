@@ -13,19 +13,14 @@ import Cart from '../pages/cart';
 import PgContactUs from '../pages/PgContactUs';
 import faq from '../pages/faq';
 import ErrorPage from '../pages/ErrorPage';
-import AddWarehouse from '../pages/addwarehouse';
 import PendingBusiness from '../pages/pendingbusiness';
-import DeleteWarehouse from '../pages/deletewarehouse';
-import UpdateWarehouse from '../pages/updatewarehouse';
 import DeleteUser from '../pages/deleteuser';
 import UpdateUser from '../pages/updateuser';
 import AddPayment from '../pages/addpayment';
 import DeletePayment from '../pages/deletepayment';
 import UpdatePayment from '../pages/updatepayment';
 import SearchBusiness from '../pages/searchbusiness';
-import SearchWarehouse from '../pages/searchwarehouse';
 import BusinessReport from '../pages/businessreport';
-import WarehouseReport from '../pages/warehousereport';
 import LocationReport from '../pages/locationreport';
 import ViewWarehouse from '../components/panels/warehouseInfo/ViewWarehouse';
 import TermsAndConditions from '../pages/termsandconditions';
@@ -38,6 +33,7 @@ import Bookings from '../pages/bookings';
 import PaymentDetails from '../pages/paymentDetails'
 import UserProfile from '../pages/userProfile';
 import SiteMap from '../pages/SiteMap';
+import WarehousePage from '../pages/WarehousePage';
 
 export enum USER_TYPE {
     SfUser = 'SL',
@@ -89,6 +85,22 @@ export const PAGES = {
             Component: BusinessPage
         },
     },
+    Warehouse : {
+        path: '/warehouse',
+        Component: WarehousePage,
+        ADD:{
+            path: '/warehouse/add',
+            Component: WarehousePage
+        },
+        VIEW:{
+            path: '/warehouse/view',
+            Component: WarehousePage
+        },
+        UPDATE:{
+            path: '/warehouse/update',
+            Component: WarehousePage
+        },
+    },
     AddInfo :{
         path: '/addinfo',
         Component: AddInfo
@@ -119,25 +131,9 @@ export const PAGES = {
         path: '/error',
         Component: ErrorPage
     },
-    ADD_WAREHOUSE:{
-        path: '/add-warehouse',
-        Component: AddWarehouse
-    },
-    VIEW_WAREHOUSE:{
-        path: '/view-warehouse',
-        Component: ViewWarehouse
-    },
     PENDING_BUSINESS:{
         path:'/pendingbusiness',
         Component: PendingBusiness
-    },
-    DELETE_WAREHOUSE:{
-        path:'/deletewarehouse',
-        Component: DeleteWarehouse
-    },
-    UPDATE_WAREHOUSE:{
-        path:'/updatewarehouse',
-        Component: UpdateWarehouse
     },
     DELETE_USER:{
         path:'/deleteuser',
@@ -163,17 +159,9 @@ export const PAGES = {
         path:'/searchbusiness',
         Component: SearchBusiness
     },
-    SEARCH_WAREHOUSE:{
-        path:'/searchwarehouse',
-        Component: SearchWarehouse
-    },
     BUSINESS_REPORT:{
     path:'/businessreport',
     Component:BusinessReport
-    },
-    WAREHOUSE_REPORT:{
-        path:'/warehousereport',
-        Component: WarehouseReport
     },
     LOCARTION_REPORT:{
         path:'/locationreport',

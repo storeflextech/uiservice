@@ -85,17 +85,17 @@
                         {
                             "Label": "Add Warehouse",
                             "Name": "",
-                            "NavigateTo": "/add-warehouse"
+                            "NavigateTo": "/warehouse/add"
                         },
                         {
                             "Label": "Delete Warehouse",
                             "Name": "",
-                            "NavigateTo": "/view-warehouse"
+                            "NavigateTo": "/warehouse/view"
                         },
                         {
                             "Label": "Update Warehouse",
                             "Name": "",
-                            "NavigateTo": "/update-warehouse"
+                            "NavigateTo": "/warehouse/update"
                         }
                     ],
                     "Icon": "mdi mdi-church menu-icon"
