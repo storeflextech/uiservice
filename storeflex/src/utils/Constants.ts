@@ -27,7 +27,7 @@ import SearchWarehouse from '../pages/searchwarehouse';
 import BusinessReport from '../pages/businessreport';
 import WarehouseReport from '../pages/warehousereport';
 import LocationReport from '../pages/locationreport';
-import ViewWarehouse from '../pages/ViewWarehouse';
+import ViewWarehouse from '../components/panels/warehouseInfo/ViewWarehouse';
 import TermsAndConditions from '../pages/termsandconditions';
 import PrivacyPolicy from '../pages/privacy';
 import paymentStatus from '../pages/paymentStatus';
