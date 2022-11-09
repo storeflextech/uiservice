@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Box, Container , Button } from '@mui/material';
-import StoreInfo from '../components/panels/storeInfo/storeInfo';
-import Accordian from '../components/atoms/accordian/Accordian';
-import {StoreDetails} from '../utils/ResponseSchema';
-const storeData = require('../mockData/storeinfoData.json');
+import StoreInfo from '../storeInfo/storeInfo';
+import Accordian from '../../atoms/accordian/Accordian';
+import {StoreDetails} from '../../../utils/ResponseSchema';
+const storeData = require('../../../mockData/storeinfoData.json');
 
 const storeInfo = {
   "businessid": "",

@@ -4,16 +4,13 @@ import InputBox from '../../atoms/textfield/InputBox';
 import GetState from '../../atoms/state/GetState';
 
 
-
-
-
-const Facility = () => {
+const WearehouseAddress = () => {
     return (
         <>
 
             <div className='m-bot-lg'>
                 <div className='primary-gradient m-bot-md'>
-                    <div className='font-white p-sm f-18px f-bold'>Where's the facility located?</div>
+                    <div className='font-white p-sm f-18px f-bold'>Where's warehouse located?</div>
                 </div>
                 {/* {showBusinessAddress()} */}
 
@@ -22,7 +19,7 @@ const Facility = () => {
                         <div>
                             <Grid container >
                                 <Grid item xs={12}>
-                                    <InputBox data={{ name: 'facilityAddress', label: 'Facility address *', value: '' }}
+                                    <InputBox data={{ name: 'whAddress', label: 'Warehouse address *', value: '' }}
                                     // onChange={validateAddress}
                                     />
                                     {/* {address && <p className="text-red">{address}</p>} */}
@@ -46,20 +43,14 @@ const Facility = () => {
                                     <InputBox data={{ name: 'zipcode', label: 'Zip*', value: '' }}
                                     // onChange={validateZipCode}
                                     />
-
                                 </Grid>
-
-
                             </Grid>
                         </div>
                     </div>
-
                 </div>
-
-
             </div>
         </>
     )
 }
 
-export default Facility;
+export default WearehouseAddress;

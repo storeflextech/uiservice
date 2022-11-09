@@ -1,13 +1,13 @@
 import React from "react";
-import { Grid, TextareaAutosize, Button } from '@mui/material';
+import { Grid  } from '@mui/material';
 import InputBox from '../../atoms/textfield/InputBox';
 
-const FacilityLayout = () => {
+const WarehouseLayout = () => {
     return (
         <>
             <div className='m-bot-lg'>
                 <div className='primary-gradient m-bot-md'>
-                    <div className='font-white p-sm f-18px f-bold'>Facility Layout (select all that apply)</div>
+                    <div className='font-white p-sm f-18px f-bold'>Warehouse Layout (select all that apply)</div>
                 </div>
 
                 <div className='p-md'>
@@ -173,19 +173,14 @@ const FacilityLayout = () => {
 
                             </Grid>
 
-
-
-
                         </div>
                     </div>
 
                 </div>
-
-
             </div>
         </>
     )
 }
 
 
-export default FacilityLayout;
+export default WarehouseLayout;
