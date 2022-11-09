@@ -22,7 +22,6 @@ import UpdatePayment from '../pages/updatepayment';
 import SearchBusiness from '../pages/searchbusiness';
 import BusinessReport from '../pages/businessreport';
 import LocationReport from '../pages/locationreport';
-import ViewWarehouse from '../components/panels/warehouseInfo/ViewWarehouse';
 import TermsAndConditions from '../pages/termsandconditions';
 import PrivacyPolicy from '../pages/privacy';
 import paymentStatus from '../pages/paymentStatus';
@@ -95,11 +94,7 @@ export const PAGES = {
         VIEW:{
             path: '/warehouse/view',
             Component: WarehousePage
-        },
-        UPDATE:{
-            path: '/warehouse/update',
-            Component: WarehousePage
-        },
+        }
     },
     AddInfo :{
         path: '/addinfo',
