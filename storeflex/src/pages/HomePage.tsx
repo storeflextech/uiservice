@@ -11,6 +11,7 @@ import TopNavbar from '../components/navbar/TopNavBar';
 // import SideNavBar from '../components/navbar/SideNavBar';
 import PrimeSection from '../components/miscellaneous/prime-section';
 import { AppContainer, SplitPaneContainer } from '../components/containers/containers';
+import Brand from '../components/miscellaneous/brand';
 
 
 const HomePage = () => {
@@ -26,7 +27,8 @@ const HomePage = () => {
                   {<AboutStoreflex />}
                   {<DemoVideo />}
                   {<Pricing />}
-                  {<Team />}
+                  {<Brand />}
+                  {/* {<Team />} */}
                   {<Subscription />}
                   {<Contact />}
                 </div>
