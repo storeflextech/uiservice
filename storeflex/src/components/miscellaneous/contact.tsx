@@ -1,4 +1,5 @@
 import React from 'react';
+import {Contacts} from '../atoms/contact/contacts'
 
 const Contact = () => {
   return (
@@ -70,12 +71,13 @@ const Contact = () => {
                 <div className="col-lg-4 col-12">
                   <div className="contact-info">
                     <div className="single-head">
-                      <div className="single-info">
-                        <i className="lni lni-map-marker"></i>
-                        <ul>
-                          <li><span>Smart HUB</span></li>
-                          <li>76/A, Green valle, Califonia <br />United State</li>
-                        </ul>
+                      <div className='p-bot-md'>
+                        <div className="single-info inline-block p-bot-xl">
+                          <i className="lni lni-map-marker"></i>
+                        </div>
+                        <div>
+                          <Contacts />
+                        </div>
                       </div>
                       <div className="single-info">
                         <a href="mailto:support@storeflex.com"><i className="lni lni-envelope"></i></a>

@@ -13,39 +13,55 @@ const ViewBusiness = () => {
         const data = ([
             {
                 id: 1,
-                CompanyName: 'Zaman & Sons Pvt. Ltd.',
-                CompanyURL: "https://zamanpvtltd.com",
-                State: "Assam",
-                City: "Guwahati",
-                Pincode: "781003",
-                Phone: "9988776655"
+                CompanyName: 'Das & Sons Pvt. Ltd.',
+                Address: "Nayantara Supermarket, Anand Nagar, Six Mile",
+                PrimaryContactName:
+                <div className="nav-profile-image">
+                    <img src="/images/face1.jpg" alt="profile" />
+                    <input className="d-none" type="file" />&nbsp;
+                    Martina Das
+                </div>,
+                Phone: "9988221133",
+                Email: "skap@yahoomail.com"
             },
             {
                 id: 2,
-                CompanyName: 'Rupon & Sons Pvt. Ltd.',
-                CompanyURL: "https://ruponpvtltd.com",
-                State: "Delhi",
-                City: "Central",
-                Pincode: "711003",
-                Phone: "9988776655"
+                CompanyName: 'Zaman & Sons Pvt. Ltd.',
+                Address: "H No. 24, VIP Road, Guwahati",
+                PrimaryContactName:
+                <div className="nav-profile-image">
+                    <img src="/images/face1.jpg" alt="profile" />
+                    <input className="d-none" type="file" />&nbsp;
+                    Samaruz Zaman
+                </div>,
+                Phone: "9101212005",
+                Email: "support2you@gmail.com"
             },
             {
                 id: 3,
-                CompanyName: 'Mrityunjoy & Sons Pvt. Ltd.',
-                CompanyURL: "https://mrityunjoypvtltd.com",
-                State: "Bihar",
-                City: "SomeCity",
-                Pincode: "741005",
-                Phone: "9988776655"
+                CompanyName: 'Sofi & Sons Pvt. Ltd.',
+                Address: "H No. 32, AT Road, Guwahati",
+                PrimaryContactName:
+                <div className="nav-profile-image">
+                    <img src="/images/face1.jpg" alt="profile" />
+                    <input className="d-none" type="file" />&nbsp;
+                    Sofi Ahmed
+                </div>,
+                Phone: "2121932923",
+                Email: "sofisupport@proton.me"
             },
             {
                 id: 4,
                 CompanyName: 'Brazen & Sons Pvt. Ltd.',
-                CompanyURL: "https://mrityunjoypvtltd.com",
-                State: "Meghalaya",
-                City: "Phulbari",
-                Pincode: "761002",
-                Phone: "9988776655"
+                Address: "H No. 42, Anand Nagar, Six Mile",
+                PrimaryContactName:
+                <div className="nav-profile-image">
+                    <img src="/images/face1.jpg" alt="profile" />
+                    <input className="d-none" type="file" />&nbsp;
+                    Nishanta Kakati
+                </div>,
+                Phone: "9988776655",
+                Email: "nishantann@proton.me"
             },
         ]);
         setBusinessInfo(data);
@@ -79,16 +95,15 @@ const ViewBusiness = () => {
                             {/* <button className="primary-btn-outline" style={{ fontSize: '14px', float: 'right', marginTop:'-10px', borderRadius: 20, right:'0px', padding:'7px 12px 7px 12px' }} onClick={() => setModalShow(true)}><strong><i className='mdi mdi-plus menu-icon'></i> Add New</strong></button> */}
                         </div>
                     </div>
-                    <Table striped bordered hover>
+                    <Table striped bordered hover responsive="sm">
                         <thead>
                             <tr>
-                                <th>Sl. No.</th>
+                                <th>ID</th>
                                 <th>Company Name</th>
-                                <th>Company URL</th>
-                                <th>State</th>
-                                <th>City</th>
-                                <th>Pincode</th>
+                                <th>Address</th>
+                                <th>Primary Contact Name</th>
                                 <th>Phone</th>
+                                <th>Email</th>
                                 <th style={{textAlign:'center'}}>Action</th>
                             </tr>
                         </thead>
@@ -97,11 +112,10 @@ const ViewBusiness = () => {
                                 <tr>
                                     <td>{item.id}</td>
                                     <td>{item.CompanyName}</td>
-                                    <td>{item.CompanyURL}</td>
-                                    <td>{item.State}</td>
-                                    <td>{item.City}</td>
-                                    <td>{item.Pincode}</td>
+                                    <td>{item.Address}</td>
+                                    <td>{item.PrimaryContactName}</td>
                                     <td>{item.Phone}</td>
+                                    <td>{item.Email}</td>
                                     <td>
                                         <button onClick={() => deleteBusiness(item.id)} className='primary-btn-outline' style={{ fontSize: '14px', float: 'right', borderRadius: 20, padding:'8px 12px 8px 12px' }}><strong><i className='mdi mdi-cup menu-icon'></i> Delete</strong></button>&nbsp; &nbsp;
                                         <button className='primary-btn-outline' style={{ fontSize: '14px', float: 'right', borderRadius: 20, padding:'8px 12px 8px 12px',marginRight:'5px' }}><strong><i className='mdi mdi-pencil menu-icon'></i> Edit</strong></button>

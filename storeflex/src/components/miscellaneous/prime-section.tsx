@@ -38,7 +38,7 @@ const PrimeSection = () => {
 
                       <input className="input-search-size form-control p-2" name="name" type="text" placeholder="Enter Pin or City" style={{ height: '50px' }} />
 
-                      <div className="light-rounded-buttons float-end m-0 p-2">
+                      <div className="light-rounded-buttons float-end m-1">
                       <a href="javascript:void(0)" onClick={() => { goToNextPage('/search-new') }} className="btn primary-btn"><i className="lni-large lni-search-alt"></i> </a>
                     </div>
                     </div>
