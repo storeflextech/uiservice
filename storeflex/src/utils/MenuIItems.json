@@ -151,12 +151,7 @@
                         {
                             "Label": "Search Business",
                             "Name": "SearchBusinessMenu",
-                            "NavigateTo": "/search-business"
-                        },
-                        {
-                            "Label": "Search Warehouse",
-                            "Name": "SearchWarehouseMenu",
-                            "NavigateTo": "/search-warehouse"
+                            "NavigateTo": "/search"
                         }
                     ],
                     "Icon": "mdi mdi-magnify menu-icon"

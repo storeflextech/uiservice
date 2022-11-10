@@ -46,7 +46,7 @@ const Footer = () => {
                 <Nav.Link onClick={() => {onLinkClick(PAGES.PRIVACYPOLICY.path)}}>Privacy Policy</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link onClick={() => {onLinkClick(PAGES.SITE_MAP.path)}}>Cookie Policy</Nav.Link>
+                  <Nav.Link onClick={() => {onLinkClick(PAGES.FAQ.path)}}>FAQ</Nav.Link>
                 </Nav.Item>
               </Nav>
             </div>
