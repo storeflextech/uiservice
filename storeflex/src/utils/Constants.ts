@@ -29,7 +29,7 @@ import MyOrders from '../pages/myOrders';
 import ViewUser from '../pages/viewuser';
 import DiscoverMore from '../pages/discovermore';
 import Bookings from '../pages/bookings';
-import PaymentDetails from '../pages/paymentDetails'
+import PaymentHistory from '../pages/paymentHistory'
 import UserProfile from '../pages/userProfile';
 import SiteMap from '../pages/SiteMap';
 import WarehousePage from '../pages/WarehousePage';
@@ -194,9 +194,9 @@ export const PAGES = {
         path:'/bookings',
         Component: Bookings
     },
-    PAYMENT_DETAILS:{
-        path:'/paymentdetails',
-        Component:PaymentDetails
+    PAYMENT_HISTORY:{
+        path:'/paymentHistory',
+        Component:PaymentHistory
     },
     USER_PROFILE :{
         path: '/view-profile',

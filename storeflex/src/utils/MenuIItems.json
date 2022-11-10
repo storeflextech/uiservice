@@ -138,7 +138,7 @@
                         {
                             "Label": "Payment History",
                             "Name": "",
-                            "NavigateTo": "/paymentdetails"
+                            "NavigateTo": "/paymentHistory"
                         }
                     ],
                     "Icon": "mdi mdi-cash menu-icon"
