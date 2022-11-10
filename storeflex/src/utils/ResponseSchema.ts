@@ -29,3 +29,17 @@ export interface officeData {
     name: string;
     rate: number;
 }
+
+export interface EditBusinessDetails {
+    businessid: "B-0001";
+    name: "Zaman & Sons Pvt. Ltd.";
+    address: string;
+    phone: number;
+    weburl: string;
+    gstn: string;
+    city: string;
+    state: string;
+    zip: number;
+    country: string;
+    description: string;
+}

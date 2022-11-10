@@ -17,6 +17,7 @@ function App() {
               <Route path={PAGES.Business.path} element={<PAGES.Business.Component id=''/>} />
               <Route path={PAGES.Business.ADD.path} element={<PAGES.Business.Component id='ADD'/>} />
               <Route path={PAGES.Business.VIEW.path} element={<PAGES.Business.Component id='VIEW'/>} />
+              <Route path={PAGES.Business.EDIT.path} element={<PAGES.Business.Component id='EDIT'/>} />
 
               <Route path={PAGES.Warehouse.path} element={<PAGES.Warehouse.Component id=''/>} />
               <Route path={PAGES.Warehouse.ADD.path} element={<PAGES.Warehouse.Component id='ADD'/>} />
