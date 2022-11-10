@@ -170,7 +170,7 @@ $sf-primary-color: #f66711;
   padding-bottom: 24px;
 }
 .p-bot-xl {
-  padding-bottom: 32px;
+  padding-bottom: 32px !important;
 }
 
 .p-left-sm {
@@ -271,6 +271,9 @@ $sf-primary-color: #f66711;
 }
 .sf-flex {
   display: flex;
+}
+.inline-block {
+  display: inline-block !important;
 }
 .sf-justify {
   justify-content: space-between;
@@ -581,4 +584,28 @@ $sf-primary-color: #f66711;
   @include mediabreakpoint(mobile) {
     padding: 15px 0 25px 0;
   }
+}
+
+.sf-contact-container {
+  background-color: #ffffff;
+  border-radius: 5px 5px 5px 5px;
+  overflow: hidden;
+  border-color: rgba(51,51,51,0.3);
+  box-shadow: 0px 0px 7px 0px rgb(0 0 0 / 30%);
+  overflow: visible;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.sf-contact-holder{
+  margin-left: -15px;
+  display: flex;
+}
+.sf-contact-text {
+  width: 100%;
+  padding-left: 15px;
+}
+.sf-contact-img {
+  display: block;
+  margin: auto;
 }

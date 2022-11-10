@@ -40,18 +40,13 @@ const Footer = () => {
               </div>
               <Nav className="justify-content-center">
                 <Nav.Item>
-                  <Nav.Link onClick={() => {onLinkClick(PAGES.SITE_MAP.path)}}>Site map</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
                 <Nav.Link onClick={() => {onLinkClick(PAGES.TERMSANDCONDITIONS.path)}}>Terms of condition</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                <Nav.Link onClick={() => {onLinkClick(PAGES.SITE_MAP.path)}}>Privacy Policy</Nav.Link>
+                <Nav.Link onClick={() => {onLinkClick(PAGES.PRIVACYPOLICY.path)}}>Privacy Policy</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link>
                   <Nav.Link onClick={() => {onLinkClick(PAGES.SITE_MAP.path)}}>Cookie Policy</Nav.Link>
-                  </Nav.Link>
                 </Nav.Item>
               </Nav>
             </div>

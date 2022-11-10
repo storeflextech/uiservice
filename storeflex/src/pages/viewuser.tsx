@@ -28,7 +28,7 @@ const ViewUser = () => {
                                         <button  className="primary-btn-outline" onClick={() => { goToNextPage('/addinfo')}} style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}} ><i className='mdi mdi-plus menu-icon'></i> Add New</button>
                                     </div>
                                 </div>
-                                <Table striped bordered hover>
+                                <Table striped bordered hover responsive='md'>
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -43,7 +43,7 @@ const ViewUser = () => {
                                         <tr>
                                             <td>1</td>
                                             <td><div className="nav-profile-image">
-                                                 <img src="/cpanel/images/faces/face1.jpg" alt="profile" />
+                                                 <img src="/images/face1.jpg" alt="profile" />
                                                  <input className="d-none" type="file" />&nbsp;
                                                     Mrityunjoy Deka
                                                 </div></td>
@@ -59,7 +59,7 @@ const ViewUser = () => {
                                         <tr>
                                             <td>2</td>
                                             <td><div className="nav-profile-image">
-                                                 <img src="/cpanel/images/faces/face3.jpg" alt="profile" />
+                                                 <img src="/images/face1.jpg" alt="profile" />
                                                  <input className="d-none" type="file" /> &nbsp;
                                                 Subham
                                                 </div></td>
@@ -75,7 +75,7 @@ const ViewUser = () => {
                                         <tr>
                                             <td>3</td>
                                             <td><div className="nav-profile-image">
-                                                 <img src="/cpanel/images/faces/face2.jpg " alt="profile" />
+                                                 <img src="/images/face1.jpg " alt="profile" />
                                                  <input className="d-none" type="file" /> &nbsp;
                                                 Imon Gogoi
                                                 </div></td>

@@ -1,10 +1,34 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
+import { getUserLoggedIn} from  '../../utils/CommonUtils';
 
 const TopNavbar = () => {
   const navigate = useNavigate();
   const goToNextPage = (pagePath: string) => {
     navigate(pagePath);
+  }
+
+  const signOut = () => {
+    if(getUserLoggedIn()) {
+      return (
+        <ul>
+            <li>
+              <a className="btn primary-btn-outline" href="javascript:;" onClick={() => { goToNextPage('/signout') }}>Sign Out</a>
+            </li>
+          </ul>
+      )
+    } else {
+      return (
+        <ul>
+        <li>
+          <a className="btn primary-btn-outline" href="javascript:;" onClick={() => { goToNextPage('/signin-new') }}>Sign In</a>
+        </li>
+        <li>
+          <a className="btn primary-btn m-right-xl" href="javascript:void(0)" >Sign Up</a>
+        </li>
+      </ul>
+      )
+    }
   }
   return (
     <>
@@ -15,7 +39,7 @@ const TopNavbar = () => {
               <nav className="navbar navbar-expand-lg">
                 <div className="p-left-sm">
                 <a className="navbar-brand" href="/home">
-                  <img src="../../assets/images/white-logo.jpg" alt="Logo" style={{ height: '6vh' }} />
+                  <img src="../../assets/images/white-logo.jpg" alt="Logo" style={{ height: '7.5vh' }} />
                 </a>
                 </div>
 
@@ -47,15 +71,7 @@ const TopNavbar = () => {
                 </div>
 
                 <div className="navbar-btn d-none d-sm-inline-block">
-                  <ul>
-                    <li>
-                      <a className="btn primary-btn-outline" href="javascript:;" onClick={() => { goToNextPage('/signin-new') }}>Sign In</a>
-                    </li>
-                    <li>
-                      <a className="btn primary-btn m-right-xl" href="javascript:void(0)"
-                      >Sign Up</a>
-                    </li>
-                  </ul>
+                  {signOut()}
                 </div>
               </nav>
             </div>

@@ -94,11 +94,7 @@ export const PAGES = {
         VIEW:{
             path: '/warehouse/view',
             Component: WarehousePage
-        },
-        UPDATE:{
-            path: '/warehouse/update',
-            Component: WarehousePage
-        },
+        }
     },
     AddInfo :{
         path: '/addinfo',

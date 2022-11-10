@@ -1,8 +1,13 @@
 import React from 'react';
 import { Box, Container } from '@mui/material';
+import Footer from '../components/footer/footer';
+import { AppContainer } from '../components/containers/containers';
+import TopNavbar from '../components/navbar/TopNavBar';
 const DiscoverMore = () => {
     return(
-            <Container component="main" maxWidth="xl" className='p-no'>
+            <AppContainer>
+                <TopNavbar/>
+                <br></br><br></br><br></br><br></br>
             <div className='c-box-shadow-blue'>
                 <Box className='m-top-md m-bot-md m-left-md m-right-md'>
                     <div className="text-center"><h1>StoreFlex Technologies</h1></div>
@@ -22,7 +27,8 @@ StoreFlex offers you the opportunity to list your facilities and increase your r
 To learn how to add your facility and publish in the platform, please visit the tutorial videos. </p>
                 </Box>
             </div>
-            </Container>
+            <Footer/>
+            </AppContainer>
         )
 }
 
