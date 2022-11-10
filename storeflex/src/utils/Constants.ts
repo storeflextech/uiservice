@@ -79,8 +79,8 @@ export const PAGES = {
             path: '/business/view',
             Component: BusinessPage
         },
-        UPDATE:{
-            path: '/update',
+        EDIT:{
+            path: '/business/edit',
             Component: BusinessPage
         },
     },
