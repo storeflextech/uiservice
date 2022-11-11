@@ -68,11 +68,6 @@
                             "Label": "View Business",
                             "Name": "",
                             "NavigateTo": "/business/view"
-                        },
-                        {
-                            "Label": "Update Business",
-                            "Name": "",
-                            "NavigateTo": "/update-business"
                         }
                     ],
                     "Icon": "mdi mdi-chart-areaspline menu-icon"

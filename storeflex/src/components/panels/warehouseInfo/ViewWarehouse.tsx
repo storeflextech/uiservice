@@ -2,12 +2,34 @@ import React from 'react';
 import { Box } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
+import DeleteWarehouse from './deletewarehouse';
+import swal from 'sweetalert';
 
 const ViewWarehouse = () => {
   const navigate = useNavigate();
   const goToNextPage = (pagePath: string) => {
     navigate(pagePath);
   }
+
+  const DeleteWarehouse = (id) => {
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this warehouse!",
+        icon: "warning",
+        buttons: [true,true],
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("Success! Your warehouse has been deleted!", {
+            icon: "success",
+          });
+        } else {
+        // do something if required   
+        }
+      });
+}
+
     return (
         <div className='c-box-shadow-blue'>
             <Box className='m-top-md m-bot-md m-left-md m-right-md'>
@@ -15,7 +37,6 @@ const ViewWarehouse = () => {
                     <div className='primary-gradient'>
                         <div className='font-white p-sm f-18px f-bold'>
                             Warehouses
-                            <button  className="primary-btn-outline" style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-plus menu-icon'></i> Add New</button>
                         </div>
                     </div>
                     <Table striped bordered hover responsive='md'>
@@ -27,6 +48,7 @@ const ViewWarehouse = () => {
                                 <th>Address</th>
                                 <th>Phone</th>
                                 <th>Email</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,8 +63,8 @@ const ViewWarehouse = () => {
                                 <td>9707665343</td>
                                 <td>mjoysupport@gmail.com</td>
                                 <td>
-                                    <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-cup menu-icon'></i> Delete</button>
-                                    <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-pencil menu-icon'></i> Edit</button> &nbsp; &nbsp;
+                                    <button onClick={() => DeleteWarehouse(1)} className='primary-btn-outline' style={{ fontSize: '14px', float: 'right', borderRadius: 20, padding:'8px 12px 8px 12px' }}><strong><i className='mdi mdi-cup menu-icon'></i> Delete</strong></button>&nbsp; &nbsp;
+                                    <button onClick={()=>goToNextPage('/business/edit')} className='primary-btn-outline' style={{ fontSize: '14px', float: 'right', borderRadius: 20, padding:'8px 12px 8px 12px',marginRight:'5px' }}><strong><i className='mdi mdi-pencil menu-icon'></i> Edit</strong></button>
                                 </td>
                             </tr>
                             <tr>
@@ -56,8 +78,8 @@ const ViewWarehouse = () => {
                                 <td>6009876353</td>
                                 <td>support@gmail.com</td>
                                 <td>
-                                    <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-cup menu-icon'></i> Delete</button>
-                                    <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-pencil menu-icon'></i> Edit</button> &nbsp; &nbsp;
+                                    <button onClick={() => DeleteWarehouse(1)} className='primary-btn-outline' style={{ fontSize: '14px', float: 'right', borderRadius: 20, padding:'8px 12px 8px 12px' }}><strong><i className='mdi mdi-cup menu-icon'></i> Delete</strong></button>&nbsp; &nbsp;
+                                    <button onClick={()=>goToNextPage('/business/edit')} className='primary-btn-outline' style={{ fontSize: '14px', float: 'right', borderRadius: 20, padding:'8px 12px 8px 12px',marginRight:'5px' }}><strong><i className='mdi mdi-pencil menu-icon'></i> Edit</strong></button>
                                 </td>
                             </tr>
                             <tr>
@@ -71,8 +93,8 @@ const ViewWarehouse = () => {
                                 <td>5004333213</td>
                                 <td>sofisupport@proton.me</td>
                                 <td>
-                                    <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-cup menu-icon'></i> Delete</button>
-                                    <button className='primary-btn-outline' style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-pencil menu-icon'></i> Edit</button> &nbsp; &nbsp;
+                                    <button onClick={() => DeleteWarehouse(1)} className='primary-btn-outline' style={{ fontSize: '14px', float: 'right', borderRadius: 20, padding:'8px 12px 8px 12px' }}><strong><i className='mdi mdi-cup menu-icon'></i> Delete</strong></button>&nbsp; &nbsp;
+                                    <button onClick={()=>goToNextPage('/business/edit')} className='primary-btn-outline' style={{ fontSize: '14px', float: 'right', borderRadius: 20, padding:'8px 12px 8px 12px',marginRight:'5px' }}><strong><i className='mdi mdi-pencil menu-icon'></i> Edit</strong></button>
                                 </td>
                             </tr>
                         </tbody>

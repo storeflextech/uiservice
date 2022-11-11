@@ -88,18 +88,6 @@ const ViewBusiness = () => {
             // do something if required   
             }
           });
-
-        // swal({
-        //     title: "Are you sure?",
-        //     text: "Do you really want to delete the business?",
-        //     icon: "warning",
-        //     dangerMode: true,
-        // })
-        //     .then(willDelete => {
-        //         if (willDelete) {
-        //             swal("Deleted!", "Your business has been deleted!", "success");
-        //         }
-        //     });
     }
 
     return (
