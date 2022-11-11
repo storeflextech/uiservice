@@ -128,7 +128,73 @@ export default function Filter(props?: parentProps) {
                             </div>
                         </article>
 
+                        <article className="card-group-item">
+                            <header className="card-header p-0">
+                                <h6 className="title">Minimum Space: </h6>
+                            </header>
+                            <div className="filter-content  ml-2">
+                                <div className="card-body">
+                                    <form>
+                                        <label className="form-check">
+                                            Area
+                                            <span className="input-group">
+                                            <select className='form-control' name="" id="">
+                                                <option value='1" x 1"'>1" x 1"</option>
+                                                <option value='2" x 2"'>2" x 2"</option>
+                                                <option value='3" x 3"'>3" x 3"</option>
+                                            </select>
+                                            </span>
+                                        </label>
+                                    </form>
 
+                                </div>
+                            </div>
+                        </article>
+
+                        <article className="card-group-item">
+                            <header className="card-header p-0">
+                                <h6 className="title">Price Range: </h6>
+                            </header>
+                            <div className="filter-content  ml-2">
+                                <div className="card-body">
+                                    <form>
+                                        <label className="form-check">
+                                            Range
+                                            <span className="input-group">
+                                            <select className='form-control' name="" id="">
+                                                <option value="">&#x20B9;0.00 - &#x20B9;500.00</option>
+                                                <option value="">&#x20B9;500.00 - &#x20B9;1500.00</option>
+                                                <option value="">&#x20B9;1500.00 - &#x20B9;2500.00</option>
+                                                <option value="">&#x20B9;3000.00 - &#x20B9;4500.00</option>
+                                            </select>
+                                            </span>
+                                        </label>
+                                    </form>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article className="card-group-item">
+                            <header className="card-header p-0">
+                                <h6 className="title">Facility Qualification: </h6>
+                            </header>
+                            <div className="filter-content  ml-2">
+                                <div className="card-body">
+                                    <form>
+                                        <label className="form-check">
+                                            Qualification
+                                            <span className="input-group">
+                                            <select className='form-control' name="" id="">
+                                                <option value="">Qualification-1</option>
+                                                <option value="">Qualification-2</option>
+                                                <option value="">Qualification-3</option>
+                                            </select>
+                                            </span>
+                                        </label>
+                                    </form>
+                                </div>
+                            </div>
+                        </article>
                     </div>
                 </div>
 
