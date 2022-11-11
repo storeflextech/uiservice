@@ -1,7 +1,23 @@
 import React from 'react';
-import {Contacts} from '../atoms/contact/contacts'
+import {Contacts} from '../atoms/contact/contacts';
 
 const Contact = () => {
+
+  const contactList = [
+    {
+      country : 'India',
+      countryFlag: '/images/country/india.png',
+      address: 'S 3061, Akshar Business Park , Sector 25, Vashi, Navi Mumbai, Maharastra, India 400703' ,
+      tel : '000 800 050 1417'
+    },
+    {
+      country : 'USA',
+      countryFlag: '/images/country/usa.png',
+      address: 'PO Box: 234, Round Rock, Texas, USA - 78681' ,
+      tel : '000 800 050 1417'
+    }
+  ];
+
   return (
     <>
       <section id="contact" className="contact-us">
@@ -72,11 +88,16 @@ const Contact = () => {
                   <div className="contact-info">
                     <div className="single-head">
                       <div className='p-bot-md'>
-                        <div className="single-info inline-block p-bot-xl">
-                          <i className="lni lni-map-marker"></i>
-                        </div>
                         <div>
-                          <Contacts />
+                          {
+                            contactList.map((list , index) => {
+                              return(
+                                <div key={`contact_${index}`} className='p-bot-md'>
+                                  <Contacts contact={list}/>
+                                </div>
+                              )
+                            })
+                          }
                         </div>
                       </div>
                       <div className="single-info">
