@@ -48,8 +48,7 @@ const Services = () => {
                   <h5>Our Services</h5>
                   <h2 className="fw-bold">Services We Provide</h2>
                   <p>
-                    There are many variations of passages of Lorem Ipsum available,
-                    but the majority have suffered alteration in some form.
+                  We help find YOU meet your warehousing requirements at the best possible rate.
                   </p>
                 </div>
               </div>
