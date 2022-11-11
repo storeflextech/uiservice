@@ -1,9 +1,9 @@
 import React from 'react';
 
 const Brand = () => {
-    return (
-      <>
-<div className="brand-area">
+  return (
+    <>
+      <div className="brand-area">
         <div className="container">
           <div className="row">
             <div className="col-lg-5 col-12">
@@ -11,8 +11,7 @@ const Brand = () => {
                 <span>Our Awesome Clients</span>
                 <h2>We built Best solutions for your company</h2>
                 <p>
-                  There are many variations of passages of Lorem Ipsum available,
-                  but the majority have suffered alteration in some form.
+                  Service is at the heart of Store Flex and we're committed to serving you. Some of the biggest names in the industry have made the move to modern warehousing solution and trust Store Flex for their storage and logistics needs. We can't wait to serve you and help you succeed.
                 </p>
               </div>
             </div>
@@ -55,7 +54,7 @@ const Brand = () => {
           </div>
         </div>
       </div>
-      </>
-    );
+    </>
+  );
 };
 export default Brand;

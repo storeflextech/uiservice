@@ -1,20 +1,15 @@
 import React from 'react';
 
 const Pricing = () => {
-    return (
-      <>
+  return (
+    <>
       <section id="pricing" className="pricing-area pricing-fifteen">
         <div className="section-title-three">
           <div className="container">
             <div className="row">
               <div className="col-12">
                 <div className="content">
-                  <h5>Pricing Plan</h5>
-                  <h2 className="fw-bold">Our Best Pricing</h2>
-                  <p>
-                    There are many variations of passages of Lorem Ipsum available,
-                    but the majority have suffered alteration in some form.
-                  </p>
+                  <h5>Featured Warehouses</h5>
                 </div>
               </div>
             </div>
@@ -179,7 +174,7 @@ const Pricing = () => {
           </div>
         </div>
       </section>
-      </>
-    );
+    </>
+  );
 };
 export default Pricing;
