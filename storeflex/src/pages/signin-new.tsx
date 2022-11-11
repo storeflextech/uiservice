@@ -96,7 +96,7 @@ const SignInNew = () => {
                       className="btn primary-btn rounded-full"
                       type="submit"
                     >
-                      Sign In!
+                      Sign In
                     </button>
                   </div>
                 </div>

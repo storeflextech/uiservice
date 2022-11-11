@@ -52,7 +52,7 @@ function App() {
               <Route path={PAGES.VIEW_USER.path} element={<PAGES.VIEW_USER.Component />} />
               <Route path={PAGES.DISCOVER_MORE.path} element={<PAGES.DISCOVER_MORE.Component />} />
               <Route path={PAGES.BOOKINGS.path} element={<PAGES.BOOKINGS.Component />} />
-              <Route path={PAGES.PAYMENT_DETAILS.path} element={<PAGES.PAYMENT_DETAILS.Component />} />
+              <Route path={PAGES.PAYMENT_HISTORY.path} element={<PAGES.PAYMENT_HISTORY.Component />} />
               <Route path={PAGES.USER_PROFILE.path} element={<PAGES.USER_PROFILE.Component />} />
             </Routes>
             } 

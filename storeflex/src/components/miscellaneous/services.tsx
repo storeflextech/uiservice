@@ -1,4 +1,6 @@
 import React from 'react';
+import Swal from 'sweetalert2';
+
 
 const Services = () => {
 
@@ -65,7 +67,13 @@ const Services = () => {
                     Empowering Consumers with data,inspiration & knowlwdge...
                   </p>
                   <div className="light-rounded-buttons">
-                    <button onClick={()=>handleCard("one")} className="btn primary-btn btn-sm"> Read More </button>
+                    <button 
+                    onClick={()=>Swal.fire({
+                      title: 'Listing Platform',
+                      text: 'We empower consumers with data, inspiration & knowledge. You can be a part of our family by simply clicking on register',
+                    }) 
+                  }
+                    className="btn primary-btn btn-sm"> Read More </button>
                   </div>
                 </div>
               </div>
@@ -74,7 +82,7 @@ const Services = () => {
                   <span className="serial">02</span>
                   <h4>Resource Management</h4>
                   <p>
-                    We dejoy working with discerning clients, people...
+                    We enjoy working with discerning clients, people & company...
                   </p>
                   <div className="light-rounded-buttons">
                   <button onClick={()=>handleCard("two")} className="btn primary-btn btn-sm"> Read More </button>
