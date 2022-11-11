@@ -160,6 +160,9 @@ $sf-primary-color: #f66711;
   padding-top: 32px;
 }
 
+.p-bot-xm {
+  padding-bottom: 4px;
+}
 .p-bot-sm {
   padding-bottom: 8px;
 }
@@ -608,4 +611,8 @@ $sf-primary-color: #f66711;
 .sf-contact-img {
   display: block;
   margin: auto;
+}
+
+.line-h-sm {
+  line-height: 1.2 !important;
 }
