@@ -26,16 +26,16 @@ const UserDashboard = (props) => {
                     </Button>
 
                     <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.PgSearch.path) }}>
-                        Search Bussiness
+                        Search
                     </Button>
 
                     <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.VIEW_USER.path) }}>
-                        Add  user
+                        Add  User
                     </Button>
                 </div>
                 <div className='sf-flex-grid sf-justify'>
-                    <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.AddInfo.path) }}>
-                        Add  Location
+                    <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.Warehouse.ADD.path) }}>
+                        Add  Warehouse
                     </Button>
 
                     <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.AddInfo.path) }}>
@@ -43,7 +43,7 @@ const UserDashboard = (props) => {
                     </Button>
 
                     <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.AddInfo.path) }}>
-                        Contact update
+                        Contact Update
                     </Button>
                 </div>
             </div>

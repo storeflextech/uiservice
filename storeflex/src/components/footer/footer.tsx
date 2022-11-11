@@ -16,7 +16,9 @@ const Footer = () => {
             <div className="col-lg-5">
               <div className="sf-footer-container">
                 <div className="m-bot-md text-center">
+                  <a href="/home">
                   <img src="assets/images/white-logo.jpg" alt="Logo" />
+                  </a>
                 </div>
                 {/* <!-- footer logo --> */}
                 <p className="text-center">Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum
@@ -46,7 +48,7 @@ const Footer = () => {
                 <Nav.Link onClick={() => {onLinkClick(PAGES.PRIVACYPOLICY.path)}}>Privacy Policy</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link onClick={() => {onLinkClick(PAGES.SITE_MAP.path)}}>Cookie Policy</Nav.Link>
+                  <Nav.Link onClick={() => {onLinkClick(PAGES.FAQ.path)}}>FAQ</Nav.Link>
                 </Nav.Item>
               </Nav>
             </div>

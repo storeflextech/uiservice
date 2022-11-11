@@ -78,7 +78,7 @@ const AddUser = () => {
     const selectDetails = () => {
         return (
             <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-                <Grid item xs={6}>
+                {/* <Grid item xs={6}>
                     <div> User Type </div>
                     <div className='p-top-md'>
                         {<UserType />}
@@ -89,7 +89,7 @@ const AddUser = () => {
                     <div className='p-top-md'>
                         {<CompanyName />}
                     </div>
-                </Grid>
+                </Grid> */}
             </Grid>
         )
     }
