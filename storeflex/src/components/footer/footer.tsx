@@ -16,7 +16,9 @@ const Footer = () => {
             <div className="col-lg-5">
               <div className="sf-footer-container">
                 <div className="m-bot-md text-center">
+                  <a href="/home">
                   <img src="assets/images/white-logo.jpg" alt="Logo" />
+                  </a>
                 </div>
                 {/* <!-- footer logo --> */}
                 <p className="text-center">Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum

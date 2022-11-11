@@ -53,7 +53,7 @@ const TopNavbar = () => {
                 <div className="collapse navbar-collapse sub-menu-bar" id="navbarOne">
                   <ul className="navbar-nav m-auto">
                     <li className="nav-item">
-                      <a className="active page-scroll" href="#hero-area">Home</a>
+                      <a className="active page-scroll" href="/home#hero-area">Home</a>
                     </li>
                     <li className="nav-item">
                       <a className="page-scroll" href="/home#services">Services</a>
