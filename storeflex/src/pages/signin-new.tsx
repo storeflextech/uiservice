@@ -3,9 +3,19 @@ import { useNavigate } from "react-router-dom";
 import { validateMinLen, setUserLoggedIn, setUserType, getRedirectionPage } from '../utils/CommonUtils';
 import Api from '../api/Api';
 import { SignInProps } from '../api/ApiConfig';
+import GoogleLogin from 'react-google-login';
+import { gapi } from "gapi-script";
 
 const SignInNew = () => {
   const navigate = useNavigate();
+
+  gapi.load("client:auth2", () => {
+    gapi.client.init({
+      clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+      plugin_name: "storeflex",
+      scope: 'email',
+    });
+  });
 
   const [values, setValues] = useState({
     email: "",
@@ -47,15 +57,14 @@ const SignInNew = () => {
     }
   }
 
+  const onGoogleLoginSuccess = (user: any) => {
+    console.log("Login Success====", user);
+    navigate('/dashboard');
+  };
 
-  // const onGoogleLoginSuccess = (user: any) => {
-  //   console.log("Login Success====", user);
-  //   navigate('/dashboard');
-  // };
-
-  // const onGoogleLoginFailure = (err: any) => {
-  //   console.error("Login Failure", err)
-  // };
+  const onGoogleLoginFailure = (err: any) => {
+    console.error("Login Failure", err)
+  };
 
   return (
     <section className="signin-area signin-one">
@@ -99,6 +108,21 @@ const SignInNew = () => {
                     >
                       Sign Up
                     </button>
+                  </div>
+                </div>
+                <div className="col-md-12">
+                  <div className="form-input text-center">
+                    <h4 className="text">
+                    Or continue with
+                      <br></br>
+                      <GoogleLogin
+                  clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID || ""}
+                  buttonText=" Google"
+                  onSuccess={onGoogleLoginSuccess}
+                  onFailure={onGoogleLoginFailure}
+                  cookiePolicy={'single_host_origin'}
+                />
+                    </h4>
                   </div>
                 </div>
                 <div className="col-md-12">

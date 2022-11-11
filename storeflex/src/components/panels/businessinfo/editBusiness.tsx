@@ -108,8 +108,7 @@ const EditBusiness = (props: EditBusinessProps) => {
         console.log(' #### name ', value);
     }
 
-    const handleUpdate = () =>{
-        // swal("Good job!", "Business record has been updated successfully", "success"); 
+    const handleUpdate = () => {
         swal({
             title: "Good job!",
             text: "Business record has been updated successfully",
@@ -204,8 +203,8 @@ const EditBusiness = (props: EditBusinessProps) => {
             <div className="row">
                 <div className="col-md-9 col-lg-9 col-xl-9 flex-end"></div>
                 <div className="col-md-3 col-lg-3 col-xl-3">
-                <button className='btn primary-btn-outline rounded-full' onClick={() => { goToNextPage('/business/view') }}  style={{marginRight:'5px'}}> Cancel </button>
-                <button className="btn primary-btn rounded-full" onClick={() => { handleUpdate() }}> Update </button>
+                    <button className='btn primary-btn-outline rounded-full' onClick={() => { goToNextPage('/business/view') }} style={{ marginRight: '5px' }}> Cancel </button>
+                    <button className="btn primary-btn rounded-full" onClick={() => { handleUpdate() }}> Update </button>
                 </div>
             </div>
         </div>

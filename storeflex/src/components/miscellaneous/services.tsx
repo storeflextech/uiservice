@@ -1,5 +1,5 @@
 import React from 'react';
-import Swal from 'sweetalert2';
+import Swal from 'sweetalert';
 
 
 const Services = () => {
@@ -68,7 +68,7 @@ const Services = () => {
                   </p>
                   <div className="light-rounded-buttons">
                     <button 
-                    onClick={()=>Swal.fire({
+                    onClick={()=>Swal({
                       title: 'Listing Platform',
                       text: 'We empower consumers with data, inspiration & knowledge. You can be a part of our family by simply clicking on register',
                     }) 
