@@ -1,9 +1,14 @@
+import React from 'react';
+import Content from '../../utils/Content.json';
+import {CmsContext} from '../../context/ContextProvider';
 
 export const AppContainer = (props) => {
     return(
-        <div className='w100'>
-            {props.children}
-        </div>
+        <CmsContext.Provider value={Content}>
+            <div className='w100'>
+                {props.children}
+            </div>
+        </CmsContext.Provider>
     )
 }
 
