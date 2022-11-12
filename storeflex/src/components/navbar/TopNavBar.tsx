@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 import { getUserLoggedIn} from  '../../utils/CommonUtils';
+import { ProfileMenu } from '../atoms/profile/profile';
 
 const TopNavbar = () => {
   const navigate = useNavigate();
@@ -11,11 +12,9 @@ const TopNavbar = () => {
   const signOut = () => {
     if(getUserLoggedIn()) {
       return (
-        <ul>
-            <li>
-              <a className="btn primary-btn-outline" href="javascript:;" onClick={() => { goToNextPage('/signout') }}>Sign Out</a>
-            </li>
-          </ul>
+        <div>
+          <ProfileMenu isSigned={true} profileImg={'/images/face1.jpg'}/>
+        </div>
       )
     } else {
       return (

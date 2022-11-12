@@ -10,7 +10,6 @@ import Footer from '../components/footer/footer';
 import { USER_TYPE } from '../utils/Constants';
 
 const DashboardPage = () => {
-
     const getDashboard = () => {
         const userType = getUserType();
         if(userType === USER_TYPE.SfUser) {
