@@ -7,6 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import {ProfileBtn} from '../button/button';
 import './profile.scss';
+import { useNavigate } from 'react-router-dom';
 
 interface ProfileMenuProps {
     isSigned?: boolean;
@@ -25,6 +26,10 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const navigate = useNavigate();
+  const goToNextPage = (pagePath: string) => {
+    navigate(pagePath);
+  }
 
     const signOutList = () => {
         return(
@@ -75,7 +80,7 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
                     <ListItemText>Help</ListItemText>
                 </MenuItem>
                 <MenuItem>
-                    <ListItemText>Log out</ListItemText>
+                    <ListItemText><a onClick={()=>{goToNextPage("/signin-new")}}>Log out</a></ListItemText>
                 </MenuItem>
             </>
         )
