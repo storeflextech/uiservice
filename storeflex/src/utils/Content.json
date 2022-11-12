@@ -1,0 +1,39 @@
+{
+    "common": {
+        "addressText": "Address",
+        "CityText" : "City",
+        "StateText": "State",
+        "ZipText": "Zip",
+        "Asterisk" : "*",
+        "saveBtn": "Save",
+        "cancelBtn": "Cancel",
+        "searchBtn": "Search",
+        "termOfConditionBtn": "Terms of condiotions"
+
+    },
+    "dashboard" : {
+        "addBusinessBtn": "Add Business",
+        "searchBtn": "Search",
+        "addUserBtn": "Add User",
+        "addWarehouseBtn": "Add Warehouse",
+        "reportBtn": "Reports",
+        "contactUpdateBtn": "Contach Update"
+
+    }, 
+    "business" : {
+        "businessInfoText" : "Business Information",
+        "businessNameLabel" : "Company Name*",
+        "businessUrlLabel" : "Company Url",
+        "businessPhoneLabel" : "Business Phone*"
+    },
+    "warehouse" : {
+
+    },
+    "management" : {
+
+    },
+    "search" : {
+
+    }
+    
+}
