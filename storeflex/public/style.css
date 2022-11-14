@@ -784,7 +784,7 @@ p {
   background: var(--light-2);
   overflow: hidden;
   /* padding: 160px 0 100px 0; */
-  padding: 50px 0 100px 0;
+  padding: 0px 0 30px 0;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .header-ten {
@@ -830,7 +830,7 @@ p {
   height: 500px;
   width: 500px;
   display: block;
-  border-radius: 50%;
+  border-radius: 100%;
   background-image: url("assets/images/header/04.jpg");
   background-size: cover;
   background-position: center;
@@ -964,8 +964,8 @@ p {
   services css 
 ===========================*/
 .services-seven {
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   position: relative;
   /* Section Title Six */
 }
@@ -1056,7 +1056,7 @@ p {
 ===========================*/
 .about-three {
   background-color: var(--light-3);
-  padding: 100px 0;
+  padding: 10px 0;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .about-three {
@@ -1388,7 +1388,7 @@ p {
 
 /*===== PRICING THIRTEEN =====*/
 .pricing-fifteen {
-  padding: 100px 0;
+  padding: 10px 0;
   /* Section Title Five */
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -1528,7 +1528,7 @@ p {
 	Team CSS
 ========================================*/
 .team-style-eight {
-  padding: 100px 0;
+  padding: 0px 0;
   background: var(--light-3);
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -1976,7 +1976,7 @@ p {
 .contact-us {
   position: relative;
   background-color: var(--light-3);
-  padding: 100px 0;
+  padding: 30px 0;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .contact-us {
@@ -2110,7 +2110,7 @@ p {
     Brand CSS
 ========================================*/
 .brand-area {
-  padding: 100px 0;
+  padding: 50px 0;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .brand-area {
@@ -2296,7 +2296,7 @@ p {
   }
 }
 .footer-five .footer-copyright {
-  padding: 25px 0;
+  padding: 15px 0;
   border-top: 1px solid var(--gray-4);
 }
 .footer-five .footer-copyright .copyright .text {

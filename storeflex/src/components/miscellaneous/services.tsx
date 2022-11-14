@@ -1,4 +1,6 @@
 import React from 'react';
+import Swal from 'sweetalert';
+
 
 const Services = () => {
 
@@ -46,8 +48,7 @@ const Services = () => {
                   <h5>Our Services</h5>
                   <h2 className="fw-bold">Services We Provide</h2>
                   <p>
-                    There are many variations of passages of Lorem Ipsum available,
-                    but the majority have suffered alteration in some form.
+                  We help find YOU meet your warehousing requirements at the best possible rate.
                   </p>
                 </div>
               </div>
@@ -65,7 +66,13 @@ const Services = () => {
                     Empowering Consumers with data,inspiration & knowlwdge...
                   </p>
                   <div className="light-rounded-buttons">
-                    <button onClick={()=>handleCard("one")} className="btn primary-btn btn-sm"> Read More </button>
+                    <button 
+                    onClick={()=>Swal({
+                      title: 'Listing Platform',
+                      text: 'We empower consumers with data, inspiration & knowledge. You can be a part of our family by simply clicking on register',
+                    }) 
+                  }
+                    className="btn primary-btn btn-sm"> Read More </button>
                   </div>
                 </div>
               </div>
@@ -74,7 +81,7 @@ const Services = () => {
                   <span className="serial">02</span>
                   <h4>Resource Management</h4>
                   <p>
-                    We dejoy working with discerning clients, people...
+                    We enjoy working with discerning clients, people & company...
                   </p>
                   <div className="light-rounded-buttons">
                   <button onClick={()=>handleCard("two")} className="btn primary-btn btn-sm"> Read More </button>

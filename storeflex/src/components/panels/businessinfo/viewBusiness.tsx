@@ -74,15 +74,20 @@ const ViewBusiness = () => {
     const deleteBusiness = (id) => {
         swal({
             title: "Are you sure?",
-            text: "Do you really want to delete the business?",
+            text: "Once deleted, you will not be able to recover this company!",
             icon: "warning",
+            buttons: [true,true],
             dangerMode: true,
-        })
-            .then(willDelete => {
-                if (willDelete) {
-                    swal("Deleted!", "Your business has been deleted!", "success");
-                }
-            });
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              swal("Success! Your company has been deleted!", {
+                icon: "success",
+              });
+            } else {
+            // do something if required   
+            }
+          });
     }
 
     return (

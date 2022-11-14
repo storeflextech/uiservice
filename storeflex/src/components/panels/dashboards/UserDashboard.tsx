@@ -1,12 +1,16 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import { PAGES } from '../../../utils/Constants';
 import DashboardChart from '../chart/dashboardChart';
+import { CmsContext } from '../../../context/ContextProvider';
 
 const UserDashboard = (props) => {
-    const userType = props.userType;
+    const userType = props?.userType;
     const navigate = useNavigate();
+
+    const cmsContent = useContext(CmsContext);
+    const dashboardContent = cmsContent['dashboard'];
 
     const handelOnClick = (path: string) => {
         navigate(path);
@@ -20,17 +24,17 @@ const UserDashboard = (props) => {
                 </div>
             </div>
             <div>
-                <div className='sf-flex-grid sf-justify'>
+            <div className='sf-flex-grid sf-justify'>
                     <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.Business.path) }}>
-                        Add Business
+                        Add Company
                     </Button>
 
                     <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.PgSearch.path) }}>
-                        Search Bussiness
+                        Search Company
                     </Button>
 
                     <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.VIEW_USER.path) }}>
-                        Add  user
+                        View  user
                     </Button>
                 </div>
                 <div className='sf-flex-grid sf-justify'>
@@ -43,7 +47,7 @@ const UserDashboard = (props) => {
                     </Button>
 
                     <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.AddInfo.path) }}>
-                        Contact update
+                        Add User
                     </Button>
                 </div>
             </div>
