@@ -11,6 +11,9 @@ import BeenhereIcon from '@mui/icons-material/Beenhere';
 import HourglassTopIcon from '@mui/icons-material/HourglassTop';
 import Filter from './filter';
 
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
+
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -95,6 +98,13 @@ export default function Searchresult() {
 
   }
 
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+
   return (
 
     <>
@@ -102,89 +112,8 @@ export default function Searchresult() {
 
       <div className="row">
 
-      <Filter officeData={office} handleFilte={handleFilte} />
-        {/* <div className="col-md-2 pr-1" style={{ backgroundColor: '#eee' }}>
-          <div className="card m-0">
-            <div className="col-md-12 p-1">
-              <span>
-                Filter And Sort Locations
-              </span>
-              <hr />
+        <Filter officeData={office} handleFilte={handleFilte} />
 
-              <div className="card-group-item">
-
-                <header className="card-header p-0">
-                  <h6 className="title">Sorts By Price:</h6>
-                </header>
-
-
-                <div className="filter-content ml-2">
-                  <div className="card-body">
-                    <label className="form-check">
-                      <input className="form-check-input" type="radio" name="price" value="ascending" />
-                      <span className="form-check-label m-0">
-                      Lowest to Highest
-                      </span>
-                    </label>
-
-                    <label className="form-check">
-                      <input className="form-check-input" type="radio" name="price" value="descending" />
-                      <span className="form-check-label m-0">
-                      Highest to Lowest
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <article className="card-group-item">
-                <header className="card-header p-0">
-                  <h6 className="title">Choose by Storage Layout: </h6>
-                </header>
-                <div className="filter-content  ml-2">
-                  <div className="card-body">
-                    <form>
-                      <label className="form-check">
-                        <input className="form-check-input" type="checkbox" value="Floor Space" />
-                        <span className="form-check-label m-0">
-                        Floor Space
-                        </span>
-                      </label>
-                      <label className="form-check">
-                        <input className="form-check-input" type="checkbox" value="Racking" />
-                        <span className="form-check-label m-0">
-                        Racking
-                        </span>
-                      </label>
-                      <label className="form-check">
-                        <input className="form-check-input" type="checkbox" value="Secured Room" />
-                        <span className="form-check-label m-0">
-                        Secured Room
-                        </span>
-                      </label>
-                      <label className="form-check">
-                        <input className="form-check-input" type="checkbox" value="Pick Module" />
-                        <span className="form-check-label m-0">
-                        Pick Module
-                        </span>
-                      </label>
-                      <label className="form-check">
-                        <input className="form-check-input" type="checkbox" value="Pick Dedicated Room" />
-                        <span className="form-check-label m-0">
-                        Pick Dedicated Room
-                        </span>
-                      </label>
-                    </form>
-
-                  </div>
-                </div>
-              </article>
-
-
-            </div>
-          </div>
-
-        </div> */}
 
 
 
@@ -269,8 +198,8 @@ export default function Searchresult() {
                             </div>
                             <h6 className="text-success"> Few rooms left.</h6>
                             <div className="d-flex flex-column mt-4">
-                              <button className="btn primary-btn-outline rounded-full" type="button">Details</button>
-                              <button className="btn primary-btn rounded-full" style={{marginTop:'5px'}} type="button" onClick={(e) => { addToCart(e, data) }}>
+                              <button className="btn primary-btn-outline rounded-full" type="button" onClick={handleShow}>Details</button>
+                              <button className="btn primary-btn rounded-full" style={{ marginTop: '5px' }} type="button" onClick={(e) => { addToCart(e, data) }}>
                                 Add to wishlist
                               </button>
                             </div>
@@ -279,7 +208,101 @@ export default function Searchresult() {
                       </div>
                     </div>
                   </div>
+
+                  <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                      {/* <Modal.Title>Update Profile</Modal.Title> */}
+                    </Modal.Header>
+                    <Modal.Body>
+
+
+                    <div className="col-md-12 col-xl-12">
+                    <div className="card shadow-0 border rounded-3">
+                      <div className="card-body">
+                        <div className="row">
+                          <div className="col-md-12 col-lg-12 col-xl-12 mb-4 mb-lg-0">
+                            <div className="bg-image hover-zoom ripple rounded ripple-surface">
+                              <img src={data.img}
+                                className="w-100" />
+                              <a href="#!">
+                                <div className="hover-overlay">
+                                  <div className="mask" style={{ backgroundColor: 'rgba(253, 253, 253, 0.15)' }}></div>
+                                </div>
+                              </a>
+                            </div>
+                          </div>
+                          <div className="col-md-12 col-lg-12 col-xl-12 p-3">
+                            <h5><BeenhereIcon />{data.business}</h5>
+                            <div className="d-flex flex-row">
+                              {/* <div className="text-danger mb-1 me-2">
+                                  <i className="fa fa-star"></i>
+                                  <i className="fa fa-star"></i>
+                                  <i className="fa fa-star"></i>
+                                  <i className="fa fa-star"></i>
+                                </div> */}
+                              <span>{data.name}</span>
+                            </div>
+                            <div className="mt-1 mb-0 text-muted small">
+                              <span>{data.address}</span>
+                              {/* <span className="text-primary"> • </span>
+                                <span>Light weight</span>
+                                <span className="text-primary"> • </span>
+                                <span>Best finish<br /></span> */}
+                            </div>
+                            <div className="mb-2 text-muted small">
+                              <span>Room Size</span>
+                              <span className="text-primary"> • </span>
+                              <span>24x24</span>
+                              <span className="text-primary"> • </span>
+                              <span>10x12<br /></span>
+                            </div>
+                            <p className="text-truncate mb-4 mb-md-0">
+                              There are many variations of passages of Lorem Ipsum available, but the
+                              majority have suffered alteration in some form, by injected humour, or
+                              randomised words which don't look even slightly believable.
+                            </p>
+                          </div>
+                          <div className="col-md-12 col-lg-12 col-xl-12 border-sm-start-none border-start">
+                            <div className="d-flex flex-row align-items-center mb-1">
+                              <h4 className="mb-1 me-1">&#x20B9; {data.rate}.00</h4>
+                              <span className="text-danger"><s>&#x20B9; 200.99</s></span>
+                            </div>
+                            <h6 className="text-success"> Few rooms left.</h6>
+                            <div className="d-flex flex-column mt-4">
+                              
+                              <button className="btn primary-btn rounded-full" style={{ marginTop: '5px' }} type="button" onClick={(e) => { addToCart(e, data) }}>
+                                Add to wishlist
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                    </Modal.Body>
+                    <Modal.Footer>
+                      <Button className='btn-sm text-capitalize' onClick={handleClose}>
+                        Close
+                      </Button>
+                    </Modal.Footer>
+                  </Modal>
+
+
+
                 </div>
+
+
+
+
+
+
+
+
+
+
               ))}
 
             </div>
