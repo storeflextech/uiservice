@@ -6,6 +6,10 @@ import { AppContainer, SplitPaneContainer } from '../components/containers/conta
 import { getUserType } from '../utils/CommonUtils';
 import Footer from '../components/footer/footer';
 
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
+
 import { useState } from 'react';
 
 const UserProfile = () => {
@@ -19,7 +23,7 @@ const UserProfile = () => {
             city: 'Guwahati'
         }
     );
-    
+
 
 
     // const [success, setSuccess] = useState("success");
@@ -31,9 +35,9 @@ const UserProfile = () => {
 
     };
 
-  
+
     const handleInput = (event: any) => {
-        
+
         setFormData({
             ...formData,
             [event.target.name]: event.target.value,
@@ -41,8 +45,18 @@ const UserProfile = () => {
         event.target.disabled = false;
 
         console.log(formData);
-        
+
     };
+
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const editProfilePhoto = () => {
+        document.getElementById('fileInput')?.click();
+      };
 
 
     return (
@@ -63,9 +77,13 @@ const UserProfile = () => {
                                         <div className="row border bg-white">
                                             <div className="col-md-4 p-0">
                                                 <div className="border border-info p-4 h-100">
-                                                    <div className="header text-center p-2">My Profile</div>
+                                                    <div className="header text-center p-4">User Profile</div>
                                                     <div className="text-center">
-                                                        <img className="border border-success rounded-circle" src="/cpanel/images/faces/face1.jpg" alt="profile" />
+                                                        <img className="border border-success rounded-circle" src="/images/face1.jpg" alt="profile" />
+
+                                                        <button className='border' onClick={editProfilePhoto} style={{background:'white', position:'absolute',border:'0px',borderRadius:50,padding:'5px',marginLeft:'-30px',marginTop:'70px'}}><i className="lni lni-pencil"></i>
+                  {/* <img style={{height:'25px',width:'30px'}} src="/images/camera_lead.jpg" alt="" /> */}
+                </button>
 
 
                                                         <div className="flex p-4">
@@ -77,10 +95,10 @@ const UserProfile = () => {
                                                                 value={formData.name}
                                                                 onChange={handleInput}
                                                                 disabled={isDisabled}
-                                                                // readOnly={true}
+                                                            // readOnly={true}
                                                             />
 
-                                                            <button className='btn btn-info p-1' onClick={handleClick}><i className="lni lni-pencil"></i></button>
+                                                            {/* <button className='btn btn-info p-1' onClick={handleClick}><i className="lni lni-pencil"></i></button> */}
 
                                                         </div>
 
@@ -94,12 +112,12 @@ const UserProfile = () => {
                                             <div className="col-md-8 p-0">
                                                 <div className="col-md-12 p-0">
                                                     <div className="border border-info p-4">
-                                                        <div className="header text-center p-2">Details</div>
+                                                        <div className="header text-center p-2">User Details</div>
 
                                                         <div className="flex p-2">
 
                                                             <div className="input-group-prepend w-25">
-                                                                <span className="input-group-text w-100 mr-1" id="basic-addon1">Company Name:</span>
+                                                                <span className="input-group-text w-100 mr-1" id="basic-addon1">Company:</span>
                                                             </div>
                                                             <input
                                                                 className="bg-{success} form-control font-weight-bold"
@@ -108,9 +126,9 @@ const UserProfile = () => {
                                                                 value={formData.company}
                                                                 onChange={handleInput}
                                                                 disabled={isDisabled}
-                                                            /> 
+                                                            />
 
-                                                            <button className='btn btn-info p-1' onClick={handleClick}><i className="lni lni-pencil"></i></button>
+                                                            {/* <button className='btn btn-info p-1' onClick={handleClick}><i className="lni lni-pencil"></i></button> */}
                                                         </div>
 
                                                         <div className="flex p-2">
@@ -125,9 +143,9 @@ const UserProfile = () => {
                                                                 value={formData.phone}
                                                                 onChange={handleInput}
                                                                 disabled={isDisabled}
-                                                            /> 
+                                                            />
 
-                                                            <button className='btn btn-info p-1' onClick={handleClick}><i className="lni lni-pencil"></i></button>
+                                                            {/* <button className='btn btn-info p-1' onClick={handleClick}><i className="lni lni-pencil"></i></button> */}
                                                         </div>
 
                                                         <div className="flex p-2">
@@ -142,13 +160,27 @@ const UserProfile = () => {
                                                                 value={formData.email}
                                                                 onChange={handleInput}
                                                                 disabled={isDisabled}
-                                                            /> 
+                                                            />
 
-                                                            <button className='btn btn-info p-1' onClick={handleClick}><i className="lni lni-pencil"></i></button>
+                                                            {/* <button className='btn btn-info p-1' onClick={handleClick}><i className="lni lni-pencil"></i></button> */}
                                                         </div>
 
                                                         <div className="flex p-2">
+                                                            <div className="input-group-prepend w-25">
+                                                                <span className="input-group-text w-100 mr-1" id="basic-addon1">Address:</span>
+                                                            </div>
+                                                            <input
+                                                                className="bg-{success} form-control font-weight-bold"
+                                                                type="text"
+                                                                name='city'
+                                                                value={formData.city}
+                                                                onChange={handleInput}
+                                                                disabled={isDisabled}
+                                                            />
+                                                            {/* <button className='btn btn-info p-1' onClick={handleClick}><i className="lni lni-pencil"></i></button> */}
+                                                        </div>
 
+                                                        <div className="flex p-2">
                                                             <div className="input-group-prepend w-25">
                                                                 <span className="input-group-text w-100 mr-1" id="basic-addon1">City:</span>
                                                             </div>
@@ -159,16 +191,106 @@ const UserProfile = () => {
                                                                 value={formData.city}
                                                                 onChange={handleInput}
                                                                 disabled={isDisabled}
-                                                            /> 
+                                                            />
+                                                            {/* <button className='btn btn-info p-1' onClick={handleClick}><i className="lni lni-pencil"></i></button> */}
+                                                        </div>
 
-                                                            <button className='btn btn-info p-1' onClick={handleClick}><i className="lni lni-pencil"></i></button>
+                                                        <div className="flex p-2">
+
+                                                            <div className="input-group-prepend w-25">
+                                                                <span className="input-group-text w-100 mr-1" id="basic-addon1">Role:</span>
+                                                            </div>
+                                                            <input
+                                                                className="bg-{success} form-control font-weight-bold"
+                                                                type="text"
+                                                                name='city'
+                                                                value={getUserType()}
+                                                                disabled={true}
+                                                            />
+
                                                         </div>
 
 
 
-
+                                                        <div className="col-md-12">
+                                                            <div className="text-center">
+                                                                <button className='btn btn-info p-1 text-capitalize' onClick={handleShow}><i className="lni lni-pencil"></i> Dupdate</button>
+                                                            </div>
+                                                        </div>
 
                                                     </div>
+
+
+
+                                                    <>
+
+                                                        <Modal show={show} onHide={handleClose}>
+                                                            <Modal.Header closeButton>
+                                                                <Modal.Title>Update Profile</Modal.Title>
+                                                            </Modal.Header>
+                                                            <Modal.Body>
+                                                                <Form>
+                                                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                                                        <Form.Label>Name</Form.Label>
+                                                                        <Form.Control
+                                                                        className='font-weight-bold'
+                                                                            type="text"
+                                                                            value={formData.name}
+                                                                            autoFocus
+                                                                        />
+                                                                    </Form.Group>
+                                                                    
+                                                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                                                        <Form.Label>Company Name</Form.Label>
+                                                                        <Form.Control
+                                                                        className='font-weight-bold'
+                                                                            type="text"
+                                                                            value={formData.company}
+                                                                            autoFocus
+                                                                        />
+                                                                    </Form.Group>
+                                                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                                                        <Form.Label>Phone</Form.Label>
+                                                                        <Form.Control
+                                                                        className='font-weight-bold'
+                                                                            type="number"
+                                                                            value={formData.phone}
+                                                                            autoFocus
+                                                                        />
+                                                                    </Form.Group>
+                                                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                                                        <Form.Label>Email</Form.Label>
+                                                                        <Form.Control
+                                                                        className='font-weight-bold'
+                                                                            type="email"
+                                                                            value={formData.email}
+                                                                            autoFocus
+                                                                        />
+                                                                    </Form.Group>
+                                                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                                                        <Form.Label>Address</Form.Label>
+                                                                        <Form.Control
+                                                                        className='font-weight-bold'
+                                                                            type="text"
+                                                                            value={formData.city}
+                                                                            autoFocus
+                                                                        />
+                                                                    </Form.Group>
+
+
+                                                                </Form>
+                                                            </Modal.Body>
+                                                            <Modal.Footer>
+                                                                <Button variant="secondary" className='btn-sm text-capitalize' onClick={handleClose}>
+                                                                    Close
+                                                                </Button>
+                                                                <Button variant="primary" className='btn-sm text-capitalize' onClick={handleClose}>
+                                                                    Save Changes
+                                                                </Button>
+                                                            </Modal.Footer>
+                                                        </Modal>
+                                                    </>
+
 
 
 
@@ -178,9 +300,7 @@ const UserProfile = () => {
                                         </div>
                                     </div>
 
-                                    {/* <DashboardChart userType={getUserType()}/> */}
                                 </div>
-                                {/* <Dashboards userType={getUserType()} /> */}
                             </div>
                         </Box>
                     </div>
