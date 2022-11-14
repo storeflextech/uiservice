@@ -4,6 +4,7 @@ import AddressDetails from '../addressforms/AddressDetails';
 import InputBox from '../../atoms/textfield/InputBox';
 import { UserType, CompanyName } from './UserHelper';
 import {validateCharacterLength, validateSpecialCharExistance,} from '../../../../src/utils/CommonUtils';
+import { Button } from '@mui/material';
 
 const AddUser = () => {
     const [values, setValues] = useState({
@@ -141,6 +142,11 @@ const AddUser = () => {
                 {selectDetails()}
                 {userInfo()}
                 {addAddress()}
+                 </div>
+                    <div className='p-top-md align-c'>
+                        <Button className='sf-btn' variant="contained" onClick={() => { alert('Cancel') }}> Cancel </Button>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <Button className="btn primary-btn sf-btn" variant="contained" onClick={() => {}}> Save </Button>
             </div>
         </div>
     );
