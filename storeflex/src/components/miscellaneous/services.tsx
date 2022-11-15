@@ -1,44 +1,37 @@
-import React from 'react';
+import React from "react";
 import Swal from 'sweetalert';
-
+import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
 
 const Services = () => {
-
-  const handleCard=(data)=>{
+  const handleCard = (data) => {
     console.log(data);
 
-  switch(data){
-    case 'one':
-      console.log("Clicked on 1st card");
-      return;
+    switch (data) {
+      case "one":
+        console.log("Clicked on 1st card");
+        return;
 
-    case 'two':
-      console.log("clicked on 2nd card");
-      return;
+      case "two":
+        console.log("clicked on 2nd card");
+        return;
 
-    case 'three':
-      console.log("clicked on 3rd card");
-      return;
+      case "three":
+        console.log("clicked on 3rd card");
+        return;
 
-    case 'four':
-      console.log("clicked on 4th card");
-      return;
+      case "four":
+        console.log("clicked on 4th card");
+        return;
 
-    default: console.log("erro");
-    return;
-    
-      
-      
-      
-  }
-    
-  
+      default:
+        console.log("erro");
+        return;
+    }
+  };
 
-  }
-
-
-    return (
-      <>
+  return (
+    <>
       <section id="services" className="services-area services-seven">
         <div className="section-title-four">
           <div className="container">
@@ -48,7 +41,8 @@ const Services = () => {
                   <h5>Our Services</h5>
                   <h2 className="fw-bold">Services We Provide</h2>
                   <p>
-                  We help find YOU meet your warehousing requirements at the best possible rate.
+                    We help find YOU meet your warehousing requirements at the
+                    best possible rate.
                   </p>
                 </div>
               </div>
@@ -66,13 +60,18 @@ const Services = () => {
                     Empowering Consumers with data,inspiration & knowlwdge...
                   </p>
                   <div className="light-rounded-buttons">
-                    <button 
-                    onClick={()=>Swal({
-                      title: 'Listing Platform',
-                      text: 'We empower consumers with data, inspiration & knowledge. You can be a part of our family by simply clicking on register',
-                    }) 
-                  }
-                    className="btn primary-btn btn-sm"> Read More </button>
+                    <button
+                      onClick={() =>
+                        Swal({
+                          title: "Listing Platform",
+                          text: "We empower consumers with data, inspiration & knowledge. You can be a part of our family by simply clicking on register",
+                        })
+                      }
+                      className="btn primary-btn btn-sm"
+                    >
+                      {" "}
+                      Read More{" "}
+                    </button>
                   </div>
                 </div>
               </div>
@@ -84,7 +83,13 @@ const Services = () => {
                     We enjoy working with discerning clients, people & company...
                   </p>
                   <div className="light-rounded-buttons">
-                  <button onClick={()=>handleCard("two")} className="btn primary-btn btn-sm"> Read More </button>
+                    <button
+                      onClick={() => handleCard("two")}
+                      className="btn primary-btn btn-sm"
+                    >
+                      {" "}
+                      Read More{" "}
+                    </button>
                   </div>
                 </div>
               </div>
@@ -92,23 +97,31 @@ const Services = () => {
                 <div className="single-service">
                   <span className="serial">03</span>
                   <h4>Technology backed warehousing solution</h4>
-                  <p>
-                    Browse rentals with clients, people...
-                  </p>
+                  <p>Browse rentals with clients, people...</p>
                   <div className="light-rounded-buttons">
-                  <button onClick={()=>handleCard("three")} className="btn primary-btn btn-sm"> Read More </button>
+                    <button
+                      onClick={() => handleCard("three")}
+                      className="btn primary-btn btn-sm"
+                    >
+                      {" "}
+                      Read More{" "}
+                    </button>
                   </div>
                 </div>
               </div>
-              <div className="col-lg-3 col-md-4 col-12" >
+              <div className="col-lg-3 col-md-4 col-12">
                 <div className="single-service">
                   <span className="serial">04</span>
                   <h4>Accounting & Transaction Services</h4>
-                  <p>
-                    We take care of the lease and...
-                  </p>
+                  <p>We take care of the lease and...</p>
                   <div className="light-rounded-buttons">
-                  <button onClick={()=>handleCard("four")} className="btn primary-btn btn-sm"> Read More </button>
+                    <button
+                      onClick={() => handleCard("four")}
+                      className="btn primary-btn btn-sm"
+                    >
+                      {" "}
+                      Read More{" "}
+                    </button>
                   </div>
                 </div>
               </div>
@@ -116,8 +129,8 @@ const Services = () => {
           </div>
         </div>
       </section>
-      </>
-    );
+    </>
+  );
 };
-  
-  export default Services;
+
+export default Services;
