@@ -63,7 +63,6 @@ function App() {
                 <Route path={PAGES.Error.path} element={<PAGES.Error.Component />} />
               </Routes>
             }
-       
       </BrowserRouter>
   </React.StrictMode>
   );

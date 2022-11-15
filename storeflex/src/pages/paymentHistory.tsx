@@ -51,7 +51,7 @@ const ViewWarehouse = () => {
                                             <td>11/22</td>
                                             <td>$90 million usd</td>
                                             <td>$9 usd</td>
-                                            <td><a href = '/downloadInvoice'> Download </a></td>
+                                            <td><a href = '/document/sample.pdf'> Download </a></td>
                                             <td>Active</td>
                                             
                                         </tr>

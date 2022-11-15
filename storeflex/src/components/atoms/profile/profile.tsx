@@ -1,5 +1,4 @@
 import React  from 'react';
-import { Container, AppBar, Toolbar } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Divider from '@mui/material/Divider';
@@ -7,24 +6,12 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import {ProfileBtn} from '../button/button';
-import './menu.scss';
+import './profile.scss';
+import { useNavigate } from 'react-router-dom';
 
 interface ProfileMenuProps {
     isSigned?: boolean;
     profileImg?: string;
-}
-export const AppMenuBar = () => {
-    return (
-        <AppBar position="static" color='primary'>
-            <Container maxWidth="xl">
-            <Toolbar disableGutters>
-            <div className='logoicon'>
-                <ProfileBtn />
-            </div> 
-            </Toolbar>
-            </Container>
-        </AppBar>
-    )
 }
 
 export const ProfileMenu = (props?: ProfileMenuProps) => {
@@ -39,6 +26,10 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const navigate = useNavigate();
+  const goToNextPage = (pagePath: string) => {
+    navigate(pagePath);
+  }
 
     const signOutList = () => {
         return(
@@ -89,7 +80,7 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
                     <ListItemText>Help</ListItemText>
                 </MenuItem>
                 <MenuItem>
-                    <ListItemText>Log out</ListItemText>
+                    <ListItemText><a onClick={()=>{goToNextPage("/signin-new")}}>Log out</a></ListItemText>
                 </MenuItem>
             </>
         )
@@ -148,12 +139,9 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
         <>
         <div className='sf-flex profile-menu-container'>
             <IconButton size="large" edge="start" color="inherit" aria-label="profile"  onClick={handleClick} >
-                <MenuIcon />
+            <ProfileBtn showProfileImg={isSigned} profileImg={profileImgUrl} />
             </IconButton> 
             {profileMenuList()}
-            <div>
-                <ProfileBtn showProfileImg={isSigned} profileImg={profileImgUrl} />
-            </div>
         </div>
         </>
     )
