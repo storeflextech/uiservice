@@ -4,10 +4,29 @@ export interface SignInProps {
     password: string;
 }
 
+export interface ViewCompaniesProps{
+    page: string;
+    size: string;
+}
+
+export interface AddCompanyProps{
+        compyName: string;
+        compyDesc: string;
+        photo: string;
+        photoName: string;
+        url: string;
+        updatedBy: string;
+        status: boolean;
+        addresses:Array<object>;
+        contact:Array<object>;
+}
+
 export class ApiConfig {
     endPointGateWay = '/';
     testApi = '/test';
     signinApi = '/login';
-    signinTestApi = 'http://ec2-13-232-148-204.ap-south-1.compute.amazonaws.com:8082/storeflexservice/logintest';
-    signUpUrl = '///'
+    signinTestApi = '/logintest';
+    signUpUrl = '/register';
+    getCompaniesUrl = '/clients';
+    addCompanyUrl = '/client';
 }
