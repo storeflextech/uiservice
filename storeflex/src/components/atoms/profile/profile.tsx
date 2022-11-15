@@ -60,24 +60,24 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
                 <ListItemText>Messages</ListItemText>
                 </MenuItem>
                 <MenuItem>
-                    <ListItemText>Bookings</ListItemText>
+                    <ListItemText><a onClick={()=> {goToNextPage('/bookings')}}>Bookings</a></ListItemText>
                 </MenuItem>
                 <MenuItem>
-                    <ListItemText>Wishlists</ListItemText>
+                    <ListItemText><a onClick={()=>{goToNextPage('/cart')}}>Wishlists</a></ListItemText>
                 </MenuItem>
                 <Divider />
                 <MenuItem>
                     <ListItemText>List Space</ListItemText>
                 </MenuItem>
                 <MenuItem>
-                    <ListItemText>Search Space</ListItemText>
+                    <ListItemText><a onClick={()=>{goToNextPage('/search')}}>Search Space</a></ListItemText>
                 </MenuItem>
                 <MenuItem>
                     <ListItemText>Edit Profile</ListItemText>
                 </MenuItem>
                 <Divider />
                 <MenuItem>
-                    <ListItemText>Help</ListItemText>
+                    <ListItemText><a onClick={()=>{goToNextPage('/faq')}}>Help</a></ListItemText>
                 </MenuItem>
                 <MenuItem>
                     <ListItemText><a onClick={()=>{goToNextPage("/signin-new")}}>Log out</a></ListItemText>
