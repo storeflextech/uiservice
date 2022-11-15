@@ -2,17 +2,15 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom"
 import { styled } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
 import './searchresult.css';
 import { Container, Button, AppBar, Toolbar } from '@mui/material';
 import BeenhereIcon from '@mui/icons-material/Beenhere';
-import HourglassTopIcon from '@mui/icons-material/HourglassTop';
 import Filter from './filter';
-
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import Carousel from 'react-bootstrap/Carousel';
+import Table from 'react-bootstrap/Table';
 
 
 
@@ -77,8 +75,10 @@ export default function Searchresult() {
     ])
 
     setOffice(data);
-    console.log(office)
-    console.log('load');
+
+
+
+
 
   }, [])
 
@@ -104,6 +104,12 @@ export default function Searchresult() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+  };
 
   return (
 
@@ -209,76 +215,227 @@ export default function Searchresult() {
                     </div>
                   </div>
 
-                  <Modal show={show} onHide={handleClose}>
+                  <Modal show={show} fullscreen={true} onHide={handleClose}>
                     <Modal.Header closeButton>
                       {/* <Modal.Title>Update Profile</Modal.Title> */}
                     </Modal.Header>
                     <Modal.Body>
 
 
-                    <div className="col-md-12 col-xl-12">
-                    <div className="card shadow-0 border rounded-3">
-                      <div className="card-body">
-                        <div className="row">
-                          <div className="col-md-12 col-lg-12 col-xl-12 mb-4 mb-lg-0">
-                            <div className="bg-image hover-zoom ripple rounded ripple-surface">
-                              <img src={data.img}
-                                className="w-100" />
-                              <a href="#!">
-                                <div className="hover-overlay">
-                                  <div className="mask" style={{ backgroundColor: 'rgba(253, 253, 253, 0.15)' }}></div>
+                      <div className="col-md-12 col-xl-12">
+                        <div className="card shadow-0 border rounded-3">
+                          <div className="card-body">
+                            <div className="row">
+                              <div className="col-12 mb-4 mb-lg-0 border border-warning">
+
+                                <div className="row">
+                                  <div className="col-md-12 col-lg-8 col-xl-8 p-2">
+                                    {/* <div className="bg-image hover-zoom ripple rounded ripple-surface">
+                                      <img src={data.img}
+                                        className="w-100" />
+                                    </div> */}
+
+                                    <Carousel fade>
+                                      <Carousel.Item>
+                                        <img className="d-block  img-fluid border border-success" style={{ height: '50vh', width: '100%', objectFit: 'cover' }} src={office[0].img} />
+                                        <Carousel.Caption>
+
+                                        </Carousel.Caption>
+                                      </Carousel.Item>
+                                      <Carousel.Item>
+                                        <img className="d-block  img-fluid border border-success" style={{ height: '50vh', width: '100%', objectFit: 'cover' }} src={office[1].img} />
+
+                                        <Carousel.Caption>
+
+                                        </Carousel.Caption>
+                                      </Carousel.Item>
+                                      <Carousel.Item>
+                                        <img className="d-block  img-fluid border border-success" style={{ height: '50vh', width: '100%', objectFit: 'cover' }} src={office[2].img} />
+
+                                        <Carousel.Caption>
+
+                                        </Carousel.Caption>
+                                      </Carousel.Item>
+                                    </Carousel>
+
+                                  </div>
+
+
+                                  <div className="col-md-12 col-lg-4 col-xl-4 align-self-center p-2">
+                                    <div className="row">
+
+                                      <div className="col-6">
+                                        <div className="bg-image border border-success hover-zoom ripple rounded ripple-surface p-2">
+                                          <img src={office[1].img}
+                                            className="w-100" />
+                                        </div>
+                                      </div>
+
+                                      <div className="col-6">
+                                        <div className="bg-image border border-success hover-zoom ripple rounded ripple-surface p-2">
+                                          <img src={office[2].img}
+                                            className="w-100" />
+                                        </div>
+                                      </div>
+
+                                      <div className="col-6">
+                                        <div className="bg-image border border-success hover-zoom ripple rounded ripple-surface p-2">
+                                          <img src={office[2].img}
+                                            className="w-100" />
+                                        </div>
+                                      </div>
+                                      <div className="col-6">
+                                        <div className="bg-image border border-success hover-zoom ripple rounded ripple-surface p-2">
+                                          <img src={office[3].img}
+                                            className="w-100" />
+                                        </div>
+                                      </div>
+
+                                    </div>
+
+
+
+
+                                    <div className="text-center p-2" style={{ border: '0px' }}>
+                                      <button className='btn primary-btn-outline rounded-full btn-sm text-capitalize'>More Images</button>
+                                    </div>
+
+
+                                  </div>
+
+
                                 </div>
-                              </a>
-                            </div>
-                          </div>
-                          <div className="col-md-12 col-lg-12 col-xl-12 p-3">
-                            <h5><BeenhereIcon />{data.business}</h5>
-                            <div className="d-flex flex-row">
-                              {/* <div className="text-danger mb-1 me-2">
+
+
+
+
+                              </div>
+                              <div className="col-md-12 col-lg-12 col-xl-12 p-3">
+                                <h5><BeenhereIcon />{data.business}</h5>
+                                <div className="d-flex flex-row">
+                                  {/* <div className="text-danger mb-1 me-2">
                                   <i className="fa fa-star"></i>
                                   <i className="fa fa-star"></i>
                                   <i className="fa fa-star"></i>
                                   <i className="fa fa-star"></i>
                                 </div> */}
-                              <span>{data.name}</span>
-                            </div>
-                            <div className="mt-1 mb-0 text-muted small">
-                              <span>{data.address}</span>
-                              {/* <span className="text-primary"> • </span>
+                                  <span>{data.name}</span>
+                                </div>
+                                <div className="mt-1 mb-0 text-muted small">
+                                  <span>{data.address}</span>
+                                  {/* <span className="text-primary"> • </span>
                                 <span>Light weight</span>
                                 <span className="text-primary"> • </span>
                                 <span>Best finish<br /></span> */}
-                            </div>
-                            <div className="mb-2 text-muted small">
-                              <span>Room Size</span>
-                              <span className="text-primary"> • </span>
-                              <span>24x24</span>
-                              <span className="text-primary"> • </span>
-                              <span>10x12<br /></span>
-                            </div>
-                            <p className="text-truncate mb-4 mb-md-0">
-                              There are many variations of passages of Lorem Ipsum available, but the
-                              majority have suffered alteration in some form, by injected humour, or
-                              randomised words which don't look even slightly believable.
-                            </p>
-                          </div>
-                          <div className="col-md-12 col-lg-12 col-xl-12 border-sm-start-none border-start">
-                            <div className="d-flex flex-row align-items-center mb-1">
-                              <h4 className="mb-1 me-1">&#x20B9; {data.rate}.00</h4>
-                              <span className="text-danger"><s>&#x20B9; 200.99</s></span>
-                            </div>
-                            <h6 className="text-success"> Few rooms left.</h6>
-                            <div className="d-flex flex-column mt-4">
-                              
-                              <button className="btn primary-btn rounded-full" style={{ marginTop: '5px' }} type="button" onClick={(e) => { addToCart(e, data) }}>
-                                Add to wishlist
-                              </button>
+                                </div>
+                                <div className="mb-2 text-muted small">
+                                  <span>Room Size</span>
+                                  <span className="text-primary"> • </span>
+                                  <span>24x24</span>
+                                  <span className="text-primary"> • </span>
+                                  <span>10x12<br /></span>
+                                </div>
+                                <p className="text-truncate mb-4 mb-md-0">
+                                  <h5> About </h5> There are many variations of passages of Lorem Ipsum available, but the
+                                  majority have suffered alteration in some form, by injected humour, or
+                                  randomised words which don't look even slightly believable.
+                                </p>
+                              </div>
+
+
+                              <Table responsive>
+                                {/* <thead>
+        <tr>
+          
+            <th>Table headingj</th>
+            <th>Table heading</th>
+            <th>Table heading</th>
+            <th>Table heading</th>
+        </tr>
+      </thead> */}
+                                <tbody>
+                                  <tr>
+                                    <th>Status</th>
+                                    <td>Available</td>
+                                    <td>Mon - Saturday</td>
+                                    <td></td>
+                                  </tr>
+
+                                  <tr>
+                                    <th>Property Type</th>
+                                    <td>Warehouse</td>
+                                    <td>HOA Dues</td>
+                                    <td>&#x20B9; 333/month</td>
+                                  </tr>
+                                  <tr>
+                                    <th>Lot Size</th>
+                                    <td>9,452 Sq. Ft.</td>
+                                    <td>MLS#</td>
+                                    <td>1007135</td>
+                                  </tr>
+
+                                  <tr>
+                                    <th>Price/Sq.Ft.</th>
+                                    <td>&#x20B9; 240</td>
+                                    <td>Table cell {index}</td>
+                                    <td>Table cell {index}</td>
+                                  </tr>
+                                  
+                                  <tr>
+                                    <th>Warehouse Layout </th>
+                                    <td>Agriculture & Prepared Products</td>
+                                    <td>Base Metals</td>
+                                    <td>Electronics</td>
+                                  </tr>
+                                </tbody>
+                              </Table>
+
+
+
+
+
+                              <div className="col-md-12 col-lg-12 col-xl-12 border-sm-start-none border-start p-3">
+                                <div className="d-flex flex-row align-items-center mb-1">
+                                  <h4 className="mb-1 me-1">Facts and features</h4>
+                                </div>
+                                <li>Flooring: Carpet </li>
+                                <li>Heating features: Central</li>
+                                <li>Cooling features: Central Air</li>
+                                <li>Exterior features: Lighting, Private Yard</li>
+                                {/* <h6 className="text-success"> Few rooms left.</h6> */}
+
+                              </div>
+
+                              <div className="col-md-12 col-lg-12 col-xl-12 border-sm-start-none border-start p-3">
+                                <div className="d-flex flex-row align-items-center mb-1">
+                                  <h4 className="mb-1 me-1">Your personal guides</h4>
+                                </div>
+                                <li>Flooring: Carpet </li>
+                                <li>Heating features: Central</li>
+                                <li>Cooling features: Central Air</li>
+                                <li>Exterior features: Lighting, Private Yard</li>
+                                {/* <h6 className="text-success"> Few rooms left.</h6> */}
+
+                              </div>
+
+
+                              <div className="col-md-12 col-lg-12 col-xl-12 border-sm-start-none border-start">
+                                <div className="d-flex flex-row align-items-center mb-1">
+                                  <h4 className="mb-1 me-1">&#x20B9; {data.rate}.00</h4>
+                                  <span className="text-danger"><s>&#x20B9; 200.99</s></span>
+                                </div>
+                                <h6 className="text-success"> Few rooms left.</h6>
+                                <div className="d-flex flex-column mt-4">
+
+                                  <button className="btn primary-btn rounded-full" style={{ marginTop: '5px' }} type="button" onClick={(e) => { addToCart(e, data) }}>
+                                    Add to wishlist
+                                  </button>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
 
 
 
