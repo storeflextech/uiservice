@@ -4,8 +4,8 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
 const Pricing = () => {
-  return (
-    <>
+    return (
+      <>
       <section id="pricing" className="pricing-area pricing-fifteen">
         <div className="section-title-three">
           <div className="container">
@@ -15,9 +15,8 @@ const Pricing = () => {
                   <h5>Pricing Plan</h5>
                   <h2 className="fw-bold">Our Best Pricing</h2>
                   <p>
-                    There are many variations of passages of Lorem Ipsum
-                    available, but the majority have suffered alteration in some
-                    form.
+                    There are many variations of passages of Lorem Ipsum available,
+                    but the majority have suffered alteration in some form.
                   </p>
                 </div>
               </div>
@@ -156,7 +155,7 @@ const Pricing = () => {
           </Carousel>
         </div>
       </section>
-    </>
-  );
+      </>
+    );
 };
 export default Pricing;

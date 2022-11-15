@@ -80,8 +80,7 @@ const Services = () => {
                   <span className="serial">02</span>
                   <h4>Resource Management</h4>
                   <p>
-                    We enjoy working with discerning clients, people &
-                    company...
+                    We enjoy working with discerning clients, people & company...
                   </p>
                   <div className="light-rounded-buttons">
                     <button

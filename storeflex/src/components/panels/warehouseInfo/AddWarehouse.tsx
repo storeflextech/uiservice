@@ -4,6 +4,7 @@ import WearehousePricing from './WearehousePricing';
 import WarehouseHours from './WarehouseHours';
 import WarehouseLayout from './WarehouseLayout';
 import { Button } from '@mui/material';
+import Footer from '../../footer/footer';
 
 const AddWarehouse = () => {
     return (
@@ -17,8 +18,8 @@ const AddWarehouse = () => {
                         <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
                         <Button className="btn primary-btn sf-btn" variant="contained" onClick={() => {}}> Save </Button>
                     </div>
+        <Footer/>
         </>
-       
     )
 }
 
