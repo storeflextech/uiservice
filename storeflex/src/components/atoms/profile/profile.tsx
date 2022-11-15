@@ -57,6 +57,9 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
         return(
             <>
                 <MenuItem>
+                <ListItemText><a href="/dashboard">Dashboard</a></ListItemText>
+                </MenuItem>
+                <MenuItem>
                 <ListItemText>Messages</ListItemText>
                 </MenuItem>
                 <MenuItem>
