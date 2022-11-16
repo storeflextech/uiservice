@@ -15,7 +15,7 @@ const ClientDashboard = (props) => {
         <>
             <div className='sf-flex-grid sf-justify'>
                 <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.Business.path) }}>
-                    Business
+                    Company
                 </Button>
 
                 <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.PgSearch.path) }}>

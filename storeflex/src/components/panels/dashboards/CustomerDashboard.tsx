@@ -14,7 +14,7 @@ const CustomerDashboard = (props) => {
     return (
         <>
             <div className='sf-flex-grid sf-justify'>
-                <Button className='m-sm sf-btn w100' size="lg" active>
+                <Button onClick={() => handelOnClick('/view-profile')} className='m-sm sf-btn w100' size="lg" active>
                     Profile
                 </Button>
 

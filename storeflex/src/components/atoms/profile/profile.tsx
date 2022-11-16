@@ -7,6 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import {ProfileBtn} from '../button/button';
 import './profile.scss';
+import { useNavigate } from 'react-router-dom';
 
 interface ProfileMenuProps {
     isSigned?: boolean;
@@ -25,6 +26,10 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const navigate = useNavigate();
+  const goToNextPage = (pagePath: string) => {
+    navigate(pagePath);
+  }
 
     const signOutList = () => {
         return(
@@ -52,30 +57,33 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
         return(
             <>
                 <MenuItem>
+                <ListItemText><a href="/dashboard">Dashboard</a></ListItemText>
+                </MenuItem>
+                <MenuItem>
                 <ListItemText>Messages</ListItemText>
                 </MenuItem>
                 <MenuItem>
-                    <ListItemText>Bookings</ListItemText>
+                    <ListItemText><a onClick={()=> {goToNextPage('/bookings')}}>Bookings</a></ListItemText>
                 </MenuItem>
                 <MenuItem>
-                    <ListItemText>Wishlists</ListItemText>
+                    <ListItemText><a onClick={()=>{goToNextPage('/cart')}}>Wishlists</a></ListItemText>
                 </MenuItem>
                 <Divider />
                 <MenuItem>
                     <ListItemText>List Space</ListItemText>
                 </MenuItem>
                 <MenuItem>
-                    <ListItemText>Search Space</ListItemText>
+                    <ListItemText><a onClick={()=>{goToNextPage('/search')}}>Search Space</a></ListItemText>
                 </MenuItem>
                 <MenuItem>
                     <ListItemText>Edit Profile</ListItemText>
                 </MenuItem>
                 <Divider />
                 <MenuItem>
-                    <ListItemText>Help</ListItemText>
+                    <ListItemText><a onClick={()=>{goToNextPage('/faq')}}>Help</a></ListItemText>
                 </MenuItem>
                 <MenuItem>
-                    <ListItemText>Log out</ListItemText>
+                    <ListItemText><a onClick={()=>{goToNextPage("/signin-new")}}>Log out</a></ListItemText>
                 </MenuItem>
             </>
         )

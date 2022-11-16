@@ -28,7 +28,7 @@ const HomePage = () => {
                   {<DemoVideo />}
                   {<Pricing />}
                   {<Brand />}
-                  {/* {<Team />} */}
+                  {<Team />}
                   {<Subscription />}
                   {<Contact />}
                 </div>

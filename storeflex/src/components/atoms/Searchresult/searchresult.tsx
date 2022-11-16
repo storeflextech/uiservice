@@ -2,14 +2,15 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom"
 import { styled } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
 import './searchresult.css';
 import { Container, Button, AppBar, Toolbar } from '@mui/material';
 import BeenhereIcon from '@mui/icons-material/Beenhere';
-import HourglassTopIcon from '@mui/icons-material/HourglassTop';
 import Filter from './filter';
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
+import Carousel from 'react-bootstrap/Carousel';
+import Table from 'react-bootstrap/Table';
 
 
 
@@ -74,8 +75,10 @@ export default function Searchresult() {
     ])
 
     setOffice(data);
-    console.log(office)
-    console.log('load');
+
+
+
+
 
   }, [])
 
@@ -95,6 +98,19 @@ export default function Searchresult() {
 
   }
 
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+  };
+
   return (
 
     <>
@@ -102,89 +118,8 @@ export default function Searchresult() {
 
       <div className="row">
 
-      <Filter officeData={office} handleFilte={handleFilte} />
-        {/* <div className="col-md-2 pr-1" style={{ backgroundColor: '#eee' }}>
-          <div className="card m-0">
-            <div className="col-md-12 p-1">
-              <span>
-                Filter And Sort Locations
-              </span>
-              <hr />
+        <Filter officeData={office} handleFilte={handleFilte} />
 
-              <div className="card-group-item">
-
-                <header className="card-header p-0">
-                  <h6 className="title">Sorts By Price:</h6>
-                </header>
-
-
-                <div className="filter-content ml-2">
-                  <div className="card-body">
-                    <label className="form-check">
-                      <input className="form-check-input" type="radio" name="price" value="ascending" />
-                      <span className="form-check-label m-0">
-                      Lowest to Highest
-                      </span>
-                    </label>
-
-                    <label className="form-check">
-                      <input className="form-check-input" type="radio" name="price" value="descending" />
-                      <span className="form-check-label m-0">
-                      Highest to Lowest
-                      </span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <article className="card-group-item">
-                <header className="card-header p-0">
-                  <h6 className="title">Choose by Storage Layout: </h6>
-                </header>
-                <div className="filter-content  ml-2">
-                  <div className="card-body">
-                    <form>
-                      <label className="form-check">
-                        <input className="form-check-input" type="checkbox" value="Floor Space" />
-                        <span className="form-check-label m-0">
-                        Floor Space
-                        </span>
-                      </label>
-                      <label className="form-check">
-                        <input className="form-check-input" type="checkbox" value="Racking" />
-                        <span className="form-check-label m-0">
-                        Racking
-                        </span>
-                      </label>
-                      <label className="form-check">
-                        <input className="form-check-input" type="checkbox" value="Secured Room" />
-                        <span className="form-check-label m-0">
-                        Secured Room
-                        </span>
-                      </label>
-                      <label className="form-check">
-                        <input className="form-check-input" type="checkbox" value="Pick Module" />
-                        <span className="form-check-label m-0">
-                        Pick Module
-                        </span>
-                      </label>
-                      <label className="form-check">
-                        <input className="form-check-input" type="checkbox" value="Pick Dedicated Room" />
-                        <span className="form-check-label m-0">
-                        Pick Dedicated Room
-                        </span>
-                      </label>
-                    </form>
-
-                  </div>
-                </div>
-              </article>
-
-
-            </div>
-          </div>
-
-        </div> */}
 
 
 
@@ -269,8 +204,8 @@ export default function Searchresult() {
                             </div>
                             <h6 className="text-success"> Few rooms left.</h6>
                             <div className="d-flex flex-column mt-4">
-                              <button className="btn primary-btn-outline rounded-full" type="button">Details</button>
-                              <button className="btn primary-btn rounded-full" style={{marginTop:'5px'}} type="button" onClick={(e) => { addToCart(e, data) }}>
+                              <button className="btn primary-btn-outline rounded-full" type="button" onClick={handleShow}>Details</button>
+                              <button className="btn primary-btn rounded-full" style={{ marginTop: '5px' }} type="button" onClick={(e) => { addToCart(e, data) }}>
                                 Add to wishlist
                               </button>
                             </div>
@@ -279,7 +214,252 @@ export default function Searchresult() {
                       </div>
                     </div>
                   </div>
+
+                  <Modal show={show} fullscreen={true} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                      {/* <Modal.Title>Update Profile</Modal.Title> */}
+                    </Modal.Header>
+                    <Modal.Body>
+
+
+                      <div className="col-md-12 col-xl-12">
+                        <div className="card shadow-0 border rounded-3">
+                          <div className="card-body">
+                            <div className="row">
+                              <div className="col-12 mb-4 mb-lg-0 border border-warning">
+
+                                <div className="row">
+                                  <div className="col-md-12 col-lg-8 col-xl-8 p-2">
+                                    {/* <div className="bg-image hover-zoom ripple rounded ripple-surface">
+                                      <img src={data.img}
+                                        className="w-100" />
+                                    </div> */}
+
+                                    <Carousel fade>
+                                      <Carousel.Item>
+                                        <img className="d-block  img-fluid border border-success" style={{ height: '50vh', width: '100%', objectFit: 'cover' }} src={office[0].img} />
+                                        <Carousel.Caption>
+
+                                        </Carousel.Caption>
+                                      </Carousel.Item>
+                                      <Carousel.Item>
+                                        <img className="d-block  img-fluid border border-success" style={{ height: '50vh', width: '100%', objectFit: 'cover' }} src={office[1].img} />
+
+                                        <Carousel.Caption>
+
+                                        </Carousel.Caption>
+                                      </Carousel.Item>
+                                      <Carousel.Item>
+                                        <img className="d-block  img-fluid border border-success" style={{ height: '50vh', width: '100%', objectFit: 'cover' }} src={office[2].img} />
+
+                                        <Carousel.Caption>
+
+                                        </Carousel.Caption>
+                                      </Carousel.Item>
+                                    </Carousel>
+
+                                  </div>
+
+
+                                  <div className="col-md-12 col-lg-4 col-xl-4 align-self-center p-2">
+                                    <div className="row">
+
+                                      <div className="col-6">
+                                        <div className="bg-image border border-success hover-zoom ripple rounded ripple-surface p-2">
+                                          <img src={office[1].img}
+                                            className="w-100" />
+                                        </div>
+                                      </div>
+
+                                      <div className="col-6">
+                                        <div className="bg-image border border-success hover-zoom ripple rounded ripple-surface p-2">
+                                          <img src={office[2].img}
+                                            className="w-100" />
+                                        </div>
+                                      </div>
+
+                                      <div className="col-6">
+                                        <div className="bg-image border border-success hover-zoom ripple rounded ripple-surface p-2">
+                                          <img src={office[2].img}
+                                            className="w-100" />
+                                        </div>
+                                      </div>
+                                      <div className="col-6">
+                                        <div className="bg-image border border-success hover-zoom ripple rounded ripple-surface p-2">
+                                          <img src={office[3].img}
+                                            className="w-100" />
+                                        </div>
+                                      </div>
+
+                                    </div>
+
+
+
+
+                                    <div className="text-center p-2" style={{ border: '0px' }}>
+                                      <button className='btn primary-btn-outline rounded-full btn-sm text-capitalize'>More Images</button>
+                                    </div>
+
+
+                                  </div>
+
+
+                                </div>
+
+
+
+
+                              </div>
+                              <div className="col-md-12 col-lg-12 col-xl-12 p-3">
+                                <h5><BeenhereIcon />{data.business}</h5>
+                                <div className="d-flex flex-row">
+                                  {/* <div className="text-danger mb-1 me-2">
+                                  <i className="fa fa-star"></i>
+                                  <i className="fa fa-star"></i>
+                                  <i className="fa fa-star"></i>
+                                  <i className="fa fa-star"></i>
+                                </div> */}
+                                  <span>{data.name}</span>
+                                </div>
+                                <div className="mt-1 mb-0 text-muted small">
+                                  <span>{data.address}</span>
+                                  {/* <span className="text-primary"> • </span>
+                                <span>Light weight</span>
+                                <span className="text-primary"> • </span>
+                                <span>Best finish<br /></span> */}
+                                </div>
+                                <div className="mb-2 text-muted small">
+                                  <span>Room Size</span>
+                                  <span className="text-primary"> • </span>
+                                  <span>24x24</span>
+                                  <span className="text-primary"> • </span>
+                                  <span>10x12<br /></span>
+                                </div>
+                                <p className="text-truncate mb-4 mb-md-0">
+                                  <h5> About </h5> There are many variations of passages of Lorem Ipsum available, but the
+                                  majority have suffered alteration in some form, by injected humour, or
+                                  randomised words which don't look even slightly believable.
+                                </p>
+                              </div>
+
+
+                              <Table responsive>
+                                {/* <thead>
+        <tr>
+          
+            <th>Table headingj</th>
+            <th>Table heading</th>
+            <th>Table heading</th>
+            <th>Table heading</th>
+        </tr>
+      </thead> */}
+                                <tbody>
+                                  <tr>
+                                    <th>Status</th>
+                                    <td>Available</td>
+                                    <td>Mon - Saturday</td>
+                                    <td></td>
+                                  </tr>
+
+                                  <tr>
+                                    <th>Property Type</th>
+                                    <td>Warehouse</td>
+                                    <td>HOA Dues</td>
+                                    <td>&#x20B9; 333/month</td>
+                                  </tr>
+                                  <tr>
+                                    <th>Lot Size</th>
+                                    <td>9,452 Sq. Ft.</td>
+                                    <td>MLS#</td>
+                                    <td>1007135</td>
+                                  </tr>
+
+                                  <tr>
+                                    <th>Price/Sq.Ft.</th>
+                                    <td>&#x20B9; 240</td>
+                                    <td>Table cell {index}</td>
+                                    <td>Table cell {index}</td>
+                                  </tr>
+                                  
+                                  <tr>
+                                    <th>Warehouse Layout </th>
+                                    <td>Agriculture & Prepared Products</td>
+                                    <td>Base Metals</td>
+                                    <td>Electronics</td>
+                                  </tr>
+                                </tbody>
+                              </Table>
+
+
+
+
+
+                              <div className="col-md-12 col-lg-12 col-xl-12 border-sm-start-none border-start p-3">
+                                <div className="d-flex flex-row align-items-center mb-1">
+                                  <h4 className="mb-1 me-1">Facts and features</h4>
+                                </div>
+                                <li>Flooring: Carpet </li>
+                                <li>Heating features: Central</li>
+                                <li>Cooling features: Central Air</li>
+                                <li>Exterior features: Lighting, Private Yard</li>
+                                {/* <h6 className="text-success"> Few rooms left.</h6> */}
+
+                              </div>
+
+                              <div className="col-md-12 col-lg-12 col-xl-12 border-sm-start-none border-start p-3">
+                                <div className="d-flex flex-row align-items-center mb-1">
+                                  <h4 className="mb-1 me-1">Your personal guides</h4>
+                                </div>
+                                <li>Flooring: Carpet </li>
+                                <li>Heating features: Central</li>
+                                <li>Cooling features: Central Air</li>
+                                <li>Exterior features: Lighting, Private Yard</li>
+                                {/* <h6 className="text-success"> Few rooms left.</h6> */}
+
+                              </div>
+
+
+                              <div className="col-md-12 col-lg-12 col-xl-12 border-sm-start-none border-start">
+                                <div className="d-flex flex-row align-items-center mb-1">
+                                  <h4 className="mb-1 me-1">&#x20B9; {data.rate}.00</h4>
+                                  <span className="text-danger"><s>&#x20B9; 200.99</s></span>
+                                </div>
+                                <h6 className="text-success"> Few rooms left.</h6>
+                                <div className="d-flex flex-column mt-4">
+
+                                  <button className="btn primary-btn rounded-full" style={{ marginTop: '5px' }} type="button" onClick={(e) => { addToCart(e, data) }}>
+                                    Add to wishlist
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+                    </Modal.Body>
+                    <Modal.Footer>
+                      <Button className='btn-sm text-capitalize' onClick={handleClose}>
+                        Close
+                      </Button>
+                    </Modal.Footer>
+                  </Modal>
+
+
+
                 </div>
+
+
+
+
+
+
+
+
+
+
               ))}
 
             </div>

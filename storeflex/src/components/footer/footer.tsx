@@ -23,21 +23,25 @@ const Footer = () => {
                  <!-- footer logo --> 
                 <p className="text-center">Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum
                   has been. </p>*/}
-                <h5 className="text-center social-title">Follow Us On</h5>
-                <ul className="social text-center mt-60">
-                  <li>
-                    <a href="javascript:void(0)"> <i className="lni lni-facebook-filled"></i> </a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)"> <i className="lni lni-twitter-original"></i> </a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)"> <i className="lni lni-instagram-filled"></i> </a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)"><i className="lni lni-linkedin-original"></i></a>
-                  </li>
-                </ul>
+                <div className="social text-center mt-60">
+                  
+                  <ul>
+                    <li>
+                    <h4>Follow Us On</h4>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0)"> <i className="lni lni-facebook-filled"></i> </a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0)"> <i className="lni lni-twitter-original"></i> </a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0)"> <i className="lni lni-instagram-filled"></i> </a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0)"><i className="lni lni-linkedin-original"></i></a>
+                    </li>
+                  </ul></div>
                 {/* <!-- social --> */}
               </div>
               <Nav className="justify-content-center">
