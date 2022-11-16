@@ -58,7 +58,7 @@ const TopNavbar = () => {
                       <a className="page-scroll" href="/home#services">Services</a>
                     </li>
                     <li className="nav-item">
-                      <a className="page-scroll" href="/home#pricing">Pricing</a>
+                      <a className="page-scroll" href="/home#pricing">Featured WH</a>
                     </li>
                     <li className="nav-item">
                       <a className="page-scroll" href="/home#team">Clients</a>
