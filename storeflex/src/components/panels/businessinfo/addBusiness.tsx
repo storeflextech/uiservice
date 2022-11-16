@@ -4,7 +4,8 @@ import InputBox from '../../atoms/textfield/InputBox';
 import AddressDetails from '../../atoms/addressforms/AddressDetails';
 import { BusinessDetails } from '../../../utils/ResponseSchema';
 import { validateCharacterLength, validatePhone, validateWebUrl, validateGst } from '../../../utils/CommonUtils';
-
+import  Api  from '../../../../src/api/Api';
+import { AddCompanyProps } from '../../../../src/api/ApiConfig';
 
 interface AddBusinessProps {
     profileData?: BusinessDetails;
@@ -12,8 +13,42 @@ interface AddBusinessProps {
     action?: string;
 }
 
+const companyData={
+    compyName: "My Company112",
+    compyDesc: "Company located at guwahati. Baki details najanu",
+    photoName: "Display Image",
+    url: "https://namnothokacompany.com",
+    updatedBy: "Mithu Zaman",
+    status: true,
+    addresses: [
+        {
+          addressType: "Official",
+          plotNo: "420",
+          houseNo: "120",
+          streetDetails: "Silpukhuri Street ",
+          city: "Guwahati",
+          state: "Assam",
+          country: "India",
+          pincode: "781003",
+          createBy: "Admin",
+          updatedBy: "Admin"
+        }
+      ],
+      contact: [
+        {
+          contactName: "Micheal John",
+          mobileNo: "9988776655",
+          landLine: "0361-23022",
+          landLineExt: "0361",
+          emailId: "contact@storeflex.com",
+          createBy: "Admin",
+          updatedBy: "Admin",
+        }
+      ]
+  }
+  
 const AddBusiness = (props: AddBusinessProps) => {
-
+    const api = new Api();
     const [values, setValues] = useState({
         companyname: "",
         companyurl: "",
@@ -95,7 +130,12 @@ const AddBusiness = (props: AddBusinessProps) => {
         }
     }
     const saveBusinessInfo = () => {
-        setErrors(validation(values));
+        // setErrors(validation(values));
+        const data: AddCompanyProps= companyData;
+        api.addCompany(data).then((response) => {
+            console.log(' Company creation res >>>>>> ', response);
+           
+        });
         // const profile = props?.profileData as BusinessDetails; 
         // setBusinessProfile(profile);
         // setProfileSaved(true);

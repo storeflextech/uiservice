@@ -20,7 +20,6 @@ interface warehouse {
 
 const imgUrl = "assets/images/header/04.jpg";
 
-
 const PrimeSection = () => {
   const navigate = useNavigate();
   const goToNextPage = (pagePath: string) => {
@@ -76,15 +75,36 @@ const PrimeSection = () => {
                 <div className="home-slider">
                   <div className="header-text align-items-center">
                     <h1>
-                      Smarter search for space at your fingertips under one roof<br />
-                      <h4><i> Global marketplace for warehouse & logistics management solutions</i></h4>
+                      Smarter search for space at your fingertips under one roof
+                      <br />
+                      <h4>
+                        <i>
+                          {" "}
+                          Global marketplace for warehouse & logistics
+                          management solutions
+                        </i>
+                      </h4>
                       <div className="light-rounded-buttons">
-                         <a href="javascript:void(0)" className="btn primary-btn" onClick = {()=> goToNextPage('/discovermore')}> Discover More </a>
+                        <a
+                          href="javascript:void(0)"
+                          className="btn primary-btn"
+                          onClick={() => goToNextPage("/discovermore")}
+                        >
+                          {" "}
+                          Discover More{" "}
+                        </a>
                       </div>
                     </h1>
                     <h6>LET’S FIND THE WAREHOUSE YOU ARE LOOKING FOR</h6>
-                
+
                     <div className="form-group d-flex flex-row">
+                      <input
+                        className="input-search-size form-control p-2"
+                        name="name"
+                        type="text"
+                        placeholder="Enter Pin or City"
+                        style={{ height: "50px" }}
+                      />
 
                       <input className="input-search-size form-control p-2" name="name" ref={inputRef} type="text" placeholder="Enter Pin or City" style={{ height: '50px' }} />
 
@@ -99,20 +119,123 @@ const PrimeSection = () => {
 
                     </div>
 
-{/* 
-                    <div className="light-rounded-buttons float-end">
+                    {/* <div className="light-rounded-buttons float-end">
                       <a href="javascript:void(0)" onClick={() => { goToNextPage('/search-new') }} className="btn primary-btn"><i className="lni-large lni-search-alt"></i> </a>
                     </div> */}
-
-
-
                   </div>
                 </div>
               </div>
               <div className="col-lg-6 col-12">
-                <div className="header-image" style={{ background: 'url(' + imgUrl + ')', float: 'right', height: '500px', width: '500px', display: 'block' }}>
+                <Carousel
+                  fade={true}
+                  controls={false}
+                  slide={false}
+                  interval={2000}
+                  pause={false}
+                >
+                  <Carousel.Item>
+                    <img
+                      className="d-block w-100 header-image"
+                      src="assets/images/header/img1.png"
+                      alt="Storeflex"
+                    />
+
+                    <Carousel.Caption>
+                      <h3 style={{ color: "dark" }}>First slide label</h3>
+                      <p>
+                        <i> Nulla vitae elit libero </i>
+                      </p>
+                    </Carousel.Caption>
+                  </Carousel.Item>
+                  <Carousel.Item>
+                    <img
+                      className="d-block w-100 header-image"
+                      src="assets/images/header/img2.png"
+                      alt="Storeflex"
+                    />
+
+                    <Carousel.Caption>
+                      <h3 style={{ color: "dark" }}>Second slide label</h3>
+                      <p>
+                        <i> Lorem adipiscing elit.</i>
+                      </p>
+                    </Carousel.Caption>
+                  </Carousel.Item>
+                  <Carousel.Item>
+                    <img
+                      className="d-block w-100  header-image"
+                      src="assets/images/header/img3.png"
+                      alt="Storeflex"
+                    />
+
+                    <Carousel.Caption>
+                      <h3 style={{ color: "dark" }}>Third slide label</h3>
+                      <p>
+                        <i> Praesents magna.</i>
+                      </p>
+                    </Carousel.Caption>
+                  </Carousel.Item>
+                  <Carousel.Item>
+                    <img
+                      className="d-block w-100  header-image"
+                      src="assets/images/header/img4.png"
+                      alt="Storeflex"
+                    />
+
+                    <Carousel.Caption>
+                      <h3 style={{ color: "dark" }}>Fourth slide label</h3>
+                      <p>
+                        <i>alosdbh ahgbdhv.</i>
+                      </p>
+                    </Carousel.Caption>
+                  </Carousel.Item>
+                  <Carousel.Item>
+                    <img
+                      className="d-block w-100  header-image"
+                      src="assets/images/header/img5.png"
+                      alt="Storeflex"
+                    />
+
+                    <Carousel.Caption>
+                      <h3 style={{ color: "dark" }}>Fourth slide label</h3>
+                      <p>
+                        <i>alosdbh ahgbdhv.</i>
+                      </p>
+                    </Carousel.Caption>
+                  </Carousel.Item>
+                  <Carousel.Item>
+                    <img
+                      className="d-block w-100  header-image"
+                      src="assets/images/header/img6.png"
+                      alt="Storeflex"
+                    />
+
+                    <Carousel.Caption>
+                      <h3 style={{ color: "dark" }}>Fourth slide label</h3>
+                      <p>
+                        <i>alosdbh ahgbdhv.</i>
+                      </p>
+                    </Carousel.Caption>
+                  </Carousel.Item>
+                  <Carousel.Item>
+                    <img
+                      className="d-block w-100  header-image"
+                      src="assets/images/header/img7.png"
+                      alt="Storeflex"
+                    />
+
+                    <Carousel.Caption>
+                      <h3 style={{ color: "dark" }}>Fourth slide label</h3>
+                      <p>
+                        <i>alosdbh ahgbdhv.</i>
+                      </p>
+                    </Carousel.Caption>
+                  </Carousel.Item>
+                </Carousel>
+
+                {/* <div className="header-image" style={{ background: 'url(' + imgUrl + ')', float: 'right', height: '500px', width: '500px', display: 'block' }}>
                   <img className="shape3" src="assets/images/header/shape3.png" alt="#" />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 // import React from 'react';
 import axios from 'axios';
-import { ApiConfig, SignInProps } from './ApiConfig';
+import { ApiConfig, SignInProps, AddCompanyProps, ViewCompaniesProps } from './ApiConfig';
 
 
 // let axiosConfig = {
@@ -13,9 +13,11 @@ import { ApiConfig, SignInProps } from './ApiConfig';
 
 
 export default class Api {
+    baseUrl:any;
     apiUrl: ApiConfig;
     constructor() {
         this.apiUrl = new ApiConfig();
+        this.baseUrl = process.env.REACT_APP_API_URL;
     }
 
     async getTest() {
@@ -29,7 +31,7 @@ export default class Api {
     }
 
     async signIn(postData: SignInProps): Promise<any>{
-        const url = this.apiUrl.signinTestApi;
+        const url = this.baseUrl+this.apiUrl.signinTestApi;
         try {
             const response = await axios.post(url, postData);
             return Promise.resolve(response);

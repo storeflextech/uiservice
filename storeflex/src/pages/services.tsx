@@ -41,9 +41,6 @@ const Services = () => {
                                     <Grid item xs={12}>
                                         <input type="checkbox" name="week" id="" /> Carton Receiving
                                     </Grid>
-
-
-
                                 </Grid>
                                 <Grid item xs={4}>
                                     <Grid item xs={12}>
@@ -61,9 +58,6 @@ const Services = () => {
                                     <Grid item xs={6}>
                                         <input type="checkbox" name="week" id="" /> Cartin Pick
                                     </Grid>
-
-
-
                                 </Grid>
 
                             </Grid>

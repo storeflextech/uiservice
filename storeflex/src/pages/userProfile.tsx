@@ -250,7 +250,7 @@ const UserProfile = () => {
                                                                 className="bg-{success} form-control font-weight-bold"
                                                                 type="text"
                                                                 name='city'
-                                                                value={getUserType()}
+                                                                // value={getUserType()}
                                                                 disabled={true}
                                                             />
 
