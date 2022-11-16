@@ -12,7 +12,7 @@ const ViewBusiness = () => {
     const [modalShow, setModalShow] = React.useState(false);
     const [myCompanies, setMyCompanies] = useState<Array<any>>([]);
     const [businessInfo, setBusinessInfo] = useState<Array<any>>([]);
-    
+
     var pageNo:any='0';
     var pageSize:any='6';
 
@@ -77,7 +77,6 @@ const ViewBusiness = () => {
     }, [])
 
     const getMyCompanies = (pageNo, pageSize) =>{
-       
         const data: ViewCompaniesProps= {page:pageNo,size:pageSize};
         api.getMyCompanies(data).then((response) => {
            if(response.status==200){

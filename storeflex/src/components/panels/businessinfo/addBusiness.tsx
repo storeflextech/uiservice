@@ -14,9 +14,8 @@ interface AddBusinessProps {
 }
 
 const companyData={
-    compyName: "Nam Nothoka Company",
+    compyName: "My Company112",
     compyDesc: "Company located at guwahati. Baki details najanu",
-    photo: "no photo available" ,
     photoName: "Display Image",
     url: "https://namnothokacompany.com",
     updatedBy: "Mithu Zaman",

@@ -4,21 +4,44 @@ export interface SignInProps {
     password: string;
 }
 
-export interface ViewCompaniesProps{
+export interface ViewCompaniesProps {
     page: string;
     size: string;
 }
 
-export interface AddCompanyProps{
-        compyName: string;
-        compyDesc: string;
-        photo: string;
-        photoName: string;
-        url: string;
-        updatedBy: string;
-        status: boolean;
-        addresses:Array<object>;
-        contact:Array<object>;
+export interface Address {
+    addressType: string,
+    plotNo: string,
+    houseNo: string,
+    streetDetails: string,
+    city: string,
+    state: string,
+    country: string,
+    pincode: string,
+    createBy: string,
+    updatedBy: string,
+}
+
+export interface Contact {
+    contactName: string,
+    mobileNo: string,
+    landLine: string,
+    landLineExt: string,
+    emailId: string,
+    createBy: string,
+    updatedBy: string,
+}
+
+export interface AddCompanyProps {
+    compyName: string;
+    compyDesc: string;
+    photo?: string;
+    photoName: string;
+    url: string;
+    updatedBy: string;
+    status: boolean;
+    addresses: Address[];
+    contact: Contact[];
 }
 
 export class ApiConfig {

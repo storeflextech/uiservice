@@ -49,7 +49,7 @@ export default class Api {
             return Promise.resolve(response);
         }
         catch (error) {
-            console.log(' error : signIn', error);
+            console.log(' error : Add company', error);
             return Promise.reject(error);
         }
     }
@@ -61,7 +61,7 @@ export default class Api {
             return Promise.resolve(response);
         }
         catch (error) {
-            console.log(' error : signIn', error);
+            console.log(' error : Get Company', error);
             return Promise.reject(error);
         }
     }
