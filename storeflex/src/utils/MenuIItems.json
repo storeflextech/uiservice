@@ -55,17 +55,17 @@
                     "Icon": "mdi mdi-view-module menu-icon"
                 },
                 {
-                    "Label": "Business",
+                    "Label": "Company",
                     "Name": "BusinessMenu",
                     "NavigateTo": "self",
                     "SubMenu": [
                         {
-                            "Label": "Add Business",
+                            "Label": "Add Company",
                             "Name": "",
                             "NavigateTo": "/business/add"
                         },
                         {
-                            "Label": "View Business",
+                            "Label": "View Company",
                             "Name": "",
                             "NavigateTo": "/business/view"
                         }
@@ -98,17 +98,12 @@
                         {
                             "Label": "Add User",
                             "Name": "",
+                            "NavigateTo": "/addinfo"
+                        },
+                        {
+                            "Label": "View User",
+                            "Name": "",
                             "NavigateTo": "/viewuser"
-                        },
-                        {
-                            "Label": "Delete User",
-                            "Name": "",
-                            "NavigateTo": "/delete-user"
-                        },
-                        {
-                            "Label": "Update User",
-                            "Name": "",
-                            "NavigateTo": "/update-user"
                         }
                     ],
                     "Icon": "mdi mdi-account-multiple-outline menu-icon"
@@ -141,8 +136,14 @@
                 {
                     "Label": "Search",
                     "Name": "SearchMenu",
-                    "NavigateTo": "/search",
-                    "SubMenu": [],
+                    "NavigateTo": "self",
+                    "SubMenu": [
+                        {
+                            "Label": "Search Company",
+                            "Name": "SearchBusinessMenu",
+                            "NavigateTo": "/search"
+                        }
+                    ],
                     "Icon": "mdi mdi-magnify menu-icon"
                 },
                 {
@@ -151,7 +152,7 @@
                     "NavigateTo": "self",
                     "SubMenu": [
                         {
-                            "Label": "Business Report",
+                            "Label": "Company Report",
                             "Name": "BusinessReportMenu",
                             "NavigateTo": "/business-report"
                         },
@@ -222,17 +223,17 @@
                     "Icon": "mdi mdi-view-module menu-icon"
                 },
                 {
-                    "Label": "Business",
+                    "Label": "Company",
                     "Name": "BusinessMenu",
                     "NavigateTo": "self",
                     "SubMenu": [
                         {
-                            "Label": "Update Business",
+                            "Label": "Update Company",
                             "Name": "",
                             "NavigateTo": "/update-business"
                         },
                         {
-                            "Label": "View Business",
+                            "Label": "View Company",
                             "Name": "",
                             "NavigateTo": "/view-business"
                         }
@@ -281,11 +282,6 @@
                             "Label": "Delete User",
                             "Name": "",
                             "NavigateTo": "/delete-user"
-                        },
-                        {
-                            "Label": "Update User",
-                            "Name": "",
-                            "NavigateTo": "/update-user"
                         }
                     ],
                     "Icon": "mdi mdi-account-multiple-outline menu-icon"
@@ -319,7 +315,7 @@
                     "NavigateTo": "self",
                     "SubMenu": [
                         {
-                            "Label": "Search Business",
+                            "Label": "Search Company",
                             "Name": "SearchBusinessMenu",
                             "NavigateTo": "/search-business"
                         },
@@ -337,7 +333,7 @@
                     "NavigateTo": "self",
                     "SubMenu": [
                         {
-                            "Label": "Business Report",
+                            "Label": "Company Report",
                             "Name": "BusinessReportMenu",
                             "NavigateTo": "/business-report"
                         },
