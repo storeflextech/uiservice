@@ -73,7 +73,7 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
                     <ListItemText>Search Space</ListItemText>
                 </MenuItem>
                 <MenuItem>
-                    <ListItemText>Edit Profile</ListItemText>
+                    <ListItemText onClick={()=>goToNextPage("/view-profile")}>Edit Profile</ListItemText>
                 </MenuItem>
                 <Divider />
                 <MenuItem>

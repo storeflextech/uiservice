@@ -39,4 +39,29 @@ export default class Api {
             return Promise.reject(error);
         }
     }
+
+    async warehouseSearch(data:any): Promise<any>{
+        const url = this.apiUrl.warehouseSearchApi+'?pincode='+data+'&size=10';
+        try {
+            const response = await axios.get(url);
+            return Promise.resolve(response);
+        }
+        catch (error) {
+            console.log(' error : warehouseSearch', error);
+            return Promise.reject(error);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
