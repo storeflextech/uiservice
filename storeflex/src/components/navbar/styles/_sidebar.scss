@@ -33,7 +33,8 @@
         @include display-flex;
         @include align-items(center);
         white-space: nowrap;
-        padding:$sidebar-menu-padding-y 0 $sidebar-menu-padding-y 0;
+        // padding:$sidebar-menu-padding-y 0 $sidebar-menu-padding-y 0;
+        padding: 0.5rem 0 0.8rem 0;
         color: $sidebar-light-menu-color;
         @include transition-duration(0.45s);
         transition-property: color;
