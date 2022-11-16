@@ -42,28 +42,39 @@ export default class Api {
         }
     }
 
-    async warehouseSearch(data:any): Promise<any>{
-        const url = this.apiUrl.warehouseSearchApi+'?pincode='+data+'&size=10';
+    async addCompany(postData: AddCompanyProps): Promise<any>{
+        const url = this.baseUrl+this.apiUrl.addCompanyUrl;
+        try {
+            const response = await axios.post(url, postData);
+            return Promise.resolve(response);
+        }
+        catch (error) {
+            console.log(' error : Add company', error);
+            return Promise.reject(error);
+        }
+    }
+
+    async getMyCompanies(getData: ViewCompaniesProps): Promise<any>{
+        const url = this.baseUrl+this.apiUrl.getCompaniesUrl+'?page='+getData.page+'&size='+getData.size;
         try {
             const response = await axios.get(url);
             return Promise.resolve(response);
         }
         catch (error) {
-            console.log(' error : warehouseSearch', error);
+            console.log(' error : Get Company', error);
             return Promise.reject(error);
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
+    async searchwarehouse(getData: any): Promise<any>{
+        const url = this.baseUrl+this.apiUrl.searchwarehouse+'?pincode='+getData+'&page=0&size=10';
+        try {
+            const response = await axios.get(url);
+            return Promise.resolve(response);
+        }
+        catch (error) {
+            console.log(' error : Get Company', error);
+            return Promise.reject(error);
+        }
+    }
 }

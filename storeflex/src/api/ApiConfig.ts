@@ -48,8 +48,10 @@ export class ApiConfig {
     endPointGateWay = '/';
     testApi = '/test';
     signinApi = '/login';
-    signinTestApi = 'http://ec2-13-232-148-204.ap-south-1.compute.amazonaws.com:8082/storeflexservice/logintest';
-    signUpUrl = '///';
+    signinTestApi = '/logintest';
+    signUpUrl = '/register';
+    getCompaniesUrl = '/clients';
+    addCompanyUrl = '/client';
 
-    warehouseSearchApi = 'http://ec2-13-232-148-204.ap-south-1.compute.amazonaws.com:8082/storeflexservice/searchwarehouse';
+    searchwarehouse = '/searchwarehouse'
 }

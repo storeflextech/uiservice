@@ -1,19 +1,20 @@
-import React, {useRef} from 'react';
+import React, { useRef } from 'react';
 import { useNavigate } from "react-router-dom";
 import Api from '../../api/Api';
 import Swal from 'sweetalert';
+import Carousel from "react-bootstrap/Carousel";
 
 interface warehouse {
   city: any,
   clientId: any,
   houseNo: any,
-  pincode:any, 
+  pincode: any,
   plotNo: any,
   state: any,
   status: any,
   streetAddrs: any,
   warehouseName: any,
-  warehouseId:any
+  warehouseId: any
 }
 
 
@@ -26,36 +27,36 @@ const PrimeSection = () => {
 
     navigate(pagePath);
   }
-  
-  const inputRef:any = useRef(null);
-  
-  const searchWarehouse=(data:any) =>{
+
+  const inputRef: any = useRef(null);
+
+  const searchWarehouse = (data: any) => {
     const api = new Api();
-    console.log("====>",inputRef.current.value);
+    console.log("====>", inputRef.current.value);
     const pin = inputRef.current.value;
     // const pin = '781036'
-    api.warehouseSearch(pin).then((response) =>{ 
+    api.searchwarehouse(pin).then((response) => {
       console.log('Warehouse Search >>>>', response);
-      const data:warehouse = response.data.methodReturnValue.warehouseViewBean
-      ;
-      
-      if(response.data.status == 'SUCCESS'){
-        navigate('/search-new', {state: data});
-      }else{
+      const data: warehouse = response.data.methodReturnValue.warehouseViewBean
+        ;
+
+      if (response.data.status == 'SUCCESS') {
+        navigate('/search-new', { state: data });
+      } else {
         Swal({
           title: 'Not Found',
           text: 'Not Found any data with your details',
-        }) 
+        })
       }
     })
-    .catch((error)=>{
-      console.log(error);
-      Swal({
-        title: 'Not Found',
-        text: 'Not Found any data with your details',
-      }) 
-      
-    })
+      .catch((error) => {
+        console.log(error);
+        Swal({
+          title: 'Not Found',
+          text: 'Not Found any data with your details',
+        })
+
+      })
 
   }
 
@@ -98,23 +99,17 @@ const PrimeSection = () => {
                     <h6>LET’S FIND THE WAREHOUSE YOU ARE LOOKING FOR</h6>
 
                     <div className="form-group d-flex flex-row">
-                      <input
-                        className="input-search-size form-control p-2"
-                        name="name"
-                        type="text"
-                        placeholder="Enter Pin or City"
-                        style={{ height: "50px" }}
-                      />
+
 
                       <input className="input-search-size form-control p-2" name="name" ref={inputRef} type="text" placeholder="Enter Pin or City" style={{ height: '50px' }} />
 
+                      {/* <div className="light-rounded-buttons float-end m-1">
+                        <a href="javascript:void(0)" onClick={() => { goToNextPage('/search-new') }} className="btn primary-btn"><i className="lni-large lni-search-alt"></i> </a>
+                      </div> */}
+
                       <div className="light-rounded-buttons float-end m-1">
-                      <a href="javascript:void(0)" onClick={() => { goToNextPage('/search-new') }} className="btn primary-btn"><i className="lni-large lni-search-alt"></i> </a>
-                    </div>
-                      
-                      <div className="light-rounded-buttons float-end m-1">
-                      <a href="javascript:void(0)" onClick={searchWarehouse} className="btn primary-btn"><i className="lni-large lni-search-alt"></i> </a>
-                    </div>
+                        <a href="javascript:void(0)" onClick={searchWarehouse} className="btn primary-btn"><i className="lni-large lni-search-alt"></i> </a>
+                      </div>
 
 
                     </div>
