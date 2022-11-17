@@ -13,11 +13,12 @@
     },
     "dashboard" : {
         "addBusinessBtn": "Add Comapny",
-        "searchBtn": "Search Company",
-        "addUserBtn": "Add User",
+        "searchBtn": "Search",
+        "addUserBtn": "View User",
         "addWarehouseBtn": "Add Warehouse",
         "reportBtn": "Reports",
-        "contactUpdateBtn": "Add User"
+        "contactUpdateBtn": "Add User",
+        "viewUserbtn": ""
 
     }, 
     "business" : {
