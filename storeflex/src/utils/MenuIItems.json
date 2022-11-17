@@ -109,9 +109,16 @@
                     "Icon": "mdi mdi-account-multiple-outline menu-icon"
                 },
                 {
+                    "Label": "Bookings",
+                    "Name": "BookingDetailsMenu",
+                    "NavigateTo":"/bookings",
+                    "SubMenu":[],
+                    "Icon": "mdi mdi-checkbox-marked-outline menu-icon"
+                },
+                {
                     "Label": "Order Details",
                     "Name": "OrderDetailsMenu",
-                    "NavigateTo":"/bookings",
+                    "NavigateTo":"/myorders",
                     "SubMenu":[],
                     "Icon": "mdi mdi-checkbox-marked-outline menu-icon"
                 },
@@ -127,6 +134,11 @@
                         },
                         {
                             "Label": "Payment History",
+                            "Name": "",
+                            "NavigateTo": "/paymentHistory"
+                        },
+                        {
+                            "Label": "Payment Receivables",
                             "Name": "",
                             "NavigateTo": "/paymentHistory"
                         }
@@ -147,7 +159,7 @@
                     "Icon": "mdi mdi-magnify menu-icon"
                 },
                 {
-                    "Label": "Report",
+                    "Label": "Reports",
                     "Name": "ReportMenu",
                     "NavigateTo": "self",
                     "SubMenu": [
