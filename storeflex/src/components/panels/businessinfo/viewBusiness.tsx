@@ -3,13 +3,21 @@ import { Box } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 import swal from 'sweetalert';
 import Table from 'react-bootstrap/Table';
+import  Api  from '../../../../src/api/Api';
+import { ViewCompaniesProps } from '../../../api/ApiConfig';
 
 const ViewBusiness = () => {
+    const api = new Api();
     const navigate = useNavigate();
     const [modalShow, setModalShow] = React.useState(false);
+    const [myCompanies, setMyCompanies] = useState<Array<any>>([]);
     const [businessInfo, setBusinessInfo] = useState<Array<any>>([]);
 
+    var pageNo:any='0';
+    var pageSize:any='6';
+
     useEffect(() => {
+        getMyCompanies(pageNo, pageSize);
         const data = ([
             {
                 id: 1,
@@ -64,26 +72,44 @@ const ViewBusiness = () => {
                 Email: "nishantann@proton.me"
             },
         ]);
+        
         setBusinessInfo(data);
     }, [])
 
-    const goToNextPage = (pagePath: string) => {
-        navigate(pagePath);
+    const getMyCompanies = (pageNo, pageSize) =>{
+        const data: ViewCompaniesProps= {page:pageNo,size:pageSize};
+        api.getMyCompanies(data).then((response) => {
+           if(response.status==200){
+            setMyCompanies(response.data.methodReturnValue.clientList);
+           }
+        });
     }
 
-    const deleteBusiness = (id) => {
+    const goToEditPage = (pagePath: string, record: object) => {
+        navigate(pagePath,
+            {
+                state: {editRecord:record},
+            } 
+        );
+    }
+
+    const deleteBusiness = (company:any) => {
         swal({
             title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this company!",
+            text: 'You are about to delete the company "'+company.compyName+'('+company.clientId+')" . Once deleted, you will not be able to recover this company!',
             icon: "warning",
             buttons: [true,true],
             dangerMode: true,
           })
           .then((willDelete) => {
             if (willDelete) {
-              swal("Success! Your company has been deleted!", {
-                icon: "success",
-              });
+                swal('Success! Your company "'+company.compyName+'('+company.clientId+')" has been deleted!', {
+                    icon: "success",
+                  });
+                let extractedArr = myCompanies.filter((item, index)=>{
+                    return item.clientId!=company.clientId ;
+                });
+                setMyCompanies(extractedArr);
             } else {
             // do something if required   
             }
@@ -105,28 +131,30 @@ const ViewBusiness = () => {
                             <tr>
                                 <th>ID</th>
                                 <th>Company Name</th>
+                                <th>Description</th>
+                                <th>URL</th>
                                 <th>Address</th>
                                 <th>Primary Contact Name</th>
                                 <th>Phone</th>
-                                <th>Email</th>
                                 <th style={{textAlign:'center'}}>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {businessInfo.map((item) => (
+                            {myCompanies && myCompanies.map((item:any) => {return(
                                 <tr>
-                                    <td>{item.id}</td>
-                                    <td>{item.CompanyName}</td>
-                                    <td>{item.Address}</td>
-                                    <td>{item.PrimaryContactName}</td>
-                                    <td>{item.Phone}</td>
-                                    <td>{item.Email}</td>
+                                    <td>{item.clientId}</td>
+                                    <td>{item.compyName}</td>
+                                    <td>{item.compyDesc}</td>
+                                    <td>{item.url}</td>
+                                    <td>{item.addresses[0].addressType+':'+item.addresses[0].streetDetails+','+item.addresses[0].city+','+item.addresses[0].pincode}</td>
+                                    <td>{item.contact[0].contactName}</td>
+                                    <td>{item.contact[0].mobileNo}</td>
                                     <td>
-                                        <button onClick={() => deleteBusiness(item.id)} className='primary-btn-outline' style={{ fontSize: '14px', float: 'right', borderRadius: 20, padding:'8px 12px 8px 12px' }}><strong><i className='mdi mdi-cup menu-icon'></i> Delete</strong></button>&nbsp; &nbsp;
-                                        <button onClick={()=>goToNextPage('/business/edit')} className='primary-btn-outline' style={{ fontSize: '14px', float: 'right', borderRadius: 20, padding:'8px 12px 8px 12px',marginRight:'5px' }}><strong><i className='mdi mdi-pencil menu-icon'></i> Edit</strong></button>
+                                        <button onClick={() => deleteBusiness(item)} className='primary-btn-outline' style={{ fontSize: '14px', float: 'right', borderRadius: 20, padding:'8px 12px 8px 12px' }}><strong><i className='mdi mdi-cup menu-icon'></i> Delete</strong></button>&nbsp; &nbsp;
+                                        <button onClick={()=>goToEditPage('/business/edit', item)} className='primary-btn-outline' style={{ fontSize: '14px', float: 'right', borderRadius: 20, padding:'8px 12px 8px 12px',marginRight:'5px' }}><strong><i className='mdi mdi-pencil menu-icon'></i> Edit</strong></button>
                                     </td>
                                 </tr>
-                            ))}
+                            )})}
                         </tbody>
                     </Table>
                 </div>

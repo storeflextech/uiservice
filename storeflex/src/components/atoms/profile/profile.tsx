@@ -57,13 +57,17 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
         return(
             <>
                 <MenuItem>
-                <ListItemText><a href="/dashboard">Dashboard</a></ListItemText>
+                <ListItemText><a onClick={()=>{goToNextPage('/dashboard')}}>Dashboard</a></ListItemText>
                 </MenuItem>
                 <MenuItem>
                 <ListItemText>Messages</ListItemText>
                 </MenuItem>
                 <MenuItem>
-                    <ListItemText><a onClick={()=> {goToNextPage('/bookings')}}>Bookings</a></ListItemText>
+                    <ListItemText><a onClick={()=>{goToNextPage('/search')}}>Search Space</a></ListItemText>
+                </MenuItem>
+                
+                <MenuItem>
+                    <ListItemText><a onClick={()=>{goToNextPage('/myorders')}}>Orders</a></ListItemText>
                 </MenuItem>
                 <MenuItem>
                     <ListItemText><a onClick={()=>{goToNextPage('/cart')}}>Wishlists</a></ListItemText>
@@ -73,14 +77,14 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
                     <ListItemText>List Space</ListItemText>
                 </MenuItem>
                 <MenuItem>
-                    <ListItemText><a onClick={()=>{goToNextPage('/search')}}>Search Space</a></ListItemText>
+                    <ListItemText><a onClick={()=> {goToNextPage('/bookings')}}>Bookings</a></ListItemText>
                 </MenuItem>
                 <MenuItem>
-                    <ListItemText>Edit Profile</ListItemText>
+                    <ListItemText onClick={()=>goToNextPage("/view-profile")}>Edit Profile</ListItemText>
                 </MenuItem>
                 <Divider />
                 <MenuItem>
-                    <ListItemText><a onClick={()=>{goToNextPage('/faq')}}>Help</a></ListItemText>
+                    <ListItemText><a onClick={()=>{goToNextPage('/faq')}}>Contact Us</a></ListItemText>
                 </MenuItem>
                 <MenuItem>
                     <ListItemText><a onClick={()=>{goToNextPage("/signin-new")}}>Log out</a></ListItemText>

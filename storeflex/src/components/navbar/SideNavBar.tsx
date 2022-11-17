@@ -92,42 +92,9 @@ const SideNavBar = (props) => {
 
   return (
     <div className='sf-box-shadow-orange'>
-        <div>
+        <div className='p-top-md'>
           <nav className="sidebar sidebar-offcanvas" id="sidebar">
             <ul className="nav">
-              <li className="nav-item nav-profile">
-                <span className="nav-link" onClick={evt => evt.preventDefault()}>
-                  <div className="nav-profile-image">
-                    {selectedFile && (
-                      <div>
-                        <img src={URL.createObjectURL(selectedFile)} alt="Thumb" />
-                      </div>
-                    )}
-                    {!selectedFile && (
-                      <div>
-                        <img src="/images/face1.jpg" alt="profile" />
-                      </div>
-                    )}
-
-                    <span className="login-status online"></span> {/* change to offline or busy as needed */}
-                    <button onClick={handleClick} style={{position:'absolute',border:'0px',borderRadius:50,padding:'0px',marginLeft:'25px',marginTop:'-20px'}}>
-                  <img style={{height:'25px',width:'30px'}} src="/images/camera_lead.jpg" alt="" />
-                </button>
-                  </div>
-                  <div className="nav-profile-text">
-                    <span className="font-weight-bold mb-2"><>Mithu Zaman</></span>
-                    <span className="text-secondary text-small"><>Storeflex User</></span>
-                  </div>
-                  <i className="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
-                </span>
-                
-                <input
-                  type="file"
-                  id="fileInput"
-                  onChange={handleChange}
-                  style={{ display: 'none' }}
-                />
-              </li>
               {listItems.map((element) => {
                 if (element.SubMenu.length >= 1) {
                   return (
