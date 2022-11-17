@@ -14,11 +14,14 @@
     flex-wrap: nowrap;
     flex-direction: column;
     &:not(.sub-menu) {
-      padding-bottom: 60px;
+      padding-bottom: 10px;
     }
 
     .nav-item {
-      padding:0 $sidebar-menu-padding-x;
+      padding-top: 0px;
+      padding-right: 1.5rem;
+      padding-bottom: 0px;
+      padding-left: 1.5rem;
       @include transition-duration(0.25s);
       transition-property: background;
       -webkit-transition-property: background;
@@ -34,7 +37,7 @@
         @include align-items(center);
         white-space: nowrap;
         // padding:$sidebar-menu-padding-y 0 $sidebar-menu-padding-y 0;
-        padding: 0.5rem 0 0.8rem 0;
+        padding: 0.2rem 0 0.2rem 0;
         color: $sidebar-light-menu-color;
         @include transition-duration(0.45s);
         transition-property: color;
@@ -91,7 +94,7 @@
         .menu-title {
           color: inherit;
           display: inline-block;
-          font-size: $sidebar-menu-font-size;
+          font-size: 1.0rem;
           line-height: 1;
           vertical-align: middle;
         }
@@ -185,7 +188,7 @@
       }
     }
     &.sub-menu {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       margin-top:0;
       list-style: none;
 
