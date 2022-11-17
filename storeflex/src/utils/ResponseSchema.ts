@@ -31,15 +31,15 @@ export interface officeData {
 }
 
 export interface EditBusinessDetails {
-    businessid: "B-0001";
-    name: "Zaman & Sons Pvt. Ltd.";
+    clientId: string;
+    compyName: string;
     address: string;
     phone: number;
-    weburl: string;
+    url: string;
     gstn: string;
     city: string;
     state: string;
-    zip: number;
+    pincode: number;
     country: string;
-    description: string;
+    compyDesc: string;
 }

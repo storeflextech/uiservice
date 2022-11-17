@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import swal from 'sweetalert';
 import { Grid, TextareaAutosize, Button } from '@mui/material';
 import InputBox from '../../atoms/textfield/InputBox';
@@ -16,6 +16,8 @@ interface EditBusinessProps {
 
 const EditBusiness = (props: EditBusinessProps) => {
     const navigate = useNavigate();
+    const location = useLocation();
+
     const [values, setValues] = useState({
         companyname: "",
         companyurl: "",
@@ -78,11 +80,34 @@ const EditBusiness = (props: EditBusinessProps) => {
         return errors;
     }
 
-    const profile = {} as BusinessDetails;
+    const profile = {} as EditBusinessDetails;
     const [businessProfile, setBusinessProfile] = useState(profile);
     const [profileSaved, setProfileSaved] = useState(false);
     const [charCount, setCharCount] = useState(0);
     const maxiLength = 30;
+
+    useEffect(() => {
+        companyDataFormatter(location.state.editRecord);
+    }, [])
+
+    const companyDataFormatter = (data: any) => {
+        console.log(data);
+        let companyDetails: any = {
+            clientId: data.clientId,
+            compyName: data.compyName,
+            compyDesc: data.compyDesc,
+            url: data.url,
+            phone: data.contact[0].mobileNo,
+            gstn: 'NA',
+            address: data.addresses[0].streetDetails,
+            pincode: data.addresses[0].pincode,
+            city: data.addresses[0].city,
+            state: 'NA',
+            country: 'NA'
+        }
+        setBusinessProfile(companyDetails);
+    }
+
     const countHandle = (e) => {
         var c = e.target.value.length;
         // var r = maxiLength - c;
@@ -127,13 +152,13 @@ const EditBusiness = (props: EditBusinessProps) => {
             <div className='m-bot-md'>
                 <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                     <Grid item xs={6}>
-                        <InputBox data={{ name: 'companyname', label: 'Company Name', value: businessProfile.name }}
+                        <InputBox data={{ name: 'companyname', label: 'Company Name', value: businessProfile.compyName }}
                             onChange={handleChange} onBlur={handelOnBlur}
                         />
                         {errors.companyname && <p className="text-red">{errors.companyname}</p>}
                     </Grid>
                     <Grid item xs={6}>
-                        <InputBox data={{ name: 'companyurl', label: 'Company URL', value: businessProfile.weburl }}
+                        <InputBox data={{ name: 'companyurl', label: 'Company URL', value: businessProfile.url }}
                             onChange={handleChange} onBlur={handelOnBlur}
                         />
                         {errors.companyurl && <p className="text-red">{errors.companyurl}</p>}
@@ -165,7 +190,7 @@ const EditBusiness = (props: EditBusinessProps) => {
                         addresLine1={businessProfile.address}
                         city={businessProfile.city}
                         state={businessProfile.state}
-                        zip={businessProfile.zip}
+                        zip={businessProfile.pincode}
                         country={businessProfile.country}
                     />}</div>
                 <Grid container spacing={2} columns={{ xs: 12, sm: 12, md: 12 }}>
@@ -178,6 +203,7 @@ const EditBusiness = (props: EditBusinessProps) => {
                             maxRows={4}
                             maxLength={30}
                             onChange={countHandle}
+                            value={businessProfile.compyDesc}
                             aria-label='Add your business description'
                             placeholder='Add your business description'
                             style={{ width: '100%' }}
