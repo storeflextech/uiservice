@@ -80,7 +80,7 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
                     <ListItemText><a onClick={()=> {goToNextPage('/bookings')}}>Bookings</a></ListItemText>
                 </MenuItem>
                 <MenuItem>
-                    <ListItemText>Edit Profile</ListItemText>
+                    <ListItemText onClick={()=>goToNextPage("/view-profile")}>Edit Profile</ListItemText>
                 </MenuItem>
                 <Divider />
                 <MenuItem>

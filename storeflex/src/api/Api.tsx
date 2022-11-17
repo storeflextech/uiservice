@@ -65,4 +65,16 @@ export default class Api {
             return Promise.reject(error);
         }
     }
+
+    async searchwarehouse(getData: any): Promise<any>{
+        const url = this.baseUrl+this.apiUrl.searchwarehouse+'?pincode='+getData+'&page=0&size=10';
+        try {
+            const response = await axios.get(url);
+            return Promise.resolve(response);
+        }
+        catch (error) {
+            console.log(' error : Get Company', error);
+            return Promise.reject(error);
+        }
+    }
 }

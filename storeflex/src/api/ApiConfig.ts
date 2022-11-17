@@ -52,4 +52,6 @@ export class ApiConfig {
     signUpUrl = '/register';
     getCompaniesUrl = '/clients';
     addCompanyUrl = '/client';
+
+    searchwarehouse = '/searchwarehouse'
 }
