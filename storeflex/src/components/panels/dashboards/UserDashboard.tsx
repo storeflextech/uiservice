@@ -42,8 +42,8 @@ const UserDashboard = (props) => {
                         {dashboardContent?.addWarehouseBtn}
                     </Button>
 
-                    <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.AddInfo.path) }}>
-                        {dashboardContent?.addWarehouseBtn}
+                    <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.PgContactUs.path) }}>
+                        {dashboardContent?.reportBtn}
                     </Button>
 
                     <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.AddInfo.path) }}>
