@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+import swal from 'sweetalert';
 import {Contacts} from '../atoms/contact/contacts';
 
 const Contact = () => {
@@ -17,6 +18,45 @@ const Contact = () => {
       tel : '000 800 050 1417'
     }
   ];
+
+  const [values, setValues] = useState({
+    name: "",
+    subject: "",
+    email: "",
+    phone: "",
+    message: ""
+  });
+
+  const [errors, setErrors] = useState({
+    nameError: "",
+    subjectError: "",
+    emailError: "",
+    phoneError: "",
+    messageError: ""
+});
+
+  const handleChange = (event: any) => {
+    setValues({...values, [event.target.name]: event.target.value});
+  };
+
+  const sendMessage = () =>{
+    if (!values.name) {
+      setErrors({...errors, nameError: " *Name is required. "});
+    }else if(!values.subject){
+      setErrors({...errors, subjectError: " *Subject is required. "});
+    }else if(!values.email){
+      setErrors({...errors, emailError: " *Email is required. "});
+    }else if(!values.phone){
+      setErrors({...errors, phoneError: " *Phone is required. "});
+    }else if(!values.message){
+      setErrors({...errors, messageError: " *Message is required. "});
+    }
+    else{
+      swal('Your message has been sent successfully!', {
+        icon: "success",
+      });
+    }
+  }
 
   return (
     <>
@@ -46,42 +86,45 @@ const Contact = () => {
               <div className="row">
                 <div className="col-lg-8 col-12">
                   <div className="form-main">
-                    <form className="form" method="post" action="#">
                       <div className="row">
                         <div className="col-lg-6 col-md-6 col-12">
                           <div className="form-group">
-                            <input name="name" type="text" placeholder="Your Name" />
+                            <input name="name" type="text" placeholder="Name" onChange={handleChange} />
+                            {errors.nameError && <p className="text-red">{errors.nameError}</p>}
                           </div>
                         </div>
                         <div className="col-lg-6 col-md-6 col-12">
                           <div className="form-group">
-                            <input name="subject" type="text" placeholder="Your Subject" />
+                            <input name="subject" type="text" placeholder="Subject" onChange={handleChange} />
+                            {errors.subjectError && <p className="text-red">{errors.subjectError}</p>}
                           </div>
                         </div>
                         <div className="col-lg-6 col-md-6 col-12">
                           <div className="form-group">
-                            <input name="email" type="email" placeholder="Your Email" />
+                            <input name="email" type="email" placeholder="Email" onChange={handleChange}/>
+                            {errors.emailError && <p className="text-red">{errors.emailError}</p>}
                           </div>
                         </div>
                         <div className="col-lg-6 col-md-6 col-12">
                           <div className="form-group">
-                            <input name="phone" type="text" placeholder="Your Phone" />
+                            <input name="phone" type="text" placeholder="Phone" onChange={handleChange}/>
+                            {errors.phoneError && <p className="text-red">{errors.phoneError}</p>}
                           </div>
                         </div>
                         <div className="col-12">
                           <div className="form-group message">
-                            <textarea name="message" placeholder="Your Message"></textarea>
+                            <textarea name="message" placeholder="Message" onChange={handleChange}/>
+                            {errors.messageError && <p className="text-red">{errors.messageError}</p>}
                           </div>
                         </div>
                         <div className="col-12">
                           <div className="form-group light-rounded-buttons">
-                            <button type="submit" className="btn primary-btn">
+                            <button onClick={() => { sendMessage() }} type="submit" className="btn primary-btn">
                               Send Message
                             </button>
                           </div>
                         </div>
                       </div>
-                    </form>
                   </div>
                 </div>
                 <div className="col-lg-4 col-12">

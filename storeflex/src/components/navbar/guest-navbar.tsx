@@ -36,7 +36,7 @@ const GuestNavbar = () => {
                       <a className="page-scroll" href="#pricing">Pricing</a>
                     </li>
                     <li className="nav-item">
-                      <a className="page-scroll" href="#team">Team</a>
+                      <a className="page-scroll" href="#team">CLients</a>
                     </li>
                     <li className="nav-item">
                       <a className="page-scroll" href="#testimonial">Testimonial</a>

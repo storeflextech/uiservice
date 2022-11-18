@@ -107,7 +107,7 @@ const PrimeSection = () => {
                         <a href="javascript:void(0)" onClick={() => { goToNextPage('/search-new') }} className="btn primary-btn"><i className="lni-large lni-search-alt"></i> </a>
                       </div> */}
 
-                      <div className="light-rounded-buttons float-end m-1">
+                      <div className="light-rounded-buttons float-end mt-0">
                         <a href="javascript:void(0)" onClick={searchWarehouse} className="btn primary-btn"><i className="lni-large lni-search-alt"></i> </a>
                       </div>
 
