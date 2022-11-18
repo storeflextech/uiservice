@@ -201,7 +201,7 @@ const EditBusiness = (props: EditBusinessProps) => {
                         <TextareaAutosize
                             minRows={3}
                             maxRows={4}
-                            maxLength={30}
+                            maxLength={500}
                             onChange={countHandle}
                             value={businessProfile.compyDesc}
                             aria-label='Add your business description'
