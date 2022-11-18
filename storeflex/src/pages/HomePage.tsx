@@ -4,14 +4,14 @@ import Services from '../components/miscellaneous/services';
 import AboutStoreflex from '../components/miscellaneous/about-storeflex';
 import Pricing from '../components/miscellaneous/pricing';
 import DemoVideo from '../components/miscellaneous/demo-video';
-import Team from '../components/miscellaneous/team';
+import Brand from '../components/miscellaneous/brand';
+// import Team from '../components/miscellaneous/team';
 import Subscription from '../components/miscellaneous/subscription';
 import Contact from '../components/miscellaneous/contact';
 import TopNavbar from '../components/navbar/TopNavBar';
 // import SideNavBar from '../components/navbar/SideNavBar';
 import PrimeSection from '../components/miscellaneous/prime-section';
 import { AppContainer, SplitPaneContainer } from '../components/containers/containers';
-import Brand from '../components/miscellaneous/brand';
 
 
 const HomePage = () => {
@@ -28,7 +28,7 @@ const HomePage = () => {
                   {<DemoVideo />}
                   {<Pricing />}
                   {<Brand />}
-                  {<Team />}
+                  {/* {<Team />} */}
                   {<Subscription />}
                   {<Contact />}
                 </div>
