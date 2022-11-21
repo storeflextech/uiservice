@@ -210,6 +210,13 @@ const AddBusiness = (props: AddBusinessProps) => {
                         {errors.gstid && <p className="text-red">{errors.gstid}</p>}
                     </Grid>
                 </Grid>
+                <Grid>
+                    <Grid>
+                      <InputBox data={{ name: 'companyname', label: 'Company Name*', value: businessProfile.name }}
+                            onChange={handleChange} onBlur={handelOnBlur} />
+                        {/* {errors.companyname && <p className="text-red">{errors.companyname}</p>} */}
+                    </Grid>
+                </Grid>
             </div>
         )
     }
