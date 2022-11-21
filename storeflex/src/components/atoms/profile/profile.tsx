@@ -84,7 +84,7 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
                 </MenuItem>
                 <Divider />
                 <MenuItem>
-                    <ListItemText><a onClick={()=>{goToNextPage('/faq')}}>Contact Us</a></ListItemText>
+                    <ListItemText><a onClick={()=>{goToNextPage('/contactus')}}>Contact Us</a></ListItemText>
                 </MenuItem>
                 <MenuItem>
                     <ListItemText><a onClick={()=>{goToNextPage("/signin-new")}}>Log out</a></ListItemText>

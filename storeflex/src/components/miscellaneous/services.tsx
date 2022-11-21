@@ -1,34 +1,74 @@
 import React from "react";
-import Swal from 'sweetalert';
-import Alert from "react-bootstrap/Alert";
-import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 const Services = () => {
-  const handleCard = (data) => {
-    console.log(data);
 
-    switch (data) {
-      case "one":
-        console.log("Clicked on 1st card");
-        return;
+  const [modalShow, setModalShow] = React.useState(false);
+  const [modalContent, setModalContent] = React.useState({
+    Header:'',
+    Text:''
+  });
 
-      case "two":
-        console.log("clicked on 2nd card");
-        return;
-
-      case "three":
-        console.log("clicked on 3rd card");
-        return;
-
-      case "four":
-        console.log("clicked on 4th card");
-        return;
-
-      default:
-        console.log("erro");
-        return;
+  const showModal = (modalName:any) =>{
+    let contents:any={
+      Header:"No header",
+      Text: "No content available"
     }
-  };
+    switch(modalName){
+      case 'ListingPlatform': 
+        contents={
+          Header:"ListingPlatform",
+          Text: " Empowering Consumers with data,inspiration & knowlwdge..."
+        }
+        break;
+      case 'ResourceManagement':  
+      contents={
+        Header:"ResourceManagement",
+        Text: " Empowering Consumers with data,inspiration & knowlwdge..."
+      }
+        break;
+      case 'Technology':  
+      contents={
+        Header:"Technology",
+        Text: " Empowering Consumers with data,inspiration & knowlwdge..."
+      }
+        break;
+      case 'Accounting':  
+      contents={
+        Header:"Accounting",
+        Text: " Empowering Consumers with data,inspiration & knowlwdge..."
+      }
+        break;
+    }
+    setModalContent(contents);
+    setModalShow(true);
+  }
+
+  const DiscoverMoreModal=(props)=> {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+           Services We Provide
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h4>{modalContent.Header}</h4>
+          <p>
+            {modalContent.Text}
+          </p>
+        </Modal.Body>
+        <Modal.Footer>
+          <button className="btn primary-btn btn-sm" onClick={props.onHide}>Close</button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
 
   return (
     <>
@@ -41,7 +81,7 @@ const Services = () => {
                   <h5>Our Services</h5>
                   <h2 className="fw-bold">Services We Provide</h2>
                   <p>
-                    We help find YOU meet your warehousing requirements at the
+                    We help find you meet your warehousing requirements at the
                     best possible rate.
                   </p>
                 </div>
@@ -61,12 +101,7 @@ const Services = () => {
                   </p>
                   <div className="light-rounded-buttons">
                     <button
-                      onClick={() =>
-                        Swal({
-                          title: "Listing Platform",
-                          text: "We empower consumers with data, inspiration & knowledge. You can be a part of our family by simply clicking on register",
-                        })
-                      }
+                     onClick={() => {showModal('ListingPlatform')}}
                       className="btn primary-btn btn-sm"
                     >
                       {" "}
@@ -80,12 +115,13 @@ const Services = () => {
                   <span className="serial">02</span>
                   <h4>Resource Management</h4>
                   <p>
-                    We enjoy working with discerning clients, people & company...
+                    We enjoy working with discerning clients, people &
+                    company...
                   </p>
                   <div className="light-rounded-buttons">
                     <button
-                      onClick={() => handleCard("two")}
                       className="btn primary-btn btn-sm"
+                      onClick={() => {showModal('ResourceManagement')}}
                     >
                       {" "}
                       Read More{" "}
@@ -100,8 +136,8 @@ const Services = () => {
                   <p>Browse rentals with clients, people...</p>
                   <div className="light-rounded-buttons">
                     <button
-                      onClick={() => handleCard("three")}
                       className="btn primary-btn btn-sm"
+                      onClick={() => {showModal('Technology')}}
                     >
                       {" "}
                       Read More{" "}
@@ -116,8 +152,8 @@ const Services = () => {
                   <p>We take care of the lease and...</p>
                   <div className="light-rounded-buttons">
                     <button
-                      onClick={() => handleCard("four")}
                       className="btn primary-btn btn-sm"
+                      onClick={() => {showModal('Accounting')}}
                     >
                       {" "}
                       Read More{" "}
@@ -129,6 +165,7 @@ const Services = () => {
           </div>
         </div>
       </section>
+      <DiscoverMoreModal show={modalShow} onHide={() => setModalShow(false)} />
     </>
   );
 };

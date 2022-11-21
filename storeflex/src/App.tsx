@@ -54,6 +54,8 @@ function App() {
               <Route path={PAGES.BOOKINGS.path} element={<PAGES.BOOKINGS.Component />} />
               <Route path={PAGES.PAYMENT_HISTORY.path} element={<PAGES.PAYMENT_HISTORY.Component />} />
               <Route path={PAGES.USER_PROFILE.path} element={<PAGES.USER_PROFILE.Component />} />
+              <Route path={PAGES.SignUpNew.path} element={<PAGES.SignUpNew.Component />} />
+
             </Routes>
             } 
             { !getUserLoggedIn() && 

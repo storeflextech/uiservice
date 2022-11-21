@@ -148,14 +148,8 @@
                 {
                     "Label": "Search",
                     "Name": "SearchMenu",
-                    "NavigateTo": "self",
-                    "SubMenu": [
-                        {
-                            "Label": "Search Company",
-                            "Name": "SearchBusinessMenu",
-                            "NavigateTo": "/search"
-                        }
-                    ],
+                    "NavigateTo": "/search-new",
+                    "SubMenu": [ ],
                     "Icon": "mdi mdi-magnify menu-icon"
                 },
                 {
@@ -324,19 +318,8 @@
                 {
                     "Label": "Search",
                     "Name": "SearchMenu",
-                    "NavigateTo": "self",
-                    "SubMenu": [
-                        {
-                            "Label": "Search Company",
-                            "Name": "SearchBusinessMenu",
-                            "NavigateTo": "/search-business"
-                        },
-                        {
-                            "Label": "Search Warehouse",
-                            "Name": "SearchWarehouseMenu",
-                            "NavigateTo": "/search-warehouse"
-                        }
-                    ],
+                    "NavigateTo": "/search-new",
+                    "SubMenu": [],
                     "Icon": "mdi mdi-magnify menu-icon"
                 },
                 {
