@@ -3,7 +3,7 @@ import React from "react";
 const Brand = () => {
   return (
     <>
-      <section id="CLients">
+      <section id="clients">
         {/* <!--======  Start Section Title Three ======--> */}
         <div className="section-title-three">
           <div className="container">
