@@ -9,6 +9,8 @@ const TopNavbar = () => {
     navigate(pagePath);
   }
 
+ 
+
   const signOut = () => {
     if(getUserLoggedIn()) {
       return (

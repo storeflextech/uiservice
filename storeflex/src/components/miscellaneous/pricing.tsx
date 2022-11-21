@@ -2,8 +2,21 @@ import React from 'react';
 import Carousel from "../carousel/carousel";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import { useNavigate, useLocation } from "react-router-dom"
 
 const Pricing = () => {
+  const navigate = useNavigate();
+
+  const WarehouseDetails = () => {
+    navigate('/WarehouseDetails');
+  }
+
+  const addToCart = () => {
+    navigate('/cart');
+  }
+
+
+
     return (
       <>
       <section id="pricing" className="pricing-area pricing-fifteen">
@@ -12,12 +25,7 @@ const Pricing = () => {
             <div className="row">
               <div className="col-12">
                 <div className="content">
-                  <h5>Pricing Plan</h5>
-                  <h2 className="fw-bold">Our Best Pricing</h2>
-                  <p>
-                    There are many variations of passages of Lorem Ipsum available,
-                    but the majority have suffered alteration in some form.
-                  </p>
+                  <h2>FEATURED WAREHOUSES</h2>
                 </div>
               </div>
             </div>
@@ -48,8 +56,8 @@ const Pricing = () => {
                 <h6 className="amount">
                   &#x20B9; 85,000.00 <span className="duration">/month</span>
                 </h6><br/>
-                <button className="btn primary-btn btn-sm" >Details</button>
-                <p className="pt-1"><Card.Link href="#"><u>Add to Wishlist</u></Card.Link></p>
+                <button className="btn primary-btn btn-sm" onClick={WarehouseDetails} >Details</button>
+                <p className="pt-1"><Card.Link href="/Cart"><u>Add to Wishlist</u></Card.Link></p>
               </Card.Body>
             </Card>
             <Card border="warning" style={{ width: "18rem", marginRight: "25px", boxShadow: '1px 3px 9px #F4AAB9'}}>
@@ -66,8 +74,8 @@ const Pricing = () => {
                 <h6 className="amount">
                   &#x20B9; 85,000.00 <span className="duration">/month</span>
                 </h6><br/>
-                <button className="btn primary-btn btn-sm" >Details</button>
-                <p className="pt-1"><Card.Link href="#"><u>Add to Wishlist</u></Card.Link></p>
+                <button className="btn primary-btn btn-sm" onClick={WarehouseDetails} >Details</button>
+                <p className="pt-1"><Card.Link href="/Cart"><u>Add to Wishlist</u></Card.Link></p>
               </Card.Body>
             </Card>
             <Card border="warning" style={{ width: "18rem", marginRight: "25px", boxShadow: '1px 3px 9px #F4AAB9'}}>
@@ -84,8 +92,8 @@ const Pricing = () => {
                 <h6 className="amount">
                   &#x20B9; 85,000.00 <span className="duration">/month</span>
                 </h6><br/>
-                <button className="btn primary-btn btn-sm" >Details</button>
-                <p className="pt-1"><Card.Link href="#"><u>Add to Wishlist</u></Card.Link></p>
+                <button className="btn primary-btn btn-sm" onClick={WarehouseDetails} >Details</button>
+                <p className="pt-1"><Card.Link href="/Cart"><u>Add to Wishlist</u></Card.Link></p>
               </Card.Body>
             </Card>
             <Card border="warning" style={{ width: "18rem", marginRight: "25px", boxShadow: '1px 3px 9px #F4AAB9'}}>
@@ -102,8 +110,8 @@ const Pricing = () => {
                 <h6 className="amount">
                   &#x20B9; 85,000.00 <span className="duration">/month</span>
                 </h6><br/>
-                <button className="btn primary-btn btn-sm" >Details</button>
-                <p className="pt-1"><Card.Link href="#"><u>Add to Wishlist</u></Card.Link></p>
+                <button className="btn primary-btn btn-sm" onClick={WarehouseDetails} >Details</button>
+                <p className="pt-1"><Card.Link href="/Cart"><u>Add to Wishlist</u></Card.Link></p>
               </Card.Body>
             </Card>
             <Card border="warning" style={{ width: "18rem", marginRight: "25px", boxShadow: '1px 3px 9px #F4AAB9'}}>
@@ -120,8 +128,8 @@ const Pricing = () => {
                 <h6 className="amount">
                   &#x20B9; 85,000.00 <span className="duration">/month</span>
                 </h6><br/>
-                <button className="btn primary-btn btn-sm" >Details</button>
-                <p className="pt-1"><Card.Link href="#"><u>Add to Wishlist</u></Card.Link></p>
+                <button className="btn primary-btn btn-sm" onClick={WarehouseDetails} >Details</button>
+                <p className="pt-1"><Card.Link href="/Cart"><u>Add to Wishlist</u></Card.Link></p>
               </Card.Body>
             </Card>
             <Card border="warning" style={{ width: "18rem", marginRight: "25px", boxShadow: '1px 3px 9px #F4AAB9'}}>
@@ -138,8 +146,8 @@ const Pricing = () => {
                 <h6 className="amount">
                   &#x20B9; 85,000.00 <span className="duration">/month</span>
                 </h6><br/>
-                <button className="btn primary-btn btn-sm" >Details</button>
-                <p className="pt-1"><Card.Link href="#"><u>Add to Wishlist</u></Card.Link></p>
+                <button className="btn primary-btn btn-sm" onClick={WarehouseDetails} >Details</button>
+                <p className="pt-1"><Card.Link href="/Cart"><u>Add to Wishlist</u></Card.Link></p>
               </Card.Body>
             </Card>
 

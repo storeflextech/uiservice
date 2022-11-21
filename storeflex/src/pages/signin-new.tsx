@@ -83,7 +83,7 @@ const SignInNew = () => {
                     <img src="assets/images/white-logo.jpg" alt="Logo" style={{ height: '8vh' }} />
                     <label>Your account will be under this email</label>
                     <div className="input-items default">
-                      <input type="text" placeholder="User Id" name="email" onChange={handleChange} />
+                      <input type="text" placeholder="User ID" name="email" onChange={handleChange} />
                     </div>
                   </div>
                 </div>

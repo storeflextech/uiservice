@@ -12,7 +12,7 @@
 
     },
     "dashboard" : {
-        "addBusinessBtn": "Add Comapny",
+        "addBusinessBtn": "Add Company",
         "searchBtn": "Search",
         "addUserBtn": "View User",
         "addWarehouseBtn": "Add Warehouse",

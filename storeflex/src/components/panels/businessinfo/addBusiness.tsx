@@ -240,7 +240,7 @@ const AddBusiness = (props: AddBusinessProps) => {
                         <TextareaAutosize
                             minRows={3}
                             maxRows={4}
-                            maxLength={30}
+                            maxLength={500}
                             onChange={countHandle}
                             aria-label='Add your business description'
                             placeholder='Add your business description'

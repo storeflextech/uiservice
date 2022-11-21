@@ -146,10 +146,16 @@
                     "Icon": "mdi mdi-cash menu-icon"
                 },
                 {
-                    "Label": "Search",
+                 "Label": "Search",
                     "Name": "SearchMenu",
-                    "NavigateTo": "/search-new",
-                    "SubMenu": [ ],
+                    "NavigateTo": "self",
+                    "SubMenu": [
+                        {
+                            "Label": "Search Company",
+                            "Name": "SearchBusinessMenu",
+                            "NavigateTo": "/search-new"
+                        }
+                    ],
                     "Icon": "mdi mdi-magnify menu-icon"
                 },
                 {
