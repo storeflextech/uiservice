@@ -34,6 +34,8 @@ import UserProfile from '../pages/userProfile';
 import SiteMap from '../pages/SiteMap';
 import WarehousePage from '../pages/WarehousePage';
 
+import WarehouseDetails from '../components/atoms/Searchresult/warehouseDetails';
+
 export enum USER_TYPE {
     SfUser = 'SL',
     SfClient = 'CL',
@@ -201,6 +203,10 @@ export const PAGES = {
     USER_PROFILE :{
         path: '/view-profile',
         Component: UserProfile
+    },
+    WAREHOUSE_DETAILS :{
+        path:'/WarehouseDetails',
+        Component: WarehouseDetails
     }
 
 }
