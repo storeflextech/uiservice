@@ -12,12 +12,7 @@ const Pricing = () => {
             <div className="row">
               <div className="col-12">
                 <div className="content">
-                  <h5>Pricing Plan</h5>
-                  <h2 className="fw-bold">Our Best Pricing</h2>
-                  <p>
-                    There are many variations of passages of Lorem Ipsum available,
-                    but the majority have suffered alteration in some form.
-                  </p>
+                  <h2>FEATURED WAREHOUSES</h2>
                 </div>
               </div>
             </div>
