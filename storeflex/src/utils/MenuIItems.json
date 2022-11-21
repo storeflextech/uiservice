@@ -153,7 +153,7 @@
                         {
                             "Label": "Search Company",
                             "Name": "SearchBusinessMenu",
-                            "NavigateTo": "/search"
+                            "NavigateTo": "/search-new"
                         }
                     ],
                     "Icon": "mdi mdi-magnify menu-icon"

@@ -59,7 +59,13 @@ function App() {
             } 
             { !getUserLoggedIn() && 
               <Routes>
+                <Route path="/" element={<PAGES.Home.Component />} />
                 <Route path="/*" element={<PAGES.SignInNew.Component />} />
+                <Route path={PAGES.SignUp.path} element={<PAGES.SignUp.Component />} />
+              <Route path={PAGES.SignUp.path} element={<PAGES.SignUp.Component />} />
+              <Route path={PAGES.SignInNew.path} element={<PAGES.SignInNew.Component />} />
+              <Route path={PAGES.PgSearchNew.path} element={<PAGES.PgSearchNew.Component />} />
+                <Route path={PAGES.WAREHOUSE_DETAILS.path} element={<PAGES.WAREHOUSE_DETAILS.Component />} />
                 <Route path={PAGES.SITE_MAP.path} element={<PAGES.SITE_MAP.Component />} />
                 <Route path={PAGES.Error.path} element={<PAGES.Error.Component />} />
               </Routes>
