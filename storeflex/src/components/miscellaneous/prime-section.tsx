@@ -44,16 +44,16 @@ const PrimeSection = () => {
         navigate('/search-new', { state: data });
       } else {
         Swal({
-          title: 'Not Found',
-          text: 'Not Found any data with your details',
+          title: 'We are sorry',
+          text: 'We were not able to find a match. Please try another Search Word',
         })
       }
     })
       .catch((error) => {
         console.log(error);
         Swal({
-          title: 'Not Found',
-          text: 'Not Found any data with your details',
+          title: 'We are sorry',
+          text: 'We were not able to find a match. Please try another Search Word',
         })
 
       })
