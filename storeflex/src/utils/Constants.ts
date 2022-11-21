@@ -1,6 +1,7 @@
 import HomePage from '../pages/HomePage';
 import SignIn from "../pages/signin";
 import SignInNew from "../pages/signin-new";
+import SignUpNew from '../pages/signup-new';
 import SignUp from '../pages/signup';
 import DashboardPage from '../pages/DashboardPage';
 import BusinessPage from '../pages/BusinessPage';
@@ -65,6 +66,10 @@ export const PAGES = {
     SignUp : {
         path: '/signup',
         Component: SignUp
+    },
+    SignUpNew : {
+        path: '/signup-new',
+        Component: SignUpNew
     },
     Dashboard : {
         path: '/dashboard',

@@ -29,6 +29,11 @@ const SignInNew = () => {
     });
   };
 
+
+  const SubmitSignUp = () => {
+    window.location.href = '/signup-new';
+  }
+
   const submitSignIn = () => {
     const api = new Api();
     const emailValid = validateMinLen(values.email, true);
@@ -102,7 +107,7 @@ const SignInNew = () => {
                 </div>
                 <div className="col-md-6">
                   <div className="form-input rounded-buttons">
-                    <button
+                    <button onClick={SubmitSignUp}
                       className="btn primary-btn-outline rounded-full"
                       type="submit"
                     >
