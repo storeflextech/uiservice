@@ -19,58 +19,58 @@ const ViewBusiness = () => {
     useEffect(() => {
         getMyCompanies(pageNo, pageSize);
         const data = ([
-            {
-                id: 1,
-                CompanyName: 'Das & Sons Pvt. Ltd.',
-                Address: "Nayantara Supermarket, Anand Nagar, Six Mile",
-                PrimaryContactName:
-                <div className="nav-profile-image">
-                    <img src="/images/face1.jpg" alt="profile" />
-                    <input className="d-none" type="file" />&nbsp;
-                    Martina Das
-                </div>,
-                Phone: "9988221133",
-                Email: "skap@yahoomail.com"
-            },
-            {
-                id: 2,
-                CompanyName: 'Zaman & Sons Pvt. Ltd.',
-                Address: "H No. 24, VIP Road, Guwahati",
-                PrimaryContactName:
-                <div className="nav-profile-image">
-                    <img src="/images/face1.jpg" alt="profile" />
-                    <input className="d-none" type="file" />&nbsp;
-                    Samaruz Zaman
-                </div>,
-                Phone: "9101212005",
-                Email: "support2you@gmail.com"
-            },
-            {
-                id: 3,
-                CompanyName: 'Sofi & Sons Pvt. Ltd.',
-                Address: "H No. 32, AT Road, Guwahati",
-                PrimaryContactName:
-                <div className="nav-profile-image">
-                    <img src="/images/face1.jpg" alt="profile" />
-                    <input className="d-none" type="file" />&nbsp;
-                    Sofi Ahmed
-                </div>,
-                Phone: "2121932923",
-                Email: "sofisupport@proton.me"
-            },
-            {
-                id: 4,
-                CompanyName: 'Brazen & Sons Pvt. Ltd.',
-                Address: "H No. 42, Anand Nagar, Six Mile",
-                PrimaryContactName:
-                <div className="nav-profile-image">
-                    <img src="/images/face1.jpg" alt="profile" />
-                    <input className="d-none" type="file" />&nbsp;
-                    Nishanta Kakati
-                </div>,
-                Phone: "9988776655",
-                Email: "nishantann@proton.me"
-            },
+            // {
+            //     id: 1,
+            //     CompanyName: 'Das & Sons Pvt. Ltd.',
+            //     Address: "Nayantara Supermarket, Anand Nagar, Six Mile",
+            //     PrimaryContactName:
+            //     <div className="nav-profile-image">
+            //         <img src="/images/face1.jpg" alt="profile" />
+            //         <input className="d-none" type="file" />&nbsp;
+            //         Martina Das
+            //     </div>,
+            //     Phone: "9988221133",
+            //     Email: "skap@yahoomail.com"
+            // },
+            // {
+            //     id: 2,
+            //     CompanyName: 'Zaman & Sons Pvt. Ltd.',
+            //     Address: "H No. 24, VIP Road, Guwahati",
+            //     PrimaryContactName:
+            //     <div className="nav-profile-image">
+            //         <img src="/images/face1.jpg" alt="profile" />
+            //         <input className="d-none" type="file" />&nbsp;
+            //         Samaruz Zaman
+            //     </div>,
+            //     Phone: "9101212005",
+            //     Email: "support2you@gmail.com"
+            // },
+            // {
+            //     id: 3,
+            //     CompanyName: 'Sofi & Sons Pvt. Ltd.',
+            //     Address: "H No. 32, AT Road, Guwahati",
+            //     PrimaryContactName:
+            //     <div className="nav-profile-image">
+            //         <img src="/images/face1.jpg" alt="profile" />
+            //         <input className="d-none" type="file" />&nbsp;
+            //         Sofi Ahmed
+            //     </div>,
+            //     Phone: "2121932923",
+            //     Email: "sofisupport@proton.me"
+            // },
+            // {
+            //     id: 4,
+            //     CompanyName: 'Brazen & Sons Pvt. Ltd.',
+            //     Address: "H No. 42, Anand Nagar, Six Mile",
+            //     PrimaryContactName:
+            //     <div className="nav-profile-image">
+            //         <img src="/images/face1.jpg" alt="profile" />
+            //         <input className="d-none" type="file" />&nbsp;
+            //         Nishanta Kakati
+            //     </div>,
+            //     Phone: "9988776655",
+            //     Email: "nishantann@proton.me"
+            // },
         ]);
         
         setBusinessInfo(data);
