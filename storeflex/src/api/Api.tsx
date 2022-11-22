@@ -1,6 +1,6 @@
 // import React from 'react';
 import axios from 'axios';
-import { ApiConfig, SignInProps, AddCompanyProps, ViewCompaniesProps } from './ApiConfig';
+import { ApiConfig, SignInProps, AddCompanyProps, ViewCompaniesProps, ViewWarehouseProps } from './ApiConfig';
 
 
 // let axiosConfig = {
@@ -74,6 +74,18 @@ export default class Api {
         }
         catch (error) {
             console.log(' error : Get Company', error);
+            return Promise.reject(error);
+        }
+    }
+
+    async getWarehouse(getData: ViewWarehouseProps): Promise<any>{
+        const url = this.baseUrl+this.apiUrl.getWarehouseUrl+'?clientId='+getData.clientId+'&page='+getData.page+'&size='+getData.size;
+        try {
+            const response = await axios.get(url);
+            return Promise.resolve(response);
+        }
+        catch (error) {
+            console.log(' error : Get Warehouse', error);
             return Promise.reject(error);
         }
     }
