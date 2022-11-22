@@ -1,5 +1,5 @@
 import React from 'react';
-import Content from '../../utils/Content.json';
+import Content from '../../cms/Content.json';
 import {CmsContext} from '../../context/ContextProvider';
 
 export const AppContainer = (props) => {
