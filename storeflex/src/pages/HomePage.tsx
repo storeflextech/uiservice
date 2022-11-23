@@ -8,7 +8,7 @@ import Brand from '../components/miscellaneous/brand';
 // import Team from '../components/miscellaneous/team';
 import Subscription from '../components/miscellaneous/subscription';
 import Contact from '../components/miscellaneous/contact';
-import TopNavbar from '../components/navbar/TopNavBar';
+import TopNavBar from '../components/navbar/TopNavBar';
 // import SideNavBar from '../components/navbar/SideNavBar';
 import PrimeSection from '../components/miscellaneous/prime-section';
 import { AppContainer, SplitPaneContainer } from '../components/containers/containers';
@@ -17,7 +17,7 @@ import { AppContainer, SplitPaneContainer } from '../components/containers/conta
 const HomePage = () => {
   return (
     <AppContainer>
-        <TopNavbar />
+        <TopNavBar />
         <SplitPaneContainer
             left={<></>}
             right={

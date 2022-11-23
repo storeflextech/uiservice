@@ -1,13 +1,13 @@
 import React from 'react';
-import { Box, Container } from '@mui/material';
+import { Box } from '@mui/material';
 import { AppContainer } from '../components/containers/containers';
-import TopNavbar from '../components/navbar/TopNavBar';
+import TopNavBar from '../components/navbar/TopNavBar';
 import Footer from '../components/footer/footer';
 
 const TermsAndConditions = () => {
     return(
             <AppContainer>
-                <TopNavbar/>
+                <TopNavBar/>
                 <br></br><br></br><br></br><br></br>
             <div className='c-box-shadow-blue'>
                 <Box className='m-top-md m-bot-md m-left-md m-right-md'>
