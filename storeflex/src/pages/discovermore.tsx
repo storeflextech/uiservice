@@ -7,7 +7,7 @@ import TopNavbar from '../components/navbar/TopNavBar';
 const DiscoverMore = () => {
     return (
         <AppContainer>
-            <TopNavbar />
+            <TopNavBar />
             <br></br><br></br><br></br><br></br>
             <Box className='m-top-md m-bot-md m-left-md m-right-md'>
                 <div className='col-12 header-ten' style={{ backgroundImage: "url(/images/warehouse.webp)" }}>

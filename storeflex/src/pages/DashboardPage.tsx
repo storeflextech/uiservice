@@ -2,7 +2,7 @@ import React from 'react';
 import UserDashboard from '../components/panels/dashboards/UserDashboard';
 import ClientDashboard from '../components/panels/dashboards/ClientDashboard';
 import CustomerDashboard from '../components/panels/dashboards/CustomerDashboard';
-import TopNavbar from '../components/navbar/TopNavBar';
+import TopNavBar from '../components/navbar/TopNavBar';
 import SideNavBar from '../components/navbar/SideNavBar';
 import { AppContainer, SplitPaneContainer, BoxContainer } from '../components/containers/containers';
 import { getUserType } from '../utils/CommonUtils';
@@ -29,7 +29,7 @@ const DashboardPage = () => {
 
     return (
         <AppContainer>
-            <TopNavbar />
+            <TopNavBar />
             <SplitPaneContainer
                 left={<SideNavBar userType={getUserType()}/>}
                 right={
