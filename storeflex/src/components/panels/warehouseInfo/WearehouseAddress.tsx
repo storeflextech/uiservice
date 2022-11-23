@@ -2,6 +2,7 @@ import React from "react";
 import { Grid, TextareaAutosize, Button } from '@mui/material';
 import InputBox from '../../atoms/textfield/InputBox';
 import GetState from '../../atoms/state/GetState';
+import GetCompany from "../../atoms/company/GetCompany";
 
 
 const WearehouseAddress = () => {
@@ -13,6 +14,16 @@ const WearehouseAddress = () => {
                     <div className='font-white p-sm f-18px f-bold'>Where's warehouse located?</div>
                 </div>
                 {/* {showBusinessAddress()} */}
+                <div className='p-md'>
+                <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
+                    <Grid item xs={4}>
+                        <div> Company </div>
+                        <div className='p-top-md'>
+                            {<GetCompany />}
+                        </div>
+                    </Grid>
+                    </Grid>
+                    </div>
 
                 <div className='p-md'>
                     <div>
