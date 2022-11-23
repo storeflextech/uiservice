@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
-import TopNavbar from '../components/navbar/TopNavBar';
+import TopNavBar from '../components/navbar/TopNavBar';
 import SideNavBar from '../components/navbar/SideNavBar';
 import { AppContainer, SplitPaneContainer } from '../components/containers/containers';
 import Footer from '../components/footer/footer';
@@ -15,7 +15,7 @@ const ViewUser = () => {
   }
     return (
         <AppContainer>
-            <TopNavbar />
+            <TopNavBar />
             <SplitPaneContainer
                 left={<SideNavBar userType={getUserType()}/>}
                 right={
