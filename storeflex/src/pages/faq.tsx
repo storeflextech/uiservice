@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from '@mui/material';
 import Footer from '../components/footer/footer';
-import TopNavbar from '../components/navbar/TopNavBar';
+import TopNavBar from '../components/navbar/TopNavBar';
 import { AppContainer } from '../components/containers/containers';
 import { SplitPaneContainer } from '../components/containers/containers';
 import Accordion from 'react-bootstrap/Accordion'
@@ -10,7 +10,7 @@ const faq = () => {
     return (
         <>
          <AppContainer>
-        <TopNavbar />
+        <TopNavBar />
         <SplitPaneContainer
             left={<></>}
             right={

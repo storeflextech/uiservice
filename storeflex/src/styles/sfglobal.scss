@@ -616,3 +616,30 @@ $sf-primary-color: #f66711;
 .line-h-sm {
   line-height: 1.2 !important;
 }
+
+.top-nav-logo {
+  height: 35px;
+  @include mediabreakpoint(mobile) {
+    height: 20px;
+  }
+}
+.top-nav-link {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  color: white !important;
+  padding-right: 1.0rem !important;
+  padding-left: 1.0rem !important;
+  @include mediabreakpoint(mobile) {
+    height: 14px;
+    line-height: 20px;
+  }
+}
+
+.top-nav-link:hover {
+  background-color: orange;
+}
+
+.top-nav-container {
+  max-width: 100% !important;
+}

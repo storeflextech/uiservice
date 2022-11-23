@@ -2,11 +2,11 @@ import React from 'react';
 import { Box, Container } from '@mui/material';
 import Footer from '../components/footer/footer';
 import { AppContainer } from '../components/containers/containers';
-import TopNavbar from '../components/navbar/TopNavBar';
+import TopNavBar from '../components/navbar/TopNavBar';
 const DiscoverMore = () => {
     return (
         <AppContainer>
-            <TopNavbar />
+            <TopNavBar />
             <br></br><br></br><br></br><br></br>
             <Box className='m-top-md m-bot-md m-left-md m-right-md'>
                 <div className='col-12 header-ten'>
