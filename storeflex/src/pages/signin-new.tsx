@@ -80,7 +80,9 @@ const SignInNew = () => {
               <div className="row">
                 <div className="col-md-12 justify-content-center">
                   <div className="form-input justify-content-center">
+                    <a href = "/">
                     <img src="assets/images/white-logo.jpg" alt="Logo" style={{ height: '8vh' }} />
+                    </a>
                     <label>Your account will be under this email</label>
                     <div className="input-items default">
                       <input type="text" placeholder="User ID" name="email" onChange={handleChange} />
