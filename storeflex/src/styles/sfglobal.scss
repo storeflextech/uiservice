@@ -35,7 +35,7 @@ $sf-primary-color: #f66711;
   padding-bottom: 50px;
   padding-left: 0px;
   @include mediabreakpoint(mobile) {
-    padding-top: 130px;
+    padding-top: 80px;
   }
 }
 .sf-splitPane-right {
@@ -134,6 +134,9 @@ $sf-primary-color: #f66711;
   line-height: normal;
 }
 
+.no-padding {
+  padding: 0px !important;
+}
 .p-sm {
   padding: 8px;
 }
@@ -145,6 +148,10 @@ $sf-primary-color: #f66711;
 }
 .p-xl {
   padding: 32px;
+}
+
+.p-top-5 {
+  padding-top: 5px;
 }
 
 .p-top-sm {
@@ -293,10 +300,13 @@ $sf-primary-color: #f66711;
   }
 }
 
-.App-link {
-  color: #61dafb;
+.app-link {
+  color: #61dafb !important;
 }
-.text-red{
+.link-white {
+  color: white !important;
+}
+.text-red {
   color:#e6473d;
 }
 .border-red{
@@ -642,4 +652,9 @@ $sf-primary-color: #f66711;
 
 .top-nav-container {
   max-width: 100% !important;
+}
+.sign-link {
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
 }

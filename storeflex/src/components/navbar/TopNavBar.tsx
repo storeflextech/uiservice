@@ -1,5 +1,7 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { getUserLoggedIn} from  '../../utils/CommonUtils';
 import { ProfileMenu } from '../atoms/profile/profile';
 
@@ -22,21 +24,17 @@ const TopNavBar = () => {
       )
     } else {
       return (
-        <ul>
-        <li>
-          <a className="btn primary-btn-outline" href="javascript:;" onClick={() => { goToNextPage('/signin-new') }}>Sign In</a>
-        </li>
-        <li>
-          <a className="btn primary-btn m-right-xl" href="javascript:void(0)" >Sign Up</a>
-        </li>
-      </ul>
+        <div className="link-white align-c">
+          <span><a className="sign-link p-top-5" href="/signin">Sign In</a></span>
+          <span><a className="sign-link p-top-5" href="/signup">Sign Up</a></span>
+        </div>
       )
     }
   }
   return (
-    <Navbar fixed="top" collapseOnSelect expand="md" className="sf-bg-color-primary" variant="dark">
+    <Navbar fixed="top" collapseOnSelect expand="md" className="sf-bg-color-primary w100" variant="dark">
       <div className='sf-flex sf-justify w100'>
-      <Container className='top-nav-container'>
+      <Container className='top-nav-container no-padding '>
         <Navbar.Brand href="/home">
           <span className='top-nav-logo'>
           <img src="../../assets/images/white-logo.jpg" alt="Logo" />
@@ -52,7 +50,6 @@ const TopNavBar = () => {
               <Nav.Link className='top-nav-link' href="/home#contact">Contact</Nav.Link>
             </Nav>
           </Navbar.Collapse>
-          
       </Container>
       {signOut()}
       </div>
