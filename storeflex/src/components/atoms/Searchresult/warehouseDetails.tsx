@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import TopNavbar from '../../navbar/TopNavBar';
+import TopNavBar from '../../navbar/TopNavBar';
 import { useNavigate, useLocation } from "react-router-dom"
 import './searchresult.css';
 import BeenhereIcon from '@mui/icons-material/Beenhere';
@@ -42,7 +42,7 @@ const WarehouseDetails=()=>{
 
     return(
         <>
-        <TopNavbar/>
+        <TopNavBar/>
         <div className="col-md-12 col-xl-12 pt-5">
                         <div className="card shadow-0 border rounded-3">
                           <div className="card-body">
