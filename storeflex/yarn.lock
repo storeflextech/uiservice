@@ -10149,6 +10149,11 @@ svgo@^2.7.0:
     picocolors "^1.0.0"
     stable "^0.1.8"
 
+sweetalert2@^11.6.7:
+  version "11.6.9"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.6.9.tgz#23fdd581d0b695c61fedbe5b9be1994c73d7b722"
+  integrity sha512-zx0vdToB2Ququk+0qbXruca5KJuScyno77cqPfuwSiRwlMS5CwwnZDWiLqcRlIAZzDEbZHz9g/T7BDqAGqsQlA==
+
 sweetalert@^2.1.2:
   version "2.1.2"
   resolved "https://registry.npmjs.org/sweetalert/-/sweetalert-2.1.2.tgz"
