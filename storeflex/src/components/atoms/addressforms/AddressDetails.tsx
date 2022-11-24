@@ -54,7 +54,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
         <div>
             <Grid container >
             <Grid item xs={12}>
-                <InputBox data={{name:'addressLine1', label:'Address*', value: data.addresLine1}}
+                <InputBox data={{name:'addressLine1', label:'Address', value: data.addresLine1}}
                 onChange={validateAddress}
                 />
                 {address && <p className="text-red">{address}</p>}
@@ -62,7 +62,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
           </Grid>
             <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                 <Grid item xs={6}>
-                <InputBox data={{name:'cityname', label:'City*', value: data.city}}
+                <InputBox data={{name:'cityname', label:'City', value: data.city}}
                 onChange={validateCityName}
                 />
                 {city && <p className="text-red">{city}</p>}
@@ -76,7 +76,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
             </Grid>
             <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                 <Grid item xs={6}>
-                <InputBox data={{name:'zipcode', label:'Zip*', value: data.zip}}
+                <InputBox data={{name:'zipcode', label:'PIN', value: data.zip}}
                 onChange={validateZipCode}/>
                 {Zip && <p className="text-red">{Zip}</p>}
                 </Grid>
