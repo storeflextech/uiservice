@@ -1,5 +1,5 @@
 import React from "react";
-import TopNavbar from '../components/navbar/TopNavBar';
+import TopNavBar from '../components/navbar/TopNavBar';
 import Footer from "../components/footer/footer";
 import SideNavBar from "../components/navbar/SideNavBar";
 import { AppContainer } from "../components/containers/containers";
@@ -13,7 +13,7 @@ const MyOrders = () => {
     return (
         <>
            <AppContainer>
-                <TopNavbar/>
+                <TopNavBar/>
                 <SplitPaneContainer
                 left={<SideNavBar userType={getUserType()}/>}
                 right={<OrderTable/>}

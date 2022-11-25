@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from '@mui/material';
 import CartContents from '../components/cart-contents/cart-contents';
-import TopNavbar from '../components/navbar/TopNavBar';
+import TopNavBar from '../components/navbar/TopNavBar';
 
 
 
@@ -29,7 +29,7 @@ const Cart = () => {
 
     return(
         <>
-        {<TopNavbar />}
+        {<TopNavBar />}
             <Container component="main" maxWidth="xl" className='p-no'>
             <div className='font-gray f-24px p-top-xl'>Your Shopping Cart(1)</div>
             {<CartContents storeInfo={storeDetails}/>}

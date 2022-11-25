@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Container } from '@mui/material';
 import { AppContainer, SplitPaneContainer } from '../components/containers/containers';
-import TopNavbar from '../components/navbar/TopNavBar';
+import TopNavBar from '../components/navbar/TopNavBar';
 import Footer from '../components/footer/footer';
 import SideNavBar from '../components/navbar/SideNavBar';
 import { getUserType } from '../utils/CommonUtils';
@@ -10,7 +10,7 @@ const AddPayment = () => {
     return(
         <>
             <AppContainer>
-                <TopNavbar/>
+                <TopNavBar/>
                 <SplitPaneContainer
                 left = {<SideNavBar userType={getUserType()}/>}
                 right = {

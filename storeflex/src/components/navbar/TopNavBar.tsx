@@ -1,15 +1,19 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { getUserLoggedIn} from  '../../utils/CommonUtils';
 import { ProfileMenu } from '../atoms/profile/profile';
 
-const TopNavbar = () => {
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+
+const TopNavBar = () => {
   const navigate = useNavigate();
   const goToNextPage = (pagePath: string) => {
     navigate(pagePath);
   }
-
- 
 
   const signOut = () => {
     if(getUserLoggedIn()) {
@@ -20,66 +24,36 @@ const TopNavbar = () => {
       )
     } else {
       return (
-        <ul>
-        <li>
-          <a className="btn primary-btn-outline" href="javascript:;" onClick={() => { goToNextPage('/signin-new') }}>Sign In</a>
-        </li>
-        <li>
-          <a className="btn primary-btn m-right-xl" href="javascript:void(0)" >Sign Up</a>
-        </li>
-      </ul>
+        <div className="link-white align-c">
+          <span><a className="sign-link p-top-5" href="/signin">Sign In</a></span>
+          <span><a className="sign-link p-top-5" href="/signup">Sign Up</a></span>
+        </div>
       )
     }
   }
   return (
-    <>
-      <section className="navbar-area navbar-one sf-bg-primary">
-        <div className="">
-          <div className="row">
-            <div className="col-lg-12">
-              <nav className="navbar navbar-expand-lg">
-                <div className="p-left-sm">
-                <a className="navbar-brand" href="/home">
-                  <img src="../../assets/images/white-logo.jpg" alt="Logo" style={{ height: '7.5vh' }} />
-                </a>
-                </div>
-
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarOne"
-                  aria-controls="navbarOne" aria-expanded="false" aria-label="Toggle navigation">
-                  <span className="toggler-icon"></span>
-                  <span className="toggler-icon"></span>
-                  <span className="toggler-icon"></span>
-                </button>
-
-                <div className="collapse navbar-collapse sub-menu-bar" id="navbarOne">
-                  <ul className="navbar-nav m-auto">
-                    <li className="nav-item">
-                      <a className="active page-scroll" href="/home#hero-area">Home</a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="page-scroll" href="/home#services">Services</a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="page-scroll" href="/home#pricing">Featured WH</a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="page-scroll" href="/home#clients">Clients</a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="page-scroll" href="/home#contact">Contact</a>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="navbar-btn d-none d-sm-inline-block">
-                  {signOut()}
-                </div>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
+    <Navbar fixed="top" collapseOnSelect expand="md" className="sf-bg-color-primary w100" variant="dark">
+      <div className='sf-flex sf-justify w100'>
+      <Container className='top-nav-container no-padding '>
+        <Navbar.Brand href="/home">
+          <span className='top-nav-logo'>
+          <img src="../../assets/images/white-logo.jpg" alt="Logo" />
+          </span>
+        </Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link className='top-nav-link' href="/home#hero-area">Home</Nav.Link>
+              <Nav.Link className='top-nav-link' href="/home#services">Services</Nav.Link>
+              <Nav.Link className='top-nav-link' href="/home#pricing">Featured WH</Nav.Link>
+              <Nav.Link className='top-nav-link' href="/home#clients">Clients</Nav.Link>
+              <Nav.Link className='top-nav-link' href="/home#contact">Contact</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+      </Container>
+      {signOut()}
+      </div>
+    </Navbar>
   )
 }
-export default TopNavbar; 
+export default TopNavBar; 

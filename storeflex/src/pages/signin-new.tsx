@@ -46,8 +46,8 @@ const SignInNew = () => {
         password: values.password
       }
       api.signIn(data).then((response) => {
-          console.log(' signIn >>>>>> ', response);
-          if (response && response.status === 200 && response?.data?.statusCode === 600) {
+        console.log(' signIn >>>>>> ', response);
+        if (response && response.status === 200 && response?.data?.statusCode === 600) {
           setUserLoggedIn('true');
           const redirectUrl = getRedirectionPage(response?.data?.methodReturnValue?.redirect)
           window.location.href = redirectUrl;
@@ -80,9 +80,7 @@ const SignInNew = () => {
               <div className="row">
                 <div className="col-md-12 justify-content-center">
                   <div className="form-input justify-content-center">
-                    <a href = "/">
-                    <img src="assets/images/white-logo.jpg" alt="Logo" style={{ height: '8vh' }} />
-                    </a>
+                    <a href="/home"><img src="assets/images/white-logo.jpg" alt="Logo" style={{ height: '8vh' }} /></a>
                     <label>Your account will be under this email</label>
                     <div className="input-items default">
                       <input type="text" placeholder="User ID" name="email" onChange={handleChange} />
@@ -120,26 +118,25 @@ const SignInNew = () => {
                 <div className="col-md-12">
                   <div className="form-input text-center">
                     <h4 className="text">
-                    Or continue with
+                      Or continue with
                       <br></br>
                       <GoogleLogin
-                  clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID || ""}
-                  buttonText=" Google"
-                  onSuccess={onGoogleLoginSuccess}
-                  onFailure={onGoogleLoginFailure}
-                  cookiePolicy={'single_host_origin'}
-                />
+                        clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID || ""}
+                        buttonText=" Google"
+                        onSuccess={onGoogleLoginSuccess}
+                        onFailure={onGoogleLoginFailure}
+                        cookiePolicy={'single_host_origin'}
+                      />
                     </h4>
                   </div>
                 </div>
                 <div className="col-md-12">
                   <div className="form-input text-center">
                     <p className="text">
-                      By signing in you agree with the
-                      <a href="/termsandconditions">Terms and Conditions </a> <br></br>
+                      By signing in you agree with the<br></br>
+                      <a href="/termsandconditions">Terms and Conditions &nbsp;</a>
                       and
-                      <br></br>
-                      <a href="/privacypolicy"> Privacy Policy</a>
+                      <a href="/privacypolicy">&nbsp; Privacy Policy</a>
                     </p>
                   </div>
                 </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box } from '@mui/material';
-import TopNavbar from '../components/navbar/TopNavBar';
+import TopNavBar from '../components/navbar/TopNavBar';
 import SideNavBar from '../components/navbar/SideNavBar';
 import { AppContainer, SplitPaneContainer } from '../components/containers/containers';
 import { getUserType } from '../utils/CommonUtils';
@@ -80,7 +80,7 @@ const UserProfile = () => {
     return (
         <AppContainer>
 
-            <TopNavbar />
+            <TopNavBar />
             <SplitPaneContainer
                 left={<SideNavBar userType={getUserType()} />}
                 right={
