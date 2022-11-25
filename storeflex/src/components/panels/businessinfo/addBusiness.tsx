@@ -115,7 +115,7 @@ const AddBusiness = (props: AddBusinessProps) => {
     }
 
     const profile = {} as BusinessDetails;
-    const [isLoader, setLoaderState] = useState(true);
+    const [isLoader, setLoaderState] = useState(false);
     const [businessProfile, setBusinessProfile] = useState(profile);
     const [profileSaved, setProfileSaved] = useState(false);
     const [charCount, setCharCount] = useState(0);
@@ -194,10 +194,10 @@ const AddBusiness = (props: AddBusinessProps) => {
                         {errors.companyname && <p className="text-red">{errors.companyname}</p>}
                     </Grid>
                     <Grid item xs={6}>
-                        <InputBox data={{ name: 'companyurl', label: 'Company URL*', value: businessProfile.weburl }}
+                        <InputBox data={{ name: 'companyurl', label: 'Company URL', value: businessProfile.weburl }}
                             onChange={handleChange} onBlur={handelOnBlur}
                         />
-                        {errors.companyurl && <p className="text-red">{errors.companyurl}</p>}
+                        {/* {errors.companyurl && <p className="text-red">{errors.companyurl}</p>} */}
                     </Grid>
                 </Grid>
                 <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
@@ -212,6 +212,13 @@ const AddBusiness = (props: AddBusinessProps) => {
                             onChange={handleChange} onBlur={handelOnBlur}
                         />
                         {errors.gstid && <p className="text-red">{errors.gstid}</p>}
+                    </Grid>
+                </Grid>
+                <Grid>
+                    <Grid>
+                      <InputBox data={{ name: 'companyname', label: 'Company Name*', value: businessProfile.name }}
+                            onChange={handleChange} onBlur={handelOnBlur} />
+                        {/* {errors.companyname && <p className="text-red">{errors.companyname}</p>} */}
                     </Grid>
                 </Grid>
             </div>
@@ -279,7 +286,11 @@ const AddBusiness = (props: AddBusinessProps) => {
 
     const onSave = (step: any) => {
         switch (step) {
-            case 1: setLoaderState(false); setStep(2); break;
+            case 1: 
+                console.log("businessProfile=",values)
+                setLoaderState(false); 
+                setStep(2); 
+                break;
             case 2: setLoaderState(false); setStep(3); break;
             case 3:
                 swal('Success! Your company has been created successfully!', {

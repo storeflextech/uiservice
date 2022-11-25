@@ -9,6 +9,12 @@ export interface ViewCompaniesProps {
     size: string;
 }
 
+export interface ViewWarehouseProps{
+    clientId: string;
+    page:string;
+    size:string;
+}
+
 export interface Address {
     addressType: string,
     plotNo: string,
@@ -53,5 +59,7 @@ export class ApiConfig {
     getCompaniesUrl = '/clients';
     addCompanyUrl = '/client';
 
-    searchwarehouse = '/searchwarehouse'
+    searchwarehouse = '/searchwarehouse';
+    getWarehouseUrl = '/warehouseByClientId';
+
 }

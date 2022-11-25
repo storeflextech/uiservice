@@ -11,8 +11,16 @@
         "termOfConditionBtn": "Terms of condiotions"
 
     },
+    "home" : {
+        "homeTitleText" : "Smarter search for space at your fingertips under one roof",
+        "homeSubTitleText" : "Global marketplace for warehouse & logistics management solutions",
+        "discoverMoreBtn" : "Discover More",
+        "searchMsgText" : "LET’S FIND THE WAREHOUSE YOU ARE LOOKING FOR",
+        "searchInputLabel" : "Enter Pin or City"
+
+    },
     "dashboard" : {
-        "addBusinessBtn": "Add Comapny",
+        "addBusinessBtn": "Add Company",
         "searchBtn": "Search",
         "addUserBtn": "View User",
         "addWarehouseBtn": "Add Warehouse",

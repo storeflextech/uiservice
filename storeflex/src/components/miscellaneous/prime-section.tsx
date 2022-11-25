@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
 import { useNavigate } from "react-router-dom";
 import Api from '../../api/Api';
 import Swal from 'sweetalert';
 import Carousel from "react-bootstrap/Carousel";
+import { CmsContext } from '../../context/ContextProvider';
 
 interface warehouse {
   city: any,
@@ -23,6 +24,10 @@ const imgUrl = "assets/images/header/04.jpg";
 
 const PrimeSection = () => {
   const navigate = useNavigate();
+
+  const cmsContent = useContext(CmsContext);
+  const homeContent = cmsContent['home'];
+
   const goToNextPage = (pagePath: string) => {
 
     navigate(pagePath);
@@ -44,16 +49,16 @@ const PrimeSection = () => {
         navigate('/search-new', { state: data });
       } else {
         Swal({
-          title: 'Not Found',
-          text: 'Not Found any data with your details',
+          title: 'We are sorry',
+          text: 'We were not able to find a match. Please try another Search Word',
         })
       }
     })
       .catch((error) => {
         console.log(error);
         Swal({
-          title: 'Not Found',
-          text: 'Not Found any data with your details',
+          title: 'We are sorry',
+          text: 'We were not able to find a match. Please try another Search Word',
         })
 
       })
@@ -76,13 +81,12 @@ const PrimeSection = () => {
                 <div className="home-slider">
                   <div className="header-text align-items-center">
                     <h1>
-                      Smarter search for space at your fingertips under one roof
+                    {homeContent?.homeTitleText}
                       <br />
                       <h4>
                         <i>
-                          {" "}
-                          Global marketplace for warehouse & logistics
-                          management solutions
+                        {" "}
+                          {homeContent?.homeSubTitleText}
                         </i>
                       </h4>
                       <div className="light-rounded-buttons">
@@ -91,32 +95,24 @@ const PrimeSection = () => {
                           className="btn primary-btn"
                           onClick={() => goToNextPage("/discovermore")}
                         >
-                          {" "}
-                          Discover More{" "}
+                          
+                          {homeContent?.discoverMoreBtn}
                         </a>
                       </div>
                     </h1>
-                    <h6>LET’S FIND THE WAREHOUSE YOU ARE LOOKING FOR</h6>
+                    <h6>{homeContent?.searchMsgText}</h6>
 
                     <div className="form-group d-flex flex-row">
 
 
-                      <input className="input-search-size form-control p-2" name="name" ref={inputRef} type="text" placeholder="Enter Pin or City" style={{ height: '50px' }} />
+                      <input className="input-search-size form-control p-2" name="name" ref={inputRef} type="text" placeholder={homeContent?.searchInputLabel} style={{ height: '50px' }} />
 
-                      {/* <div className="light-rounded-buttons float-end m-1">
-                        <a href="javascript:void(0)" onClick={() => { goToNextPage('/search-new') }} className="btn primary-btn"><i className="lni-large lni-search-alt"></i> </a>
-                      </div> */}
 
                       <div className="light-rounded-buttons float-end mt-0">
                         <a href="javascript:void(0)" onClick={searchWarehouse} className="btn primary-btn"><i className="lni-large lni-search-alt"></i> </a>
                       </div>
-
-
                     </div>
 
-                    {/* <div className="light-rounded-buttons float-end">
-                      <a href="javascript:void(0)" onClick={() => { goToNextPage('/search-new') }} className="btn primary-btn"><i className="lni-large lni-search-alt"></i> </a>
-                    </div> */}
                   </div>
                 </div>
               </div>
@@ -228,9 +224,6 @@ const PrimeSection = () => {
                   </Carousel.Item>
                 </Carousel>
 
-                {/* <div className="header-image" style={{ background: 'url(' + imgUrl + ')', float: 'right', height: '500px', width: '500px', display: 'block' }}>
-                  <img className="shape3" src="assets/images/header/shape3.png" alt="#" />
-                </div> */}
               </div>
             </div>
           </div>

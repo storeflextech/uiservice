@@ -1,6 +1,7 @@
 import HomePage from '../pages/HomePage';
 import SignIn from "../pages/signin";
 import SignInNew from "../pages/signin-new";
+import SignUpNew from '../pages/signup-new';
 import SignUp from '../pages/signup';
 import DashboardPage from '../pages/DashboardPage';
 import BusinessPage from '../pages/BusinessPage';
@@ -34,6 +35,8 @@ import UserProfile from '../pages/userProfile';
 import SiteMap from '../pages/SiteMap';
 import WarehousePage from '../pages/WarehousePage';
 
+import WarehouseDetails from '../components/atoms/Searchresult/warehouseDetails';
+
 export enum USER_TYPE {
     SfUser = 'SL',
     SfClient = 'CL',
@@ -63,6 +66,10 @@ export const PAGES = {
     SignUp : {
         path: '/signup',
         Component: SignUp
+    },
+    SignUpNew : {
+        path: '/signup-new',
+        Component: SignUpNew
     },
     Dashboard : {
         path: '/dashboard',
@@ -201,6 +208,10 @@ export const PAGES = {
     USER_PROFILE :{
         path: '/view-profile',
         Component: UserProfile
+    },
+    WAREHOUSE_DETAILS :{
+        path:'/WarehouseDetails',
+        Component: WarehouseDetails
     }
 
 }
