@@ -91,7 +91,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
                     {address && <p className="text-red">{address}</p>}
                 </Grid>
             </Grid>
-            
+
             <Grid className='mt-1' container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                 <Grid item xs={4}>
                     <InputBox data={{ name: 'cityname', label: 'House No.*', value: data.city }}
