@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Grid, TextareaAutosize, Button } from '@mui/material';
+import swal from 'sweetalert';
 import InputBox from '../../atoms/textfield/InputBox';
 import AddressDetails from '../../atoms/addressforms/AddressDetails';
 import { BusinessDetails } from '../../../utils/ResponseSchema';
 import { validateCharacterLength, validatePhone, validateWebUrl, validateGst } from '../../../utils/CommonUtils';
-import  Api  from '../../../../src/api/Api';
+import Api from '../../../../src/api/Api';
 import { AddCompanyProps } from '../../../../src/api/ApiConfig';
+import LoaderSpinner from '../../atoms/spinner/spinner';
 
 interface AddBusinessProps {
     profileData?: BusinessDetails;
@@ -13,7 +15,7 @@ interface AddBusinessProps {
     action?: string;
 }
 
-const companyData={
+const companyData = {
     compyName: "My Company112",
     compyDesc: "Company located at guwahati. Baki details najanu",
     photoName: "Display Image",
@@ -22,33 +24,34 @@ const companyData={
     status: true,
     addresses: [
         {
-          addressType: "Official",
-          plotNo: "420",
-          houseNo: "120",
-          streetDetails: "Silpukhuri Street ",
-          city: "Guwahati",
-          state: "Assam",
-          country: "India",
-          pincode: "781003",
-          createBy: "Admin",
-          updatedBy: "Admin"
+            addressType: "Official",
+            plotNo: "420",
+            houseNo: "120",
+            streetDetails: "Silpukhuri Street ",
+            city: "Guwahati",
+            state: "Assam",
+            country: "India",
+            pincode: "781003",
+            createBy: "Admin",
+            updatedBy: "Admin"
         }
-      ],
-      contact: [
+    ],
+    contact: [
         {
-          contactName: "Micheal John",
-          mobileNo: "9988776655",
-          landLine: "0361-23022",
-          landLineExt: "0361",
-          emailId: "contact@storeflex.com",
-          createBy: "Admin",
-          updatedBy: "Admin",
+            contactName: "Micheal John",
+            mobileNo: "9988776655",
+            landLine: "0361-23022",
+            landLineExt: "0361",
+            emailId: "contact@storeflex.com",
+            createBy: "Admin",
+            updatedBy: "Admin",
         }
-      ]
-  }
-  
+    ]
+}
+
 const AddBusiness = (props: AddBusinessProps) => {
     const api = new Api();
+    const [step, setStep] = useState(1);
     const [values, setValues] = useState({
         companyname: "",
         companyurl: "",
@@ -112,10 +115,11 @@ const AddBusiness = (props: AddBusinessProps) => {
     }
 
     const profile = {} as BusinessDetails;
+    const [isLoader, setLoaderState] = useState(false);
     const [businessProfile, setBusinessProfile] = useState(profile);
     const [profileSaved, setProfileSaved] = useState(false);
     const [charCount, setCharCount] = useState(0);
-    const maxiLength = 30;
+    const maxiLength = 500;
     const countHandle = (e) => {
         var c = e.target.value.length;
         // var r = maxiLength - c;
@@ -131,10 +135,10 @@ const AddBusiness = (props: AddBusinessProps) => {
     }
     const saveBusinessInfo = () => {
         // setErrors(validation(values));
-        const data: AddCompanyProps= companyData;
+        const data: AddCompanyProps = companyData;
         api.addCompany(data).then((response) => {
             console.log(' Company creation res >>>>>> ', response);
-           
+
         });
         // const profile = props?.profileData as BusinessDetails; 
         // setBusinessProfile(profile);
@@ -239,8 +243,8 @@ const AddBusiness = (props: AddBusinessProps) => {
                     <Grid item xs={12}>
                         <TextareaAutosize
                             minRows={3}
-                            maxRows={4}
-                            maxLength={500}
+                            maxRows={10}
+                            maxLength={maxiLength}
                             onChange={countHandle}
                             aria-label='Add your business description'
                             placeholder='Add your business description'
@@ -248,7 +252,7 @@ const AddBusiness = (props: AddBusinessProps) => {
                         />
                         <div className='float-md-right'> {charCount}/{maxiLength}</div>
                     </Grid>
-                    
+
                 </Grid>
             </div>
         )
@@ -266,9 +270,9 @@ const AddBusiness = (props: AddBusinessProps) => {
                     </div>
                     <div className='m-bot-lg'>
                         <div className='primary-gradient m-bot-md'>
-                            <div className='font-white p-sm f-18px f-bold'>Business Address</div>
+                            <div className='font-white p-sm f-18px f-bold'>Company Address</div>
                         </div>
-                        {showBusinessAddress()}
+                        ({showBusinessAddress()}
                     </div>
                     <div className='p-top-md align-c'>
                         <Button className='sf-btn' variant="contained" onClick={() => { alert('Cancel') }}> Cancel </Button>
@@ -279,13 +283,180 @@ const AddBusiness = (props: AddBusinessProps) => {
             )
         }
     }
-    return (
-        <div className='m-bot-md'>
-            <div className='primary-gradient'>
-                <div className='font-white p-sm f-18px f-bold'>Business Information</div>
+
+    const onSave = (step: any) => {
+        switch (step) {
+            case 1: 
+                console.log("businessProfile=",values)
+                setLoaderState(false); 
+                setStep(2); 
+                break;
+            case 2: setLoaderState(false); setStep(3); break;
+            case 3:
+                swal('Success! Your company has been created successfully!', {
+                    icon: "success",
+                });
+                break;
+        }
+    }
+
+    const CompanyInformation = () => {
+        return (
+            <div>
+                <div className='m-bot-md'>
+                    <div className='primary-gradient'>
+                        <div className='font-white p-sm f-18px f-bold'>Company Information</div>
+                    </div>
+                    <div className='m-bot-md p-md'>
+                        <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
+                            <Grid item xs={9}>
+                                <InputBox data={{ name: 'companyname', label: 'Company Name*', value: businessProfile.name }}
+                                    onChange={handleChange} onBlur={handelOnBlur}
+                                />
+                                {errors.companyname && <p className="text-red">{errors.companyname}</p>}
+
+                                <InputBox data={{ name: 'companyurl', label: 'Company URL*', value: businessProfile.weburl }}
+                                    onChange={handleChange} onBlur={handelOnBlur}
+                                />
+                                {errors.companyurl && <p className="text-red">{errors.companyurl}</p>}
+
+                                <InputBox data={{ name: 'gstid', label: 'GST Number*', value: businessProfile.gstn }}
+                                    onChange={handleChange} onBlur={handelOnBlur}
+                                />
+                                {errors.gstid && <p className="text-red">{errors.gstid}</p>}
+
+                                <Grid item xs={12}>
+                                    <div> Business Description </div>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextareaAutosize
+                                        minRows={3}
+                                        maxRows={4}
+                                        maxLength={maxiLength}
+                                        onChange={countHandle}
+                                        aria-label='Add your business description'
+                                        placeholder='Add your business description'
+                                        style={{ width: '100%' }}
+                                    />
+                                    <div className='float-md-right'> {charCount}/{maxiLength}</div>
+                                </Grid>
+                            </Grid>
+                            <Grid item xs={3}>
+                                <InputBox data={{ name: 'companyurl', label: 'Photo Name', value: businessProfile.weburl }}
+                                    onChange={handleChange} onBlur={handelOnBlur}
+                                />
+                                {errors.companyurl && <p className="text-red">{errors.companyurl}</p>}
+                                <img src="/assets/images/placeholder.png" alt="Image" style={{ width: '100%', height: '25vh', marginTop: '10px' }} />
+                                <input type="file" className="form-control" />
+
+                            </Grid>
+                        </Grid>
+                    </div>
+                </div>
+                <div className='p-md align-r' style={{ float: 'right' }}>
+                    <button className='btn primary-btn-outline rounded-full' onClick={() => { alert('Cancel') }}> Cancel </button>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <button className="btn primary-btn rounded-full" onClick={() => { onSave(1) }}> Continue </button>
+                </div>
             </div>
-            {showBusinessInfo()}
-        </div>
+        );
+    }
+
+    const AddressInformation = () => {
+        return (
+            <div>
+                <div className='m-bot-md'>
+                    <div className='primary-gradient'>
+                        <div className='font-white p-sm f-18px f-bold'>Address Information</div>
+                    </div>
+                    <div className='p-md'>
+                        {
+                            <AddressDetails
+                                addresLine1={businessProfile.address}
+                                city={businessProfile.city}
+                                state={businessProfile.state}
+                                zip={businessProfile.zip}
+                                country={businessProfile.country}
+                            />}
+                    </div>
+                </div>
+                <div className='p-md align-r' style={{ float: 'right' }}>
+                    <button className='btn primary-btn-outline rounded-full' onClick={() => { setStep(1) }}> Previous </button>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <button className="btn primary-btn rounded-full" onClick={() => { onSave(2) }}> Continue </button>
+                </div>
+            </div>
+        );
+    }
+
+    const ValidateContactDetails = () => {
+
+    }
+    const ContactInformation = () => {
+        return (
+            <div>
+                <div className='m-bot-md'>
+                    <div className='primary-gradient'>
+                        <div className='font-white p-sm f-18px f-bold'>Contact Information</div>
+                    </div>
+                    <div className='m-bot-md p-md'>
+                        <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }} className='p-top-md'>
+                            <Grid item xs={12}>
+                                <InputBox data={{ name: 'addressLine1', label: 'Contact Name*', value: '' }}
+                                    onChange={ValidateContactDetails}
+                                />
+                            </Grid>
+                        </Grid>
+                        <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }} className='p-top-md'>
+                            <Grid item xs={6}>
+                                <InputBox data={{ name: 'cityname', label: 'Mobile No.*', value: '' }}
+                                    onChange={ValidateContactDetails}
+                                />
+                            </Grid>
+                            <Grid item xs={6} >
+                                <InputBox data={{ name: 'addressLine1', label: 'Email*', value: '' }}
+                                    onChange={ValidateContactDetails}
+                                />
+                            </Grid>
+                        </Grid>
+                        <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }} className='p-top-md'>
+                            <Grid item xs={6}>
+                                <InputBox data={{ name: 'zipcode', label: 'Landline Extension*', value: '' }}
+                                    onChange={ValidateContactDetails} />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <InputBox data={{ name: 'cityname', label: 'Landline No.*', value: '' }}
+                                    onChange={ValidateContactDetails}
+                                />
+                            </Grid>
+                        </Grid>
+                    </div>
+                </div>
+                <div className='p-md align-r' style={{ float: 'right' }}>
+                    <button className='btn primary-btn-outline rounded-full' onClick={() => { setStep(2) }}> Previous </button>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <button className="btn primary-btn rounded-full" onClick={() => { onSave(3) }}> Save </button>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <>
+            {isLoader && (
+                <LoaderSpinner />
+            )}
+            {step == 1 && (
+                <> {CompanyInformation()}</>
+            )}
+            {step == 2 && (
+                <> {AddressInformation()}</>
+            )}
+            {step == 3 && (
+                <> {ContactInformation()}</>
+            )}
+        </>
+
     );
 }
 

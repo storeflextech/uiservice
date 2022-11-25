@@ -37,7 +37,7 @@ const InputBox = (props?: InputBoxProps) => {
         <>
         <div className='inputbox-container'>
             {data.label && <span className='inputbox-label'>{data.label}</span> }
-            <input className='inputbox-field f-16px f-regular inputbox-bg' 
+            <input className='inputbox-field f-16px f-regular inputbox-bg' style={{height:'6vh'}}
                 type="text" 
                 name={data.name}
                 defaultValue={data.value}

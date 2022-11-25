@@ -14,10 +14,9 @@ interface EditBusinessProps {
     action?: string;
 }
 
-const EditBusiness = (props: EditBusinessProps) => {
+const EditBusiness = (props:any) => {
     const navigate = useNavigate();
     const location = useLocation();
-
     const [values, setValues] = useState({
         companyname: "",
         companyurl: "",
