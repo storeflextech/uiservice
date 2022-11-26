@@ -1,19 +1,43 @@
 import React from 'react';
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import './App.css';
 import '../src/styles/sfglobal.scss';
 import { PAGES } from './utils/Constants';
-// import {RouterHelper} from './utils/RouterHelper';
 import { getUserLoggedIn} from  './utils/CommonUtils';
-// import BusinessPage from './pages/BusinessPage';
 
 function App() {
+
+  const isAuthenticated = getUserLoggedIn();
+  const path = window.location.pathname;
+  const CheckAuth = ({isAuthenticated}) => {
+    return isAuthenticated ? (
+      <Navigate to={path} replace />
+    ) : (
+      <Navigate to={PAGES.Home.path} replace />
+    );
+  };
   return (
     <React.StrictMode>
       <BrowserRouter>
-            {getUserLoggedIn() && 
+            {!isAuthenticated && 
+              <Routes>
+                <Route path="/*" element={<CheckAuth isAuthenticated={isAuthenticated} />} />
+                <Route path={PAGES.Home.path} element={<PAGES.Home.Component />} />
+                <Route path={PAGES.SignInNew.path} element={<PAGES.SignInNew.Component />} />
+                <Route path={PAGES.SignIn.path} element={<PAGES.SignIn.Component />} />
+                <Route path={PAGES.SignUp.path} element={<PAGES.SignUp.Component />} />
+                <Route path={PAGES.Error.path} element={<PAGES.Error.Component />} />
+              </Routes>
+            }
+            {isAuthenticated && 
             <Routes>
-              <Route path={PAGES.Home.path} element={<PAGES.Home.Component />} />
+
+                <Route path={PAGES.Home.path} element={<PAGES.Home.Component />} />
+                <Route path={PAGES.SignInNew.path} element={<PAGES.SignInNew.Component />} />
+                <Route path={PAGES.SignIn.path} element={<PAGES.SignIn.Component />} />
+                <Route path={PAGES.SignUp.path} element={<PAGES.SignUp.Component />} />
+                <Route path={PAGES.Error.path} element={<PAGES.Error.Component />} />
+
               <Route path={PAGES.Business.path} element={<PAGES.Business.Component id=''/>} />
               <Route path={PAGES.Business.ADD.path} element={<PAGES.Business.Component id='ADD'/>} />
               <Route path={PAGES.Business.VIEW.path} element={<PAGES.Business.Component id='VIEW'/>} />
@@ -23,10 +47,8 @@ function App() {
               <Route path={PAGES.Warehouse.ADD.path} element={<PAGES.Warehouse.Component id='ADD'/>} />
               <Route path={PAGES.Warehouse.VIEW.path} element={<PAGES.Warehouse.Component id='VIEW'/>} />
 
-              <Route path={PAGES.SignUp.path} element={<PAGES.SignUp.Component />} />
-              <Route path={PAGES.SignUp.path} element={<PAGES.SignUp.Component />} />
-              <Route path={PAGES.SignInNew.path} element={<PAGES.SignInNew.Component />} />
               <Route path={PAGES.Dashboard.path} element={<PAGES.Dashboard.Component />} />
+
               <Route path={PAGES.AddInfo.path} element={<PAGES.AddInfo.Component />} />
               <Route path={PAGES.PgSearch.path} element={<PAGES.PgSearch.Component />} />
               <Route path={PAGES.PgSearchNew.path} element={<PAGES.PgSearchNew.Component />} />
@@ -54,24 +76,14 @@ function App() {
               <Route path={PAGES.BOOKINGS.path} element={<PAGES.BOOKINGS.Component />} />
               <Route path={PAGES.PAYMENT_HISTORY.path} element={<PAGES.PAYMENT_HISTORY.Component />} />
               <Route path={PAGES.USER_PROFILE.path} element={<PAGES.USER_PROFILE.Component />} />
-              <Route path={PAGES.SignUpNew.path} element={<PAGES.SignUpNew.Component />} />
               <Route path={PAGES.WAREHOUSE_DETAILS.path} element={<PAGES.WAREHOUSE_DETAILS.Component />} />
 
-            </Routes>
-            } 
-            { !getUserLoggedIn() && 
-              <Routes>
-                <Route path="/" element={<PAGES.Home.Component />} />
-                <Route path="/*" element={<PAGES.SignInNew.Component />} />
-                <Route path={PAGES.SignUp.path} element={<PAGES.SignUp.Component />} />
-              <Route path={PAGES.SignUp.path} element={<PAGES.SignUp.Component />} />
-              <Route path={PAGES.SignInNew.path} element={<PAGES.SignInNew.Component />} />
               <Route path={PAGES.PgSearchNew.path} element={<PAGES.PgSearchNew.Component />} />
-                <Route path={PAGES.WAREHOUSE_DETAILS.path} element={<PAGES.WAREHOUSE_DETAILS.Component />} />
-                <Route path={PAGES.SITE_MAP.path} element={<PAGES.SITE_MAP.Component />} />
-                <Route path={PAGES.Error.path} element={<PAGES.Error.Component />} />
-              </Routes>
+              <Route path={PAGES.WAREHOUSE_DETAILS.path} element={<PAGES.WAREHOUSE_DETAILS.Component />} />
+              <Route path={PAGES.SITE_MAP.path} element={<PAGES.SITE_MAP.Component />} />
+            </Routes>
             }
+            
       </BrowserRouter>
   </React.StrictMode>
   );
