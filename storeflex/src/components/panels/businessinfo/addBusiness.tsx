@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Grid, TextareaAutosize, Button } from '@mui/material';
 import swal from 'sweetalert';
 import InputBox from '../../atoms/textfield/InputBox';
+import Accordion from 'react-bootstrap/Accordion';
 import AddressDetails from '../../atoms/addressforms/AddressDetails';
 import { BusinessDetails } from '../../../utils/ResponseSchema';
 import { validateCharacterLength, validatePhone, validateWebUrl, validateGst } from '../../../utils/CommonUtils';
@@ -216,7 +217,7 @@ const AddBusiness = (props: AddBusinessProps) => {
                 </Grid>
                 <Grid>
                     <Grid>
-                      <InputBox data={{ name: 'companyname', label: 'Company Name*', value: businessProfile.name }}
+                        <InputBox data={{ name: 'companyname', label: 'Company Name*', value: businessProfile.name }}
                             onChange={handleChange} onBlur={handelOnBlur} />
                         {/* {errors.companyname && <p className="text-red">{errors.companyname}</p>} */}
                     </Grid>
@@ -286,10 +287,10 @@ const AddBusiness = (props: AddBusinessProps) => {
 
     const onSave = (step: any) => {
         switch (step) {
-            case 1: 
-                console.log("businessProfile=",values)
-                setLoaderState(false); 
-                setStep(2); 
+            case 1:
+                console.log("businessProfile=", values)
+                setLoaderState(false);
+                setStep(2);
                 break;
             case 2: setLoaderState(false); setStep(3); break;
             case 3:
@@ -304,9 +305,7 @@ const AddBusiness = (props: AddBusinessProps) => {
         return (
             <div>
                 <div className='m-bot-md'>
-                    <div className='primary-gradient'>
-                        <div className='font-white p-sm f-18px f-bold'>Company Information</div>
-                    </div>
+
                     <div className='m-bot-md p-md'>
                         <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                             <Grid item xs={9}>
@@ -353,11 +352,7 @@ const AddBusiness = (props: AddBusinessProps) => {
                         </Grid>
                     </div>
                 </div>
-                <div className='p-md align-r' style={{ float: 'right' }}>
-                    <button className='btn primary-btn-outline rounded-full' onClick={() => { alert('Cancel') }}> Cancel </button>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <button className="btn primary-btn rounded-full" onClick={() => { onSave(1) }}> Continue </button>
-                </div>
+                
             </div>
         );
     }
@@ -366,9 +361,7 @@ const AddBusiness = (props: AddBusinessProps) => {
         return (
             <div>
                 <div className='m-bot-md'>
-                    <div className='primary-gradient'>
-                        <div className='font-white p-sm f-18px f-bold'>Address Information</div>
-                    </div>
+                    
                     <div className='p-md'>
                         {
                             <AddressDetails
@@ -379,11 +372,6 @@ const AddBusiness = (props: AddBusinessProps) => {
                                 country={businessProfile.country}
                             />}
                     </div>
-                </div>
-                <div className='p-md align-r' style={{ float: 'right' }}>
-                    <button className='btn primary-btn-outline rounded-full' onClick={() => { setStep(1) }}> Previous </button>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <button className="btn primary-btn rounded-full" onClick={() => { onSave(2) }}> Continue </button>
                 </div>
             </div>
         );
@@ -396,9 +384,6 @@ const AddBusiness = (props: AddBusinessProps) => {
         return (
             <div>
                 <div className='m-bot-md'>
-                    <div className='primary-gradient'>
-                        <div className='font-white p-sm f-18px f-bold'>Contact Information</div>
-                    </div>
                     <div className='m-bot-md p-md'>
                         <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }} className='p-top-md'>
                             <Grid item xs={12}>
@@ -432,11 +417,7 @@ const AddBusiness = (props: AddBusinessProps) => {
                         </Grid>
                     </div>
                 </div>
-                <div className='p-md align-r' style={{ float: 'right' }}>
-                    <button className='btn primary-btn-outline rounded-full' onClick={() => { setStep(2) }}> Previous </button>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <button className="btn primary-btn rounded-full" onClick={() => { onSave(3) }}> Save </button>
-                </div>
+               
             </div>
         );
     }
@@ -446,7 +427,7 @@ const AddBusiness = (props: AddBusinessProps) => {
             {isLoader && (
                 <LoaderSpinner />
             )}
-            {step == 1 && (
+            {/* {step == 1 && (
                 <> {CompanyInformation()}</>
             )}
             {step == 2 && (
@@ -454,7 +435,44 @@ const AddBusiness = (props: AddBusinessProps) => {
             )}
             {step == 3 && (
                 <> {ContactInformation()}</>
-            )}
+            )} */}
+            <Accordion defaultActiveKey="0">
+                <Accordion.Item eventKey="0">
+                    <Accordion.Header>
+                        <div className='primary-gradient'>
+                        <div className='font-white p-sm f-18px f-bold'>Company Information</div>
+                        </div>
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <> {CompanyInformation()}</>
+                    </Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="1">
+                    <Accordion.Header>
+                    <div className='primary-gradient'>
+                        <div className='font-white p-sm f-18px f-bold'>Address Information</div>
+                    </div>
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <> {AddressInformation()}</>
+                    </Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="2">
+                    <Accordion.Header>
+                    <div className='primary-gradient'>
+                        <div className='font-white p-sm f-18px f-bold'>Contact Information</div>
+                    </div>
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <> {ContactInformation()}</>
+                    </Accordion.Body>
+                </Accordion.Item>
+            </Accordion>
+            <div className='p-md align-r' style={{ float: 'right' }}>
+                    <button className='btn primary-btn-outline rounded-full' onClick={() => { setStep(2) }}> Cancel </button>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <button className="btn primary-btn rounded-full" onClick={() => { onSave(3) }}> Save </button>
+                </div>
         </>
 
     );
