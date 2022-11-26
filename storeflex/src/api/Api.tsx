@@ -19,6 +19,7 @@ export default class Api {
         this.apiUrl = new ApiConfig();
         this.baseUrl = process.env.REACT_APP_API_URL;
     }
+    
 
     async getTest() {
         const url = this.apiUrl.testApi;

@@ -11,11 +11,7 @@ const WarehousePage = (props) => {
       <TopNavBar />
       <SplitPaneContainer
           left={<SideNavBar userType={getUserType()}/>}
-          right={
-            <BoxContainer>
-                 <WarehouseInfo  action={props?.id} />
-            </BoxContainer>   
-          }
+          right={<WarehouseInfo  action={props?.id} />}
       />
   </AppContainer>
   )

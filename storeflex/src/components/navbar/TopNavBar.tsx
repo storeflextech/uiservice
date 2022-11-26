@@ -1,7 +1,4 @@
 import React from 'react';
-import { useNavigate } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { getUserLoggedIn} from  '../../utils/CommonUtils';
 import { ProfileMenu } from '../atoms/profile/profile';
 
@@ -10,13 +7,11 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
 const TopNavBar = () => {
-  const navigate = useNavigate();
-  const goToNextPage = (pagePath: string) => {
-    navigate(pagePath);
-  }
-
+  // const navigate = useNavigate();
+  const isAuthenticated = getUserLoggedIn();
+  const path = window.location.pathname;
   const signOut = () => {
-    if(getUserLoggedIn()) {
+    if(isAuthenticated) {
       return (
         <div>
           <ProfileMenu isSigned={true} profileImg={'/images/face1.jpg'}/>
@@ -40,6 +35,8 @@ const TopNavBar = () => {
           <img src="../../assets/images/white-logo.jpg" alt="Logo" />
           </span>
         </Navbar.Brand>
+        { (path === '/home') && 
+          <>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
@@ -50,6 +47,8 @@ const TopNavBar = () => {
               <Nav.Link className='top-nav-link' href="/home#contact">Contact</Nav.Link>
             </Nav>
           </Navbar.Collapse>
+          </>
+          }
       </Container>
       {signOut()}
       </div>

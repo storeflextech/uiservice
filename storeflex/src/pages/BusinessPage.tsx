@@ -12,9 +12,7 @@ const BusinessPage = (props) => {
       <SplitPaneContainer
           left={<SideNavBar userType={getUserType()}/>}
           right={
-              <BoxContainer>
-                  <BusinessInfo  action={props?.id} />
-              </BoxContainer>    
+            <BusinessInfo  action={props?.id} />
           }
       />
   </AppContainer>
