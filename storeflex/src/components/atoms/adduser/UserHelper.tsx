@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FormControl, Select, MenuItem, SelectChangeEvent} from '@mui/material';
 
 const companyData = ['Store Flex', 'Global Warehouse'];
-const userData = ['Admin', 'Guest'];
+const userData = ['Administrator', 'Standard'];
 
 
 interface currentValue {
@@ -11,7 +11,7 @@ interface currentValue {
 
 export const UserType = (props?: currentValue) => {
 
-    const [selectedUser, setSelectedUser] = useState( props?.state ? props?.state : 'Select User Type');
+    const [selectedUser, setSelectedUser] = useState( props?.state ? props?.state : 'Select');
     const handleChange = (event: SelectChangeEvent) => {
         setSelectedUser(event.target.value as string);
       };

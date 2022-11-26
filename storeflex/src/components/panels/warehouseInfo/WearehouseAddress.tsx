@@ -22,7 +22,13 @@ const WearehouseAddress = () => {
                             {<GetCompany />}
                         </div>
                     </Grid>
+                    <Grid item xs={3}>
+                        <div>Profile Photo</div>
+                        <div className='p-top-md'>
+                            <input type="file" className="form-control" />
+                        </div>
                     </Grid>
+                </Grid>
                     </div>
 
                 <div className='p-md'>
