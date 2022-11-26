@@ -15,10 +15,10 @@ export const AppContainer = (props) => {
 export const SplitPaneContainer = (props) => {
     return(
         <div className="sf-split-pane-container">
-            <div className="sf-splitPane-left">
+            <div className="sf-splitPane-left sf-box-shadow-orange">
                 {props.left}
             </div>
-            <div className="sf-splitPane-right">
+            <div className="sf-splitPane-right sf-box-shadow-orange">
                 {props.right}
             </div>
         </div>
