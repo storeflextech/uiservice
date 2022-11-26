@@ -868,7 +868,7 @@ var _jsxFileName = "/Users/ashutosh/Learning/POC/P1/uiservice/storeflex/src/comp
 
 
 const companyData = ['Store Flex', 'Global Warehouse'];
-const userData = ['Admin', 'Guest'];
+const userData = ['Admininstrator', 'Standard'];
 const UserType = props => {
   _s();
 
