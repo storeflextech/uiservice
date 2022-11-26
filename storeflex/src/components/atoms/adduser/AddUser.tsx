@@ -3,7 +3,7 @@ import { Grid } from '@mui/material';
 import AddressDetails from '../addressforms/AddressDetails';
 import InputBox from '../../atoms/textfield/InputBox';
 import { UserType, CompanyName } from './UserHelper';
-import { validateCharacterLength, validateSpecialCharExistance, } from '../../../../src/utils/CommonUtils';
+import { validateCharacterLength, validateSpecialCharExistance, validatePhone } from '../../../../src/utils/CommonUtils';
 import { Button } from '@mui/material';
 import GetCompany from '../company/GetCompany';
 
@@ -11,10 +11,14 @@ const AddUser = () => {
   const [values, setValues] = useState({
     FirstName: "",
     LastName: "",
+    Phone: "",
+    Email: "",
   });
   const [errors, setErrors] = useState({
     FirstName: "",
     LastName: "",
+    Phone: "",
+    Email: "",
 
   });
 
@@ -65,8 +69,28 @@ const AddUser = () => {
       document.getElementsByName("lastname")[0].style.border = "2px solid dodgerblue"
     }
   }
-
-
+  //Validate Phone
+  const validatePhone = (event: any) => {
+    const phoneTemp = event.target.value;
+    setValues({
+      ...values,
+      [event.target.name]: event.target.value,
+    });
+    if (!phoneTemp) {
+      errors.Phone = "*Phone is required."
+      document.getElementsByName("phone")[0].style.border = " solid red";
+    } else if (!validateCharacterLength(phoneTemp, 10, 10)) {
+      errors.Phone = "Phone Number should contains 10 characters"
+      document.getElementsByName("phone")[0].style.border = "2px solid red";
+    }
+    else if (!validateSpecialCharExistance(phoneTemp)) {
+      errors.Phone = "Phone number should not contain any special characters"
+      document.getElementsByName("phone")[0].style.border = "2px solid red";
+    } else {
+      errors.Phone = ""
+      document.getElementsByName("phone")[0].style.border = "2px solid dodgerblue"
+    }
+  }
   // const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   //     const {name, value } = e.currentTarget;
   //     console.log(' #### name ', name);
@@ -110,6 +134,18 @@ const AddUser = () => {
 
           <Grid item xs={6}>
             <InputBox data={{ name: 'lastname', label: 'Last  Name*', value: values.LastName }}
+              onChange={validateLastName} onBlur={handelOnBlur}
+            />
+            {errors.LastName && <p className="text-red">{errors.LastName}</p>}
+          </Grid>
+          <Grid item xs={6}>
+            <InputBox data={{ name: 'phone', label: 'Phone*', value: values.Phone }}
+              onChange={validatePhone} onBlur={handelOnBlur}
+            />
+            {errors.Phone && <p className="text-red">{errors.Phone}</p>}
+          </Grid>
+          <Grid item xs={6}>
+            <InputBox data={{ name: 'email', label: 'Email*', value: values.LastName }}
               onChange={validateLastName} onBlur={handelOnBlur}
             />
             {errors.LastName && <p className="text-red">{errors.LastName}</p>}

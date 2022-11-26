@@ -68,7 +68,7 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
                     <ListItemText>Messages</ListItemText>
                 </MenuItem>
                 <MenuItem>
-                    <ListItemText><a onClick={() => { goToNextPage('/search') }}>Search Space</a></ListItemText>
+                    <ListItemText><a onClick={() => { goToNextPage('/search-new') }}>Search Space</a></ListItemText>
                 </MenuItem>
 
                 <MenuItem>
@@ -92,10 +92,10 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
                     <ListItemText><a onClick={()=>{goToNextPage('/contactus')}}>Contact Us</a></ListItemText>
                 </MenuItem>
                  <MenuItem>
-                    <ListItemText><a onClick={() => { goToNextPage('/faq') }}>Contact Us</a></ListItemText>
+                    <ListItemText><a onClick={() => { goToNextPage('/faq') }}>FAQ</a></ListItemText>
                 </MenuItem>
                 <MenuItem>
-                    <ListItemText><a onClick={() => { logout("/signin-new") }}>Log out</a></ListItemText>
+                    <ListItemText><a onClick={() => { logout("/") }}>Log out</a></ListItemText>
                 </MenuItem>
             </>
         )
