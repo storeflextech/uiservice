@@ -4,10 +4,6 @@ import ViewBusiness from './viewBusiness';
 import EditBusiness from './editBusiness';
 import {ACTIONS_TYPE} from '../../../utils/Constants';
 
-
-// const storeData = require('../mockData/storeinfoData.json');
-
-
 interface BusinessInfoProps {
     onSave?(isSaved: boolean): void;
     action?: string;
