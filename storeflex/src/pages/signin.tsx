@@ -112,6 +112,7 @@ const passwordValidation = (event:any) => {
   }
 
 }
+// Need to remove ...
 const onGoogleLoginFailure = (err: any) => {
   console.error("Login Failure", err)
 };  

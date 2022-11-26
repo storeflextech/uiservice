@@ -150,11 +150,6 @@
                     "Name": "SearchMenu",
                     "NavigateTo": "self",
                     "SubMenu": [
-                        {
-                            "Label": "Search Company",
-                            "Name": "SearchBusinessMenu",
-                            "NavigateTo": "/search-new"
-                        }
                     ],
                     "Icon": "mdi mdi-magnify menu-icon"
                 },
