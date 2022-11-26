@@ -129,7 +129,7 @@ const SideNavBar = (props) => {
   };
 
   return (
-    <div className='sf-box-shadow-orange'>
+    <div>
       <div className='p-top-md'>
         <nav className="sidebar sidebar-offcanvas" id="sidebar">
           <ul className="nav">

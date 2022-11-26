@@ -32,11 +32,7 @@ const DashboardPage = () => {
             <TopNavBar />
             <SplitPaneContainer
                 left={<SideNavBar userType={getUserType()}/>}
-                right={
-                    <BoxContainer>
-                        {getDashboard()}
-                    </BoxContainer>
-                }
+                right={getDashboard()}
             />
             <Footer />
         </AppContainer>
