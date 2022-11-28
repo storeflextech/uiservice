@@ -95,7 +95,7 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
                     <ListItemText><a onClick={() => { goToNextPage('/faq') }}>FAQ</a></ListItemText>
                 </MenuItem>
                 <MenuItem>
-                    <ListItemText><a onClick={() => { logout("/") }}>Log out</a></ListItemText>
+                    <ListItemText><a onClick={() => { logout("/home") }}>Log out</a></ListItemText>
                 </MenuItem>
             </>
         )
