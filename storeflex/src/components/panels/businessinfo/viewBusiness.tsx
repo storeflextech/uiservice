@@ -123,7 +123,7 @@ const ViewBusiness = () => {
                 <div>
                     <div className='primary-gradient'>
                         <div className='font-white p-sm f-18px f-bold'>
-                            Business
+                            Companies Onboared
                             {/* <button className="primary-btn-outline" style={{ fontSize: '14px', float: 'right', marginTop:'-10px', borderRadius: 20, right:'0px', padding:'7px 12px 7px 12px' }} onClick={() => setModalShow(true)}><strong><i className='mdi mdi-plus menu-icon'></i> Add New</strong></button> */}
                         </div>
                     </div>
@@ -131,12 +131,12 @@ const ViewBusiness = () => {
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Company Name</th>
+                                <th>Name</th>
                                 <th>Description</th>
-                                <th>URL</th>
+                                {/* <th>URL</th> */}
                                 <th>Address</th>
-                                <th>Primary Contact Name</th>
-                                <th>Phone</th>
+                                <th>Email / Phone</th>
+                                {/* <th>Phone</th> */}
                                 <th style={{ textAlign: 'center' }}>Action</th>
                             </tr>
                         </thead>
@@ -146,11 +146,13 @@ const ViewBusiness = () => {
                                     <tr>
                                         <td>{item.clientId}</td>
                                         <td>{item.compyName}</td>
-                                        <td>{item.compyDesc}</td>
-                                        <td>{item.url}</td>
+                                        <td>{item.compyDesc}<br></br>
+                                        {item.url}
+                                        </td>
+                                        {/* <td>{item.url}</td> */}
                                         <td>{item.addresses[0].addressType + ':' + item.addresses[0].streetDetails + ',' + item.addresses[0].city + ',' + item.addresses[0].pincode}</td>
-                                        <td>{item.contact[0].contactName}</td>
-                                        <td>{item.contact[0].mobileNo}</td>
+                                        <td>{item.contact[0].contactName} / {item.contact[0].mobileNo}</td>
+                                        {/* <td>{item.contact[0].mobileNo}</td> */}
                                         <td>
                                             <button onClick={() => deleteBusiness(item)} className='primary-btn-outline' style={{ fontSize: '14px', float: 'right', borderRadius: 20, padding: '8px 12px 8px 12px' }}><strong><i className='mdi mdi-cup menu-icon'></i> Delete</strong></button>&nbsp; &nbsp;
                                             <button onClick={() => goToEditPage('/business/edit', item)} className='primary-btn-outline' style={{ fontSize: '14px', float: 'right', borderRadius: 20, padding: '8px 12px 8px 12px', marginRight: '5px' }}><strong><i className='mdi mdi-pencil menu-icon'></i> Edit</strong></button>
@@ -160,7 +162,7 @@ const ViewBusiness = () => {
                             })}
                         </tbody>
                     </Table>
-                    <div className='pt-1' style={{ alignContent: 'center' }}>
+                    <div className='pt-1' style={{ alignContent: 'center',float:'right' }}>
                         <Pagination>
                             <Pagination.Prev />
                             <Pagination.Ellipsis />

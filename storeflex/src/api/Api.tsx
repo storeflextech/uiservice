@@ -1,6 +1,6 @@
 // import React from 'react';
 import axios from 'axios';
-import { ApiConfig, SignInProps, AddCompanyProps, ViewCompaniesProps, ViewWarehouseProps } from './ApiConfig';
+import { ApiConfig, SignInProps, GetStatesProp, GetCitiesProp, AddCompanyProps, ViewCompaniesProps, ViewWarehouseProps } from './ApiConfig';
 
 
 // let axiosConfig = {
@@ -39,6 +39,30 @@ export default class Api {
         }
         catch (error) {
             console.log(' error : signIn', error);
+            return Promise.reject(error);
+        }
+    }
+
+    async getStatesByCountry(requestObject: GetStatesProp): Promise<any>{
+        const url = this.baseUrl+this.apiUrl.getStatesUrl+'?countryId='+requestObject.country;
+        try {
+            const response = await axios.get(url);
+            return Promise.resolve(response);
+        }
+        catch (error) {
+            console.log(' error : Get Company', error);
+            return Promise.reject(error);
+        }
+    }
+
+    async getCitiesByState(requestObject: GetCitiesProp): Promise<any>{
+        const url = this.baseUrl+this.apiUrl.getCitiesUrl+'?stateCode='+requestObject.state;
+        try {
+            const response = await axios.get(url);
+            return Promise.resolve(response);
+        }
+        catch (error) {
+            console.log(' error : Get Company', error);
             return Promise.reject(error);
         }
     }

@@ -1,8 +1,10 @@
 import React from 'react';
 import { TextField, Grid ,TextareaAutosize } from '@mui/material';
+import GetCountry from '../../atoms/country/GetCountry';
 import GetState from '../../atoms/state/GetState';
 import InputBox from '../../atoms/textfield/InputBox';
 import {StoreDetails} from '../../../utils/ResponseSchema';
+
 
 export interface StoreInfoProps {
   data: StoreDetails;
@@ -40,6 +42,12 @@ const StoreInfo = (props: StoreInfoProps) => {
           <div> State </div>
           <div className='p-top-md'>
             {<GetState state={storeData?.state} />}
+          </div>
+        </Grid>
+        <Grid item xs={6}>
+          <div> Country </div>
+          <div className='p-top-md'>
+            {<GetCountry country={storeData?.country} />}
           </div>
         </Grid>
     </Grid>

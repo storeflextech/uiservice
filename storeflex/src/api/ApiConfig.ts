@@ -9,6 +9,14 @@ export interface ViewCompaniesProps {
     size: string;
 }
 
+export interface GetStatesProp {
+    country: string;
+}
+
+export interface GetCitiesProp {
+    state: string;
+}
+
 export interface ViewWarehouseProps{
     clientId: string;
     page:string;
@@ -56,6 +64,8 @@ export class ApiConfig {
     signinApi = '/login';
     signinTestApi = '/logintest';
     signUpUrl = '/register';
+    getStatesUrl = '/state';
+    getCitiesUrl = '/city';
     getCompaniesUrl = '/clients';
     addCompanyUrl = '/client';
 

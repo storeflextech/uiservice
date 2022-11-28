@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid } from '@mui/material';
+import GetCountry from '../country/GetCountry';
 import GetState from '../state/GetState';
+import GetCity from '../city/GetCity';
 import InputBox from '../textfield/InputBox';
+
+
 import { validateCity, validateCharacterLength, validatePinCode } from "../../../utils/CommonUtils";
+
+
 
 interface AddressDetailsProps {
     addresLine1: string;
@@ -13,7 +19,15 @@ interface AddressDetailsProps {
 
 }
 const AddressDetails = (props: AddressDetailsProps) => {
+   
+    const [country, setCountry] = useState('01');
+    const [state, setState] = useState('');
+    
     const [city, setErrorsCity] = useState('');
+    const [myCompanies, setMyCompanies] = useState<Array<any>>([]);
+
+    
+
     const validateCityName = (event: any) => {
         const city = event.target.value;
         if (validateCity(city)) {
@@ -57,8 +71,8 @@ const AddressDetails = (props: AddressDetailsProps) => {
                     <div style={{ marginBottom: '8px' }}>
                         <div className='pb-2'>Address Type</div>
                         <select name="" className="form-control">
-                            <option value="Corporate">Corporate</option>
-                            <option value="Physical">Physical</option>
+                            <option value="COR">Corporate</option>
+                            <option value="PHY">Physical</option>
                         </select>
                     </div>
                 </Grid>
@@ -67,19 +81,19 @@ const AddressDetails = (props: AddressDetailsProps) => {
                 <Grid item xs={4}>
                     <div> Country </div>
                     <div className='p-top-sm'>
-                        {<GetState />}
+                        {<GetCountry country={country} />}
                     </div>
                 </Grid>
                 <Grid item xs={4}>
                     <div> State </div>
                     <div className='p-top-sm'>
-                        {<GetState />}
+                        {<GetState country={data?.country} state={data?.state} />}
                     </div>
                 </Grid>
                 <Grid item xs={4}>
                     <div> City </div>
                     <div className='p-top-sm'>
-                        {<GetState />}
+                        {<GetCity state={'ASM'} />}
                     </div>
                 </Grid>
             </Grid>
