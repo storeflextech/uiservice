@@ -1,6 +1,6 @@
 // import React from 'react';
 import axios from 'axios';
-import { ApiConfig, SignInProps, AddCompanyProps, ViewCompaniesProps, ViewWarehouseProps } from './ApiConfig';
+import { ApiConfig, SignInProps, AddCompanyProps, ViewCompaniesProps, ViewWarehousePropsByClientId, viewWarehouseAdminProps } from './ApiConfig';
 
 
 // let axiosConfig = {
@@ -78,13 +78,25 @@ export default class Api {
         }
     }
 
-    async getWarehouse(getData: ViewWarehouseProps): Promise<any>{
-        const url = this.baseUrl+this.apiUrl.getWarehouseUrl+'?clientId='+getData.clientId+'&page='+getData.page+'&size='+getData.size;
+    async getWarehouseByClientId(getData: ViewWarehousePropsByClientId): Promise<any>{
+        const url = this.baseUrl+this.apiUrl.getWarehouseByClientIdUrl+'?clientId='+getData.clientId+'&page='+getData.page+'&size='+getData.size;
         try {
             const response = await axios.get(url);
             return Promise.resolve(response);
         }
         catch (error) {
+            console.log(' error : Get Warehouse', error);
+            return Promise.reject(error);
+        }
+    }
+
+    async getWarehouseAdmin(getData: viewWarehouseAdminProps): Promise<any>{
+        const url = this.baseUrl+this.apiUrl.getWarehouseAdminUrl+'?page='+getData.page+'&size='+getData.size;
+        try{
+            const response = await axios.get(url);
+            return Promise.resolve(response);
+        }
+        catch (error){
             console.log(' error : Get Warehouse', error);
             return Promise.reject(error);
         }

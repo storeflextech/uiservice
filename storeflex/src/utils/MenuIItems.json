@@ -148,14 +148,8 @@
                 {
                  "Label": "Search",
                     "Name": "SearchMenu",
-                    "NavigateTo": "self",
-                    "SubMenu": [
-                        {
-                            "Label": "Search Company",
-                            "Name": "SearchBusinessMenu",
-                            "NavigateTo": "/search-new"
-                        }
-                    ],
+                    "NavigateTo": "/search-new",
+                    "SubMenu": [],
                     "Icon": "mdi mdi-magnify menu-icon"
                 },
                 {

@@ -9,10 +9,15 @@ export interface ViewCompaniesProps {
     size: string;
 }
 
-export interface ViewWarehouseProps{
+export interface ViewWarehousePropsByClientId{
     clientId: string;
     page:string;
     size:string;
+}
+
+export interface viewWarehouseAdminProps{
+    page:string;
+    size: string;
 }
 
 export interface Address {
@@ -60,6 +65,7 @@ export class ApiConfig {
     addCompanyUrl = '/client';
 
     searchwarehouse = '/searchwarehouse';
-    getWarehouseUrl = '/warehouseByClientId';
+    getWarehouseByClientIdUrl = '/warehouseByClientId';
+    getWarehouseAdminUrl = '/warehouses';
 
 }
