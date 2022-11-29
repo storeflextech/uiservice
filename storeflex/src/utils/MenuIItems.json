@@ -148,9 +148,8 @@
                 {
                  "Label": "Search",
                     "Name": "SearchMenu",
-                    "NavigateTo": "self",
-                    "SubMenu": [
-                    ],
+                    "NavigateTo": "/search-new",
+                    "SubMenu": [],
                     "Icon": "mdi mdi-magnify menu-icon"
                 },
                 {
