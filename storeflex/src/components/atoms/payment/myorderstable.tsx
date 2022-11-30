@@ -64,7 +64,7 @@ const OrderTable = () => {
                                    
                                 </div>
                             </div>
-                            <Table striped bordered hover>
+                            <Table striped bordered hover responsive="sm">
                             <thead>
                                         <tr>
 

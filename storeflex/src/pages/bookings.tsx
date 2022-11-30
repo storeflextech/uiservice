@@ -28,7 +28,7 @@ const ViewWarehouse = () => {
                                         <button  className="primary-btn-outline" style={{fontSize:'14px',float:'right',borderRadius:20,paddingLeft:'12px',paddingRight:'12px'}}><i className='mdi mdi-plus menu-icon'></i> Add New</button>
                                     </div>
                                 </div>
-                                <Table striped bordered hover>
+                                <Table striped bordered hover responsive="sm">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
