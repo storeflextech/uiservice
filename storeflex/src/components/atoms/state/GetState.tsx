@@ -3,9 +3,10 @@ import { FormControl, Select, MenuItem, SelectChangeEvent } from '@mui/material'
 import { GetStatesProp } from '../../../api/ApiConfig';
 import Api from '../../../../src/api/Api';
 
-interface storeState { 
+interface storeState {
   country?: string;
   state?: string;
+  onSelectState?: (e: SelectChangeEvent<string>) => void;
 }
 
 const GetState = (props?: storeState) => {
@@ -23,18 +24,22 @@ const GetState = (props?: storeState) => {
     const data: GetStatesProp = { country: country };
     api.getStatesByCountry(data).then((response) => {
       if (response.status == 200) {
-        setStateList(response.data.methodReturnValue);       
+        setStateList(response.data.methodReturnValue);
       }
     });
   }
 
   const handleChange = (event: SelectChangeEvent) => {
     setStateCode(event.target.value as string);
-    stateList.map(item=>{ 
-      if(Object.keys(item)[0]==event.target.value){
+    stateList.map(item => {
+      if (Object.keys(item)[0] == event.target.value) {
         setStateName(Object.values(item)[0] as string);
       }
-    })
+    });
+    if (props?.onSelectState) {
+      props.onSelectState(event);
+    }
+
   };
 
 

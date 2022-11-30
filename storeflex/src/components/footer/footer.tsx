@@ -13,7 +13,7 @@ const Footer = () => {
       <section className="footer-area footer-five">
         <div className="container">
           <div className="row justify-content-center">
-            <div className="col-lg-5">
+            <div className="col-lg-7">
               <div className="sf-footer-container">
                 {/*<div className="m-bot-md text-center">
                   <a href="/home">
@@ -53,6 +53,9 @@ const Footer = () => {
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link onClick={() => { onLinkClick(PAGES.FAQ.path) }}>FAQ</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link onClick={() => { onLinkClick(PAGES.SignIn.path) }}>Administrator Login</Nav.Link>
                 </Nav.Item>
               </Nav>
             </div>

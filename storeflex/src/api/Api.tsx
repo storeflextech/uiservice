@@ -1,6 +1,6 @@
 // import React from 'react';
 import axios from 'axios';
-import { ApiConfig, SignInProps, GetStatesProp, GetCitiesProp, AddCompanyProps, ViewCompaniesProps, ViewWarehouseProps } from './ApiConfig';
+import { ApiConfig, SlLoginProps, SignInProps, GetStatesProp, GetCitiesProp, AddCompanyProps, ViewCompaniesProps, ViewWarehouseProps } from './ApiConfig';
 
 
 // let axiosConfig = {
@@ -29,6 +29,18 @@ export default class Api {
             console.log(' error >> ', error);
             return Promise.reject(error);
         });
+    }
+
+    async slLogin(postData: SlLoginProps): Promise<any>{
+        const url = this.baseUrl+this.apiUrl.slLoginApi;
+        try {
+            const response = await axios.post(url, postData);
+            return Promise.resolve(response);
+        }
+        catch (error) {
+            console.log(' error : signIn', error);
+            return Promise.reject(error);
+        }
     }
 
     async signIn(postData: SignInProps): Promise<any>{

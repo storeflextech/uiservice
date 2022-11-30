@@ -1,4 +1,10 @@
 
+export interface SlLoginProps {
+    username: string,
+    emailId: string,
+    password: string
+}
+
 export interface SignInProps {
     username: string;
     password: string;
@@ -17,10 +23,10 @@ export interface GetCitiesProp {
     state: string;
 }
 
-export interface ViewWarehouseProps{
+export interface ViewWarehouseProps {
     clientId: string;
-    page:string;
-    size:string;
+    page: string;
+    size: string;
 }
 
 export interface Address {
@@ -62,6 +68,7 @@ export class ApiConfig {
     endPointGateWay = '/';
     testApi = '/test';
     signinApi = '/login';
+    slLoginApi = '/sllogin';
     signinTestApi = '/logintest';
     signUpUrl = '/register';
     getStatesUrl = '/state';

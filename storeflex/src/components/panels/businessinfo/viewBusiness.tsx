@@ -121,7 +121,7 @@ const ViewBusiness = () => {
         <div className='c-box-shadow-blue'>
             <Box className='m-top-md m-bot-md m-left-md m-right-md'>
                 <div>
-                    <div className='primary-gradient'>
+               <div className='primary-gradient'>
                         <div className='font-white p-sm f-18px f-bold'>
                             Companies Onboared
                             {/* <button className="primary-btn-outline" style={{ fontSize: '14px', float: 'right', marginTop:'-10px', borderRadius: 20, right:'0px', padding:'7px 12px 7px 12px' }} onClick={() => setModalShow(true)}><strong><i className='mdi mdi-plus menu-icon'></i> Add New</strong></button> */}

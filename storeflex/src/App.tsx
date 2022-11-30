@@ -23,8 +23,8 @@ function App() {
               <Routes>
                 <Route path="/*" element={<CheckAuth isAuthenticated={isAuthenticated} />} />
                 <Route path={PAGES.Home.path} element={<PAGES.Home.Component />} />
-                <Route path={PAGES.SignInNew.path} element={<PAGES.SignInNew.Component />} />
                 <Route path={PAGES.SignIn.path} element={<PAGES.SignIn.Component />} />
+                <Route path={PAGES.SignInCustomer.path} element={<PAGES.SignInCustomer.Component />} />
                 <Route path={PAGES.SignUp.path} element={<PAGES.SignUp.Component />} />
                 <Route path={PAGES.Error.path} element={<PAGES.Error.Component />} />
               </Routes>
@@ -33,7 +33,6 @@ function App() {
             <Routes>
 
                 <Route path={PAGES.Home.path} element={<PAGES.Home.Component />} />
-                <Route path={PAGES.SignInNew.path} element={<PAGES.SignInNew.Component />} />
                 <Route path={PAGES.SignIn.path} element={<PAGES.SignIn.Component />} />
                 <Route path={PAGES.SignUp.path} element={<PAGES.SignUp.Component />} />
                 <Route path={PAGES.Error.path} element={<PAGES.Error.Component />} />
