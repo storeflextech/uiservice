@@ -86,9 +86,10 @@ const Contact = () => {
               <div className="row">
                 <div className="col-lg-8 col-12">
                   <div className="form-main">
+                  <form action="https://formsubmit.co/support@storeflex.com" method="POST">
                       <div className="row">
                         <div className="col-lg-6 col-md-6 col-12">
-                          <div className="form-group">
+                        <div className="form-group">
                             <input name="name" type="text" placeholder="Name" onChange={handleChange} />
                             {errors.nameError && <p className="text-red">{errors.nameError}</p>}
                           </div>
@@ -125,6 +126,7 @@ const Contact = () => {
                           </div>
                         </div>
                       </div>
+                  </form>
                   </div>
                 </div>
                 <div className="col-lg-4 col-12">
