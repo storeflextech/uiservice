@@ -6,7 +6,7 @@ import { SignInProps } from '../api/ApiConfig';
 import GoogleLogin from 'react-google-login';
 import { gapi } from "gapi-script";
 
-const SignInNew = () => {
+const SignInCustomer = () => {
   const navigate = useNavigate();
 
   gapi.load("client:auth2", () => {
@@ -81,7 +81,7 @@ const SignInNew = () => {
                 <div className="col-md-12 justify-content-center">
                   <div className="form-input justify-content-center">
                     <a href="/home"><img src="assets/images/white-logo.jpg" alt="Logo" style={{ height: '8vh' }} /></a>
-                    <label>Your account will be under this email</label>
+                    <h4 className='pb-3' style={{textAlign:'center'}}>Storeflex Customer Login</h4>
                     <div className="input-items default">
                       <input type="text" placeholder="User ID" name="email" onChange={handleChange} />
                     </div>
@@ -149,4 +149,5 @@ const SignInNew = () => {
   )
 };
 
-export default SignInNew;
+export default SignInCustomer;
+

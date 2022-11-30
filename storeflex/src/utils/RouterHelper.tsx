@@ -15,14 +15,14 @@ export const RouterHelper = () => {
         // Procted   Pages 
         return (
             <Routes>
-                 <Route path="/*" element={<PAGES.SignInNew.Component />} />
+                 <Route path="/*" element={<PAGES.SignIn.Component />} />
             </Routes>
         )
     } else {
         // Public  Pages 
         return(
             <Routes>
-                <Route path="/*" element={<PAGES.SignInNew.Component />} />
+                <Route path="/*" element={<PAGES.SignIn.Component />} />
             </Routes>
         )
     }

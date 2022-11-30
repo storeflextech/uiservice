@@ -1,4 +1,10 @@
 
+export interface SlLoginProps {
+    username: string,
+    emailId: string,
+    password: string
+}
+
 export interface SignInProps {
     username: string;
     password: string;
@@ -9,10 +15,18 @@ export interface ViewCompaniesProps {
     size: string;
 }
 
-export interface ViewWarehousePropsByClientId{
+export interface GetStatesProp {
+    country: string;
+}
+
+export interface GetCitiesProp {
+    state: string;
+}
+
+export interface ViewWarehouseProps {
     clientId: string;
-    page:string;
-    size:string;
+    page: string;
+    size: string;
 }
 
 export interface viewWarehouseAdminProps{
@@ -59,8 +73,11 @@ export class ApiConfig {
     endPointGateWay = '/';
     testApi = '/test';
     signinApi = '/login';
+    slLoginApi = '/sllogin';
     signinTestApi = '/logintest';
     signUpUrl = '/register';
+    getStatesUrl = '/state';
+    getCitiesUrl = '/city';
     getCompaniesUrl = '/clients';
     addCompanyUrl = '/client';
 
