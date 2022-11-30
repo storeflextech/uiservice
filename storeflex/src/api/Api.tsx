@@ -1,6 +1,6 @@
 // import React from 'react';
 import axios from 'axios';
-import { ApiConfig, SignInProps, AddCompanyProps, ViewCompaniesProps, ViewWarehousePropsByClientId, viewWarehouseAdminProps } from './ApiConfig';
+import { ApiConfig, SlLoginProps, SignInProps, GetStatesProp, GetCitiesProp, AddCompanyProps, ViewCompaniesProps, ViewWarehouseProps,viewWarehouseAdminProps } from './ApiConfig';
 
 
 // let axiosConfig = {
@@ -31,6 +31,18 @@ export default class Api {
         });
     }
 
+    async slLogin(postData: SlLoginProps): Promise<any>{
+        const url = this.baseUrl+this.apiUrl.slLoginApi;
+        try {
+            const response = await axios.post(url, postData);
+            return Promise.resolve(response);
+        }
+        catch (error) {
+            console.log(' error : signIn', error);
+            return Promise.reject(error);
+        }
+    }
+
     async signIn(postData: SignInProps): Promise<any>{
         const url = this.baseUrl+this.apiUrl.signinTestApi;
         try {
@@ -39,6 +51,30 @@ export default class Api {
         }
         catch (error) {
             console.log(' error : signIn', error);
+            return Promise.reject(error);
+        }
+    }
+
+    async getStatesByCountry(requestObject: GetStatesProp): Promise<any>{
+        const url = this.baseUrl+this.apiUrl.getStatesUrl+'?countryId='+requestObject.country;
+        try {
+            const response = await axios.get(url);
+            return Promise.resolve(response);
+        }
+        catch (error) {
+            console.log(' error : Get Company', error);
+            return Promise.reject(error);
+        }
+    }
+
+    async getCitiesByState(requestObject: GetCitiesProp): Promise<any>{
+        const url = this.baseUrl+this.apiUrl.getCitiesUrl+'?stateCode='+requestObject.state;
+        try {
+            const response = await axios.get(url);
+            return Promise.resolve(response);
+        }
+        catch (error) {
+            console.log(' error : Get Company', error);
             return Promise.reject(error);
         }
     }
@@ -79,7 +115,7 @@ export default class Api {
         }
     }
 
-    async getWarehouseByClientId(getData: ViewWarehousePropsByClientId): Promise<any>{
+    async getWarehouseByClientId(getData: ViewWarehouseProps): Promise<any>{
         const url = this.baseUrl+this.apiUrl.getWarehouseByClientIdUrl+'?clientId='+getData.clientId+'&page='+getData.page+'&size='+getData.size;
         try {
             const response = await axios.get(url);

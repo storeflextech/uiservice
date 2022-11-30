@@ -20,7 +20,7 @@ const TopNavBar = () => {
     } else {
       return (
         <div className="link-white align-c">
-          <span><a className="sign-link p-top-5" href="/signin">Sign In</a></span>
+          <span><a className="sign-link p-top-5" href="/signin-customer">Sign In</a></span>
           <span><a className="sign-link p-top-5" href="/signup">Sign Up</a></span>
         </div>
       )

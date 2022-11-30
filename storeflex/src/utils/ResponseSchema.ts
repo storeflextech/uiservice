@@ -20,6 +20,7 @@ export interface StoreDetails {
     gstn: string;
     city: string;
     state: string;
+    country: string;
     zip: number;
     description: string;
 }

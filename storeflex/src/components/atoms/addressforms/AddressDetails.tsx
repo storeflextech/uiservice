@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid } from '@mui/material';
+import GetCountry from '../country/GetCountry';
 import GetState from '../state/GetState';
+import GetCity from '../city/GetCity';
 import InputBox from '../textfield/InputBox';
+
+
 import { validateCity, validateCharacterLength, validatePinCode } from "../../../utils/CommonUtils";
+
+
 
 interface AddressDetailsProps {
     addresLine1: string;
@@ -13,7 +19,15 @@ interface AddressDetailsProps {
 
 }
 const AddressDetails = (props: AddressDetailsProps) => {
+   
+    const [country, setCountry] = useState('01');
+    const [state, setState] = useState('ASM');
+    
     const [city, setErrorsCity] = useState('');
+    const [myCompanies, setMyCompanies] = useState<Array<any>>([]);
+
+    
+
     const validateCityName = (event: any) => {
         const city = event.target.value;
         if (validateCity(city)) {
@@ -48,6 +62,9 @@ const AddressDetails = (props: AddressDetailsProps) => {
         }
     }
 
+    const setSelectedState = (event: any) =>{
+        setState(event.target.value[0]);
+    }
 
     const data = props;
     return (
@@ -57,40 +74,33 @@ const AddressDetails = (props: AddressDetailsProps) => {
                     <div style={{ marginBottom: '8px' }}>
                         <div className='pb-2'>Address Type</div>
                         <select name="" className="form-control">
-                            <option value="Corporate">Corporate</option>
-                            <option value="Physical">Physical</option>
+                            <option value="COR">Corporate</option>
+                            <option value="PHY">Physical</option>
                         </select>
                     </div>
                 </Grid>
             </Grid>
             <Grid className='mt-1' container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                 <Grid item xs={4}>
-                    <InputBox data={{ name: 'cityname', label: 'House No.', value: data.city }}
-                        onChange={validateCityName}
-                    />
-                    {city && <p className="text-red">{city}</p>}
+                    <div> Country </div>
+                    <div className='p-top-sm'>
+                        {<GetCountry country={country} />}
+                    </div>
                 </Grid>
                 <Grid item xs={4}>
-                    <InputBox data={{ name: 'zipcode', label: 'Plot No.', value: data.zip }}
-                        onChange={validateZipCode} />
-                    {Zip && <p className="text-red">{Zip}</p>}
+                    <div> State </div>
+                    <div className='p-top-sm'>
+                        {<GetState country={data?.country}  onSelectState={setSelectedState} />}
+                    </div>
                 </Grid>
                 <Grid item xs={4}>
-                    <InputBox data={{ name: 'cityname', label: 'Pin Code', value: data.city }}
-                        onChange={validateCityName}
-                    />
-                    {city && <p className="text-red">{city}</p>}
+                    <div> City </div>
+                    <div className='p-top-sm'>
+                        {state && <GetCity state={state} />}
+                    </div>
                 </Grid>
             </Grid>
-            <Grid container className='p-top-md'>
-                <Grid item xs={12}>
-                    <InputBox data={{ name: 'addressLine1', label: 'Address', value: data.addresLine1 }}
-                        onChange={validateAddress}
-                    />
-                    {address && <p className="text-red">{address}</p>}
-                </Grid>
-            </Grid>
-            <Grid className='mt-1' container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }} >
+            <Grid className='mt-1' container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                 <Grid item xs={4}>
                     <div> Country </div>
                     <div className='p-top-sm'>
@@ -108,6 +118,14 @@ const AddressDetails = (props: AddressDetailsProps) => {
                     <div className='p-top-sm'>
                         {<GetState />}
                     </div>
+                </Grid>
+            </Grid>
+            <Grid container className='p-top-md'>
+                <Grid item xs={12}>
+                    <InputBox data={{ name: 'addressLine1', label: 'Address*', value: data.addresLine1 }}
+                        onChange={validateAddress}
+                    />
+                    {address && <p className="text-red">{address}</p>}
                 </Grid>
             </Grid>
         </div>
