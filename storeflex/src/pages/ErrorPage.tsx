@@ -8,9 +8,9 @@ const ErrorPage = () => {
             <div className='c-box-shadow-blue text-center'>
                 <Box className='m-top-md m-bot-md m-left-md m-right-md'>
                     <div>
-                        <h3>User ID or Password is Incorrect!!!</h3>
+                        <h3>User ID or Password is Incorrect</h3>
                     </div>
-                    <p><h4>Please try again</h4></p>
+                    <p><h5><a href='/home'>Please try again</a></h5></p>
                 </Box>
             </div>
             </Container>

@@ -80,7 +80,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
                     </div>
                 </Grid>
             </Grid>
-            <Grid className='mt-1' container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }} >
+            <Grid className='mt-1' container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                 <Grid item xs={4}>
                     <div> Country </div>
                     <div className='p-top-sm'>
@@ -102,21 +102,22 @@ const AddressDetails = (props: AddressDetailsProps) => {
             </Grid>
             <Grid className='mt-1' container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                 <Grid item xs={4}>
-                    <InputBox data={{ name: 'cityname', label: 'House No.*', value: data.city }}
-                        onChange={validateCityName}
-                    />
-                    {city && <p className="text-red">{city}</p>}
+                    <div> Country </div>
+                    <div className='p-top-sm'>
+                        {<GetState />}
+                    </div>
                 </Grid>
                 <Grid item xs={4}>
-                    <InputBox data={{ name: 'zipcode', label: 'Plot No.*', value: data.zip }}
-                        onChange={validateZipCode} />
-                    {Zip && <p className="text-red">{Zip}</p>}
+                    <div> State </div>
+                    <div className='p-top-sm'>
+                        {<GetState />}
+                    </div>
                 </Grid>
                 <Grid item xs={4}>
-                    <InputBox data={{ name: 'cityname', label: 'Pincode*', value: data.city }}
-                        onChange={validateCityName}
-                    />
-                    {city && <p className="text-red">{city}</p>}
+                    <div> City </div>
+                    <div className='p-top-sm'>
+                        {<GetState />}
+                    </div>
                 </Grid>
             </Grid>
             <Grid container className='p-top-md'>

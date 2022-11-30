@@ -29,6 +29,11 @@ export interface ViewWarehouseProps {
     size: string;
 }
 
+export interface viewWarehouseAdminProps{
+    page:string;
+    size: string;
+}
+
 export interface Address {
     addressType: string,
     plotNo: string,
@@ -77,6 +82,7 @@ export class ApiConfig {
     addCompanyUrl = '/client';
 
     searchwarehouse = '/searchwarehouse';
-    getWarehouseUrl = '/warehouseByClientId';
+    getWarehouseByClientIdUrl = '/warehouseByClientId';
+    getWarehouseAdminUrl = '/warehouses';
 
 }
