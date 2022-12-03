@@ -9,9 +9,6 @@ import { ApiConfig, SlLoginProps, SignInProps, GetStatesProp, GetCitiesProp, Add
 //         "Access-Control-Allow-Origin": "*",
 //     }
 //   };
-
-
-
 export default class Api {
     baseUrl: any;
     apiUrl: ApiConfig;
