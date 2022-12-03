@@ -1,6 +1,6 @@
 // import React from 'react';
 import axios from 'axios';
-import { ApiConfig, SlLoginProps, SignInProps, GetStatesProp, GetCitiesProp, AddCompanyProps, ViewCompaniesProps, ViewWarehouseProps,viewWarehouseAdminProps } from './ApiConfig';
+import { ApiConfig, SlLoginProps, SignInProps, GetStatesProp, GetCitiesProp, AddCompanyProps, ViewCompaniesProps, ViewWarehouseProps, viewWarehouseAdminProps, EnquiryProps } from './ApiConfig';
 
 
 // let axiosConfig = {
@@ -13,26 +13,26 @@ import { ApiConfig, SlLoginProps, SignInProps, GetStatesProp, GetCitiesProp, Add
 
 
 export default class Api {
-    baseUrl:any;
+    baseUrl: any;
     apiUrl: ApiConfig;
     constructor() {
         this.apiUrl = new ApiConfig();
         this.baseUrl = process.env.REACT_APP_API_URL;
     }
-    
+
 
     async getTest() {
         const url = this.apiUrl.testApi;
-        return await axios.get(url).then((response)=> {
+        return await axios.get(url).then((response) => {
             return Promise.resolve(response);
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log(' error >> ', error);
             return Promise.reject(error);
         });
     }
 
-    async slLogin(postData: SlLoginProps): Promise<any>{
-        const url = this.baseUrl+this.apiUrl.slLoginApi;
+    async slLogin(postData: SlLoginProps): Promise<any> {
+        const url = this.baseUrl + this.apiUrl.slLoginApi;
         try {
             const response = await axios.post(url, postData);
             return Promise.resolve(response);
@@ -43,8 +43,8 @@ export default class Api {
         }
     }
 
-    async signIn(postData: SignInProps): Promise<any>{
-        const url = this.baseUrl+this.apiUrl.signinTestApi;
+    async signIn(postData: SignInProps): Promise<any> {
+        const url = this.baseUrl + this.apiUrl.signinTestApi;
         try {
             const response = await axios.post(url, postData);
             return Promise.resolve(response);
@@ -55,8 +55,8 @@ export default class Api {
         }
     }
 
-    async getStatesByCountry(requestObject: GetStatesProp): Promise<any>{
-        const url = this.baseUrl+this.apiUrl.getStatesUrl+'?countryId='+requestObject.country;
+    async getStatesByCountry(requestObject: GetStatesProp): Promise<any> {
+        const url = this.baseUrl + this.apiUrl.getStatesUrl + '?countryId=' + requestObject.country;
         try {
             const response = await axios.get(url);
             return Promise.resolve(response);
@@ -67,8 +67,8 @@ export default class Api {
         }
     }
 
-    async getCitiesByState(requestObject: GetCitiesProp): Promise<any>{
-        const url = this.baseUrl+this.apiUrl.getCitiesUrl+'?stateCode='+requestObject.state;
+    async getCitiesByState(requestObject: GetCitiesProp): Promise<any> {
+        const url = this.baseUrl + this.apiUrl.getCitiesUrl + '?stateCode=' + requestObject.state;
         try {
             const response = await axios.get(url);
             return Promise.resolve(response);
@@ -79,8 +79,8 @@ export default class Api {
         }
     }
 
-    async addCompany(postData: AddCompanyProps): Promise<any>{
-        const url = this.baseUrl+this.apiUrl.addCompanyUrl;
+    async addCompany(postData: AddCompanyProps): Promise<any> {
+        const url = this.baseUrl + this.apiUrl.addCompanyUrl;
         try {
             const response = await axios.post(url, postData);
             return Promise.resolve(response);
@@ -91,8 +91,8 @@ export default class Api {
         }
     }
 
-    async getMyCompanies(getData: ViewCompaniesProps): Promise<any>{
-        const url = this.baseUrl+this.apiUrl.getCompaniesUrl+'?page='+getData.page+'&size='+getData.size;
+    async getMyCompanies(getData: ViewCompaniesProps): Promise<any> {
+        const url = this.baseUrl + this.apiUrl.getCompaniesUrl + '?page=' + getData.page + '&size=' + getData.size;
         try {
             const response = await axios.get(url);
             return Promise.resolve(response);
@@ -103,8 +103,8 @@ export default class Api {
         }
     }
 
-    async searchwarehouse(getData: any): Promise<any>{
-        const url = this.baseUrl+this.apiUrl.searchwarehouse+'?pincode='+getData+'&page=0&size=10';
+    async searchwarehouse(getData: any): Promise<any> {
+        const url = this.baseUrl + this.apiUrl.searchwarehouse + '?pincode=' + getData + '&page=0&size=10';
         try {
             const response = await axios.get(url);
             return Promise.resolve(response);
@@ -115,8 +115,8 @@ export default class Api {
         }
     }
 
-    async getWarehouseByClientId(getData: ViewWarehouseProps): Promise<any>{
-        const url = this.baseUrl+this.apiUrl.getWarehouseByClientIdUrl+'?clientId='+getData.clientId+'&page='+getData.page+'&size='+getData.size;
+    async getWarehouseByClientId(getData: ViewWarehouseProps): Promise<any> {
+        const url = this.baseUrl + this.apiUrl.getWarehouseByClientIdUrl + '?clientId=' + getData.clientId + '&page=' + getData.page + '&size=' + getData.size;
         try {
             const response = await axios.get(url);
             return Promise.resolve(response);
@@ -127,14 +127,25 @@ export default class Api {
         }
     }
 
-    async getWarehouseAdmin(getData: viewWarehouseAdminProps): Promise<any>{
-        const url = this.baseUrl+this.apiUrl.getWarehouseAdminUrl+'?page='+getData.page+'&size='+getData.size;
-        try{
+    async getWarehouseAdmin(getData: viewWarehouseAdminProps): Promise<any> {
+        const url = this.baseUrl + this.apiUrl.getWarehouseAdminUrl + '?page=' + getData.page + '&size=' + getData.size;
+        try {
             const response = await axios.get(url);
             return Promise.resolve(response);
         }
-        catch (error){
+        catch (error) {
             console.log(' error : Get Warehouse', error);
+            return Promise.reject(error);
+        }
+    }
+    async enquiry(postData: EnquiryProps): Promise<any> {
+        const url = this.baseUrl + this.apiUrl.enquiry;
+        try {
+            const response = await axios.post(url, postData);
+            return Promise.resolve(response);
+        }
+        catch (error) {
+            console.log(' error : enquiry', error);
             return Promise.reject(error);
         }
     }
