@@ -8,7 +8,7 @@ import AddressDetails from '../../atoms/addressforms/AddressDetails';
 import { BusinessDetails } from '../../../utils/ResponseSchema';
 import { validateCharacterLength, validatePhone, validateWebUrl, validateGst } from '../../../utils/CommonUtils';
 import Api from '../../../../src/api/Api';
-import { AddCompanyProps } from '../../../../src/api/ApiConfig';
+import { AddCompanyPostData } from '../../../../src/api/ApiConfig';
 import LoaderSpinner from '../../atoms/spinner/spinner';
 
 interface AddBusinessProps {
@@ -110,6 +110,20 @@ const AddBusiness = (props: AddBusinessProps) => {
     }
 
     const onSave = (step: any) => {
+
+        const postData = {} as AddCompanyPostData ;
+        postData.compyName = companyInfo.companyname;
+        postData.compyDesc = 'Testing';
+        postData.url = companyInfo.companyurl;
+        postData.gstNo = companyInfo.gstid;
+    
+        console.log(' @@@@@ >>> ', postData);
+        // api.addCompany(postData).then((response) => {
+        //     console.log(' Company creation res >>>>>> ', response);
+        // }).catch((error)=>{
+        //     console.log(' Company creation erroor ', error);
+        // });
+
         switch (step) {
             case 1:
                 // console.log("businessProfile=", values)
@@ -123,11 +137,10 @@ const AddBusiness = (props: AddBusinessProps) => {
                 });
                 break;
         }
+    }
 
-        // api.addCompany(data).then((response) => {
-        //     console.log(' Company creation res >>>>>> ', response);
-
-        // });
+    const onAddressUpdate = (data: any) => {
+        console.log(' @@@@@@@@@@ >>>> ', data);
     }
 
     const showCompanyInformation = () => {
@@ -196,6 +209,7 @@ const AddBusiness = (props: AddBusinessProps) => {
                                 state={businessProfile.state}
                                 zip={businessProfile.zip}
                                 country={businessProfile.country}
+                                onUpdate={onAddressUpdate}
                             />}
                     </div>
                 </div>

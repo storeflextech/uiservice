@@ -1,6 +1,6 @@
 // import React from 'react';
 import axios from 'axios';
-import { ApiConfig, SlLoginProps, SignInProps, GetStatesProp, GetCitiesProp, AddCompanyProps, ViewCompaniesProps, ViewWarehouseProps, viewWarehouseAdminProps, EnquiryProps } from './ApiConfig';
+import { ApiConfig, SlLoginProps, SignInProps, GetStatesProp, GetCitiesProp, AddCompanyPostData, ViewCompaniesProps, ViewWarehouseProps, viewWarehouseAdminProps, EnquiryProps } from './ApiConfig';
 
 
 // let axiosConfig = {
@@ -56,10 +56,15 @@ export default class Api {
         const url = this.baseUrl + this.apiUrl.getStatesUrl + '?countryId=' + requestObject.country;
         try {
             const response = await axios.get(url);
-            return Promise.resolve(response);
+            if (response.status === 200) {
+                return Promise.resolve(response?.data);
+            } else {
+                console.log(' error : getStatesByCountry', response);
+                return Promise.reject(response);
+            }
         }
         catch (error) {
-            console.log(' error : Get Company', error);
+            console.log(' error : getStatesByCountry', error);
             return Promise.reject(error);
         }
     }
@@ -76,14 +81,19 @@ export default class Api {
         }
     }
 
-    async addCompany(postData: AddCompanyProps): Promise<any> {
-        const url = this.baseUrl + this.apiUrl.addCompanyUrl;
+    async addCompany(postData: AddCompanyPostData): Promise<any>{
+        const url = this.baseUrl+this.apiUrl.addCompanyUrl;
         try {
             const response = await axios.post(url, postData);
-            return Promise.resolve(response);
+            if (response.status === 200) {
+                return Promise.resolve(response?.data);
+            } else {
+                console.log(' error : addCompany ', response);
+                return Promise.reject(response);
+            }
         }
         catch (error) {
-            console.log(' error : Add company', error);
+            console.log(' error : addCompany', error);
             return Promise.reject(error);
         }
     }

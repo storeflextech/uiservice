@@ -4,10 +4,10 @@ import GetCountry from '../country/GetCountry';
 import GetState from '../state/GetState';
 import GetCity from '../city/GetCity';
 import InputBox from '../textfield/InputBox';
-
+import Api from '../../../../src/api/Api';
 
 import { validateCity, validateCharacterLength, validatePinCode } from "../../../utils/CommonUtils";
-
+import { StateResponse, StateList } from '../../../utils/ResponseSchema';
 
 
 interface AddressDetailsProps {
@@ -15,18 +15,57 @@ interface AddressDetailsProps {
     city: string;
     state: string;
     zip: string | number;
+    countryCode?: string;
     country?: string;
+    onUpdate?: (data: any) => void;
+}
 
+interface AddressDetails {
+    addressType: string;
+    countryCode: string;
+    stateCode: string;
+    cityCode: string;
+    pincode: string;
+    address: string;
 }
 const AddressDetails = (props: AddressDetailsProps) => {
-   
-    const [country, setCountry] = useState('01');
+    const api = new Api();
+    const [countryCode, setCountryCode] = useState('01');
     const [state, setState] = useState('ASM');
-    
+    const [stateArry, setStateArry] = useState<StateList[]>();
+    const [address, setErrorsAddress] = useState('');
+    const [Zip, setErrorsPincode] = useState('');
     const [city, setErrorsCity] = useState('');
-    const [myCompanies, setMyCompanies] = useState<Array<any>>([]);
+    const [addressType, setAddressType] = useState('COR');
+    const [cityCode, setCityCode] = useState('');
+    const [isOnUpdate, setIsOnUpdate] = useState(false);
 
-    
+    useEffect(() => {
+        getStates(countryCode);
+    }, []);
+
+    const onUpdate = () => {
+        if(props?.onUpdate) {
+            const addressData = {
+                addressType,
+                countryCode,
+                stateCode: state,
+                cityCode,
+                pincode: '',
+                address: ''
+            } as AddressDetails;
+            props.onUpdate(addressData);
+        }
+    }
+
+    const getStates = (countryCode) => {
+        api.getStatesByCountry({countryCode}).then((response) => {
+            const data = response as StateResponse;
+            setStateArry(data.methodReturnValue);
+        }).catch((error)=>{
+            console.log(' getCitiesByState error >> ', error);
+        });
+    }
 
     const validateCityName = (event: any) => {
         const city = event.target.value;
@@ -38,7 +77,8 @@ const AddressDetails = (props: AddressDetailsProps) => {
             document.getElementsByName("cityname")[0].style.border = "2px solid red";
         }
     }
-    const [address, setErrorsAddress] = useState('');
+    
+
     const validateAddress = (event: any) => {
         const city = event.target.value;
         if (validateCharacterLength(city, 6, 80)) {
@@ -49,21 +89,42 @@ const AddressDetails = (props: AddressDetailsProps) => {
             document.getElementsByName("addressLine1")[0].style.border = "2px solid red";
         }
     }
-    const [Zip, setErrorsPincode] = useState('');
+    
+
     const validateZipCode = (event: any) => {
         const city = event.target.value;
         if (validatePinCode(city)) {
             setErrorsPincode("");
             document.getElementsByName("zipcode")[0].style.border = "2px solid dodgerblue"
         } else {
-
             setErrorsPincode("Minimum 6 number required");
             document.getElementsByName("zipcode")[0].style.border = "2px solid red";
         }
     }
 
-    const setSelectedState = (event: any) =>{
+    const setSelectedState = (event: any) => {
         setState(event.target.value[0]);
+        setIsOnUpdate(true);
+    }
+
+    const selectAddressType = (event: any) => {
+        if(event?.target?.value) {
+            setAddressType(event.target.value);
+        } else {
+            setAddressType('');
+        }
+        setIsOnUpdate(true);
+    }
+
+    const onCityChange = (cityCode: string) => {
+        setCityCode(cityCode);
+        setIsOnUpdate(true);
+    }
+
+    if(isOnUpdate) {
+        setIsOnUpdate(false);
+        console.log(' isOnUpdate ', isOnUpdate);
+        onUpdate();
     }
 
     const data = props;
@@ -73,7 +134,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
                 <Grid item xs={12}>
                     <div style={{ marginBottom: '8px' }}>
                         <div className='pb-2'>Address Type</div>
-                        <select name="" className="form-control">
+                        <select name="addresstype" className="form-control" onChange={selectAddressType}>
                             <option value="COR">Corporate</option>
                             <option value="PHY">Physical</option>
                         </select>
@@ -84,39 +145,19 @@ const AddressDetails = (props: AddressDetailsProps) => {
                 <Grid item xs={4}>
                     <div> Country </div>
                     <div className='p-top-sm'>
-                        {<GetCountry country={country} />}
+                        {<GetCountry country={countryCode} />}
                     </div>
                 </Grid>
                 <Grid item xs={4}>
                     <div> State </div>
                     <div className='p-top-sm'>
-                        {<GetState country={data?.country}  onSelectState={setSelectedState} />}
+                        {<GetState countryCode={countryCode} stateList={stateArry} onSelectState={setSelectedState} />}
                     </div>
                 </Grid>
                 <Grid item xs={4}>
                     <div> City </div>
                     <div className='p-top-sm'>
-                        {state && <GetCity state={state} />}
-                    </div>
-                </Grid>
-            </Grid>
-            <Grid className='mt-1' container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-                <Grid item xs={4}>
-                    <div> Country </div>
-                    <div className='p-top-sm'>
-                        {<GetState />}
-                    </div>
-                </Grid>
-                <Grid item xs={4}>
-                    <div> State </div>
-                    <div className='p-top-sm'>
-                        {<GetState />}
-                    </div>
-                </Grid>
-                <Grid item xs={4}>
-                    <div> City </div>
-                    <div className='p-top-sm'>
-                        {<GetState />}
+                        {state && <GetCity state={state} onChange={onCityChange}/>}
                     </div>
                 </Grid>
             </Grid>
