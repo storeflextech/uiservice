@@ -73,6 +73,18 @@ export interface AddCompanyPostData {
     contact: Contact[];
 }
 
+export interface EnquiryProps {
+ 
+    firstName: string,
+    middleName: string
+    lastName: string,
+    email: string,
+    mobileNo: string,
+    subject: string,
+    descp: string
+  }
+
+
 export class ApiConfig {
     endPointGateWay = '/';
     testApi = '/test';
@@ -87,5 +99,6 @@ export class ApiConfig {
     searchwarehouse = '/searchwarehouse';
     getWarehouseByClientIdUrl = '/warehouseByClientId';
     getWarehouseAdminUrl = '/warehouses';
+    enquiry = '/enquiry';
 
 }
