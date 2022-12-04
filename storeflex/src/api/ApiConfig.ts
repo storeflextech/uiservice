@@ -16,7 +16,7 @@ export interface ViewCompaniesProps {
 }
 
 export interface GetStatesProp {
-    country: string;
+    countryCode: string;
 }
 
 export interface GetCitiesProp {
@@ -57,12 +57,16 @@ export interface Contact {
     updatedBy: string,
 }
 
-export interface AddCompanyProps {
+export interface Photo {
+    [key: string]: string;
+}
+export interface AddCompanyPostData {
     compyName: string;
     compyDesc: string;
-    photo?: string;
+    photo?: Photo[];
     photoName: string;
     url: string;
+    gstNo: string;
     updatedBy: string;
     status: boolean;
     addresses: Address[];
@@ -80,7 +84,6 @@ export class ApiConfig {
     getCitiesUrl = '/city';
     getCompaniesUrl = '/clients';
     addCompanyUrl = '/client';
-
     searchwarehouse = '/searchwarehouse';
     getWarehouseByClientIdUrl = '/warehouseByClientId';
     getWarehouseAdminUrl = '/warehouses';
