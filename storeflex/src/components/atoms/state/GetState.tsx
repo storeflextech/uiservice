@@ -1,25 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Api from '../../../../src/api/Api';
 import { FormControl, Select, MenuItem, SelectChangeEvent } from '@mui/material';
 
 interface storeState {
   countryCode?: string;
   state?: string;
-  stateList?: any;
   onSelectState?: (e: SelectChangeEvent<string>) => void;
 }
 
 const GetState = (props?: storeState) => {
-  // const api = new Api();
-  // const [stateList, setStateList] = useState([]);
+  const api = new Api();
+  const [stateArry, setStateArry] = useState([]);
+  const [countryCode, setCountryCode] = useState('');
   const [stateCode, setStateCode] = useState('Select State');
   const [stateName, setStateName] = useState('');
 
-  // const countryCode = props?.countryCode || '01';
-  const stateList = props?.stateList || []
+  useEffect(() => {
+    if(props?.countryCode &&  props.countryCode !== countryCode) {
+        setCountryCode(props.countryCode);
+        getStates(props.countryCode);
+    }
+  },[]);
 
+  const getStates = (countryCode) => {
+    api.getStatesByCountry({countryCode}).then((response) => {
+        setStateArry(response?.methodReturnValue);
+    }).catch((error)=>{
+        console.log(' getCitiesByState error >> ', error);
+    });
+  }
   const handleChange = (event: SelectChangeEvent) => {
     setStateCode(event.target.value as string);
-    stateList.map(item => {
+    stateArry.map(item => {
       if (Object.keys(item)[0] === event.target.value) {
         setStateName(Object.values(item)[0] as string);
       }
@@ -38,7 +50,7 @@ const GetState = (props?: storeState) => {
           <MenuItem value={stateCode}>
             <em>{stateName}</em>
           </MenuItem>
-          {stateList.map((item, index) => {
+          {stateArry.map((item, index) => {
             return (
               <MenuItem key={index + 1} value={Object.keys(item)}>{Object.values(item)}</MenuItem>
             )

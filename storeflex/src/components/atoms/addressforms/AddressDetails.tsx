@@ -7,7 +7,6 @@ import InputBox from '../textfield/InputBox';
 import Api from '../../../../src/api/Api';
 
 import { validateCity, validateCharacterLength, validatePinCode } from "../../../utils/CommonUtils";
-import { StateResponse, StateList } from '../../../utils/ResponseSchema';
 
 
 interface AddressDetailsProps {
@@ -20,7 +19,7 @@ interface AddressDetailsProps {
     onUpdate?: (data: any) => void;
 }
 
-interface AddressDetails {
+interface AddressDetailsPostData {
     addressType: string;
     countryCode: string;
     stateCode: string;
@@ -32,7 +31,6 @@ const AddressDetails = (props: AddressDetailsProps) => {
     const api = new Api();
     const [countryCode, setCountryCode] = useState('01');
     const [state, setState] = useState('ASM');
-    const [stateArry, setStateArry] = useState<StateList[]>();
     const [address, setErrorsAddress] = useState('');
     const [Zip, setErrorsPincode] = useState('');
     const [city, setErrorsCity] = useState('');
@@ -41,7 +39,10 @@ const AddressDetails = (props: AddressDetailsProps) => {
     const [isOnUpdate, setIsOnUpdate] = useState(false);
 
     useEffect(() => {
-        getStates(countryCode);
+        if(props?.countryCode &&  props.countryCode !== countryCode) {
+            setCountryCode(props.countryCode);
+            // getStates(countryCode);
+        }
     }, []);
 
     const onUpdate = () => {
@@ -53,19 +54,19 @@ const AddressDetails = (props: AddressDetailsProps) => {
                 cityCode,
                 pincode: '',
                 address: ''
-            } as AddressDetails;
+            } as AddressDetailsPostData;
             props.onUpdate(addressData);
         }
     }
 
-    const getStates = (countryCode) => {
-        api.getStatesByCountry({countryCode}).then((response) => {
-            const data = response as StateResponse;
-            setStateArry(data.methodReturnValue);
-        }).catch((error)=>{
-            console.log(' getCitiesByState error >> ', error);
-        });
-    }
+    // const getStates = (countryCode) => {
+    //     api.getStatesByCountry({countryCode}).then((response) => {
+    //         const data = response as StateResponse;
+    //         setStateArry(data.methodReturnValue);
+    //     }).catch((error)=>{
+    //         console.log(' getCitiesByState error >> ', error);
+    //     });
+    // }
 
     const validateCityName = (event: any) => {
         const city = event.target.value;
@@ -151,7 +152,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
                 <Grid item xs={4}>
                     <div> State </div>
                     <div className='p-top-sm'>
-                        {<GetState countryCode={countryCode} stateList={stateArry} onSelectState={setSelectedState} />}
+                        {<GetState countryCode={countryCode} onSelectState={setSelectedState} />}
                     </div>
                 </Grid>
                 <Grid item xs={4}>
