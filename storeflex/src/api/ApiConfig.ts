@@ -67,8 +67,6 @@ export interface AddCompanyPostData {
     photoName: string;
     url: string;
     gstNo: string;
-    updatedBy: string;
-    status: boolean;
     addresses: Address[];
     contact: Contact[];
 }

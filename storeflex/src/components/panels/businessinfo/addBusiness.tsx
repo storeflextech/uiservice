@@ -25,6 +25,7 @@ const AddBusiness = (props: AddBusinessProps) => {
     const [isLoader, setLoaderState] = useState(false);
     const [charCount, setCharCount] = useState(0);
     const maxiLength = 500;
+    const selectedCountryCode = '01';
     const countHandle = (e) => {
         var c = e.target.value.length;
         // var r = maxiLength - c;
@@ -209,6 +210,7 @@ const AddBusiness = (props: AddBusinessProps) => {
                                 state={businessProfile.state}
                                 zip={businessProfile.zip}
                                 country={businessProfile.country}
+                                countryCode={selectedCountryCode}
                                 onUpdate={onAddressUpdate}
                             />}
                     </div>

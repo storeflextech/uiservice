@@ -53,7 +53,7 @@ export default class Api {
     }
 
     async getStatesByCountry(requestObject: GetStatesProp): Promise<any> {
-        const url = this.baseUrl + this.apiUrl.getStatesUrl + '?countryId=' + requestObject.country;
+        const url = this.baseUrl + this.apiUrl.getStatesUrl + '?countryId=' + requestObject.countryCode;
         try {
             const response = await axios.get(url);
             if (response.status === 200) {
