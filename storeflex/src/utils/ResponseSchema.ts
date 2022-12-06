@@ -53,4 +53,9 @@ export interface StateResponse {
     statusCode?: number;
     status?: string;
 }
+
+export interface objectData {
+    val?: string;
+    error?: string
+}
  
