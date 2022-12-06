@@ -1,38 +1,38 @@
 import React, { useState, useEffect } from 'react';
-import { FormControl, Select, MenuItem, SelectChangeEvent } from '@mui/material';
-import { GetStatesProp } from '../../../api/ApiConfig';
 import Api from '../../../../src/api/Api';
+import { FormControl, Select, MenuItem, SelectChangeEvent } from '@mui/material';
 
 interface storeState {
-  country?: string;
+  countryCode?: string;
   state?: string;
   onSelectState?: (e: SelectChangeEvent<string>) => void;
 }
 
 const GetState = (props?: storeState) => {
   const api = new Api();
-  const [country, setCountry] = useState(props?.country ? props?.country : '01');
-  const [stateList, setStateList] = useState([]);
+  const [stateArry, setStateArry] = useState([]);
+  const [countryCode, setCountryCode] = useState('');
   const [stateCode, setStateCode] = useState('Select State');
   const [stateName, setStateName] = useState('');
 
   useEffect(() => {
-    getStatesByCountry(country);
-  }, []);
+    if(props?.countryCode &&  props.countryCode !== countryCode) {
+        setCountryCode(props.countryCode);
+        getStates(props.countryCode);
+    }
+  },[]);
 
-  const getStatesByCountry = (country) => {
-    const data: GetStatesProp = { country: country };
-    api.getStatesByCountry(data).then((response) => {
-      if (response.status == 200) {
-        setStateList(response.data.methodReturnValue);
-      }
+  const getStates = (countryCode) => {
+    api.getStatesByCountry({countryCode}).then((response) => {
+        setStateArry(response?.methodReturnValue);
+    }).catch((error)=>{
+        console.log(' getCitiesByState error >> ', error);
     });
   }
-
   const handleChange = (event: SelectChangeEvent) => {
     setStateCode(event.target.value as string);
-    stateList.map(item => {
-      if (Object.keys(item)[0] == event.target.value) {
+    stateArry.map(item => {
+      if (Object.keys(item)[0] === event.target.value) {
         setStateName(Object.values(item)[0] as string);
       }
     });
@@ -41,18 +41,16 @@ const GetState = (props?: storeState) => {
     }
 
   };
-
-
   return (
     <>
       <FormControl size="small" fullWidth={true}>
         <Select autoWidth={false} value={stateCode} onChange={handleChange} displayEmpty
-          inputProps={{ 'aria-label': 'Without label' }}
+          inputProps={{ 'aria-label': 'Select City' }}
         >
           <MenuItem value={stateCode}>
             <em>{stateName}</em>
           </MenuItem>
-          {stateList.map((item, index) => {
+          {stateArry.map((item, index) => {
             return (
               <MenuItem key={index + 1} value={Object.keys(item)}>{Object.values(item)}</MenuItem>
             )

@@ -44,3 +44,13 @@ export interface EditBusinessDetails {
     country: string;
     compyDesc: string;
 }
+
+export interface StateList {
+    [key: string]: string;
+}
+export interface StateResponse {
+    methodReturnValue: StateList[];
+    statusCode?: number;
+    status?: string;
+}
+ 

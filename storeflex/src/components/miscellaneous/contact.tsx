@@ -41,7 +41,7 @@ const Contact = () => {
 
   const sendMessage = () =>{
     if (!values.name) {
-      setErrors({...errors, nameError: " *Name is required. "});
+      setErrors({...errors, nameError: " *First Name is required. "});
     }else if(!values.subject){
       setErrors({...errors, subjectError: " *Subject is required. "});
     }else if(!values.email){
@@ -86,12 +86,21 @@ const Contact = () => {
               <div className="row">
                 <div className="col-lg-8 col-12">
                   <div className="form-main">
-                  <form action="https://formsubmit.co/support@storeflex.com" method="POST">
                       <div className="row">
-                        <div className="col-lg-6 col-md-6 col-12">
-                        <div className="form-group">
-                            <input name="name" type="text" placeholder="Name" onChange={handleChange} />
+                        <div className="col-lg-4 col-md-6 col-12">
+                          <div className="form-group">
+                            <input name="name" type="text" placeholder="First Name" onChange={handleChange} />
                             {errors.nameError && <p className="text-red">{errors.nameError}</p>}
+                          </div>
+                        </div>
+                        <div className="col-lg-4 col-md-6 col-12">
+                          <div className="form-group">
+                            <input name="name" type="text" placeholder=" Middle Name" onChange={handleChange} />
+                          </div>
+                        </div>
+                        <div className="col-lg-4 col-md-6 col-12">
+                          <div className="form-group">
+                            <input name="name" type="text" placeholder="Last Name" onChange={handleChange} />
                           </div>
                         </div>
                         <div className="col-lg-6 col-md-6 col-12">
@@ -126,7 +135,6 @@ const Contact = () => {
                           </div>
                         </div>
                       </div>
-                  </form>
                   </div>
                 </div>
                 <div className="col-lg-4 col-12">

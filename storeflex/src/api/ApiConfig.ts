@@ -16,7 +16,7 @@ export interface ViewCompaniesProps {
 }
 
 export interface GetStatesProp {
-    country: string;
+    countryCode: string;
 }
 
 export interface GetCitiesProp {
@@ -57,17 +57,31 @@ export interface Contact {
     updatedBy: string,
 }
 
-export interface AddCompanyProps {
+export interface Photo {
+    [key: string]: string;
+}
+export interface AddCompanyPostData {
     compyName: string;
     compyDesc: string;
-    photo?: string;
+    photo?: Photo[];
     photoName: string;
     url: string;
-    updatedBy: string;
-    status: boolean;
+    gstNo: string;
     addresses: Address[];
     contact: Contact[];
 }
+
+export interface EnquiryProps {
+ 
+    firstName: string,
+    middleName: string
+    lastName: string,
+    email: string,
+    mobileNo: string,
+    subject: string,
+    descp: string
+  }
+
 
 export class ApiConfig {
     endPointGateWay = '/';
@@ -80,9 +94,9 @@ export class ApiConfig {
     getCitiesUrl = '/city';
     getCompaniesUrl = '/clients';
     addCompanyUrl = '/client';
-
     searchwarehouse = '/searchwarehouse';
     getWarehouseByClientIdUrl = '/warehouseByClientId';
     getWarehouseAdminUrl = '/warehouses';
+    enquiry = '/enquiry';
 
 }

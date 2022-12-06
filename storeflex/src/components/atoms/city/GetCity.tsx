@@ -3,35 +3,42 @@ import { FormControl, Select, MenuItem, SelectChangeEvent } from '@mui/material'
 import { GetCitiesProp } from '../../../api/ApiConfig';
 import Api from '../../../../src/api/Api';
 
-interface storeState {
+interface GetCityProps {
   state?: string;
+  onChange?: (codeVal: string) => void;
 }
 
-const GetCity = (props?: storeState) => {
+const GetCity = (props?: GetCityProps) => {
   const api = new Api();
-  const [state, seState] = useState(props?.state ? props?.state : '');
+  // const [state, setState] = useState(props?.state ? props?.state : '');
   const [citiesList, setCitiesList] = useState([]);
-  const [cityVal, setCityVal] = useState('Select City');
-  const [cityCode, setCityCode] = useState('Select State');
-  const [cityName, setCityName] = useState('');
-
+  const [cityCode, setCityCode] = useState('');
+  const [cityName, setCityName] = useState('Select City');
   useEffect(() => {
-    getCitiesByState(state);
+    getCities(props?.state);
   }, []);
 
-  const getCitiesByState = (state) => {
+  const getCities = (state) => {
     const data: GetCitiesProp = { state: state };
     api.getCitiesByState(data).then((response) => {
-      if (response.status == 200) {
-        setCitiesList(response.data.methodReturnValue);       
-      }
+      setCitiesList(response.data.methodReturnValue); 
+    }).catch((error)=>{
+      console.log(' getCitiesByState error >> ', error);
     });
   }
   const handleChange = (event: SelectChangeEvent) => {
-    setCityVal(event.target.value as string);
-    citiesList.map(item=>{ 
-      if(Object.keys(item)[0]==event.target.value){
-        setCityName(Object.values(item)[0] as string);
+    citiesList.map(item => {
+      const itemCode = Object.keys(item).toString();
+      const itemName = Object.values(item).toString();
+      if(itemCode === event.target.value) {
+         setCityName(itemName);
+         setCityCode(itemCode);
+         if(props?.onChange) {
+            props.onChange(itemCode);
+         }
+         return true;
+      } else {
+        return false;
       }
     })
   };
@@ -41,15 +48,17 @@ const GetCity = (props?: storeState) => {
     <>
       <FormControl size="small" fullWidth={true}>
         <Select autoWidth={false} value={cityCode} onChange={handleChange} displayEmpty
-          inputProps={{ 'aria-label': 'Without label' }}
+          inputProps={{ 'aria-label': 'Select City' }}
         >
-          <MenuItem value={cityCode}>
+          <MenuItem value={''}>
             <em>{cityName}</em>
           </MenuItem>
           {citiesList.map((item, index) => {
+            const itemCode = Object.keys(item).toString();
+            const itemName = Object.values(item).toString();
             return (
-              <MenuItem key={index + 1} value={Object.keys(item)}>{Object.values(item)}</MenuItem>
-            )
+              <MenuItem key={index + 1} value={itemCode}>{itemName}</MenuItem>
+            );
           })}
         </Select>
       </FormControl>
