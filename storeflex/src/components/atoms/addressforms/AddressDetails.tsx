@@ -4,7 +4,7 @@ import GetCountry from '../country/GetCountry';
 import GetState from '../state/GetState';
 import GetCity from '../city/GetCity';
 import InputBox from '../textfield/InputBox';
-// import Api from '../../../../src/api/Api';
+import { Address } from '../../../../src/api/ApiConfig';
 import { objectData } from '../../../utils/ResponseSchema';
 
 import { validateCity, validateCharacterLength, validatePinCode } from "../../../utils/CommonUtils";
@@ -20,22 +20,11 @@ interface AddressDetailsProps {
     onUpdate?: (data: any) => void;
 }
 
-interface AddressDetailsPostData {
-    addressType?: string;
-    countryCode?: string;
-    stateCode?: string;
-    cityCode?: string;
-    pincode?: string;
-    plotNo?: string;
-    houseNo?: string;
-    streetDetails?: string;
-}
-
 const AddressDetails = (props: AddressDetailsProps) => {
     // const api = new Api();
     const [countryCode, setCountryCode] = useState('01');
-    const [state, setState] = useState('ASM');
-    const [addressType, setAddressType] = useState('COR');
+    const [stateInfo, setStateInfo] = useState<objectData>({});
+    const [addressTypeInfo, setAddressTypeInfo] = useState('COR');
     const [cityInfo, setCityInfo] = useState<objectData>({});
     const [pinCode, setPinCode] = useState<objectData>({});
     const [plotInfo, setPlotInfo] = useState<objectData>({});
@@ -50,19 +39,19 @@ const AddressDetails = (props: AddressDetailsProps) => {
         }
     }, []);
 
-    const onUpdate = () => {
+    const onChangeUpdateInfo = () => {
         if(props?.onUpdate) {
             const addressData = {
-                addressType,
-                countryCode,
-                stateCode: state,
-                cityCode: cityInfo.val,
+                addressType: addressTypeInfo,
+                country: countryCode,
+                city: stateInfo.val,
+                state: cityInfo.val,
                 pincode: pinCode.val,
                 plotNo: plotInfo.val,
                 houseNo: houseInfo.val,
                 streetDetails: streetInfo.val
 
-            } as AddressDetailsPostData;
+            } as Address;
             props.onUpdate(addressData);
         }
     }
@@ -78,6 +67,20 @@ const AddressDetails = (props: AddressDetailsProps) => {
             obj.error = 'Alphabets only'
         }
         setCityInfo(obj);
+        setIsOnUpdate(true);
+    }
+
+    const onStateChange = (val: string) => {
+        const obj = {
+            val: val,
+            error: ''
+        } as objectData;
+        if (stateInfo.val) {
+            obj.error = '';
+        } else {
+            obj.error = 'Select state'
+        }
+        setStateInfo(obj);
         setIsOnUpdate(true);
     }
     
@@ -138,24 +141,18 @@ const AddressDetails = (props: AddressDetailsProps) => {
         setIsOnUpdate(true);
     }
 
-    const setSelectedState = (event: any) => {
-        setState(event.target.value[0]);
-        setIsOnUpdate(true);
-    }
-
     const selectAddressType = (event: any) => {
         if(event?.target?.value) {
-            setAddressType(event.target.value);
+            setAddressTypeInfo(event.target.value);
         } else {
-            setAddressType('');
+            setAddressTypeInfo('');
         }
         setIsOnUpdate(true);
     }
 
     if(isOnUpdate) {
+        onChangeUpdateInfo();
         setIsOnUpdate(false);
-        console.log(' isOnUpdate ', isOnUpdate);
-        onUpdate();
     }
 
     const data = props;
@@ -176,13 +173,13 @@ const AddressDetails = (props: AddressDetailsProps) => {
                 <Grid item xs={6}>
                     <div> State </div>
                     <div className='p-top-sm'>
-                        {<GetState countryCode={countryCode} onSelectState={setSelectedState} />}
+                        {<GetState countryCode={countryCode} onChange={onStateChange} />}
                     </div>
                 </Grid>
                 <Grid item xs={6}>
                     <div> City </div>
                     <div className='p-top-sm'>
-                        {state && <GetCity state={state} onChange={onCityChange}/>}
+                        {stateInfo.val && <GetCity state={stateInfo.val} onChange={onCityChange}/>}
                     </div>
                 </Grid>
             </Grid>
