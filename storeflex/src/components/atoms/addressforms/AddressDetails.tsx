@@ -4,7 +4,8 @@ import GetCountry from '../country/GetCountry';
 import GetState from '../state/GetState';
 import GetCity from '../city/GetCity';
 import InputBox from '../textfield/InputBox';
-import Api from '../../../../src/api/Api';
+// import Api from '../../../../src/api/Api';
+import { objectData } from '../../../utils/ResponseSchema';
 
 import { validateCity, validateCharacterLength, validatePinCode } from "../../../utils/CommonUtils";
 
@@ -20,22 +21,26 @@ interface AddressDetailsProps {
 }
 
 interface AddressDetailsPostData {
-    addressType: string;
-    countryCode: string;
-    stateCode: string;
-    cityCode: string;
-    pincode: string;
-    address: string;
+    addressType?: string;
+    countryCode?: string;
+    stateCode?: string;
+    cityCode?: string;
+    pincode?: string;
+    plotNo?: string;
+    houseNo?: string;
+    streetDetails?: string;
 }
+
 const AddressDetails = (props: AddressDetailsProps) => {
-    const api = new Api();
+    // const api = new Api();
     const [countryCode, setCountryCode] = useState('01');
     const [state, setState] = useState('ASM');
-    const [address, setErrorsAddress] = useState('');
-    const [Zip, setErrorsPincode] = useState('');
-    const [city, setErrorsCity] = useState('');
     const [addressType, setAddressType] = useState('COR');
-    const [cityCode, setCityCode] = useState('');
+    const [cityInfo, setCityInfo] = useState<objectData>({});
+    const [pinCode, setPinCode] = useState<objectData>({});
+    const [plotInfo, setPlotInfo] = useState<objectData>({});
+    const [houseInfo, setHouseInfo] = useState<objectData>({});
+    const [streetInfo, setStreetInfo] = useState<objectData>({});
     const [isOnUpdate, setIsOnUpdate] = useState(false);
 
     useEffect(() => {
@@ -51,56 +56,86 @@ const AddressDetails = (props: AddressDetailsProps) => {
                 addressType,
                 countryCode,
                 stateCode: state,
-                cityCode,
-                pincode: '',
-                address: ''
+                cityCode: cityInfo.val,
+                pincode: pinCode.val,
+                plotNo: plotInfo.val,
+                houseNo: houseInfo.val,
+                streetDetails: streetInfo.val
+
             } as AddressDetailsPostData;
             props.onUpdate(addressData);
         }
     }
 
-    // const getStates = (countryCode) => {
-    //     api.getStatesByCountry({countryCode}).then((response) => {
-    //         const data = response as StateResponse;
-    //         setStateArry(data.methodReturnValue);
-    //     }).catch((error)=>{
-    //         console.log(' getCitiesByState error >> ', error);
-    //     });
-    // }
-
-    const validateCityName = (event: any) => {
-        const city = event.target.value;
-        if (validateCity(city)) {
-            setErrorsCity("");
-            document.getElementsByName("cityname")[0].style.border = "2px solid dodgerblue"
+    const onCityChange = (cityCode: string) => {
+        const obj = {
+            val: cityCode,
+            error: ''
+        } as objectData;
+        if (validateCity(obj.val)) {
+            obj.error = '';
         } else {
-            setErrorsCity("Alphabets only");
-            document.getElementsByName("cityname")[0].style.border = "2px solid red";
+            obj.error = 'Alphabets only'
         }
+        setCityInfo(obj);
+        setIsOnUpdate(true);
+    }
+    
+    const validateStreet = (event: any) => {
+        const obj = {
+            val: event.target.value,
+            error: ''
+        } as objectData;
+        if (validateCharacterLength(obj.val, 4, 80)) {
+            obj.error = '';
+        } else {
+           obj.error = 'Minimum 6 letters and maximum 80 letters required';
+        }
+        setStreetInfo(obj);
+        setIsOnUpdate(true);
     }
     
 
-    const validateAddress = (event: any) => {
-        const city = event.target.value;
-        if (validateCharacterLength(city, 6, 80)) {
-            setErrorsAddress("");
-            document.getElementsByName("addressLine1")[0].style.border = "2px solid dodgerblue"
+    const validatePin = (event: any) => {
+        const obj = {
+            val: event.target.value,
+            error: ''
+        } as objectData;
+        if (validatePinCode(obj.val)) {
+            obj.error = '';
         } else {
-            setErrorsAddress("Minimum 6 letters and maximum 80 letters required");
-            document.getElementsByName("addressLine1")[0].style.border = "2px solid red";
+            obj.error = 'Enter valid pincode.';
         }
+        setPinCode(obj);
+        setIsOnUpdate(true);
     }
-    
 
-    const validateZipCode = (event: any) => {
-        const city = event.target.value;
-        if (validatePinCode(city)) {
-            setErrorsPincode("");
-            document.getElementsByName("zipcode")[0].style.border = "2px solid dodgerblue"
+    const validatePlotNo = (event: any) => {
+        const obj = {
+            val: event.target.value,
+            error: ''
+        } as objectData;
+        if (validateCharacterLength(obj.val, 4, 15)) {
+            obj.error = '';
         } else {
-            setErrorsPincode("Minimum 6 number required");
-            document.getElementsByName("zipcode")[0].style.border = "2px solid red";
+            obj.error = 'Minimum 4 character required';
         }
+        setPlotInfo(obj);
+        setIsOnUpdate(true);
+    }
+
+    const validateHouseNo = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: ''
+        } as objectData;
+        if (validateCharacterLength(obj.val, 4, 15)) {
+            obj.error = '';
+        } else {
+            obj.error = 'Minimum 4 character required';
+        }
+        setHouseInfo(obj);
+        setIsOnUpdate(true);
     }
 
     const setSelectedState = (event: any) => {
@@ -114,11 +149,6 @@ const AddressDetails = (props: AddressDetailsProps) => {
         } else {
             setAddressType('');
         }
-        setIsOnUpdate(true);
-    }
-
-    const onCityChange = (cityCode: string) => {
-        setCityCode(cityCode);
         setIsOnUpdate(true);
     }
 
@@ -143,31 +173,51 @@ const AddressDetails = (props: AddressDetailsProps) => {
                 </Grid>
             </Grid>
             <Grid className='mt-1' container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-                <Grid item xs={4}>
-                    <div> Country </div>
-                    <div className='p-top-sm'>
-                        {<GetCountry country={countryCode} />}
-                    </div>
-                </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={6}>
                     <div> State </div>
                     <div className='p-top-sm'>
                         {<GetState countryCode={countryCode} onSelectState={setSelectedState} />}
                     </div>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={6}>
                     <div> City </div>
                     <div className='p-top-sm'>
                         {state && <GetCity state={state} onChange={onCityChange}/>}
                     </div>
                 </Grid>
             </Grid>
-            <Grid container className='p-top-md'>
-                <Grid item xs={12}>
-                    <InputBox data={{ name: 'addressLine1', label: 'Address*', value: data.addresLine1 }}
-                        onChange={validateAddress}
+            <Grid className='mt-1' container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
+                <Grid item xs={6}>
+                    <div> Country </div>
+                    <div className='p-top-sm'>
+                        {<GetCountry country={countryCode} />}
+                    </div>
+                </Grid>
+                <Grid item xs={6}>
+                        <InputBox data={{ name: 'pincode', label: 'Pincode*', value: data.addresLine1 }}
+                        onChange={validatePin}
                     />
-                    {address && <p className="text-red">{address}</p>}
+                    {pinCode.error && <p className="text-red">{pinCode.error}</p>}
+                </Grid>
+            </Grid>
+            <Grid container className='p-top-md' spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
+                <Grid item xs={3}>
+                    <InputBox data={{ name: 'plotno', label: 'Plot no', value: data.addresLine1 }}
+                        onChange={validatePlotNo}
+                    />
+                     {plotInfo.error && <p className="text-red">{plotInfo.error}</p>}
+                </Grid>
+                <Grid item xs={3}>
+                    <InputBox data={{ name: 'houseno', label: 'House no', value: data.addresLine1 }}
+                        onChange={validateHouseNo}
+                    />
+                     {houseInfo.error && <p className="text-red">{houseInfo.error}</p>}
+                </Grid>
+                <Grid item xs={6}>
+                    <InputBox data={{ name: 'street', label: 'Street', value: data.addresLine1 }}
+                        onChange={validateStreet}
+                    />
+                    {streetInfo.error && <p className="text-red">{streetInfo.error}</p>}
                 </Grid>
             </Grid>
         </div>
