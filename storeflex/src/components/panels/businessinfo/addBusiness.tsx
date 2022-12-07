@@ -207,7 +207,7 @@ const AddBusiness = (props: AddBusinessProps) => {
         addressData.plotNo = data.plotNo;
         addressData.houseNo = data.houseNo;
         addressData.streetDetails = data.streetDetails;
-        // console.log(addressData);
+        console.log(addressData);
         setCompanyAddressInfo(addressData);
     }
     const buildContactInfo = () => {
