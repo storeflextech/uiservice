@@ -4,25 +4,29 @@ import { GetCitiesProp } from '../../../api/ApiConfig';
 import Api from '../../../../src/api/Api';
 
 interface GetCityProps {
-  state?: string;
+  state: string;
   onChange?: (codeVal: string) => void;
 }
 
-const GetCity = (props?: GetCityProps) => {
+const GetCity = (props: GetCityProps) => {
   const api = new Api();
   // const [state, setState] = useState(props?.state ? props?.state : '');
   const [citiesList, setCitiesList] = useState([]);
   const [cityCode, setCityCode] = useState('');
   const [cityName, setCityName] = useState('Select City');
-  useEffect(() => {
-    getCities(props?.state);
-  }, []);
 
-  const getCities = (state) => {
-    const data: GetCitiesProp = { state: state };
+  useEffect(() => {
+    if(props.state) {
+      getCities(props.state);
+    }
+  }, [props.state]);
+
+  const getCities = (stateCode: string) => {
+    const data: GetCitiesProp = { state: stateCode };
     api.getCitiesByState(data).then((response) => {
       setCitiesList(response.data.methodReturnValue); 
     }).catch((error)=>{
+      setCitiesList([]);
       console.log(' getCitiesByState error >> ', error);
     });
   }

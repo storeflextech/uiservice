@@ -6,7 +6,7 @@ import { InputError } from '../../atoms/textfield/InputError';
 import Accordion from 'react-bootstrap/Accordion';
 import AddressDetails from '../../atoms/addressforms/AddressDetails';
 import { BusinessDetails } from '../../../utils/ResponseSchema';
-import { validateCharacterLength, validateWebUrl, validateGst } from '../../../utils/CommonUtils';
+import { validateCharacterLength, validateWebUrl, validateGst, validatePhone } from '../../../utils/CommonUtils';
 import Api from '../../../../src/api/Api';
 import { AddCompanyPostData, Address, Contact } from '../../../../src/api/ApiConfig';
 import LoaderSpinner from '../../atoms/spinner/spinner';
@@ -151,10 +151,10 @@ const AddBusiness = (props: AddBusinessProps) => {
             val: event.target.value || '',
             error: ''
         } as objectData;
-        if (validateCharacterLength(obj.val, 4, 30)) {
+        if (validatePhone(obj.val)) {
             obj.error = '';
         } else {
-            obj.error = 'Alphabets only'
+            obj.error = '10 Digit Number only'
         }
         setMobileNoInfo(obj);
     }
@@ -177,10 +177,10 @@ const AddBusiness = (props: AddBusinessProps) => {
             val: event.target.value || '',
             error: ''
         } as objectData;
-        if (validateCharacterLength(obj.val, 4, 30)) {
+        if (validateCharacterLength(obj.val, 2, 10)) {
             obj.error = '';
         } else {
-            obj.error = 'Alphabets only'
+            obj.error = 'Number only'
         }
         setLandLineExtInfo(obj);
     }
@@ -189,10 +189,10 @@ const AddBusiness = (props: AddBusinessProps) => {
             val: event.target.value || '',
             error: ''
         } as objectData;
-        if (validateCharacterLength(obj.val, 4, 30)) {
+        if (validateCharacterLength(obj.val, 2, 10)) {
             obj.error = '';
         } else {
-            obj.error = 'Alphabets only'
+            obj.error = 'Number only'
         }
         setLandLineNoInfo(obj);
     }
@@ -343,7 +343,7 @@ const AddBusiness = (props: AddBusinessProps) => {
                         </Grid>
                         <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }} className='p-top-md'>
                             <Grid item xs={6}>
-                                <InputBox data={{ name: 'mobileno', label: 'Mobile No.*', value: '' }}
+                                <InputBox data={{ type: 'number', name: 'mobileno', label: 'Mobile No.*', value: '' }}
                                     onChange={onMobileNoChange}
                                 />
                                 {mobileNoInfo.error && <p className="text-red">{mobileNoInfo.error}</p>}
@@ -357,12 +357,12 @@ const AddBusiness = (props: AddBusinessProps) => {
                         </Grid>
                         <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }} className='p-top-md'>
                             <Grid item xs={6}>
-                                <InputBox data={{ name: 'landlineext', label: 'Landline Extension*', value: '' }}
+                                <InputBox data={{ type: 'number', name: 'landlineext', label: 'Landline Extension*', value: '' }}
                                     onChange={onLandlineExtChange} />
                                 {landLineExtInfo.error && <p className="text-red">{landLineExtInfo.error}</p>}
                             </Grid>
                             <Grid item xs={6}>
-                                <InputBox data={{ name: 'landlineno', label: 'Landline No.*', value: '' }}
+                                <InputBox data={{ type: 'number', name: 'landlineno', label: 'Landline No.*', value: '' }}
                                     onChange={onLandlineNoChange}
                                 />
                                  {landLineNoInfo.error && <p className="text-red">{landLineNoInfo.error}</p>}

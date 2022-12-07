@@ -13,6 +13,7 @@ interface Data {
     name?: string;
     value?: string | number;
     label?: string;
+    type?: string;
 }
 
 const InputBox = (props?: InputBoxProps) => {
@@ -20,7 +21,8 @@ const InputBox = (props?: InputBoxProps) => {
         name: props?.data?.name || 'inputbox',
         size: props?.data?.size || 'small',
         value: props?.data?.value || '',
-        label: props?.data?.label
+        label: props?.data?.label,
+        type: props?.data?.type || 'text'
     } ;
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if(props?.onChange) {
@@ -38,7 +40,7 @@ const InputBox = (props?: InputBoxProps) => {
         <div className='inputbox-container'>
             {data.label && <span className='inputbox-label'>{data.label}</span> }
             <input className='inputbox-field f-16px f-regular inputbox-bg' style={{height:'6vh'}}
-                type="text" 
+                type={data.type}
                 name={data.name}
                 defaultValue={data.value}
                 onChange={handleOnChange}
