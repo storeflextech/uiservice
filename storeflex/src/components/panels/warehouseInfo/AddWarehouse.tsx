@@ -5,10 +5,12 @@ import WarehouseHours from './WarehouseHours';
 import WarehouseLayout from './WarehouseLayout';
 import { Button } from '@mui/material';
 import Footer from '../../footer/footer';
+import WearehouseBeginningSection from './warehouseBeginningSection';
 
 const AddWarehouse = () => {
     return (
         <>
+        {<WearehouseBeginningSection/>}
         { <WearehouseAddress />}
         {<WearehousePricing />}
         {<WarehouseHours />}

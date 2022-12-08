@@ -35,40 +35,36 @@ export interface viewWarehouseAdminProps{
 }
 
 export interface Address {
-    addressType: string,
-    plotNo: string,
-    houseNo: string,
-    streetDetails: string,
-    city: string,
-    state: string,
-    country: string,
-    pincode: string,
-    createBy: string,
-    updatedBy: string,
+    addressType?: string;
+    plotNo?: string;
+    houseNo?: string;
+    streetDetails?: string;
+    city?: string;
+    state?: string;
+    country?: string;
+    pincode?: string
 }
 
 export interface Contact {
-    contactName: string,
-    mobileNo: string,
-    landLine: string,
-    landLineExt: string,
-    emailId: string,
-    createBy: string,
-    updatedBy: string,
+    contactName?: string;
+    mobileNo?: string;
+    landLine?: string;
+    landLineExt?: string;
+    emailId?: string;
 }
 
 export interface Photo {
     [key: string]: string;
 }
 export interface AddCompanyPostData {
-    compyName: string;
-    compyDesc: string;
+    compyName?: string;
+    compyDesc?: string;
     photo?: Photo[];
-    photoName: string;
-    url: string;
-    gstNo: string;
-    addresses: Address[];
-    contact: Contact[];
+    photoName?: string;
+    url?: string;
+    gstNo?: string;
+    addresses?: Address[];
+    contact?: Contact[];
 }
 
 export interface EnquiryProps {

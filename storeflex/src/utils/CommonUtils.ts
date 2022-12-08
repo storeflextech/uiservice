@@ -5,13 +5,13 @@ export const regex_email = /^((^<>()\[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|
 export const regex_specialChar = /^[A-Za-z ]+$/;
 export const regex_pass = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})/gm;
 export const regex_url = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[~%\w-_]*)?\??(?:[-=&;%@.\w_]*)#?(?:[\w]*))?)/;
-export const regex_phone = /^[6789]\d{9}$/;
+export const regex_phone = /^[0-9]{10}$/;
 export const regex_gstid = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
 export const regex_city = /^[A-Za-z]+$/;
-export const regex_pincode =/^[1-9]{1}[0-9]{2}\\s{0, 1}[0-9]{3}$/ ;
+export const regex_pincode = /^[0-9]{6}(?:-[0-9]{5})?$/;
 
-export const validateCharacterLength = (text: string, minLen:number, maxLen:number) => {
-    const isValid = (text.length < minLen || text.length > maxLen)?false:true;
+export const validateCharacterLength = (text:string = '', minLen:number = 4, maxLen:number = 20) => {
+    const isValid = (text?.length < minLen || text?.length > maxLen)?false:true;
     return isValid;
 }
 
@@ -52,7 +52,7 @@ export const validateWebUrl = (webUrl: string) => {
     return isValid;
 }
 
-export const validatePhone = (phone:string) => {
+export const validatePhone = (phone: any) => {
     const isValid = regex_phone.test(String(phone))?true:false;
     
     return isValid;
@@ -70,7 +70,7 @@ export const validatePinCode = (pincode: any) => {
     return isValid;
 }
 
-export const validateCity = (city: string) => {
+export const validateCity = (city?: string) => {
     
     const isValid = regex_city.test(String(city))?true : false;
 

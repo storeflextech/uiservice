@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
 import swal from 'sweetalert';
 import {Contacts} from '../atoms/contact/contacts';
+import { EnquiryProps } from '../../api/ApiConfig';
+import Api from '../../api/Api';
 
 const Contact = () => {
 
+  const api = new Api();
   const contactList = [
     {
       country : 'India',
@@ -20,7 +23,9 @@ const Contact = () => {
   ];
 
   const [values, setValues] = useState({
-    name: "",
+    fname: "",
+    mname: "",
+    lname: "",
     subject: "",
     email: "",
     phone: "",
@@ -40,7 +45,7 @@ const Contact = () => {
   };
 
   const sendMessage = () =>{
-    if (!values.name) {
+    if (!values.fname) {
       setErrors({...errors, nameError: " *First Name is required. "});
     }else if(!values.subject){
       setErrors({...errors, subjectError: " *Subject is required. "});
@@ -51,9 +56,29 @@ const Contact = () => {
     }else if(!values.message){
       setErrors({...errors, messageError: " *Message is required. "});
     }
-    else{
-      swal('Your message has been sent successfully!', {
-        icon: "success",
+    else {
+
+      const postData = {
+        firstName: values.fname,
+        middleName: values.mname,
+        lastName: values.lname,
+        email: values.email,
+        mobileNo: values.phone,
+        subject: values.subject,
+        descp: values.message,
+      } as EnquiryProps
+      
+      
+      api.enquiry(postData).then((response) => {
+        swal('Your message has been sent successfully!', {
+            icon: "success",
+        });
+        console.log(' Company creation res >>>>>> ', response);
+      }).catch((error)=>{
+        swal('Error sending message please try again', {
+            icon: "error",
+        });
+          console.log(' Error sending message please try again ', error);
       });
     }
   }
@@ -89,18 +114,18 @@ const Contact = () => {
                       <div className="row">
                         <div className="col-lg-4 col-md-6 col-12">
                           <div className="form-group">
-                            <input name="name" type="text" placeholder="First Name" onChange={handleChange} />
+                            <input name="fname" type="text" placeholder="First Name" onChange={handleChange} />
                             {errors.nameError && <p className="text-red">{errors.nameError}</p>}
                           </div>
                         </div>
                         <div className="col-lg-4 col-md-6 col-12">
                           <div className="form-group">
-                            <input name="name" type="text" placeholder=" Middle Name" onChange={handleChange} />
+                            <input name="mname" type="text" placeholder=" Middle Name" onChange={handleChange} />
                           </div>
                         </div>
                         <div className="col-lg-4 col-md-6 col-12">
                           <div className="form-group">
-                            <input name="name" type="text" placeholder="Last Name" onChange={handleChange} />
+                            <input name="lname" type="text" placeholder="Last Name" onChange={handleChange} />
                           </div>
                         </div>
                         <div className="col-lg-6 col-md-6 col-12">
@@ -117,7 +142,7 @@ const Contact = () => {
                         </div>
                         <div className="col-lg-6 col-md-6 col-12">
                           <div className="form-group">
-                            <input name="phone" type="text" placeholder="Phone" onChange={handleChange}/>
+                            <input name="phone" type="number" placeholder="Phone" onChange={handleChange}/>
                             {errors.phoneError && <p className="text-red">{errors.phoneError}</p>}
                           </div>
                         </div>
