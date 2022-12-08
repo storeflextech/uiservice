@@ -149,7 +149,12 @@ export default class Api {
         const url = this.baseUrl + this.apiUrl.enquiry;
         try {
             const response = await axios.post(url, postData);
-            return Promise.resolve(response);
+            if (response.status === 200) {
+                return Promise.resolve(response?.data);
+            } else {
+                console.log(' error : enquiry ', response);
+                return Promise.reject(response);
+            }
         }
         catch (error) {
             console.log(' error : enquiry', error);
