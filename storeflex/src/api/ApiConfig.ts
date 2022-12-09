@@ -88,7 +88,7 @@ export class ApiConfig {
     signUpUrl = '/register';
     getStatesUrl = '/state';
     getCitiesUrl = '/city';
-    getCompaniesUrl = '/clients';
+    getCompaniesApi = '/clients';
     addCompanyUrl = '/client';
     searchwarehouse = '/searchwarehouse';
     getWarehouseByClientIdUrl = '/warehouseByClientId';

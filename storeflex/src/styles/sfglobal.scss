@@ -72,7 +72,7 @@ $sf-primary-color: #f66711;
   background-image: radial-gradient(circle at 0 0,#ffbf76,#e6473d);
 }
 .align-c {
-  text-align: center;
+  text-align: center !important;
 }
 .position-fixed{
   position: fixed;
