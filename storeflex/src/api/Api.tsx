@@ -99,13 +99,18 @@ export default class Api {
     }
 
     async getMyCompanies(getData: ViewCompaniesProps): Promise<any> {
-        const url = this.baseUrl + this.apiUrl.getCompaniesUrl + '?page=' + getData.page + '&size=' + getData.size;
+        const url = this.baseUrl + this.apiUrl.getCompaniesApi + '?page=' + getData.page + '&size=' + getData.size;
         try {
             const response = await axios.get(url);
-            return Promise.resolve(response);
+            if (response.status === 200) {
+                return Promise.resolve(response?.data);
+            } else {
+                console.log(' error : getMyCompanies ', response);
+                return Promise.reject(response);
+            }
         }
         catch (error) {
-            console.log(' error : Get Company', error);
+            console.log(' error : getMyCompanies', error);
             return Promise.reject(error);
         }
     }
