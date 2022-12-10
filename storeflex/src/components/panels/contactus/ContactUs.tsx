@@ -3,6 +3,7 @@ import swal from 'sweetalert';
 import {Contacts} from '../../atoms/contact/contacts';
 import { EnquiryProps } from '../../../api/ApiConfig';
 import Api from '../../../api/Api';
+import { LoaderFull } from '../../atoms/loader/loader';
 
 const ContactUs = () => {
 
@@ -21,6 +22,8 @@ const ContactUs = () => {
       tel : '000 800 050 1417'
     }
   ];
+
+  const [loader, setLoader] = useState(false);
 
   const contactUsFields = {
     fname: "",
@@ -71,15 +74,17 @@ const ContactUs = () => {
         descp: values.message,
       } as EnquiryProps
       
-      
+      setLoader(true);
       api.enquiry(postData).then((response) => {
         swal('Your message has been sent successfully!', {
             icon: "success",
         });
         setValues(contactUsFields);
         setErrors(contactUsErrors);
+        setLoader(false);
         console.log(' Company creation res >>>>>> ', response);
       }).catch((error)=>{
+        setLoader(false);
         swal('Error sending message please try again', {
             icon: "error",
         });
@@ -90,6 +95,7 @@ const ContactUs = () => {
 
   return (
     <>
+        { loader && <LoaderFull /> }
         {/* <!--======  Start Section Title Three ======--> */}
         <div className="section-title-three">
           <div className="container">
