@@ -82,6 +82,10 @@ export interface EnquiryProps {
     descp: string
   }
 
+export interface viewUserProps{
+    page:string;
+    size: string;
+}
 
 export class ApiConfig {
     endPointGateWay = '/';
@@ -98,5 +102,6 @@ export class ApiConfig {
     getWarehouseByClientIdUrl = '/warehouseByClientId';
     getWarehouseAdminUrl = '/warehouses';
     enquiry = '/enquiry';
+    getViewUserUrl = '/storeflexusers';
 
 }
