@@ -1,6 +1,6 @@
 // import React from 'react';
 import axios from 'axios';
-import { ApiConfig, SlLoginProps, SignInProps, GetStatesProp, GetCitiesProp, AddCompanyPostData, ViewCompaniesProps, ViewWarehouseProps, viewWarehouseAdminProps, EnquiryProps } from './ApiConfig';
+import { ApiConfig, SlLoginProps, SignInProps, GetStatesProp, GetCitiesProp, AddCompanyPostData, ViewCompaniesProps, ViewWarehouseProps, viewWarehouseAdminProps, EnquiryProps, viewUserProps } from './ApiConfig';
 
 
 // let axiosConfig = {
@@ -163,6 +163,17 @@ export default class Api {
         }
         catch (error) {
             console.log(' error : enquiry', error);
+            return Promise.reject(error);
+        }
+    }
+    async getViewUser(getData: viewUserProps): Promise<any> {
+        const url = this.baseUrl + this.apiUrl.getViewUserUrl + '?page=' + getData.page + '&size=' + getData.size;
+        try {
+            const response = await axios.get(url);
+            return Promise.resolve(response);
+        }
+        catch (error) {
+            console.log(' error : View User', error);
             return Promise.reject(error);
         }
     }
