@@ -52,7 +52,7 @@ function App() {
               <Route path={PAGES.PgSearch.path} element={<PAGES.PgSearch.Component />} />
               <Route path={PAGES.PgSearchNew.path} element={<PAGES.PgSearchNew.Component />} />
               <Route path={PAGES.Cart.path} element={<PAGES.Cart.Component />} />
-              <Route path={PAGES.PgContactUs.path} element={<PAGES.PgContactUs.Component />} />
+              <Route path={PAGES.ContactUs.path} element={<PAGES.ContactUs.Component />} />f
               <Route path={PAGES.FAQ.path} element={<PAGES.FAQ.Component />} />
               <Route path={PAGES.Error.path} element={<PAGES.Error.Component />} />
     

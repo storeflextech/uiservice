@@ -10,7 +10,7 @@ import PgSearch from '../pages/PgSearch';
 import PgSearchNew from '../pages/PgSearchNew';
 
 import Cart from '../pages/cart';
-import PgContactUs from '../pages/PgContactUs';
+import ContactUsPage from '../pages/ContactUsPage';
 import faq from '../pages/faq';
 import ErrorPage from '../pages/ErrorPage';
 import PendingBusiness from '../pages/pendingbusiness';
@@ -121,9 +121,9 @@ export const PAGES = {
         path: '/cart',
         Component: Cart
     },
-    PgContactUs :{
+    ContactUs :{
         path: '/contactus',
-        Component: PgContactUs
+        Component: ContactUsPage
     },
     FAQ :{
         path: '/faq',
