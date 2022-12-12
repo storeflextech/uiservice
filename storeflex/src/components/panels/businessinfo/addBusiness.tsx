@@ -5,10 +5,10 @@ import InputBox from '../../atoms/textfield/InputBox';
 import { InputError } from '../../atoms/textfield/InputError';
 import Accordion from 'react-bootstrap/Accordion';
 import AddressDetails from '../../atoms/addressforms/AddressDetails';
-import { BusinessDetails } from '../../../utils/ResponseSchema';
+import { BusinessDetails, Address, Contact} from '../../../utils/ResponseSchema';
 import { validateCharacterLength, validateWebUrl, validateGst, validatePhone } from '../../../utils/CommonUtils';
 import Api from '../../../../src/api/Api';
-import { AddCompanyPostData, Address, Contact } from '../../../../src/api/ApiConfig';
+import { AddCompanyPostData } from '../../../../src/api/ApiConfig';
 import LoaderSpinner from '../../atoms/spinner/spinner';
 import { objectData } from '../../../utils/ResponseSchema';
 
@@ -118,14 +118,6 @@ const AddBusiness = (props: AddBusinessProps) => {
         //     obj.error = '';
         // }
         setPhotoName(obj);
-    }
-
-    const onProfileSave = (isSaved: boolean) => {
-        if (props?.onSave) {
-            return props.onSave(true);
-        } else {
-            console.log(' No Event ');
-        }
     }
 
     const handelOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -391,7 +383,7 @@ const AddBusiness = (props: AddBusinessProps) => {
             )} */}
             <Accordion defaultActiveKey="0">
                 <Accordion.Item eventKey="0">
-                    <Accordion.Header>
+                    <Accordion.Header className='sf-ac'>
                         <div className='primary-gradient'>
                         <div className='font-white p-sm f-18px f-bold'>Company Information</div>
                         </div>
@@ -401,7 +393,7 @@ const AddBusiness = (props: AddBusinessProps) => {
                     </Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey="1">
-                    <Accordion.Header>
+                    <Accordion.Header className='sf-ac'>
                     <div className='primary-gradient'>
                         <div className='font-white p-sm f-18px f-bold'>Address Information</div>
                     </div>
@@ -411,7 +403,7 @@ const AddBusiness = (props: AddBusinessProps) => {
                     </Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey="2">
-                    <Accordion.Header>
+                    <Accordion.Header className='sf-ac'>
                     <div className='primary-gradient'>
                         <div className='font-white p-sm f-18px f-bold'>Contact Information</div>
                     </div>

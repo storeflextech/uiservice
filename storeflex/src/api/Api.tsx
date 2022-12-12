@@ -98,6 +98,23 @@ export default class Api {
         }
     }
 
+    async updateCompany(postData: AddCompanyPostData): Promise<any>{
+        const url = this.baseUrl+this.apiUrl.updateCompanyApi;
+        try {
+            const response = await axios.post(url, postData);
+            if (response.status === 200) {
+                return Promise.resolve(response?.data);
+            } else {
+                console.log(' error : updateCompany  ', response);
+                return Promise.reject(response);
+            }
+        }
+        catch (error) {
+            console.log(' error :  updateCompany', error);
+            return Promise.reject(error);
+        }
+    }
+
     async getMyCompanies(getData: ViewCompaniesProps): Promise<any> {
         const url = this.baseUrl + this.apiUrl.getCompaniesApi + '?page=' + getData.page + '&size=' + getData.size;
         try {

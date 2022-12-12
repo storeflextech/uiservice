@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from "react-router-dom";
+import Api from '../../../../src/api/Api';
 import swal from 'sweetalert';
 import { Grid, TextareaAutosize, Button } from '@mui/material';
 import InputBox from '../../atoms/textfield/InputBox';
 import AddressDetails from '../../atoms/addressforms/AddressDetails';
-import { BusinessDetails, EditBusinessDetails } from '../../../utils/ResponseSchema';
+import { BusinessDetails, EditBusinessDetails, ClientList, Address, Contact} from '../../../utils/ResponseSchema';
 import { validateCharacterLength, validatePhone, validateWebUrl, validateGst } from '../../../utils/CommonUtils';
+import { LoaderFull } from '../../atoms/loader/loader';
+import { objectData } from '../../../utils/ResponseSchema';
+import { InputError } from '../../atoms/textfield/InputError';
+import { AddCompanyPostData } from '../../../../src/api/ApiConfig';
 
 
 interface EditBusinessProps {
@@ -14,74 +19,24 @@ interface EditBusinessProps {
     action?: string;
 }
 
-const EditBusiness = (props:any) => {
+const EditBusiness = (props: EditBusinessProps) => {
     const navigate = useNavigate();
     const location = useLocation();
-    const [values, setValues] = useState({
-        companyname: "",
-        companyurl: "",
-        phone: "",
-        gstid: "",
-    });
-    const [errors, setErrors] = useState({
-        companyname: "",
-        companyurl: "",
-        phone: "",
-        gstid: "",
-    });
-    const handleChange = (event: any) => {
-        setValues({
-            ...values,
-            [event.target.name]: event.target.value,
-        });
-    };
+    const api = new Api();
+    const selectedCountryCode = '01';
+    const [loader, setLoader] = useState(false);
 
-    const validation = (values: any) => {
-        console.log("Values==", values)
-        let errors = {
-            companyname: "",
-            companyurl: "",
-            phone: "",
-            gstid: "",
-        };
+    const [companyNameInfo, setCompanyNameInfo] = useState<objectData>({});
+    const [companyUrlInfo, setCompanyUrlInfo] = useState<objectData>({});
+    const [businessPhoneInfo, setBusinessPhoneInfo] = useState<objectData>({});
+    const [gstIdInfo, setGstIdInfo] = useState<objectData>({});
 
+    // Address Information 
+    const [companyAddressInfo, setCompanyAddressInfo] = useState<Address>({});
+    const [companyDescription, setCompanyDescription] = useState<objectData>({});
 
-        //companyname validation check
-        if (!values.companyname) {
-            errors.companyname = " *Company Name is required. "
-        } else if (!validateCharacterLength(values.companyname, 4, 50)) {
-            errors.companyname = " Company Name must be between 4 characters to 50 characters."
-        };
-
-        //Company url validation check
-        if (!values.companyurl) {
-            errors.companyurl = "*Company url is required."
-        }
-        else if (!validateWebUrl(values.companyurl)) {
-            errors.companyurl = " Enter a valid Company Url "
-        }
-
-        //Phone number validation check
-        if (!values.phone) {
-            errors.phone = "*Enter Phone Number"
-        }
-        else if (!validatePhone(values.phone)) {
-
-            errors.phone = "Enter a valid Phone Number"
-        }
-        //GstId validation check
-        if (!values.gstid) {
-            errors.gstid = "*GST number is mandatory"
-        }
-        else if (!validateGst(values.gstid)) {
-            errors.gstid = "Enter a valid GST number"
-        }
-        return errors;
-    }
-
-    const profile = {} as EditBusinessDetails;
+     const profile = {} as EditBusinessDetails;
     const [businessProfile, setBusinessProfile] = useState(profile);
-    const [profileSaved, setProfileSaved] = useState(false);
     const [charCount, setCharCount] = useState(0);
     const maxiLength = 30;
 
@@ -89,20 +44,20 @@ const EditBusiness = (props:any) => {
         companyDataFormatter(location.state.editRecord);
     }, [])
 
-    const companyDataFormatter = (data: any) => {
-        console.log(data);
-        let companyDetails: any = {
-            clientId: data.clientId,
-            compyName: data.compyName,
-            compyDesc: data.compyDesc,
-            url: data.url,
-            phone: data.contact[0].mobileNo,
-            gstn: 'NA',
-            address: data.addresses[0].streetDetails,
-            pincode: data.addresses[0].pincode,
-            city: data.addresses[0].city,
-            state: 'NA',
-            country: 'NA'
+    const companyDataFormatter = (data: ClientList) => {
+        console.log(' @@@@@@@ ', data);
+        let companyDetails: EditBusinessDetails = {
+            clientId: data.clientId || '',
+            compyName: data.compyName || '',
+            compyDesc: data.compyDesc || '',
+            url: data.url || '',
+            phone: data.contact[0]?.mobileNo || '',
+            gstn: data.gstNo || '',
+            address: data.addresses[0].streetDetails || '',
+            pincode: data.addresses[0].pincode || '',
+            city: data.addresses[0].city || '',
+            state: data.addresses[0].state || '',
+            country: 'IND'
         }
         setBusinessProfile(companyDetails);
     }
@@ -132,49 +87,187 @@ const EditBusiness = (props:any) => {
         console.log(' #### name ', value);
     }
 
-    const handleUpdate = () => {
-        swal({
-            title: "Good job!",
-            text: "Business record has been updated successfully",
-            icon: "success",
-            dangerMode: false,
-        })
-            .then(willUpdate => {
+    // const handleUpdate = () => {
+    //     swal({
+    //         title: "Good job!",
+    //         text: "Business record has been updated successfully",
+    //         icon: "success",
+    //         dangerMode: false,
+    //     })
+    //     .then(willUpdate => {
+    //         if (willUpdate) {
+    //             goToNextPage('/business/view');
+    //         }
+    //     });
+    // }
+
+    const onCompanyNameChange = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: '',
+            isUpdated: true,
+        } as objectData;
+        if (!obj.val) {
+            obj.error = " *Company Name is required. ";
+        } else if (!validateCharacterLength(obj.val, 4, 50)) {
+            obj.error = " Company Name must be between 4 characters to 50 characters."
+        } else {
+            obj.error = '';
+        }
+        setCompanyNameInfo(obj);
+    }
+
+    const onCompanyUrlChange = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: '',
+            isUpdated: true,
+        } as objectData;
+        if (!obj.val) {
+            obj.error = "*Company url is required."
+        } else if (!validateWebUrl(obj.val)) {
+            obj.error = " Enter a valid Company Url "
+        } else {
+            obj.error = '';
+        }
+        setCompanyUrlInfo(obj);
+    }
+
+    const onBusinessPhoneChange = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: '',
+            isUpdated: true,
+        } as objectData;
+        if (validatePhone(obj.val)) {
+            obj.error = '';
+        } else {
+            obj.error = 'Enter a valid  10 Digit Phone Number only'
+        }
+        setBusinessPhoneInfo(obj);
+    }
+
+    const onGstIdChange = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: '',
+            isUpdated: true,
+        } as objectData;
+        if (!obj.val) {
+            obj.error = "*GST number is mandatory"
+        } else if (!validateGst(obj.val)) {
+            obj.error = "Enter a valid GST number"
+        } else {
+            obj.error = '';
+        }
+        setGstIdInfo(obj);
+    }
+
+    const onAddressUpdate = (data: Address) => {
+        const addressData = {} as Address;
+        addressData.addressType = data.addressType;
+        addressData.city = data.city;
+        addressData.country = data.country;
+        addressData.state = data.state;
+        addressData.pincode = data.pincode;
+        addressData.plotNo = data.plotNo;
+        addressData.houseNo = data.houseNo;
+        addressData.streetDetails = data.streetDetails;
+        setCompanyAddressInfo(addressData);
+    }
+
+    const onCompanyDescriptionChange = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: '',
+            isUpdated: true,
+        } as objectData;
+        // if (!obj.val) {
+        //     obj.error = "*GST number is mandatory"
+        // } else if (!validateGst(obj.val)) {
+        //     obj.error = "Enter a valid GST number"
+        // } else {
+        //     obj.error = '';
+        // }
+        setCompanyDescription(obj);
+    }
+ 
+    // const buildContactInfo = () => {
+    //     const contactInfo = {} as Contact;
+    //     // contactInfo.contactName = contactNameInfo.val;
+    //     // contactInfo.mobileNo = mobileNoInfo.val;
+    //     // contactInfo.emailId = emailIdInfo.val;
+    //     // contactInfo.landLineExt = landLineExtInfo.val;
+    //     // contactInfo.landLine = landLineNoInfo.val;
+    //     return contactInfo;
+    // }
+
+    const getVal = (obj: objectData) => {
+        if(obj.isUpdated) {
+            return obj.val
+        } else {
+            return undefined;
+        }
+    }
+
+    const onUpdate = () => {
+        const postData = {} as AddCompanyPostData ;
+        postData.clientId = businessProfile.clientId;
+        postData.compyName = getVal(companyNameInfo);
+        postData.compyDesc = getVal(companyDescription);
+        postData.url = getVal(companyUrlInfo);
+        postData.gstNo = getVal(gstIdInfo);
+        if( Object.keys(companyAddressInfo).length > 0) {
+            postData.addresses = [companyAddressInfo];
+        } 
+        // postData.contact = [ buildContactInfo()];
+        
+        setLoader(true);
+        api.updateCompany(postData).then((response) => {
+            setLoader(false);
+            swal('Great! Information updated successfully!', {
+                icon: "success",
+            }).then(willUpdate => {
                 if (willUpdate) {
                     goToNextPage('/business/view');
                 }
             });
+            console.log(' Company creation res >>>>>> ', response);
+        }).catch((error) => {
+            setLoader(false);
+            console.log(' Company Edit Inforamtion erroor ', error);
+        });
     }
 
-    const showAddProfile = () => {
+    const showProfile = () => {
         return (
             <div className='m-bot-md'>
                 <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                     <Grid item xs={6}>
                         <InputBox data={{ name: 'companyname', label: 'Company Name', value: businessProfile.compyName }}
-                            onChange={handleChange} onBlur={handelOnBlur}
+                            onChange={onCompanyNameChange} onBlur={handelOnBlur}
                         />
-                        {errors.companyname && <p className="text-red">{errors.companyname}</p>}
+                       <InputError errorText={companyNameInfo.error}/>
                     </Grid>
                     <Grid item xs={6}>
-                        <InputBox data={{ name: 'companyurl', label: 'Company URL', value: businessProfile.url }}
-                            onChange={handleChange} onBlur={handelOnBlur}
+                        <InputBox data={{ name: 'companyurl', label: 'Company URL*', value: businessProfile.url }}
+                            onChange={onCompanyUrlChange} onBlur={handelOnBlur}
                         />
-                        {errors.companyurl && <p className="text-red">{errors.companyurl}</p>}
+                        <InputError errorText={companyUrlInfo.error}/>
                     </Grid>
                 </Grid>
                 <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                     <Grid item xs={6}>
-                        <InputBox data={{ name: 'phone', label: 'Business Phone*', value: businessProfile.phone }}
-                            onChange={handleChange} onBlur={handelOnBlur}
+                        <InputBox data={{ name: 'businessphone', label: 'Business Phone*', value: businessProfile.phone }}
+                            onChange={onBusinessPhoneChange} onBlur={handelOnBlur}
                         />
-                        {errors.phone && <p className="text-red">{errors.phone}</p>}
+                         <InputError errorText={businessPhoneInfo.error}/>
                     </Grid>
                     <Grid item xs={6}>
                         <InputBox data={{ name: 'gstid', label: 'GST Number*', value: businessProfile.gstn }}
-                            onChange={handleChange} onBlur={handelOnBlur}
+                            onChange={onGstIdChange} onBlur={handelOnBlur}
                         />
-                        {errors.gstid && <p className="text-red">{errors.gstid}</p>}
+                        <InputError errorText={gstIdInfo.error}/>
                     </Grid>
                 </Grid>
             </div>
@@ -183,15 +276,20 @@ const EditBusiness = (props:any) => {
 
     const showBusinessAddress = () => {
         return (
-            <div className='p-md'>
-                <div>{
-                    <AddressDetails
-                        addresLine1={businessProfile.address}
-                        city={businessProfile.city}
-                        state={businessProfile.state}
-                        zip={businessProfile.pincode}
-                        country={businessProfile.country}
-                    />}</div>
+            <>
+                <div className='p-md'>
+                    {
+                        <AddressDetails
+                            addresLine1={businessProfile.address}
+                            city={businessProfile.city}
+                            state={businessProfile.state}
+                            zip={businessProfile.pincode}
+                            country={businessProfile.country}
+                            countryCode={selectedCountryCode}
+                            onUpdate={onAddressUpdate}
+                        />
+                    }
+                </div>
                 <Grid container spacing={2} columns={{ xs: 12, sm: 12, md: 12 }}>
                     <Grid item xs={12}>
                         <div> Business Description </div>
@@ -201,7 +299,7 @@ const EditBusiness = (props:any) => {
                             minRows={3}
                             maxRows={4}
                             maxLength={500}
-                            onChange={countHandle}
+                            onChange={onCompanyDescriptionChange}
                             value={businessProfile.compyDesc}
                             aria-label='Add your business description'
                             placeholder='Add your business description'
@@ -211,28 +309,36 @@ const EditBusiness = (props:any) => {
                     </Grid>
 
                 </Grid>
-            </div>
+            </>
         )
     }
 
     return (
-        <div className='m-bot-md'>
-            <div className='primary-gradient'>
-                <div className='font-white p-sm f-18px f-bold'>Edit Business Information</div>
-            </div>
-            <>{showAddProfile()}</>
-            <div className='primary-gradient'>
-                <div className='font-white p-sm f-18px f-bold'>Edit Business Address</div>
-            </div>
-            <>{showBusinessAddress()}</>
-            <div className="row">
-                <div className="col-md-9 col-lg-9 col-xl-9 flex-end"></div>
-                <div className="col-md-3 col-lg-3 col-xl-3">
-                    <button className='btn primary-btn-outline rounded-full' onClick={() => { goToNextPage('/business/view') }} style={{ marginRight: '5px' }}> Cancel </button>
-                    <button className="btn primary-btn rounded-full" onClick={() => { handleUpdate() }}> Update </button>
+        <>
+             { loader && <LoaderFull /> }
+            <div className='m-bot-md'>
+                <div className='primary-gradient'>
+                    <div className='font-white p-sm f-18px f-bold'>Edit Business Information</div>
+                </div>
+                <div className='p-md'>
+                    {showProfile()}
+                </div>
+                <div className='primary-gradient'>
+                    <div className='font-white p-sm f-18px f-bold'>Edit Business Address</div>
+                </div>
+                <div className='p-md'>
+                    {showBusinessAddress()}
+                </div>
+                <div className="row">
+                    <div className="col-md-9 col-lg-9 col-xl-9 flex-end"></div>
+                    <div className="col-md-3 col-lg-3 col-xl-3">
+                        <button className='btn primary-btn rounded-full' onClick={() => { goToNextPage('/business/view') }} style={{ marginRight: '5px' }}> Cancel </button>
+                        <button className="btn primary-btn rounded-full" onClick={() => { onUpdate() }}> Update </button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
+        
     );
 }
 
