@@ -80,6 +80,8 @@ function App() {
               <Route path={PAGES.PgSearchNew.path} element={<PAGES.PgSearchNew.Component />} />
               <Route path={PAGES.WAREHOUSE_DETAILS.path} element={<PAGES.WAREHOUSE_DETAILS.Component />} />
               <Route path={PAGES.SITE_MAP.path} element={<PAGES.SITE_MAP.Component />} />
+              {/* <Route path={PAGES.ListSpace.path} element={<PAGES.ListSpace.Component/>}/> */}
+
             </Routes>
             }
             

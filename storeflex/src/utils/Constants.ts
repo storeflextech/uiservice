@@ -36,6 +36,7 @@ import WarehousePage from '../pages/WarehousePage';
 
 import WarehouseDetails from '../components/atoms/Searchresult/warehouseDetails';
 import SignInCustomer from '../pages/signin-customer';
+// import ListSpace from '../pages/listspace';
 
 export enum USER_TYPE {
     SfUser = 'SL',
@@ -212,6 +213,9 @@ export const PAGES = {
     WAREHOUSE_DETAILS :{
         path:'/WarehouseDetails',
         Component: WarehouseDetails
-    }
-
+    },
+    // ListSpace:{
+    //     path:'/listspace',
+    //     Component: ListSpace
+    // },
 }

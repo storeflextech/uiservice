@@ -7,10 +7,11 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import { ProfileBtn } from '../button/button';
 import './profile.scss';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
+ 
 
 interface ProfileMenuProps {
-    isSigned?: boolean;
+    isSigned?: boolean; 
     profileImg?: string;
 }
 
@@ -79,7 +80,7 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
                 </MenuItem>
                 <Divider />
                 <MenuItem>
-                    <ListItemText>List Space</ListItemText>
+                    <ListItemText><a onClick={() => { goToNextPage('/business/add') }}>List Space</a></ListItemText>
                 </MenuItem>
                 <MenuItem>
                     <ListItemText><a onClick={() => { goToNextPage('/bookings') }}>Bookings</a></ListItemText>
@@ -88,7 +89,7 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
                     <ListItemText onClick={() => goToNextPage("/view-profile")}>Edit Profile</ListItemText>
                 </MenuItem>
                 <Divider />
-                <MenuItem>
+                <MenuItem> 
                     <ListItemText><a onClick={()=>{goToNextPage('/contactus')}}>Contact Us</a></ListItemText>
                 </MenuItem>
                  <MenuItem>
