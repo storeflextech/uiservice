@@ -1,6 +1,6 @@
 // import React from 'react';
 import axios from 'axios';
-import { ApiConfig, SlLoginProps, SignInProps, GetStatesProp, GetCitiesProp, AddCompanyPostData, ViewCompaniesProps, ViewWarehouseProps, viewWarehouseAdminProps, EnquiryProps } from './ApiConfig';
+import { ApiConfig, SlLoginProps, SignInProps, GetStatesProp, GetCitiesProp, AddCompanyPostData, ViewCompaniesProps, ViewWarehouseProps, viewWarehouseAdminProps, EnquiryProps, viewUserProps } from './ApiConfig';
 
 
 // let axiosConfig = {
@@ -99,13 +99,18 @@ export default class Api {
     }
 
     async getMyCompanies(getData: ViewCompaniesProps): Promise<any> {
-        const url = this.baseUrl + this.apiUrl.getCompaniesUrl + '?page=' + getData.page + '&size=' + getData.size;
+        const url = this.baseUrl + this.apiUrl.getCompaniesApi + '?page=' + getData.page + '&size=' + getData.size;
         try {
             const response = await axios.get(url);
-            return Promise.resolve(response);
+            if (response.status === 200) {
+                return Promise.resolve(response?.data);
+            } else {
+                console.log(' error : getMyCompanies ', response);
+                return Promise.reject(response);
+            }
         }
         catch (error) {
-            console.log(' error : Get Company', error);
+            console.log(' error : getMyCompanies', error);
             return Promise.reject(error);
         }
     }
@@ -158,6 +163,17 @@ export default class Api {
         }
         catch (error) {
             console.log(' error : enquiry', error);
+            return Promise.reject(error);
+        }
+    }
+    async getViewUser(getData: viewUserProps): Promise<any> {
+        const url = this.baseUrl + this.apiUrl.getViewUserUrl + '?page=' + getData.page + '&size=' + getData.size;
+        try {
+            const response = await axios.get(url);
+            return Promise.resolve(response);
+        }
+        catch (error) {
+            console.log(' error : View User', error);
             return Promise.reject(error);
         }
     }
