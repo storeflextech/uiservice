@@ -4,8 +4,7 @@ import GetCountry from '../country/GetCountry';
 import GetState from '../state/GetState';
 import GetCity from '../city/GetCity';
 import InputBox from '../textfield/InputBox';
-import { Address } from '../../../../src/api/ApiConfig';
-import { objectData } from '../../../utils/ResponseSchema';
+import { objectData, Address } from '../../../utils/ResponseSchema';
 
 import { validateCity, validateCharacterLength, validatePinCode } from "../../../utils/CommonUtils";
 
@@ -24,7 +23,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
     // const api = new Api();
     const [countryCode, setCountryCode] = useState('01');
     const [stateInfo, setStateInfo] = useState<objectData>({});
-    const [addressTypeInfo, setAddressTypeInfo] = useState('COR');
+    const [addressTypeInfo, setAddressTypeInfo] = useState<objectData>({val: 'COR'});
     const [cityInfo, setCityInfo] = useState<objectData>({});
     const [pinCode, setPinCode] = useState<objectData>({});
     const [plotInfo, setPlotInfo] = useState<objectData>({});
@@ -45,17 +44,25 @@ const AddressDetails = (props: AddressDetailsProps) => {
         }
     }, [props.countryCode, countryCode, onUpdateInfo ]);
 
+    const getVal = (obj: objectData) => {
+        if(obj.isUpdated) {
+            return obj.val
+        } else {
+            return undefined;
+        }
+    }
+
     const onChangeUpdateInfo = () => {
         if(props?.onUpdate) {
             const addressData = {
-                addressType: addressTypeInfo,
+                addressType: getVal(addressTypeInfo),
                 country: 'IND',
-                city: cityInfo.val,
-                state: stateInfo.val,
-                pincode: pinCode.val,
-                plotNo: plotInfo.val,
-                houseNo: houseInfo.val,
-                streetDetails: streetInfo.val
+                city: getVal(cityInfo),
+                state: getVal(stateInfo),
+                pincode: getVal(pinCode),
+                plotNo: getVal(plotInfo),
+                houseNo: getVal(houseInfo),
+                streetDetails: getVal(streetInfo)
 
             } as Address;
             props.onUpdate(addressData);
@@ -65,7 +72,8 @@ const AddressDetails = (props: AddressDetailsProps) => {
     const onCityChange = (cityCodeVal: string) => {
         const obj = {
             val: cityCodeVal,
-            error: ''
+            error: '',
+            isUpdated: true,
         } as objectData;
         if (validateCity(obj.val)) {
             obj.error = '';
@@ -79,7 +87,8 @@ const AddressDetails = (props: AddressDetailsProps) => {
     const onStateChange = (stageCodeVal: string) => {
         const obj = {
             val: stageCodeVal,
-            error: ''
+            error: '',
+            isUpdated: true,
         } as objectData;
         if (obj.val) {
             obj.error = '';
@@ -93,7 +102,8 @@ const AddressDetails = (props: AddressDetailsProps) => {
     const validateStreet = (event: any) => {
         const obj = {
             val: event.target.value,
-            error: ''
+            error: '',
+            isUpdated: true,
         } as objectData;
         if (validateCharacterLength(obj.val, 4, 80)) {
             obj.error = '';
@@ -108,7 +118,8 @@ const AddressDetails = (props: AddressDetailsProps) => {
     const validatePin = (event: any) => {
         const obj = {
             val: event.target.value,
-            error: ''
+            error: '',
+            isUpdated: true,
         } as objectData;
         if (validatePinCode(obj.val)) {
             obj.error = '';
@@ -122,7 +133,8 @@ const AddressDetails = (props: AddressDetailsProps) => {
     const validatePlotNo = (event: any) => {
         const obj = {
             val: event.target.value,
-            error: ''
+            error: '',
+            isUpdated: true,
         } as objectData;
         if (validateCharacterLength(obj.val, 4, 15)) {
             obj.error = '';
@@ -136,7 +148,8 @@ const AddressDetails = (props: AddressDetailsProps) => {
     const validateHouseNo = (event: any) => {
         const obj = {
             val: event.target.value || '',
-            error: ''
+            error: '',
+            isUpdated: true,
         } as objectData;
         if (validateCharacterLength(obj.val, 2, 15)) {
             obj.error = '';
@@ -148,11 +161,12 @@ const AddressDetails = (props: AddressDetailsProps) => {
     }
 
     const selectAddressType = (event: any) => {
-        if(event?.target?.value) {
-            setAddressTypeInfo(event.target.value);
-        } else {
-            setAddressTypeInfo('');
-        }
+        const obj = {
+            val: event.target.value || '',
+            error: '',
+            isUpdated: true,
+        } as objectData;
+        setAddressTypeInfo(obj);
         setonUpdateInfo(true);
     }
 

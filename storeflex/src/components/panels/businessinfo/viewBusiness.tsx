@@ -6,10 +6,13 @@ import swal from 'sweetalert';
 import Pagination from 'react-bootstrap/Pagination';
 import Api from '../../../../src/api/Api';
 import { ViewCompaniesProps } from '../../../api/ApiConfig';
+import { DeletsButton, EditButton } from '../../buttons/buttons';
+import { LoaderFull } from '../../atoms/loader/loader';
 
 const ViewBusiness = () => {
     const api = new Api();
     const navigate = useNavigate();
+    const [loader, setLoader] = useState(false);
     const [modalShow, setModalShow] = React.useState(false);
     const [myCompanies, setMyCompanies] = useState<Array<any>>([]);
 
@@ -21,23 +24,29 @@ const ViewBusiness = () => {
     }, [])
 
     const getMyCompanies = (pageNo, pageSize) => {
+        setLoader(true);
         const data: ViewCompaniesProps = { page: pageNo, size: pageSize };
         api.getMyCompanies(data).then((response) => {
+            setLoader(false);
             setMyCompanies(response.methodReturnValue.clientList);
         }).catch((error) => {
+            setLoader(false);
             console.log(' getMyCompanies  ', error);
         });
     }
 
-    const goToEditPage = (pagePath: string, record: object) => {
+    const editBusiness = (company: any) => {
+        const pagePath = '/business/edit'
         navigate(pagePath,
             {
-                state: { editRecord: record },
+                state: { editRecord: company },
             }
         );
     }
 
     const deleteBusiness = (company: any) => {
+
+        console.log(' @@@ ', company);
         swal({
             title: "Are you sure?",
             text: 'You are about to delete the company "' + company.compyName + '(' + company.clientId + ')" . Once deleted, you will not be able to recover this company!',
@@ -51,7 +60,7 @@ const ViewBusiness = () => {
                         icon: "success",
                     });
                     let extractedArr = myCompanies.filter((item, index) => {
-                        return item.clientId != company.clientId;
+                        return item.clientId !== company.clientId;
                     });
                     setMyCompanies(extractedArr);
                 } else {
@@ -96,8 +105,8 @@ const ViewBusiness = () => {
                                         <td>{item.contact[0].contactName} / {item.contact[0].mobileNo}</td>
                                         {/* <td>{item.contact[0].mobileNo}</td> */}
                                         <td className='align-c'>
-                                            <button onClick={() => deleteBusiness(item)} className='primary-btn-outline' style={{ fontSize: '12px', borderRadius: 5, padding: '5px', marginBottom: '5px' }}><strong><i className='mdi mdi-cup menu-icon'></i> Delete</strong></button>
-                                            <button onClick={() => goToEditPage('/business/edit', item)} className='primary-btn-outline' style={{ fontSize: '12px', borderRadius: 5, padding: '5px' }}><strong><i className='mdi mdi-pencil menu-icon'></i> Edit</strong></button>
+                                            <DeletsButton onBtnClick={() => {deleteBusiness(item)}}/>
+                                            <EditButton onBtnClick={() => {editBusiness(item)}}/>
                                         </td>
                                     </tr>
                                 )
@@ -121,9 +130,13 @@ const ViewBusiness = () => {
     }
 
     return (
-        <div className='c-box-shadow-blue'>
+        <>
+            { loader && <LoaderFull /> }
+            <div className='c-box-shadow-blue'>
             {showCompanyList()}
-        </div>
+            </div>
+        </>
+        
     )
 }
 
