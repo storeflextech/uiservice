@@ -1,4 +1,5 @@
 
+import { Address, Contact , Photo} from '../../src/utils/ResponseSchema'
 export interface SlLoginProps {
     username: string,
     emailId: string,
@@ -33,30 +34,8 @@ export interface viewWarehouseAdminProps{
     page:string;
     size: string;
 }
-
-export interface Address {
-    addressType?: string;
-    plotNo?: string;
-    houseNo?: string;
-    streetDetails?: string;
-    city?: string;
-    state?: string;
-    country?: string;
-    pincode?: string
-}
-
-export interface Contact {
-    contactName?: string;
-    mobileNo?: string;
-    landLine?: string;
-    landLineExt?: string;
-    emailId?: string;
-}
-
-export interface Photo {
-    [key: string]: string;
-}
 export interface AddCompanyPostData {
+    clientId?: string;
     compyName?: string;
     compyDesc?: string;
     photo?: Photo[];
@@ -94,6 +73,7 @@ export class ApiConfig {
     getCitiesUrl = '/city';
     getCompaniesApi = '/clients';
     addCompanyUrl = '/client';
+    updateCompanyApi = '/clientUpdate';
     searchwarehouse = '/searchwarehouse';
     getWarehouseByClientIdUrl = '/warehouseByClientId';
     getWarehouseAdminUrl = '/warehouses';
