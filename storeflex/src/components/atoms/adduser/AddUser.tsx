@@ -104,16 +104,22 @@ const AddUser = () => {
   const selectDetails = () => {
     return (
       <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-        {/* <Grid item xs={6}>
+        <Grid item xs={6}>
                     <div> User Type </div>
                     <div className='p-top-md'>
                         {<UserType />}
                     </div>
-                 </Grid>*/}
-        <Grid item xs={6}>
+        </Grid>
+        <Grid item xs={3}>
           <div>Company</div>
           <div className='p-top-md'>
             {<GetCompany />}
+          </div>
+        </Grid>
+        <Grid item xs={3}>
+          <div>Profile Photo</div>
+          <div className='p-top-md'>
+            <input type="file" className="form-control" />
           </div>
         </Grid>
       </Grid>
@@ -165,6 +171,7 @@ const AddUser = () => {
             state={''}
             zip={''}
             country={''}
+            countryCode={'01'}
           />}</div>
       </div>
     )

@@ -40,8 +40,8 @@ const ResponsiveAppBar = () => {
     if(key.page === 'Search Space'){
         navigate(PAGES.PgSearch.path);
     }
-    if(key.page === 'Contact Us'){
-        navigate(PAGES.PgContactUs.path);
+    if(key.page === 'Contact Us') {
+        navigate(PAGES.ContactUs.path);
     }
     if(key.page === 'How To/FAQs'){
         navigate(PAGES.FAQ.path);

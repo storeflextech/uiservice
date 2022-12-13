@@ -1,6 +1,5 @@
 import HomePage from '../pages/HomePage';
-import SignIn from "../pages/signin";
-import SignInNew from "../pages/signin-new";
+import SignIn from "../pages/signin-administrator";
 import SignUpNew from '../pages/signup-new';
 import SignUp from '../pages/signup';
 import DashboardPage from '../pages/DashboardPage';
@@ -11,7 +10,7 @@ import PgSearch from '../pages/PgSearch';
 import PgSearchNew from '../pages/PgSearchNew';
 
 import Cart from '../pages/cart';
-import PgContactUs from '../pages/PgContactUs';
+import ContactUsPage from '../pages/ContactUsPage';
 import faq from '../pages/faq';
 import ErrorPage from '../pages/ErrorPage';
 import PendingBusiness from '../pages/pendingbusiness';
@@ -36,6 +35,7 @@ import SiteMap from '../pages/SiteMap';
 import WarehousePage from '../pages/WarehousePage';
 
 import WarehouseDetails from '../components/atoms/Searchresult/warehouseDetails';
+import SignInCustomer from '../pages/signin-customer';
 
 export enum USER_TYPE {
     SfUser = 'SL',
@@ -59,9 +59,9 @@ export const PAGES = {
         path: '/signin',
         Component: SignIn
     },
-    SignInNew : {
-        path: '/signin-new',
-        Component: SignInNew
+    SignInCustomer : {
+        path: '/signin-customer',
+        Component: SignInCustomer
     },
     SignUp : {
         path: '/signup',
@@ -121,9 +121,9 @@ export const PAGES = {
         path: '/cart',
         Component: Cart
     },
-    PgContactUs :{
+    ContactUs :{
         path: '/contactus',
-        Component: PgContactUs
+        Component: ContactUsPage
     },
     FAQ :{
         path: '/faq',

@@ -1,4 +1,11 @@
 
+import { Address, Contact , Photo} from '../../src/utils/ResponseSchema'
+export interface SlLoginProps {
+    username: string,
+    emailId: string,
+    password: string
+}
+
 export interface SignInProps {
     username: string;
     password: string;
@@ -9,57 +16,68 @@ export interface ViewCompaniesProps {
     size: string;
 }
 
-export interface ViewWarehouseProps{
+export interface GetStatesProp {
+    countryCode: string;
+}
+
+export interface GetCitiesProp {
+    state: string;
+}
+
+export interface ViewWarehouseProps {
     clientId: string;
+    page: string;
+    size: string;
+}
+
+export interface viewWarehouseAdminProps{
     page:string;
-    size:string;
+    size: string;
+}
+export interface AddCompanyPostData {
+    clientId?: string;
+    compyName?: string;
+    compyDesc?: string;
+    photo?: Photo[];
+    photoName?: string;
+    url?: string;
+    gstNo?: string;
+    addresses?: Address[];
+    contact?: Contact[];
 }
 
-export interface Address {
-    addressType: string,
-    plotNo: string,
-    houseNo: string,
-    streetDetails: string,
-    city: string,
-    state: string,
-    country: string,
-    pincode: string,
-    createBy: string,
-    updatedBy: string,
-}
-
-export interface Contact {
-    contactName: string,
+export interface EnquiryProps {
+ 
+    firstName: string,
+    middleName: string
+    lastName: string,
+    email: string,
     mobileNo: string,
-    landLine: string,
-    landLineExt: string,
-    emailId: string,
-    createBy: string,
-    updatedBy: string,
-}
+    subject: string,
+    descp: string
+  }
 
-export interface AddCompanyProps {
-    compyName: string;
-    compyDesc: string;
-    photo?: string;
-    photoName: string;
-    url: string;
-    updatedBy: string;
-    status: boolean;
-    addresses: Address[];
-    contact: Contact[];
+export interface viewUserProps{
+    page:string;
+    size: string;
 }
 
 export class ApiConfig {
     endPointGateWay = '/';
     testApi = '/test';
     signinApi = '/login';
+    slLoginApi = '/sllogin';
     signinTestApi = '/logintest';
     signUpUrl = '/register';
-    getCompaniesUrl = '/clients';
+    getStatesUrl = '/state';
+    getCitiesUrl = '/city';
+    getCompaniesApi = '/clients';
     addCompanyUrl = '/client';
-
+    updateCompanyApi = '/clientUpdate';
     searchwarehouse = '/searchwarehouse';
-    getWarehouseUrl = '/warehouseByClientId';
+    getWarehouseByClientIdUrl = '/warehouseByClientId';
+    getWarehouseAdminUrl = '/warehouses';
+    enquiry = '/enquiry';
+    getViewUserUrl = '/storeflexusers';
 
 }

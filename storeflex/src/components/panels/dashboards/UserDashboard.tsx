@@ -25,7 +25,7 @@ const UserDashboard = (props) => {
             </div>
             <div>
             <div className='sf-flex-grid sf-justify'>
-                    <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.Business.path) }}>
+                    <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.Business.ADD.path) }}>
                         {dashboardContent?.addBusinessBtn}
                     </Button>
 
@@ -42,7 +42,7 @@ const UserDashboard = (props) => {
                         {dashboardContent?.addWarehouseBtn}
                     </Button>
 
-                    <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.PgContactUs.path) }}>
+                    <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.ContactUs.path) }}>
                         {dashboardContent?.reportBtn}
                     </Button>
 
