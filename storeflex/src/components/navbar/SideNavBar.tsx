@@ -50,7 +50,7 @@ const SideNavBar = (props) => {
   }, [""]);
 
   const getUserMenu = () => {
-    MenuItems.map((ele) => {
+    MenuItems.forEach((ele) => {
       if (ele.UserType === userType) {
         setListItems(ele.Menus.SidebarMenu)
       }
@@ -134,9 +134,10 @@ const SideNavBar = (props) => {
         <nav className="sidebar sidebar-offcanvas" id="sidebar">
           <ul className="nav">
             {listItems.map((element, index) => {
+              const menuKey = `menu_${index}`; 
               if (element.SubMenu.length >= 1) {
                 return (
-                  <li key={index} className='nav-item'>
+                  <li key={menuKey} className='nav-item'>
                     <div className={'nav-link'} onClick={() => toggleMenuState(element.Name)} data-toggle="collapse">
                       <span className="menu-title"><>{element.Label}</></span>
                       <i className="menu-arrow"></i>
@@ -158,7 +159,7 @@ const SideNavBar = (props) => {
                 )
               } else {
                 return (
-                  <li className='nav-item'>
+                  <li key={menuKey} className='nav-item'>
                     <div className={'nav-link'} onClick={() => { handleOnClick(element.NavigateTo) }} data-toggle="collapse">
                       <span className="menu-title"><>{element.Label}</></span>
                       <i className="menu-arrow"></i>
