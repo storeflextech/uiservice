@@ -50,12 +50,12 @@ const SideNavBar = (props) => {
   }, [""]);
 
   const getUserMenu = () => {
-    MenuItems.map(ele => {
+    MenuItems.map((ele) => {
       if (ele.UserType === userType) {
         setListItems(ele.Menus.SidebarMenu)
       }
     });
-    console.log("listItems==", listItems);
+    // console.log("listItems==", listItems);
   }
 
   const handleOnClick = (path: string) => {
@@ -111,32 +111,32 @@ const SideNavBar = (props) => {
     }
   }
 
-  const isPathActive = (path) => {
-    return true;
-  }
+  // const isPathActive = (path) => {
+  //   return true;
+  // }
 
-  const imageHandler = (e) => {
-    setSelectedFile(e.target.files[0]);
-  };
+  // const imageHandler = (e) => {
+  //   setSelectedFile(e.target.files[0]);
+  // };
 
-  const handleClick = () => {
-    document.getElementById('fileInput')?.click();
-  };
+  // const handleClick = () => {
+  //   document.getElementById('fileInput')?.click();
+  // };
   // Call a function (passed as a prop from the parent component)
   // to handle the user-selected file 
-  const handleChange = event => {
-    setSelectedFile(event.target.files[0]);
-  };
+  // const handleChange = event => {
+  //   setSelectedFile(event.target.files[0]);
+  // };
 
   return (
     <div>
       <div className='p-top-md'>
         <nav className="sidebar sidebar-offcanvas" id="sidebar">
           <ul className="nav">
-            {listItems.map((element) => {
+            {listItems.map((element, index) => {
               if (element.SubMenu.length >= 1) {
                 return (
-                  <li className='nav-item'>
+                  <li key={index} className='nav-item'>
                     <div className={'nav-link'} onClick={() => toggleMenuState(element.Name)} data-toggle="collapse">
                       <span className="menu-title"><>{element.Label}</></span>
                       <i className="menu-arrow"></i>
@@ -144,8 +144,8 @@ const SideNavBar = (props) => {
                     </div>
                     <Collapse in={values[element.Name]}>
                       <ul className="nav flex-column sub-menu">
-                        {element.SubMenu.map((ele) => (
-                          <li className="nav-item">
+                        {element.SubMenu.map((ele, submenu) => (
+                          <li key={`submenu_${submenu}`} className="nav-item">
                             <div className="nav-link" onClick={() => { handleOnClick(ele.NavigateTo) }}>
                               <span className="menu-title"><>{ele.Label}</></span>
                             </div>

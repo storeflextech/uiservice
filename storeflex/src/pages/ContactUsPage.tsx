@@ -1,19 +1,30 @@
-import React from 'react';
-import { Box, Container } from '@mui/material';
-import ContactUs from '../components/panels/contactus/ContactUs';
+import React from "react";
+import { Box, Container } from "@mui/material";
+import ContactUs from "../components/panels/contactus/ContactUs";
+import {
+  AppContainer,
+  SplitPaneContainer,
+} from "../components/containers/containers";
+import TopNavBar from "../components/navbar/TopNavBar";
+import Footer from "../components/footer/footer";
 
 const ContactUsPage = () => {
-    return(
-        <>
-            <Container component="main" maxWidth="xl" className='p-no'>
-            <div className='c-box-shadow-blue'>
-                <Box className='m-top-md m-bot-md m-left-md m-right-md'>
-                {<ContactUs />}
-                </Box>
-            </div>
-            </Container>
-        </>
-    )
-}
+  return (
+    <>
+      <AppContainer>
+        <TopNavBar />
+        <SplitPaneContainer
+          left={<></>}
+          right={
+            <section id="contact" className="contact-us">
+              {<ContactUs />}
+            </section>
+          }
+        />
+        <Footer />
+      </AppContainer>
+    </>
+  );
+};
 
 export default ContactUsPage;
