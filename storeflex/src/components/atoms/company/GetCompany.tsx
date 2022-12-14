@@ -1,14 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FormControl, Select, MenuItem, SelectChangeEvent } from '@mui/material';
-
-const IndiaCompanies = ['Skaplink Technologies (CL-101)', 'Catla (CL-102)', 'Royal Rides (CL-103)', 'TechVariable (CL-120)', 'XopunTech (CL-420)', 'MJSONS (CL-404)'];
-
-
+import Api from '../../../api/Api';
 interface storeCompany {
     company?: string;
 }
 
 const GetCompany = (props?: storeCompany) => {
+
+    const api = new Api();
+    const [companyList, setCompanyList] = useState([]);
+
+    useEffect(() => {
+        getCompanies();
+    }, [])
+
+    const getCompanies =() => {
+       api.getCompanyList().then((resp) => {
+            console.log(' getCompanies success >> ', resp);
+            if(resp?.methodReturnValue) {
+                setCompanyList(resp.methodReturnValue);
+            }
+       }).catch((error)=>{
+            console.log(' getCompanyList error >> ', error);
+        });
+    }
 
     const [companyval, setCompanyval] = useState(props?.company ? props?.company : 'Select Company');
     const handleChange = (event: SelectChangeEvent) => {
@@ -25,9 +40,11 @@ const GetCompany = (props?: storeCompany) => {
                     <MenuItem value={companyval}>
                         <em>{companyval}</em>
                     </MenuItem>
-                    {IndiaCompanies.map((item, index) => {
+                    {companyList.map((item, index) => {
+                        const itemCode = Object.keys(item).toString();
+                        const itemName = Object.values(item).toString();
                         return (
-                            <MenuItem key={index + 1} value={item}>{item}</MenuItem>
+                            <MenuItem key={index + 1} value={itemCode}>{itemName}</MenuItem>
                         )
                     })}
                 </Select>
