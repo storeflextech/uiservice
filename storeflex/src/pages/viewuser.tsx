@@ -60,17 +60,11 @@ const ViewUser = () => {
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>First Name</th>
-                                            <th>Middle Name</th>
-                                            <th>Last Name</th>
-                                            <th>Photo Name</th>
-                                            <th>Mobile</th>
-                                            <th>Email</th>
+                                            <th>Name</th>
+                                            <th>Company</th>
                                             <th>Address</th>
-                                            <th>House No</th>
-                                            <th>Country</th>
-                                            <th>City</th>
-                                            <th>Country</th>
+                                            <th>Phone</th>
+                                            <th>Email</th>
                                             <th style={{ textAlign: 'center' }}>Action</th>
                                         </tr>
                                     </thead>
@@ -79,17 +73,11 @@ const ViewUser = () => {
                                             return (
                                                 <tr>
                                                     <td>{item.userId}</td>
-                                                    <td>{item.firstName}</td>
-                                                    <td>{item.middleName}</td>
-                                                    <td>{item.lastName}</td>
-                                                    <td>{item.photoName}</td>
+                                                    <td>{item.firstName} {item.middleName} {item.lastName}</td>
+                                                    <td>{item.company}</td>
+                                                    <td>{item.address}</td>
                                                     <td>{item.mobileNo}</td>
                                                     <td>{item.email}</td>
-                                                    <td>{item.address}</td>
-                                                    <td>{item.houseNo}</td>
-                                                    <td>{item.pincode}</td>
-                                                    <td>{item.city}</td>
-                                                    <td>{item.country}</td>
                                                     <td>
                                                         <button onClick={() => DeleteUser()} className='primary-btn-outline' style={{ fontSize: '14px', float: 'right', borderRadius: 20, padding: '8px 12px 8px 12px' }}><strong><i className='mdi mdi-cup menu-icon'></i> Delete</strong></button>&nbsp; &nbsp;
                                                         <button onClick={() => goToEditPage('/edit', item)} className='primary-btn-outline' style={{ fontSize: '14px', float: 'right', borderRadius: 20, padding: '8px 12px 8px 12px', marginRight: '5px' }}><strong><i className='mdi mdi-pencil menu-icon'></i> Edit</strong></button>
