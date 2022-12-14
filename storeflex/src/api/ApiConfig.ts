@@ -79,5 +79,6 @@ export class ApiConfig {
     getWarehouseAdminUrl = '/warehouses';
     enquiry = '/enquiry';
     getViewUserUrl = '/storeflexusers';
+    getCompanyListApi = '/clientDropList';
 
 }
