@@ -1,4 +1,4 @@
-import React from 'react';
+import React  from 'react';
 import WearehouseAddress from './WearehouseAddress';
 import WearehousePricing from './WearehousePricing';
 import WarehouseHours from './WarehouseHours';
