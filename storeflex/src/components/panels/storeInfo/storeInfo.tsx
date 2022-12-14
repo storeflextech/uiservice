@@ -41,7 +41,7 @@ const StoreInfo = (props: StoreInfoProps) => {
         <Grid item xs={6}>
           <div> State </div>
           <div className='p-top-md'>
-            {<GetState state={storeData?.state} />}
+            {<GetState stateCodeDefault={storeData?.state} />}
           </div>
         </Grid>
         <Grid item xs={6}>
