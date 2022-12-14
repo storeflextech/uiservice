@@ -187,7 +187,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
                 <Grid item xs={6}>
                     <div> State </div>
                     <div className='p-top-sm'>
-                        {<GetState countryCode={countryCode} onChange={onStateChange} />}
+                        {<GetState countryCode={countryCode} onChange={onStateChange} stateCodeDefault={props?.state}/>}
                     </div>
                 </Grid>
                 <Grid item xs={6}>
@@ -205,7 +205,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
                     </div>
                 </Grid>
                 <Grid item xs={6}>
-                        <InputBox data={{ name: 'pincode', label: 'Pincode*', value: pinCode.val }}
+                        <InputBox data={{ name: 'pincode', label: 'Pincode*', value: pinCode.val || props.zip }}
                         onChange={validatePin}
                     />
                     {pinCode.error && <p className="text-red">{pinCode.error}</p>}
