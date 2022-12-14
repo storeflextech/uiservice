@@ -10,12 +10,17 @@ import { validateCity, validateCharacterLength, validatePinCode } from "../../..
 
 
 interface AddressDetailsProps {
-    addresLine1: string;
+    addresLine1?: string;
+    addressType?: string;
+    addressTypeHide?: boolean;
     city: string;
     state: string;
     zip: string | number;
     countryCode?: string;
     country?: string;
+    plotNo?: string | number;
+    houseNo?: string | number;
+    streetDetails?: string| number;
     onUpdate?: (data: any) => void;
 }
 
@@ -170,8 +175,10 @@ const AddressDetails = (props: AddressDetailsProps) => {
         setonUpdateInfo(true);
     }
 
-    return (
-        <div>
+    const showAddressType = () => {
+        if(props?.addressTypeHide) {
+            return (<> </>)
+        } else {
             <Grid container className='mt-1'>
                 <Grid item xs={12}>
                     <div style={{ marginBottom: '8px' }}>
@@ -181,6 +188,31 @@ const AddressDetails = (props: AddressDetailsProps) => {
                             <option value="PHY">Physical</option>
                         </select>
                     </div>
+                </Grid>
+            </Grid>
+        }
+    }
+    return (
+        <div>
+            {showAddressType()}
+            <Grid container className='p-top-md' spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
+                <Grid item xs={3}>
+                    <InputBox data={{ name: 'plotno', label: 'Plot no', value: plotInfo.val }}
+                        onChange={validatePlotNo}
+                    />
+                     {plotInfo.error && <p className="text-red">{plotInfo.error}</p>}
+                </Grid>
+                <Grid item xs={3}>
+                    <InputBox data={{ name: 'houseno', label: 'House no', value: houseInfo.val }}
+                        onChange={validateHouseNo}
+                    />
+                     {houseInfo.error && <p className="text-red">{houseInfo.error}</p>}
+                </Grid>
+                <Grid item xs={6}>
+                    <InputBox data={{ name: 'street', label: 'Street', value: streetInfo.val }}
+                        onChange={validateStreet}
+                    />
+                    {streetInfo.error && <p className="text-red">{streetInfo.error}</p>}
                 </Grid>
             </Grid>
             <Grid className='mt-1' container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
@@ -209,26 +241,6 @@ const AddressDetails = (props: AddressDetailsProps) => {
                         onChange={validatePin}
                     />
                     {pinCode.error && <p className="text-red">{pinCode.error}</p>}
-                </Grid>
-            </Grid>
-            <Grid container className='p-top-md' spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-                <Grid item xs={3}>
-                    <InputBox data={{ name: 'plotno', label: 'Plot no', value: plotInfo.val }}
-                        onChange={validatePlotNo}
-                    />
-                     {plotInfo.error && <p className="text-red">{plotInfo.error}</p>}
-                </Grid>
-                <Grid item xs={3}>
-                    <InputBox data={{ name: 'houseno', label: 'House no', value: houseInfo.val }}
-                        onChange={validateHouseNo}
-                    />
-                     {houseInfo.error && <p className="text-red">{houseInfo.error}</p>}
-                </Grid>
-                <Grid item xs={6}>
-                    <InputBox data={{ name: 'street', label: 'Street', value: streetInfo.val }}
-                        onChange={validateStreet}
-                    />
-                    {streetInfo.error && <p className="text-red">{streetInfo.error}</p>}
                 </Grid>
             </Grid>
         </div>
