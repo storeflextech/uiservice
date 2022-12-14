@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { FormControl, Select, MenuItem, SelectChangeEvent } from '@mui/material';
 import Api from '../../../api/Api';
+import { objectData } from '../../../utils/ResponseSchema';
+
 interface storeCompany {
     company?: string;
+    onCompanyChange?(companyId?: string): void;
 }
 
 const GetCompany = (props?: storeCompany) => {
 
     const api = new Api();
     const [companyList, setCompanyList] = useState([]);
+    const [companyName, setCompanyName] = useState<objectData>({val: 'Select Company'});
 
     useEffect(() => {
         getCompanies();
@@ -25,20 +29,27 @@ const GetCompany = (props?: storeCompany) => {
         });
     }
 
-    const [companyval, setCompanyval] = useState(props?.company ? props?.company : 'Select Company');
-    const handleChange = (event: SelectChangeEvent) => {
-        setCompanyval(event.target.value as string);
+    const handleChange = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: '',
+            isUpdated: true,
+        } as objectData;
+        setCompanyName(obj);
+        if(props?.onCompanyChange) {
+            props.onCompanyChange(obj.val)
+        }
     };
 
 
     return (
         <>
             <FormControl size="small" fullWidth={true}>
-                <Select autoWidth={false} value={companyval} onChange={handleChange} displayEmpty
+                <Select autoWidth={false} value={companyName.val} onChange={handleChange} displayEmpty
                     inputProps={{ 'aria-label': 'Without label' }}
                 >
-                    <MenuItem value={companyval}>
-                        <em>{companyval}</em>
+                    <MenuItem value={companyName.val}>
+                        <em>{companyName.val}</em>
                     </MenuItem>
                     {companyList.map((item, index) => {
                         const itemCode = Object.keys(item).toString();
