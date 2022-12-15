@@ -1,3 +1,5 @@
+
+
 export interface BusinessDetails {
     businessid: string;
     name: string;
@@ -33,14 +35,16 @@ export interface officeData {
 
 export interface EditBusinessDetails {
     clientId: string;
+    addressId: string;
+    contactId: string;
     compyName: string;
     address: string;
-    phone: number;
+    phone: string | number;
     url: string;
     gstn: string;
     city: string;
     state: string;
-    pincode: number;
+    pincode: string | number;
     country: string;
     compyDesc: string;
 }
@@ -52,5 +56,58 @@ export interface StateResponse {
     methodReturnValue: StateList[];
     statusCode?: number;
     status?: string;
+}
+
+export interface objectData {
+    val?: string;
+    error?: string;
+    isUpdated?: boolean;
+}
+
+export interface CompanyInfoList {
+    methodReturnValue?: MethodReturnValue;
+    statusCode: number;
+    status?: string;
+}
+
+export interface MethodReturnValue {
+    totalRecords?: number;
+    clientList?: ClientList[];
+}
+
+export interface ClientList {
+    clientId?: string;
+    compyName: string;
+    compyDesc: string;
+    photo?: Photo[];
+    photoName?: string;
+    url?: string;
+    gstNo: string;
+    addresses: Address[];
+    contact: Contact[];
+}
+
+export interface Address {
+    addressId?: string;
+    addressType?: string;
+    plotNo?: string;
+    houseNo?: string;
+    streetDetails?: string;
+    city?: string;
+    state?: string;
+    country?: string;
+    pincode?: string
+}
+
+export interface Contact {
+    contactId?: string;
+    contactName?: string;
+    mobileNo?: string;
+    landLine?: string;
+    landLineExt?: string;
+    emailId?: string;
+}
+export interface Photo {
+    [key: string]: string;
 }
  

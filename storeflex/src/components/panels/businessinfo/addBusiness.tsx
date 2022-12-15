@@ -5,11 +5,12 @@ import InputBox from '../../atoms/textfield/InputBox';
 import { InputError } from '../../atoms/textfield/InputError';
 import Accordion from 'react-bootstrap/Accordion';
 import AddressDetails from '../../atoms/addressforms/AddressDetails';
-import { BusinessDetails } from '../../../utils/ResponseSchema';
-import { validateCharacterLength, validatePhone, validateWebUrl, validateGst } from '../../../utils/CommonUtils';
+import { BusinessDetails, Address, Contact} from '../../../utils/ResponseSchema';
+import { validateCharacterLength, validateWebUrl, validateGst, validatePhone } from '../../../utils/CommonUtils';
 import Api from '../../../../src/api/Api';
 import { AddCompanyPostData } from '../../../../src/api/ApiConfig';
 import LoaderSpinner from '../../atoms/spinner/spinner';
+import { objectData } from '../../../utils/ResponseSchema';
 
 interface AddBusinessProps {
     profileData?: BusinessDetails;
@@ -23,85 +24,100 @@ const AddBusiness = (props: AddBusinessProps) => {
     const profile = {} as BusinessDetails;
     const [businessProfile, setBusinessProfile] = useState(profile);
     const [isLoader, setLoaderState] = useState(false);
-    const [charCount, setCharCount] = useState(0);
+
+     // Conpany Information 
+     const [companyNameInfo, setCompanyNameInfo] = useState<objectData>({});
+     const [companyUrlInfo, setCompanyUrlInfo] = useState<objectData>({});
+     const [gstIdInfo, setGstIdInfo] = useState<objectData>({});
+     const [companyDescription, setCompanyDescription] = useState<objectData>({});
+     const [photoName, setPhotoName] = useState<objectData>({});
+     
+    // Address Information 
+    const [companyAddressInfo, setCompanyAddressInfo] = useState<Address>({});
+
+    // Contact Information 
+    const [contactNameInfo, setContactNameInfo] = useState<objectData>({});
+    const [mobileNoInfo, setMobileNoInfo] = useState<objectData>({});
+    const [emailIdInfo, setEmailIdInfo] = useState<objectData>({});
+    const [landLineExtInfo, setLandLineExtInfo] = useState<objectData>({});
+    const [landLineNoInfo, setLandLineNoInfo] = useState<objectData>({});
+
     const maxiLength = 500;
     const selectedCountryCode = '01';
-    const countHandle = (e) => {
-        var c = e.target.value.length;
-        // var r = maxiLength - c;
-        setCharCount(c);
-    };
 
-    const [companyInfo, setCompanyInfo] = useState({
-        companyname: "",
-        companyurl: "",
-        phone: "",
-        gstid: "",
-    });
-    
-    const companyInfoOnChange = (event: any) => {
-        setCompanyInfo({
-            ...companyInfo,
-            [event.target.name]: event.target.value,
-        });
-    };
-
-    const validateCompanyInfo = () => {
-        let errors = {
-            companyname: "",
-            companyurl: "",
-            phone: "",
-            gstid: "",
-        };
-
-        //companyname validation check
-        if (!companyInfo.companyname) {
-            errors.companyname = " *Company Name is required. ";
-        } else if (!validateCharacterLength(companyInfo.companyname, 4, 50)) {
-            errors.companyname = " Company Name must be between 4 characters to 50 characters."
-        };
-
-        //Company url validation check
-        if (!companyInfo.companyurl) {
-            errors.companyurl = "*Company url is required."
-        }
-        else if (!validateWebUrl(companyInfo.companyurl)) {
-            errors.companyurl = " Enter a valid Company Url "
-        }
-
-        //Phone number validation check
-        if (!companyInfo.phone) {
-            errors.phone = "*Enter Phone Number"
-        }
-        else if (!validatePhone(companyInfo.phone)) {
-
-            errors.phone = "Enter a valid Phone Number"
-        }
-        //GstId validation check
-        if (!companyInfo.gstid) {
-            errors.gstid = "*GST number is mandatory"
-        }
-        else if (!validateGst(companyInfo.gstid)) {
-            errors.gstid = "Enter a valid GST number"
-        }
-        return errors;
-    }
-
-    const validateContactDetails = () => {
-        let errors = {
-            companyname: "",
-            companyurl: "",
-            phone: "",
-            gstid: "",
-        };
-    }
-
-    const onProfileSave = (isSaved: boolean) => {
-        if (props?.onSave) {
-            return props.onSave(true);
+    const onCompanyNameChange = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: ''
+        } as objectData;
+        if (!obj.val) {
+            obj.error = " *Company Name is required. ";
+        } else if (!validateCharacterLength(obj.val, 4, 50)) {
+            obj.error = " Company Name must be between 4 characters to 50 characters."
         } else {
-            console.log(' No Event ');
+            obj.error = '';
         }
+        setCompanyNameInfo(obj);
+    }
+
+    const onCompanyUrlChange = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: ''
+        } as objectData;
+        if (!obj.val) {
+            obj.error = "*Company url is required."
+        } else if (!validateWebUrl(obj.val)) {
+            obj.error = " Enter a valid Company Url "
+        } else {
+            obj.error = '';
+        }
+        setCompanyUrlInfo(obj);
+    }
+
+    const onGstIdChange = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: ''
+        } as objectData;
+        if (!obj.val) {
+            obj.error = "*GST number is mandatory"
+        } else if (!validateGst(obj.val)) {
+            obj.error = "Enter a valid GST number"
+        } else {
+            obj.error = '';
+        }
+        setGstIdInfo(obj);
+    }
+
+    const onCompanyDescriptionChange = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: ''
+        } as objectData;
+        // if (!obj.val) {
+        //     obj.error = "*GST number is mandatory"
+        // } else if (!validateGst(obj.val)) {
+        //     obj.error = "Enter a valid GST number"
+        // } else {
+        //     obj.error = '';
+        // }
+        setCompanyDescription(obj);
+    }
+
+    const onPhotoNameChange = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: ''
+        } as objectData;
+        // if (!obj.val) {
+        //     obj.error = "*Enter Phone Number";
+        // } else if (!validatePhone(obj.val)) {
+        //     obj.error = "Enter a valid Phone Number"
+        // } else {
+        //     obj.error = '';
+        // }
+        setPhotoName(obj);
     }
 
     const handelOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -110,42 +126,130 @@ const AddBusiness = (props: AddBusinessProps) => {
         console.log(' #### name ', value);
     }
 
-    const onSave = (step: any) => {
-
-        const postData = {} as AddCompanyPostData ;
-        postData.compyName = companyInfo.companyname;
-        postData.compyDesc = 'Testing';
-        postData.url = companyInfo.companyurl;
-        postData.gstNo = companyInfo.gstid;
-    
-        console.log(' @@@@@ >>> ', postData);
-        // api.addCompany(postData).then((response) => {
-        //     console.log(' Company creation res >>>>>> ', response);
-        // }).catch((error)=>{
-        //     console.log(' Company creation erroor ', error);
-        // });
-
-        switch (step) {
-            case 1:
-                // console.log("businessProfile=", values)
-                setLoaderState(false);
-                setStep(2);
-                break;
-            case 2: setLoaderState(false); setStep(3); break;
-            case 3:
-                swal('Success! Your company has been created successfully!', {
-                    icon: "success",
-                });
-                break;
+    const onContactNameChange = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: ''
+        } as objectData;
+        if (validateCharacterLength(obj.val, 4, 30)) {
+            obj.error = '';
+        } else {
+            obj.error = 'Alphabets only'
         }
+        setContactNameInfo(obj);
+    }
+    const onMobileNoChange = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: ''
+        } as objectData;
+        if (validatePhone(obj.val)) {
+            obj.error = '';
+        } else {
+            obj.error = '10 Digit Number only'
+        }
+        setMobileNoInfo(obj);
     }
 
-    const onAddressUpdate = (data: any) => {
-        console.log(' @@@@@@@@@@ >>>> ', data);
+    const onEmailIdChange = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: ''
+        } as objectData;
+        if (validateCharacterLength(obj.val, 4, 30)) {
+            obj.error = '';
+        } else {
+            obj.error = 'Alphabets only'
+        }
+        setEmailIdInfo(obj);
+    }
+
+    const onLandlineExtChange = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: ''
+        } as objectData;
+        if (validateCharacterLength(obj.val, 2, 10)) {
+            obj.error = '';
+        } else {
+            obj.error = 'Number only'
+        }
+        setLandLineExtInfo(obj);
+    }
+    const onLandlineNoChange = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: ''
+        } as objectData;
+        if (validateCharacterLength(obj.val, 2, 10)) {
+            obj.error = '';
+        } else {
+            obj.error = 'Number only'
+        }
+        setLandLineNoInfo(obj);
+    }
+
+    const onAddressUpdate = (data: Address) => {
+        const addressData = {} as Address;
+        addressData.addressType = data.addressType;
+        addressData.city = data.city;
+        addressData.country = data.country;
+        addressData.state = data.state;
+        addressData.pincode = data.pincode;
+        addressData.plotNo = data.plotNo;
+        addressData.houseNo = data.houseNo;
+        addressData.streetDetails = data.streetDetails;
+        console.log(addressData);
+        setCompanyAddressInfo(addressData);
+    }
+    const buildContactInfo = () => {
+        const contactInfo = {} as Contact;
+        contactInfo.contactName = contactNameInfo.val;
+        contactInfo.mobileNo = mobileNoInfo.val;
+        contactInfo.emailId = emailIdInfo.val;
+        contactInfo.landLineExt = landLineExtInfo.val;
+        contactInfo.landLine = landLineNoInfo.val;
+        return contactInfo;
+    }
+    
+    const onSave = () => {
+        const postData = {} as AddCompanyPostData ;
+        postData.compyName = companyNameInfo.val;
+        postData.compyDesc = companyDescription.val;
+        postData.url = companyUrlInfo.val;
+        postData.gstNo = gstIdInfo.val;
+        postData.addresses = [companyAddressInfo];
+        postData.contact = [ buildContactInfo()];
+        
+        setLoaderState(true);
+
+        api.addCompany(postData).then((response) => {
+            setLoaderState(false); setStep(3);
+            swal('Success! Your company has been created successfully!', {
+                icon: "success",
+            });
+            console.log(' Company creation res >>>>>> ', response);
+        }).catch((error)=>{
+            setLoaderState(false);
+            console.log(' Company creation erroor ', error);
+        });
+
+        // switch (step) {
+        //     case 1:
+        //         // console.log("businessProfile=", values)
+        //         setLoaderState(false);
+        //         setStep(2);
+        //         break;
+        //     case 2: setLoaderState(false); setStep(3); break;
+        //     case 3:
+        //         swal('Success! Your company has been created successfully!', {
+        //             icon: "success",
+        //         });
+        //         break;
+        // }
     }
 
     const showCompanyInformation = () => {
-        const errors = validateCompanyInfo();
         return (
             <div>
                 <div className='m-bot-md'>
@@ -153,20 +257,20 @@ const AddBusiness = (props: AddBusinessProps) => {
                         <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                             <Grid item xs={9}>
                                 <InputBox data={{ name: 'companyname', label: 'Company Name*', value: businessProfile.name }}
-                                    onChange={companyInfoOnChange} onBlur={handelOnBlur}
+                                    onChange={onCompanyNameChange} onBlur={handelOnBlur}
                                 />
-                                <InputError errorText={errors.companyname}/>
+                                <InputError errorText={companyNameInfo.error}/>
 
                                 <InputBox data={{ name: 'companyurl', label: 'Company URL*', value: businessProfile.weburl }}
-                                    onChange={companyInfoOnChange} onBlur={handelOnBlur}
+                                    onChange={onCompanyUrlChange} onBlur={handelOnBlur}
                                 />
-                                {errors.companyurl && <p className="text-red">{errors.companyurl}</p>}
+                                 <InputError errorText={companyUrlInfo.error}/>
 
                                 <InputBox data={{ name: 'gstid', label: 'GST Number*', value: businessProfile.gstn }}
-                                    onChange={companyInfoOnChange} onBlur={handelOnBlur}
+                                    onChange={onGstIdChange} onBlur={handelOnBlur}
                                 />
-                                {errors.gstid && <p className="text-red">{errors.gstid}</p>}
-
+                                <InputError errorText={gstIdInfo.error}/>
+                                
                                 <Grid item xs={12}>
                                     <div> Business Description </div>
                                 </Grid>
@@ -175,19 +279,17 @@ const AddBusiness = (props: AddBusinessProps) => {
                                         minRows={3}
                                         maxRows={4}
                                         maxLength={maxiLength}
-                                        onChange={countHandle}
+                                        onChange={onCompanyDescriptionChange}
                                         aria-label='Add your business description'
                                         placeholder='Add your business description'
                                         style={{ width: '100%' }}
                                     />
-                                    <div className='float-md-right'> {charCount}/{maxiLength}</div>
                                 </Grid>
                             </Grid>
                             <Grid item xs={3}>
-                                <InputBox data={{ name: 'companyurl', label: 'Photo Name', value: businessProfile.weburl }}
-                                    onChange={companyInfoOnChange} onBlur={handelOnBlur}
+                                <InputBox data={{ name: 'photoname', label: 'Photo Name', value: businessProfile.weburl }}
+                                    onChange={onPhotoNameChange} onBlur={handelOnBlur}
                                 />
-                                {errors.companyurl && <p className="text-red">{errors.companyurl}</p>}
                                 <img src="/assets/images/placeholder.png" alt="Image" style={{ width: '100%', height: '25vh', marginTop: '10px' }} />
                                 <input type="file" className="form-control" />
                             </Grid>
@@ -225,32 +327,37 @@ const AddBusiness = (props: AddBusinessProps) => {
                     <div className='m-bot-md p-md'>
                         <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }} className='p-top-md'>
                             <Grid item xs={12}>
-                                <InputBox data={{ name: 'addressLine1', label: 'Contact Name*', value: '' }}
-                                    onChange={validateContactDetails}
+                                <InputBox data={{ name: 'contactname', label: 'Contact Name*', value: '' }}
+                                    onChange={onContactNameChange}
                                 />
+                                 {contactNameInfo.error && <p className="text-red">{contactNameInfo.error}</p>}
                             </Grid>
                         </Grid>
                         <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }} className='p-top-md'>
                             <Grid item xs={6}>
-                                <InputBox data={{ name: 'cityname', label: 'Mobile No.*', value: '' }}
-                                    onChange={validateContactDetails}
+                                <InputBox data={{ type: 'number', name: 'mobileno', label: 'Mobile No.*', value: '' }}
+                                    onChange={onMobileNoChange}
                                 />
+                                {mobileNoInfo.error && <p className="text-red">{mobileNoInfo.error}</p>}
                             </Grid>
                             <Grid item xs={6} >
-                                <InputBox data={{ name: 'addressLine1', label: 'Email*', value: '' }}
-                                    onChange={validateContactDetails}
+                                <InputBox data={{ name: 'emailid', label: 'Email*', value: '' }}
+                                    onChange={onEmailIdChange}
                                 />
+                                {emailIdInfo.error && <p className="text-red">{emailIdInfo.error}</p>}
                             </Grid>
                         </Grid>
                         <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }} className='p-top-md'>
                             <Grid item xs={6}>
-                                <InputBox data={{ name: 'zipcode', label: 'Landline Extension*', value: '' }}
-                                    onChange={validateContactDetails} />
+                                <InputBox data={{ type: 'number', name: 'landlineext', label: 'Landline Extension*', value: '' }}
+                                    onChange={onLandlineExtChange} />
+                                {landLineExtInfo.error && <p className="text-red">{landLineExtInfo.error}</p>}
                             </Grid>
                             <Grid item xs={6}>
-                                <InputBox data={{ name: 'cityname', label: 'Landline No.*', value: '' }}
-                                    onChange={validateContactDetails}
+                                <InputBox data={{ type: 'number', name: 'landlineno', label: 'Landline No.*', value: '' }}
+                                    onChange={onLandlineNoChange}
                                 />
+                                 {landLineNoInfo.error && <p className="text-red">{landLineNoInfo.error}</p>}
                             </Grid>
                         </Grid>
                     </div>
@@ -276,7 +383,7 @@ const AddBusiness = (props: AddBusinessProps) => {
             )} */}
             <Accordion defaultActiveKey="0">
                 <Accordion.Item eventKey="0">
-                    <Accordion.Header>
+                    <Accordion.Header className='sf-ac'>
                         <div className='primary-gradient'>
                         <div className='font-white p-sm f-18px f-bold'>Company Information</div>
                         </div>
@@ -286,7 +393,7 @@ const AddBusiness = (props: AddBusinessProps) => {
                     </Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey="1">
-                    <Accordion.Header>
+                    <Accordion.Header className='sf-ac'>
                     <div className='primary-gradient'>
                         <div className='font-white p-sm f-18px f-bold'>Address Information</div>
                     </div>
@@ -296,7 +403,7 @@ const AddBusiness = (props: AddBusinessProps) => {
                     </Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey="2">
-                    <Accordion.Header>
+                    <Accordion.Header className='sf-ac'>
                     <div className='primary-gradient'>
                         <div className='font-white p-sm f-18px f-bold'>Contact Information</div>
                     </div>
@@ -309,8 +416,8 @@ const AddBusiness = (props: AddBusinessProps) => {
             <div className='p-md align-r' style={{ float: 'right' }}>
                     <button className='btn primary-btn-outline rounded-full' onClick={() => { setStep(2) }}> Cancel </button>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <button className="btn primary-btn rounded-full" onClick={() => { onSave(3) }}> Save </button>
-                </div>
+                    <button className="btn primary-btn rounded-full" onClick={() => { onSave() }}> Save </button>
+            </div>
         </>
 
     );

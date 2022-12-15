@@ -1,4 +1,5 @@
 
+import { Address, Contact , Photo} from '../../src/utils/ResponseSchema'
 export interface SlLoginProps {
     username: string,
     emailId: string,
@@ -33,42 +34,16 @@ export interface viewWarehouseAdminProps{
     page:string;
     size: string;
 }
-
-export interface Address {
-    addressType: string,
-    plotNo: string,
-    houseNo: string,
-    streetDetails: string,
-    city: string,
-    state: string,
-    country: string,
-    pincode: string,
-    createBy: string,
-    updatedBy: string,
-}
-
-export interface Contact {
-    contactName: string,
-    mobileNo: string,
-    landLine: string,
-    landLineExt: string,
-    emailId: string,
-    createBy: string,
-    updatedBy: string,
-}
-
-export interface Photo {
-    [key: string]: string;
-}
 export interface AddCompanyPostData {
-    compyName: string;
-    compyDesc: string;
+    clientId?: string;
+    compyName?: string;
+    compyDesc?: string;
     photo?: Photo[];
-    photoName: string;
-    url: string;
-    gstNo: string;
-    addresses: Address[];
-    contact: Contact[];
+    photoName?: string;
+    url?: string;
+    gstNo?: string;
+    addresses?: Address[];
+    contact?: Contact[];
 }
 
 export interface EnquiryProps {
@@ -96,12 +71,14 @@ export class ApiConfig {
     signUpUrl = '/register';
     getStatesUrl = '/state';
     getCitiesUrl = '/city';
-    getCompaniesUrl = '/clients';
+    getCompaniesApi = '/clients';
     addCompanyUrl = '/client';
+    updateCompanyApi = '/clientUpdate';
     searchwarehouse = '/searchwarehouse';
     getWarehouseByClientIdUrl = '/warehouseByClientId';
     getWarehouseAdminUrl = '/warehouses';
     enquiry = '/enquiry';
     getViewUserUrl = '/storeflexusers';
+    getCompanyListApi = '/clientDropList';
 
 }

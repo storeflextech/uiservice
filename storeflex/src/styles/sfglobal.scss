@@ -72,7 +72,7 @@ $sf-primary-color: #f66711;
   background-image: radial-gradient(circle at 0 0,#ffbf76,#e6473d);
 }
 .align-c {
-  text-align: center;
+  text-align: center !important;
 }
 .position-fixed{
   position: fixed;
@@ -378,6 +378,12 @@ $sf-primary-color: #f66711;
 .w100 {
     width: 100% !important;
 }
+
+.sf-ac > button {
+  width: 100% !important;
+  border: none;
+}
+
 .font-white {
     color: white !important;
 }
@@ -657,4 +663,24 @@ $sf-primary-color: #f66711;
   font-size: 14px;
   font-weight: bold;
   color: white;
+}
+
+.sf-overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  background-color: rgba(200, 173, 173, 0.4);
+  overflow-x: hidden; 
+  transition: 0.5s;
+}
+
+.sf-overlay-content {
+  position: relative;
+  top: 25%; /* 25% from the top */
+  width: 100%; /* 100% width */
+  text-align: center; /* Centered text/links */
+  margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
 }

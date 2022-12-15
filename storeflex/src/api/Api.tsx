@@ -98,18 +98,56 @@ export default class Api {
         }
     }
 
-    async getMyCompanies(getData: ViewCompaniesProps): Promise<any> {
-        const url = this.baseUrl + this.apiUrl.getCompaniesUrl + '?page=' + getData.page + '&size=' + getData.size;
+    async updateCompany(postData: AddCompanyPostData): Promise<any>{
+        const url = this.baseUrl+this.apiUrl.addCompanyUrl;
         try {
-            const response = await axios.get(url);
-            return Promise.resolve(response);
+            const response = await axios.post(url, postData);
+            if (response.status === 200) {
+                return Promise.resolve(response?.data);
+            } else {
+                console.log(' error : updateCompany  ', response);
+                return Promise.reject(response);
+            }
         }
         catch (error) {
-            console.log(' error : Get Company', error);
+            console.log(' error :  updateCompany', error);
             return Promise.reject(error);
         }
     }
 
+    async getMyCompanies(getData: ViewCompaniesProps): Promise<any> {
+        const url = this.baseUrl + this.apiUrl.getCompaniesApi + '?page=' + getData.page + '&size=' + getData.size;
+        try {
+            const response = await axios.get(url);
+            if (response.status === 200) {
+                return Promise.resolve(response?.data);
+            } else {
+                console.log(' error : getMyCompanies ', response);
+                return Promise.reject(response);
+            }
+        }
+        catch (error) {
+            console.log(' error : getMyCompanies', error);
+            return Promise.reject(error);
+        }
+    }
+
+    async getCompanyList(): Promise<any> {
+        const url = this.baseUrl + this.apiUrl.getCompanyListApi;
+        try {
+            const response = await axios.get(url);
+            if (response?.data?.statusCode === 600) {
+                return Promise.resolve(response?.data);
+            } else {
+                console.log(' error : getCompanyList ', response);
+                return Promise.reject(response);
+            }
+        }
+        catch (error) {
+            console.log(' error : getCompanyList', error);
+            return Promise.reject(error);
+        }
+    }
     async searchwarehouse(getData: any): Promise<any> {
         const url = this.baseUrl + this.apiUrl.searchwarehouse + '?pincode=' + getData + '&page=0&size=10';
         try {
@@ -149,7 +187,12 @@ export default class Api {
         const url = this.baseUrl + this.apiUrl.enquiry;
         try {
             const response = await axios.post(url, postData);
-            return Promise.resolve(response);
+            if (response.status === 200) {
+                return Promise.resolve(response?.data);
+            } else {
+                console.log(' error : enquiry ', response);
+                return Promise.reject(response);
+            }
         }
         catch (error) {
             console.log(' error : enquiry', error);
