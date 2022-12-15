@@ -48,6 +48,8 @@ const EditBusiness = (props: EditBusinessProps) => {
         console.log(' companyDataFormatter >>> ', data);
         let companyDetails: EditBusinessDetails = {
             clientId: data.clientId || '',
+            addressId: data.addresses[0].addressId || '',
+            contactId: data.contact[0].contactId || '',
             compyName: data.compyName || '',
             compyDesc: data.compyDesc || '',
             url: data.url || '',
@@ -213,6 +215,7 @@ const EditBusiness = (props: EditBusinessProps) => {
         postData.gstNo = getVal(gstIdInfo);
         if( Object.keys(companyAddressInfo).length > 0) {
             postData.addresses = [companyAddressInfo];
+            postData.addresses[0].addressId = businessProfile.addressId;
         } 
         // postData.contact = [ buildContactInfo()];
         
