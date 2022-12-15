@@ -16,10 +16,10 @@ const AddWarehouse = () => {
         {<WarehouseHours />}
         {<WarehouseLayout />}
         <div className='p-top-md align-c'>
-                        <Button className='sf-btn' variant="contained" onClick={() => { alert('Cancel') }}> Cancel </Button>
-                        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                        <Button className="btn primary-btn sf-btn" variant="contained" onClick={() => {}}> Save </Button>
-                    </div>
+            <Button className='sf-btn' variant="contained" onClick={() => { alert('Cancel') }}> Cancel </Button>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <Button className="btn primary-btn sf-btn" variant="contained" onClick={() => {}}> Save </Button>
+        </div>
         <Footer/>
         </>
     )

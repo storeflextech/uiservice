@@ -1,9 +1,31 @@
-import React from "react";
-import { Grid, TextareaAutosize, Button } from '@mui/material';
-import InputBox from '../../atoms/textfield/InputBox';
-import GetState from '../../atoms/state/GetState';
+import React, {useState} from "react";
+import { Grid } from '@mui/material';
 
 const WarehouseHours = () => {
+
+    const [allDay, setAllDay] = useState(false);
+    const [days, setDays] = useState({});
+    const selectDayRange = (day: string) => {
+        if(day === 'alldays') {
+            setAllDay(true);
+        } else {
+            setAllDay(false);
+        }
+    }
+    const selectDays = (evn: any) => {
+        const traget =  evn.target.value;
+        const status = evn.target.checked || false;
+        setDays({...days, [traget]: status})
+    }
+
+    const checkSelectedDays = () => {
+        if(allDay) {
+            return allDay;
+        } 
+        // else {
+        //     return undefined;
+        // }
+    }
     return (
         <>
             <div className='m-bot-lg'>
@@ -17,44 +39,40 @@ const WarehouseHours = () => {
 
                             <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                                 <Grid item xs={4}>
-                                <input type="radio" name="week" id="" /> Select Days Of Works
-
+                                    <input type="radio" name="week" id="days" onChange={() => {selectDayRange('days')}}/> Select Days Of Works
                                 </Grid>
                                 <Grid item xs={4}>
-                                    <input type="radio" name="week" id="" /> Available 7 days a week
+                                    <input type="radio" name="week" id="alldays"  onChange={() => {selectDayRange('alldays')}}/> Available 7 days a week
                                 </Grid>
                             </Grid>
 
                             <Grid container spacing={2}  columns={{ xs: 6, sm: 12, md: 12 }} sx={{ p: 2 }}>
                                 <Grid item xs={1}>
-                                <input type="checkbox" name="" id="" /> Mon
+                                <input type="checkbox" name="mon" id="mon" value='Mon' onChange={selectDays} checked={checkSelectedDays()}/> Mon
                                 </Grid>
 
                                 <Grid item xs={1}>
-                                <input type="checkbox" name="" id="" /> Tues
+                                <input type="checkbox" name="tues" id="tues" value='Tues' onChange={selectDays} checked={checkSelectedDays()}/> Tues
                                 </Grid>
 
                                 <Grid item xs={1}>
-                                <input type="checkbox" name="" id="" /> Wed
+                                <input type="checkbox" name="wed" id="wed" value='Wed' onChange={selectDays} checked={checkSelectedDays()}/> Wed
                                 </Grid>
 
                                 <Grid item xs={1}>
-                                <input type="checkbox" name="" id="" /> Thu
+                                <input type="checkbox" name="thu" id="thu" value='Thu' onChange={selectDays} checked={checkSelectedDays()}/> Thu
                                 </Grid>
                                 <Grid item xs={1}>
-                                <input type="checkbox" name="" id="" /> Fri
+                                <input type="checkbox" name="fri" id="fri" value='Fri' onChange={selectDays} checked={checkSelectedDays()}/> Fri
                                 </Grid>
                                 <Grid item xs={1}>
-                                <input type="checkbox" name="" id="" /> Sat
+                                <input type="checkbox" name="sat" id="sat" value='Sat' onChange={selectDays} checked={checkSelectedDays()}/> Sat
                                 </Grid>
                                 <Grid item xs={1}>
-                                <input type="checkbox" name="" id="" /> Sun
+                                <input type="checkbox" name="sub" id="sub" value='Sun' onChange={selectDays} checked={checkSelectedDays()}/> Sun
                                 </Grid>
-
-
                             </Grid>
 
-                            <br/>
                             <br/>
                             <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                                 <Grid item xs={4}>
@@ -76,18 +94,10 @@ const WarehouseHours = () => {
                                     <label htmlFor="">To</label>
                                 <input type="time" className="form-control" name="" id="" /> 
                                 </Grid>
-
-
-
                             </Grid>
-
-
                         </div>
                     </div>
-
                 </div>
-
-
             </div>
         </>
     )
