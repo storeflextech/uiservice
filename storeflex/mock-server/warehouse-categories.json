@@ -1,0 +1,46 @@
+{
+    "methodReturnValue": {
+      "industry": "Industries served*",
+      "industries": {
+        "WT_10": "Base Metals",
+        "WT_08": "Industrial & Manufacturing Materials",
+        "WT_07": "Automotive & Aerospace",
+        "WT_06": "Petroleum, Natural Gas & Minerals",
+        "WT_05": "Electronics",
+        "WT_04": "Apparel, Footwear & Textiles",
+        "WT_03": "Machinery",
+        "WT_02": "Consumer Products & Mass Merchandising",
+        "WT_01": "Agriculture & Prepared Products",
+        "WT_09": "Pharmaceuticals, Health & Chemicals"
+      },
+      "storage": "Storage Layouts*",
+      "storages": {
+        "WS_09": "Secured Room(s)",
+        "WS_08": "Video Surveillance",
+        "WS_07": "On Site Guards",
+        "WS_06": "Dedicated Room(s)",
+        "WS_05": "Racking",
+        "WS_04": "Security System",
+        "WS_03": "Gated Access",
+        "WS_02": "Pick Module(s)",
+        "WS_01": "Floor Space"
+      },
+      "facility": "Facility Qualifications*",
+      "facilities": {
+        "WF_13": "TAPA",
+        "WF_12": "Foreign Trade Zone (FTZ)",
+        "WF_09": "C-TPAT",
+        "WF_10": "FDA Registered",
+        "WF_08": "CBP Bonded",
+        "WF_07": "Frozen-Refrigerated",
+        "WF_06": "ISO 9001",
+        "WF_05": "AIB Certified",
+        "WF_04": "Temperature Controlled",
+        "WF_03": "Food Grade",
+        "WF_02": "HazMat Certified",
+        "WF_01": "Dry-Ambient"
+      }
+    },
+    "statusCode": 600,
+    "status": "SUCCESS"
+  }

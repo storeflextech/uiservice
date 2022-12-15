@@ -80,5 +80,6 @@ export class ApiConfig {
     enquiry = '/enquiry';
     getViewUserUrl = '/storeflexusers';
     getCompanyListApi = '/clientDropList';
+    getWarehouseCategoriesApi = '/categories'
 
 }

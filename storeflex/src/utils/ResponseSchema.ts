@@ -73,8 +73,25 @@ export interface CompanyInfoList {
 export interface MethodReturnValue {
     totalRecords?: number;
     clientList?: ClientList[];
+    industry?: string;
+    industries?: Industries;
+    storage?: string;
+    storages?: Storages;
+    facility?: string;
+    facilities?: Facilities;
 }
 
+export interface Industries {
+    [key: string]: string;
+}
+
+export interface Storages {
+    [key: string]: string;
+}
+
+export interface Facilities {
+    [key: string]: string;
+}
 export interface ClientList {
     clientId?: string;
     compyName: string;
@@ -109,5 +126,11 @@ export interface Contact {
 }
 export interface Photo {
     [key: string]: string;
+}
+
+export interface WarehouseCategories {
+    methodReturnValue?: MethodReturnValue;
+    statusCode: number;
+    status?: string;
 }
  
