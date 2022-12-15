@@ -99,7 +99,7 @@ export default class Api {
     }
 
     async updateCompany(postData: AddCompanyPostData): Promise<any>{
-        const url = this.baseUrl+this.apiUrl.updateCompanyApi;
+        const url = this.baseUrl+this.apiUrl.addCompanyUrl;
         try {
             const response = await axios.post(url, postData);
             if (response.status === 200) {
@@ -132,6 +132,22 @@ export default class Api {
         }
     }
 
+    async getCompanyList(): Promise<any> {
+        const url = this.baseUrl + this.apiUrl.getCompanyListApi;
+        try {
+            const response = await axios.get(url);
+            if (response?.data?.statusCode === 600) {
+                return Promise.resolve(response?.data);
+            } else {
+                console.log(' error : getCompanyList ', response);
+                return Promise.reject(response);
+            }
+        }
+        catch (error) {
+            console.log(' error : getCompanyList', error);
+            return Promise.reject(error);
+        }
+    }
     async searchwarehouse(getData: any): Promise<any> {
         const url = this.baseUrl + this.apiUrl.searchwarehouse + '?pincode=' + getData + '&page=0&size=10';
         try {

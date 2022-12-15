@@ -1,33 +1,61 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FormControl, Select, MenuItem, SelectChangeEvent } from '@mui/material';
-
-const IndiaCompanies = ['Skaplink Technologies (CL-101)', 'Catla (CL-102)', 'Royal Rides (CL-103)', 'TechVariable (CL-120)', 'XopunTech (CL-420)', 'MJSONS (CL-404)'];
-
+import Api from '../../../api/Api';
+import { objectData } from '../../../utils/ResponseSchema';
 
 interface storeCompany {
     company?: string;
+    onCompanyChange?(companyId?: string): void;
 }
 
 const GetCompany = (props?: storeCompany) => {
 
-    const [companyval, setCompanyval] = useState(props?.company ? props?.company : 'Select Company');
-    const handleChange = (event: SelectChangeEvent) => {
-        setCompanyval(event.target.value as string);
+    const api = new Api();
+    const [companyList, setCompanyList] = useState([]);
+    const [companyName, setCompanyName] = useState<objectData>({val: 'Select Company'});
+
+    useEffect(() => {
+        getCompanies();
+    }, [])
+
+    const getCompanies =() => {
+       api.getCompanyList().then((resp) => {
+            console.log(' getCompanies success >> ', resp);
+            if(resp?.methodReturnValue) {
+                setCompanyList(resp.methodReturnValue);
+            }
+       }).catch((error)=>{
+            console.log(' getCompanyList error >> ', error);
+        });
+    }
+
+    const handleChange = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: '',
+            isUpdated: true,
+        } as objectData;
+        setCompanyName(obj);
+        if(props?.onCompanyChange) {
+            props.onCompanyChange(obj.val)
+        }
     };
 
 
     return (
         <>
             <FormControl size="small" fullWidth={true}>
-                <Select autoWidth={false} value={companyval} onChange={handleChange} displayEmpty
+                <Select autoWidth={false} value={companyName.val} onChange={handleChange} displayEmpty
                     inputProps={{ 'aria-label': 'Without label' }}
                 >
-                    <MenuItem value={companyval}>
-                        <em>{companyval}</em>
+                    <MenuItem value={companyName.val}>
+                        <em>{companyName.val}</em>
                     </MenuItem>
-                    {IndiaCompanies.map((item, index) => {
+                    {companyList.map((item, index) => {
+                        const itemCode = Object.keys(item).toString();
+                        const itemName = Object.values(item).toString();
                         return (
-                            <MenuItem key={index + 1} value={item}>{item}</MenuItem>
+                            <MenuItem key={index + 1} value={itemCode}>{itemName}</MenuItem>
                         )
                     })}
                 </Select>

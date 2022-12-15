@@ -45,9 +45,11 @@ const EditBusiness = (props: EditBusinessProps) => {
     }, [])
 
     const companyDataFormatter = (data: ClientList) => {
-        console.log(' @@@@@@@ ', data);
+        console.log(' companyDataFormatter >>> ', data);
         let companyDetails: EditBusinessDetails = {
             clientId: data.clientId || '',
+            addressId: data.addresses[0].addressId || '',
+            contactId: data.contact[0].contactId || '',
             compyName: data.compyName || '',
             compyDesc: data.compyDesc || '',
             url: data.url || '',
@@ -61,12 +63,6 @@ const EditBusiness = (props: EditBusinessProps) => {
         }
         setBusinessProfile(companyDetails);
     }
-
-    const countHandle = (e) => {
-        var c = e.target.value.length;
-        // var r = maxiLength - c;
-        setCharCount(c);
-    };
 
     const goToNextPage = (pagePath: string) => {
         navigate(pagePath);
@@ -219,6 +215,7 @@ const EditBusiness = (props: EditBusinessProps) => {
         postData.gstNo = getVal(gstIdInfo);
         if( Object.keys(companyAddressInfo).length > 0) {
             postData.addresses = [companyAddressInfo];
+            postData.addresses[0].addressId = businessProfile.addressId;
         } 
         // postData.contact = [ buildContactInfo()];
         
@@ -284,7 +281,7 @@ const EditBusiness = (props: EditBusinessProps) => {
                             city={businessProfile.city}
                             state={businessProfile.state}
                             zip={businessProfile.pincode}
-                            country={businessProfile.country}
+                            country={'01'}
                             countryCode={selectedCountryCode}
                             onUpdate={onAddressUpdate}
                         />

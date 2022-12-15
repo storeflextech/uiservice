@@ -4,7 +4,7 @@ import { FormControl, Select, MenuItem, SelectChangeEvent } from '@mui/material'
 
 interface storeState {
   countryCode?: string;
-  state?: string;
+  stateCodeDefault?: string;
   onChange?: (val: string) => void;
 }
 
@@ -12,15 +12,19 @@ const GetState = (props?: storeState) => {
   const api = new Api();
   const [stateArry, setStateArry] = useState([]);
   const [countryCode, setCountryCode] = useState('');
-  const [stateCode, setStateCode] = useState('Select State');
+  const [stateCode, setStateCode] = useState('');
   const [stateName, setStateName] = useState('Select State');
 
   useEffect(() => {
+    if(props?.stateCodeDefault && props.stateCodeDefault !== stateCode) {
+      setStateCode(props.stateCodeDefault);
+    }
     if(props?.countryCode &&  props.countryCode !== countryCode) {
         setCountryCode(props.countryCode);
         getStates(props.countryCode);
     }
-  },[]);
+    
+  },[stateCode, countryCode]);
 
   const getStates = (countryCode) => {
     api.getStatesByCountry({countryCode}).then((response) => {
@@ -45,6 +49,8 @@ const GetState = (props?: storeState) => {
       }
     })
   };
+
+  console.log(' setStateCode  >> ', stateCode);
   return (
     <>
       <FormControl size="small" fullWidth={true}>

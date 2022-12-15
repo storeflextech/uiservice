@@ -10,12 +10,17 @@ import { validateCity, validateCharacterLength, validatePinCode } from "../../..
 
 
 interface AddressDetailsProps {
-    addresLine1: string;
+    addresLine1?: string;
+    addressType?: string;
+    addressTypeHide?: boolean;
     city: string;
     state: string;
     zip: string | number;
     countryCode?: string;
     country?: string;
+    plotNo?: string | number;
+    houseNo?: string | number;
+    streetDetails?: string| number;
     onUpdate?: (data: any) => void;
 }
 
@@ -170,8 +175,10 @@ const AddressDetails = (props: AddressDetailsProps) => {
         setonUpdateInfo(true);
     }
 
-    return (
-        <div>
+    const showAddressType = () => {
+        if(props?.addressTypeHide) {
+            return (<> </>)
+        } else {
             <Grid container className='mt-1'>
                 <Grid item xs={12}>
                     <div style={{ marginBottom: '8px' }}>
@@ -183,34 +190,11 @@ const AddressDetails = (props: AddressDetailsProps) => {
                     </div>
                 </Grid>
             </Grid>
-            <Grid className='mt-1' container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-                <Grid item xs={6}>
-                    <div> State </div>
-                    <div className='p-top-sm'>
-                        {<GetState countryCode={countryCode} onChange={onStateChange} />}
-                    </div>
-                </Grid>
-                <Grid item xs={6}>
-                    <div> City </div>
-                    <div className='p-top-sm'>
-                        {<GetCity state={stateInfo.val || ''} onChange={onCityChange}/>}
-                    </div>
-                </Grid>
-            </Grid>
-            <Grid className='mt-1' container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-                <Grid item xs={6}>
-                    <div> Country </div>
-                    <div className='p-top-sm'>
-                        {<GetCountry country={countryCode} />}
-                    </div>
-                </Grid>
-                <Grid item xs={6}>
-                        <InputBox data={{ name: 'pincode', label: 'Pincode*', value: pinCode.val }}
-                        onChange={validatePin}
-                    />
-                    {pinCode.error && <p className="text-red">{pinCode.error}</p>}
-                </Grid>
-            </Grid>
+        }
+    }
+    return (
+        <div>
+            {showAddressType()}
             <Grid container className='p-top-md' spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                 <Grid item xs={3}>
                     <InputBox data={{ name: 'plotno', label: 'Plot no', value: plotInfo.val }}
@@ -229,6 +213,34 @@ const AddressDetails = (props: AddressDetailsProps) => {
                         onChange={validateStreet}
                     />
                     {streetInfo.error && <p className="text-red">{streetInfo.error}</p>}
+                </Grid>
+            </Grid>
+            <Grid className='mt-1' container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
+                <Grid item xs={6}>
+                    <div> State </div>
+                    <div className='p-top-sm'>
+                        {<GetState countryCode={countryCode} onChange={onStateChange} stateCodeDefault={props?.state}/>}
+                    </div>
+                </Grid>
+                <Grid item xs={6}>
+                    <div> City </div>
+                    <div className='p-top-sm'>
+                        {<GetCity state={stateInfo.val || ''} onChange={onCityChange}/>}
+                    </div>
+                </Grid>
+            </Grid>
+            <Grid className='mt-1' container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
+                <Grid item xs={6}>
+                    <div> Country </div>
+                    <div className='p-top-sm'>
+                        {<GetCountry country={countryCode} />}
+                    </div>
+                </Grid>
+                <Grid item xs={6}>
+                        <InputBox data={{ name: 'pincode', label: 'Pincode*', value: pinCode.val || props.zip }}
+                        onChange={validatePin}
+                    />
+                    {pinCode.error && <p className="text-red">{pinCode.error}</p>}
                 </Grid>
             </Grid>
         </div>

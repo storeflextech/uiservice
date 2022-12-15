@@ -1,54 +1,42 @@
 import React from "react";
-import { Grid, TextareaAutosize, Button } from '@mui/material';
-import InputBox from '../../atoms/textfield/InputBox';
-import GetState from '../../atoms/state/GetState';
-import GetCompany from "../../atoms/company/GetCompany";
+import { Address} from '../../../utils/ResponseSchema';
+import AddressDetails from '../../atoms/addressforms/AddressDetails';
 
 
 const WearehouseAddress = () => {
+
+    const onAddressUpdate = (data: Address) => {
+        // const addressData = {} as Address;
+        // addressData.addressType = data.addressType;
+        // addressData.city = data.city;
+        // addressData.country = data.country;
+        // addressData.state = data.state;
+        // addressData.pincode = data.pincode;
+        // addressData.plotNo = data.plotNo;
+        // addressData.houseNo = data.houseNo;
+        // addressData.streetDetails = data.streetDetails;
+        // console.log(addressData);
+        // setCompanyAddressInfo(addressData);
+    }
     return (
         <>
 
-            <div className='m-bot-lg'>
-                <div className='primary-gradient m-bot-md'>
+            <div>
+                <div className='primary-gradient'>
                     <div className='font-white p-sm f-18px f-bold'>Where's warehouse located?</div>
                 </div>
-                {/* {showBusinessAddress()} */}
-                
 
                 <div className='p-md'>
-                    <div>
-                        <div>
-                            <Grid container >
-                                <Grid item xs={12}>
-                                    <InputBox data={{ name: 'whAddress', label: 'Warehouse address *', value: '' }}
-                                    // onChange={validateAddress}
-                                    />
-                                    {/* {address && <p className="text-red">{address}</p>} */}
-                                </Grid>
-                            </Grid>
-                            <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-                                <Grid item xs={4}>
-                                    <div> State </div>
-                                    <div className='p-top-md'>
-                                        {<GetState />}
-                                    </div>
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <InputBox data={{ name: 'cityname', label: 'City*', value: '' }}
-                                    // onChange={validateCityName}
-                                    />
-                                    {/* {city && <p className="text-red">{city}</p>} */}
-                                </Grid>
-
-                                <Grid item xs={4}>
-                                    <InputBox data={{ name: 'zipcode', label: 'Zip*', value: '' }}
-                                    // onChange={validateZipCode}
-                                    />
-                                </Grid>
-                            </Grid>
-                        </div>
-                    </div>
+                    <AddressDetails
+                        addresLine1={'NA'}
+                        city={'NA'}
+                        state={'NA'}
+                        zip={''}
+                        country={'01'}
+                        countryCode={'IND'}
+                        addressTypeHide={true}
+                        onUpdate={onAddressUpdate}
+                    />
                 </div>
             </div>
         </>
