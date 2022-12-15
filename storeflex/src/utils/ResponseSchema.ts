@@ -1,3 +1,5 @@
+
+
 export interface BusinessDetails {
     businessid: string;
     name: string;
@@ -33,6 +35,8 @@ export interface officeData {
 
 export interface EditBusinessDetails {
     clientId: string;
+    addressId: string;
+    contactId: string;
     compyName: string;
     address: string;
     phone: string | number;
@@ -84,6 +88,7 @@ export interface ClientList {
 }
 
 export interface Address {
+    addressId?: string;
     addressType?: string;
     plotNo?: string;
     houseNo?: string;
@@ -95,6 +100,7 @@ export interface Address {
 }
 
 export interface Contact {
+    contactId?: string;
     contactName?: string;
     mobileNo?: string;
     landLine?: string;
