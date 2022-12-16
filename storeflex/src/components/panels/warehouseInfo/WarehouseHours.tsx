@@ -1,10 +1,31 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { Grid } from '@mui/material';
 
-const WarehouseHours = () => {
+interface WarehouseHoursProps {
+    onWarehouseHoursUpdate?: (data: any) => void;
+}
+
+const WarehouseHours = (props: WarehouseHoursProps) => {
 
     const [allDay, setAllDay] = useState(false);
     const [days, setDays] = useState({});
+    const [onUpdateInfo , setonUpdateInfo] = useState(false);
+
+    useEffect(() => {
+        if(onUpdateInfo) {
+            setonUpdateInfo(false);
+            onChangeUpdateInfo();
+        }
+    }, [onUpdateInfo]);
+
+    const onChangeUpdateInfo = () => {
+        // if(props?.onWarehouseHoursUpdate) {
+        //     const obj = {
+        //     };
+        //     // props.onWarehouseHoursUpdate(obj);
+        // }
+    }
+
     const selectDayRange = (day: string) => {
         if(day === 'alldays') {
             setAllDay(true);
