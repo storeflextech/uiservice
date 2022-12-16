@@ -25,7 +25,7 @@ const OrderTable = () => {
             price: 1100,
             orderDate: "17-01-2022",
             from: "14th Jan, 20 - 27th Jan, 20",
-            status: "Faild"
+            status: "Failed"
         },
         {
             orderID: 4542,

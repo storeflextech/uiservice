@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
 import TopNavBar from '../components/navbar/TopNavBar';
@@ -13,6 +13,7 @@ import DeleteUser from './deleteuser';
 import { isTypeNode } from 'typescript';
 import { DeletsButton, EditButton } from '../components/buttons/buttons';
 import swal from 'sweetalert';
+import GetCompany from '../components/atoms/company/GetCompany';
 
 const ViewUser = () => {
     const api = new Api();
@@ -45,7 +46,7 @@ const ViewUser = () => {
     }
 
     const editUser = (user: any) => {
-        const pagePath = '/edit'
+        const pagePath = '/editCompanyUser'
         navigate(pagePath,
             {
                 state: { editRecord: user },
@@ -93,12 +94,18 @@ const ViewUser = () => {
                                         <button className="primary-btn-outline" onClick={() => { goToNextPage('/addinfo') }} style={{ fontSize: '14px', float: 'right', borderRadius: 20, paddingLeft: '12px', paddingRight: '12px' }} ><i className='mdi mdi-plus menu-icon'></i> Add New</button>
                                     </div>
                                 </div>
+                                <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
+                                <Grid item xs={3}>
+                                    <div className='p-top-md'>
+                                        {<GetCompany />}
+                                    </div>
+                                    </Grid>
+                                </Grid>
                                 <Table striped bordered hover responsive='md'>
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th>#</th>
                                             <th>Name</th>
-                                            <th>Company</th>
                                             <th>Address</th>
                                             <th>Phone</th>
                                             <th>Email</th>
@@ -109,14 +116,14 @@ const ViewUser = () => {
                                         {myUser && myUser.map((item: any) => {
                                             return (
                                                 <tr>
-                                                    <td>{item.userId}</td>
-                                                    <td>{item.firstName} {item.middleName} {item.lastName}</td>
-                                                    <td>{item.company}</td>
+                                                    <td>1</td>
+                                                    <td>{item.firstName} {item.lastName}</td>
                                                     <td>{item.address}</td>
                                                     <td>{item.mobileNo}</td>
                                                     <td>{item.email}</td>
                                                     <td className='align-c'>
-                                                        <DeletsButton onBtnClick={() => {deleteUser(item)}}/>
+                                                        <DeletsButton onBtnClick={() => { deleteUser(item) }} />
+                                                        &nbsp;&nbsp;
                                                         <EditButton onBtnClick={() => {editUser(item)}}/>
                                                     </td>
                                                 </tr>
