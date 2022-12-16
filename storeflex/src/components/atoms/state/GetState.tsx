@@ -50,7 +50,6 @@ const GetState = (props?: storeState) => {
     })
   };
 
-  console.log(' setStateCode  >> ', stateCode);
   return (
     <>
       <FormControl size="small" fullWidth={true}>
