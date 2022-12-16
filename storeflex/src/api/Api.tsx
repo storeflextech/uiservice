@@ -183,6 +183,23 @@ export default class Api {
             return Promise.reject(error);
         }
     }
+
+    async getWarehouseCategories(): Promise<any> {
+        const url = this.baseUrl + this.apiUrl.getWarehouseCategoriesApi;
+        try {
+            const response = await axios.get(url);
+            if (response?.data?.statusCode === 600) {
+                return Promise.resolve(response?.data);
+            } else {
+                console.log(' error : getWarehouseCategories ', response);
+                return Promise.reject(response);
+            }
+        }
+        catch (error) {
+            console.log(' error : getWarehouseCategories', error);
+            return Promise.reject(error);
+        }
+    }
     async enquiry(postData: EnquiryProps): Promise<any> {
         const url = this.baseUrl + this.apiUrl.enquiry;
         try {
