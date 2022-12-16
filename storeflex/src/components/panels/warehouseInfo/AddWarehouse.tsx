@@ -18,13 +18,19 @@ const AddWarehouse = () => {
     const onWearehousePricingUpdate = (data: any) => {
         console.log(' onWearehousePricingUpdate >>> ', data);
     }
+    const onWarehouseHoursUpdate = (data: any) => {
+        console.log(' onWarehouseHoursUpdate >>> ', data);
+    }
+    const onWarehouseLayoutUpdate = (data: any) => {
+        console.log(' onWarehouseLayoutUpdate >>> ', data);
+    }
     return (
         <>
         {<WarehouseDetails onWarehouseDetailsUpdate={onWarehouseDetailsUpdate}/>}
         {<WearehouseAddress onWearehouseAddressUpdate={onWearehouseAddressUpdate}/>}
         {<WearehousePricing onWearehousePricingUpdate={onWearehousePricingUpdate}/>}
-        {<WarehouseHours />}
-        {<WarehouseLayout />}
+        {<WarehouseHours onWarehouseHoursUpdate={onWarehouseHoursUpdate}/>}
+        {<WarehouseLayout onWarehouseLayoutUpdate={onWarehouseLayoutUpdate}/>}
         <div className='p-top-md align-c'>
             <Button className='sf-btn' variant="contained" onClick={() => { alert('Cancel') }}> Cancel </Button>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>

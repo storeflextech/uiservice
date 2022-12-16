@@ -4,19 +4,55 @@ import InputBox from '../../atoms/textfield/InputBox';
 import Api from "../../../api/Api";
 import { WarehouseCategories } from "../../../utils/ResponseSchema";
 
-const WarehouseLayout = () => {
+
+interface WarehouseLayoutProps {
+    onWarehouseLayoutUpdate?: (data: any) => void;
+}
+
+const WarehouseLayout = (props: WarehouseLayoutProps) => {
 
     const api = new Api();
     const [industriesCategories, setIndustriesCategories] = useState({});
     const [storagesCategories, setStoragesCategories] = useState({});
     const [facilitiesCategories, setFacilitiesCategories] = useState({});
+    const [onUpdateInfo , setonUpdateInfo] = useState(false);
 
     const [whCategories , setWhCategories] = useState<WarehouseCategories>();
 
     useEffect(() => {
-        getWhCategories();
-    },[]) 
+        if(onUpdateInfo) {
+            setonUpdateInfo(false);
+            onChangeUpdateInfo();
+        }
+        if(!whCategories) {
+            getWhCategories();
+        }
+    },[onUpdateInfo]);
 
+    const filterCode = (obj: any) => {
+        const codeArry: string[] = [];
+        Object.entries(obj).forEach((item) => {
+            if(item[1]) {
+                codeArry.push(item[0]);
+            }
+        })
+        if(codeArry.length > 0) {
+            return codeArry.join('|');
+        } else {
+            return '';
+        }
+    }
+
+    const onChangeUpdateInfo = () => {
+        if(props?.onWarehouseLayoutUpdate) {
+            const obj = {
+                industryId: filterCode(industriesCategories),
+                storagesId: filterCode(storagesCategories),
+                facilitiesId: filterCode(facilitiesCategories)
+            };
+            props.onWarehouseLayoutUpdate(obj);
+        }
+    }
     const getWhCategories = () => {
         api.getWarehouseCategories().then((resp: WarehouseCategories ) => {
             if(resp?.methodReturnValue) {
@@ -27,10 +63,25 @@ const WarehouseLayout = () => {
         });
       }
 
-    const selectDays = (evn: any) => {
-        const traget =  evn.target.value;
-        const status = evn.target.checked || false;
-        // setDays({...days, [traget]: status})
+    const onChangeIndustriesCategories = (evn: any) => {
+        const tragetCode =  evn?.target?.id || 'NA';
+        const isSelected = evn?.target?.checked || false;
+        setIndustriesCategories({...industriesCategories, [tragetCode]: isSelected});
+        setonUpdateInfo(true);
+    }
+
+    const onChangeStoragesCategories = (evn: any) => {
+        const tragetCode =  evn?.target?.id || 'NA';
+        const isSelected = evn?.target?.checked || false;
+        setStoragesCategories({...storagesCategories, [tragetCode]: isSelected});
+        setonUpdateInfo(true);
+    }
+
+    const onChangeFacilitiesCategories = (evn: any) => {
+        const tragetCode =  evn?.target?.id || 'NA';
+        const isSelected = evn?.target?.checked || false;
+        setFacilitiesCategories({...facilitiesCategories, [tragetCode]: isSelected});
+        setonUpdateInfo(true);
     }
 
     const showIndustriesCategories = () => {
@@ -49,7 +100,7 @@ const WarehouseLayout = () => {
                             <Grid key={keyId} item xs={4}>
                                 <div>
                                     <label>
-                                        <input type="checkbox" id={item[0]} name={item[0]} />
+                                        <input type="checkbox" id={item[0]} name={item[0]} onChange={onChangeIndustriesCategories}/>
                                         <span className="p-left-sm">{item[1]}</span>
                                     </label>
                                 </div>
@@ -79,7 +130,7 @@ const WarehouseLayout = () => {
                             <Grid key={keyId} item xs={4}>
                                 <div>
                                     <label>
-                                        <input type="checkbox" id={item[0]} name={item[0]} />
+                                        <input type="checkbox" id={item[0]} name={item[0]} onChange={onChangeStoragesCategories}/>
                                         <span className="p-left-sm">{item[1]}</span>
                                     </label>
                                 </div>
@@ -109,7 +160,7 @@ const WarehouseLayout = () => {
                             <Grid key={keyId} item xs={4}>
                                 <div>
                                     <label>
-                                        <input type="checkbox" id={item[0]} name={item[0]} />
+                                        <input type="checkbox" id={item[0]} name={item[0]} onChange={onChangeFacilitiesCategories}/>
                                         <span className="p-left-sm">{item[1]}</span>
                                     </label>
                                 </div>
@@ -123,6 +174,7 @@ const WarehouseLayout = () => {
             return (<> </>)
         } 
     }
+    
     return (
         <>
             <div className='m-bot-lg'>
