@@ -1,7 +1,7 @@
-import React, {useState} from "react";
-import { Grid, TextareaAutosize, Button } from '@mui/material';
+import React, {useState, useEffect} from "react";
+import { Grid } from '@mui/material';
 import InputBox from '../../atoms/textfield/InputBox';
-import { validateCharacterLength, validatePhone, validateWebUrl, validateGst } from '../../../utils/CommonUtils';
+import { validateCharacterLength } from '../../../utils/CommonUtils';
 import { objectData } from '../../../utils/ResponseSchema';
 import { InputError } from '../../atoms/textfield/InputError';
 
@@ -9,7 +9,7 @@ interface WearehousePricingProps {
     space?: number;
     rate?: number;
     quantity?: number;
-
+    onWearehousePricingUpdate?: (data: any) => void;
 }
 
 const WearehousePricing=(props: WearehousePricingProps) => {
@@ -18,6 +18,32 @@ const WearehousePricing=(props: WearehousePricingProps) => {
     const [rateInfo, setRateInfo] = useState<objectData>({});
     const [quantityInfo, setQuantityInfo] = useState<objectData>({});
 
+    const [onUpdateInfo , setonUpdateInfo] = useState(false);
+
+    useEffect(() => {
+        if(onUpdateInfo) {
+            setonUpdateInfo(false);
+            onChangeUpdateInfo();
+        }
+    }, [onUpdateInfo]);
+
+    const getVal = (obj: objectData) => {
+        if(obj.isUpdated) {
+            return obj.val
+        } else {
+            return undefined;
+        }
+    }
+    const onChangeUpdateInfo = () => {
+        if(props?.onWearehousePricingUpdate) {
+            const obj = {
+                space: getVal(spaceInfo),
+                rate: getVal(rateInfo),
+                quantity: getVal(quantityInfo)
+            };
+            props.onWearehousePricingUpdate(obj);
+        }
+    }
 
     const validateSpaceInfo = (event: any) => {
         const obj = {
@@ -33,6 +59,7 @@ const WearehousePricing=(props: WearehousePricingProps) => {
             obj.error = '';
         }
         setSpaceInfo(obj);
+        setonUpdateInfo(true);
     }
 
     const validateRateInfo = (event: any) => {
@@ -49,6 +76,7 @@ const WearehousePricing=(props: WearehousePricingProps) => {
             obj.error = '';
         }
         setRateInfo(obj);
+        setonUpdateInfo(true);
     }
     const validateQuantityInfo = (event: any) => {
         const obj = {
@@ -64,6 +92,7 @@ const WearehousePricing=(props: WearehousePricingProps) => {
             obj.error = '';
         }
         setQuantityInfo(obj);
+        setonUpdateInfo(true);
     }
     
 

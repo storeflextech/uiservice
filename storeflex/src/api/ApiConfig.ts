@@ -46,6 +46,17 @@ export interface AddCompanyPostData {
     contact?: Contact[];
 }
 
+export interface AddWarehousePostData {
+    clientId?: string;
+    warehouseName?: string;
+    descp?: string;
+    warehouseTaxId?: string;
+    facilitiesId?: string;
+    industryId?: string;
+    storagesId?: string;
+    addresse?: Address[];
+}
+
 export interface EnquiryProps {
  
     firstName: string,
@@ -57,7 +68,7 @@ export interface EnquiryProps {
     descp: string
   }
 
-export interface viewUserProps{
+export interface viewUserProps {
     page:string;
     size: string;
 }

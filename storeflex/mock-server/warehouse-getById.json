@@ -1,0 +1,34 @@
+{
+  "methodReturnValue": {
+    "warehouseId": "WH-108",
+    "clientId": "CL-101",
+    "descp": "ABSC Warehouse1",
+    "warehouseTaxId": "22222222",
+    "createBy": "ADMIN",
+    "createDate": "2022-12-15",
+    "updatedBy": "ADMIN",
+    "updateDate": "2022-12-15",
+    "status": true,
+    "facilitiesId": "WF_01|WF_04|WF_07|WF_09",
+    "industryId": "WT_01|WT_02|WT_04|WT_05",
+    "storagesId": "WS_01|WS_02|WS_03|WS_04",
+    "address": [
+      {
+        "addressId": "8e645012-a0e3-48fc-8604-7cd90d1499df",
+        "addressType": "Physical",
+        "houseNo": "1233",
+        "plotNo": "21",
+        "city": "GHY",
+        "state": "ASM",
+        "country": "IND",
+        "pincode": "781036",
+        "createBy": "ADMIN",
+        "createDate": "2022-12-15",
+        "updatedBy": "ADMIN",
+        "updateDate": "2022-12-15"
+      }
+    ]
+  },
+  "statusCode": 600,
+  "status": "SUCCESS"
+}
