@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Grid } from '@mui/material';
 import InputBox from '../../atoms/textfield/InputBox';
-import { validateCharacterLength } from '../../../utils/CommonUtils';
+import { validateAreaSpace, validateCharacterLength, validateRate } from '../../../utils/CommonUtils';
 import { objectData } from '../../../utils/ResponseSchema';
 import { InputError } from '../../atoms/textfield/InputError';
 
@@ -52,9 +52,9 @@ const WearehousePricing=(props: WearehousePricingProps) => {
             isUpdated: true,
         } as objectData;
         if (!obj.val) {
-            obj.error = " *Company Name is required. ";
-        } else if (!validateCharacterLength(obj.val, 4, 50)) {
-            obj.error = " Company Name must be between 4 characters to 50 characters."
+            obj.error = " *This can not be empty ";
+        } else if (!validateAreaSpace(obj.val)) {
+            obj.error = " Available Space should be between 100-2,00,000 sq.ft";
         } else {
             obj.error = '';
         }
@@ -69,9 +69,9 @@ const WearehousePricing=(props: WearehousePricingProps) => {
             isUpdated: true,
         } as objectData;
         if (!obj.val) {
-            obj.error = " *Company Name is required. ";
-        } else if (!validateCharacterLength(obj.val, 4, 50)) {
-            obj.error = " Company Name must be between 4 characters to 50 characters."
+            obj.error = " *This can not be empty ";
+        } else if (!validateRate(obj.val)) {
+            obj.error = " Rate should be between 10-5000 Rs/sq.ft/month"
         } else {
             obj.error = '';
         }
@@ -84,13 +84,13 @@ const WearehousePricing=(props: WearehousePricingProps) => {
             error: '',
             isUpdated: true,
         } as objectData;
-        if (!obj.val) {
-            obj.error = " *Company Name is required. ";
-        } else if (!validateCharacterLength(obj.val, 4, 50)) {
-            obj.error = " Company Name must be between 4 characters to 50 characters."
-        } else {
-            obj.error = '';
-        }
+        // if (!obj.val) {
+        //     obj.error = " *Company Name is required. ";
+        // // } else if (!validateCharacterLength(obj.val, 4, 50)) {
+        // //     obj.error = " Company Name must be between 4 characters to 50 characters."
+        // } else {
+        //     obj.error = '';
+        // }
         setQuantityInfo(obj);
         setonUpdateInfo(true);
     }
@@ -118,7 +118,7 @@ const WearehousePricing=(props: WearehousePricingProps) => {
                             <InputError errorText={rateInfo.error}/>
                             </Grid>
                             <Grid item xs={4}>
-                                <InputBox data={{ name: 'quantity', label: 'Minimum Order Quantity (sq.ft)*', value: '' }}
+                                <InputBox data={{ name: 'quantity', label: 'Minimum Order Quantity (sq.ft)', value: '' }}
                                     onChange={validateQuantityInfo}
                                 />
                                 <InputError errorText={quantityInfo.error}/>
