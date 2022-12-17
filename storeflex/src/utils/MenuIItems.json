@@ -88,7 +88,7 @@
                             "NavigateTo": "/warehouse/view"
                         }
                     ],
-                    "Icon": "mdi mdi-church menu-icon"
+                    "Icon": "mdi mdi-home-analytics menu-icon"
                 },
                 {
                     "Label": "User Management",
@@ -120,7 +120,7 @@
                     "Name": "OrderDetailsMenu",
                     "NavigateTo":"/myorders",
                     "SubMenu":[],
-                    "Icon": "mdi mdi-checkbox-marked-outline menu-icon"
+                    "Icon": "mdi mdi-briefcase-check menu-icon"
                 },
                 {
                     "Label": "Payment Details",
@@ -272,7 +272,7 @@
                             "NavigateTo": "/update-warehouse"
                         }
                     ],
-                    "Icon": "mdi mdi-church menu-icon"
+                    "Icon": "mdi mdi-home-analytics menu-icon"
                 },
                 {
                     "Label": "User Management",
@@ -483,7 +483,7 @@
                             "NavigateTo": "/my-bookings"
                         }
                     ],
-                    "Icon": "mdi mdi-basket menu-icon"
+                    "Icon": "mdi mdi-checkbox-marked-outline menu-icon"
                 },
                 {
                     "Label": "My Payments",

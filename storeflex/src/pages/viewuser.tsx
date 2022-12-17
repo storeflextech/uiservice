@@ -95,12 +95,12 @@ const ViewUser = () => {
                                     </div>
                                 </div>
                                 <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-                                <Grid item xs={3}>
+                                <Grid item xs={2.83}>
                                     <div className='p-top-md'>
                                         {<GetCompany />}
                                     </div>
                                     </Grid>
-                                </Grid>
+                                </Grid>&nbsp;
                                 <Table striped bordered hover responsive='md'>
                                     <thead>
                                         <tr>
