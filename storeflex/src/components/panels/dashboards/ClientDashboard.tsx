@@ -25,7 +25,7 @@ const ClientDashboard = (props) => {
                 <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.AddInfo.path) }}>
                     User Management
                 </Button>
-                <Button className='m-sm sf-btn w100' size="lg" active onClick={() => { handelOnClick(PAGES.AddInfo.path) }}>
+                <Button className='m-sm sf-btn w100' size="lg" active onClick={() => {}}>
                     Payments
                 </Button>
             </div>
