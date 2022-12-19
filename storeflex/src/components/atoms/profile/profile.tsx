@@ -1,6 +1,5 @@
 import React from 'react';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import Divider from '@mui/material/Divider';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -8,6 +7,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { ProfileBtn } from '../button/button';
 import './profile.scss';
 import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 interface ProfileMenuProps {
     isSigned?: boolean;
@@ -31,10 +31,32 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
         navigate(pagePath);
     }
 
-    const logout = (pagePath: string)=>{
+    const logout = (pagePath: string) => {
         sessionStorage.setItem('isLoggedIn', 'false');
         navigate(pagePath);
-      }
+    }
+
+    const createSwalButton = async () => {
+        let swalButton1 = await swal({
+            title: "List Space",
+            buttons: {
+                buttonOne: {
+                    text: "Existing Company",
+                    value: true,
+                    visible: true,
+                },
+                buttonTwo: {
+                    text: "New Company",
+                    value: false,
+                    visible: true,
+                }
+            }
+        }).then(function (value) {
+            if (value) { window.location.href = "/warehouse/add"; }
+            else { window.location.href = "/business/add"; }
+
+        });
+    }
 
     const signOutList = () => {
         return (
@@ -79,7 +101,7 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
                 </MenuItem>
                 <Divider />
                 <MenuItem>
-                    <ListItemText>List Space</ListItemText>
+                    <ListItemText><a onClick={() => createSwalButton()}>List Space</a></ListItemText>
                 </MenuItem>
                 <MenuItem>
                     <ListItemText><a onClick={() => { goToNextPage('/bookings') }}>Bookings</a></ListItemText>
@@ -89,9 +111,9 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
                 </MenuItem>
                 <Divider />
                 <MenuItem>
-                    <ListItemText><a onClick={()=>{goToNextPage('/contactus')}}>Contact Us</a></ListItemText>
+                    <ListItemText><a onClick={() => { goToNextPage('/contactus') }}>Contact Us</a></ListItemText>
                 </MenuItem>
-                 <MenuItem>
+                <MenuItem>
                     <ListItemText><a onClick={() => { goToNextPage('/faq') }}>FAQ</a></ListItemText>
                 </MenuItem>
                 <MenuItem>
