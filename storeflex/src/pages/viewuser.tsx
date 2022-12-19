@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
 import TopNavBar from '../components/navbar/TopNavBar';
@@ -11,6 +11,9 @@ import { viewUserProps } from '../api/ApiConfig';
 import Api from '../api/Api';
 import DeleteUser from './deleteuser';
 import { isTypeNode } from 'typescript';
+import { DeletsButton, EditButton } from '../components/buttons/buttons';
+import swal from 'sweetalert';
+import GetCompany from '../components/atoms/company/GetCompany';
 
 const ViewUser = () => {
     const api = new Api();
@@ -37,8 +40,43 @@ const ViewUser = () => {
             state: { editRecord: record },
         });
     }
+    
     const goToNextPage = (pagePath: string) => {
         navigate(pagePath);
+    }
+
+    const editUser = (user: any) => {
+        const pagePath = '/editCompanyUser'
+        navigate(pagePath,
+            {
+                state: { editRecord: user },
+            }
+        );
+    }
+
+    const deleteUser = (user: any) => {
+
+        console.log(' @@@ ', user);
+        swal({
+            title: "Are you sure?",
+            text: 'You are about to delete the user. Once deleted, you will not be able to recover this user!',
+            icon: "warning",
+            buttons: [true, true],
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal('Success! User has been deleted!', {
+                        icon: "success",
+                    });
+                    let extractedArr = myUser.filter((item, index) => {
+                        return item.clientId !== user.clientId;
+                    });
+                    setmyUser(extractedArr);
+                } else {
+                    // do something if required   
+                }
+            });
     }
 
     return (
@@ -56,12 +94,18 @@ const ViewUser = () => {
                                         <button className="primary-btn-outline" onClick={() => { goToNextPage('/addinfo') }} style={{ fontSize: '14px', float: 'right', borderRadius: 20, paddingLeft: '12px', paddingRight: '12px' }} ><i className='mdi mdi-plus menu-icon'></i> Add New</button>
                                     </div>
                                 </div>
+                                <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
+                                <Grid item xs={2.83}>
+                                    <div className='p-top-md'>
+                                        {<GetCompany />}
+                                    </div>
+                                    </Grid>
+                                </Grid>&nbsp;
                                 <Table striped bordered hover responsive='md'>
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th>#</th>
                                             <th>Name</th>
-                                            <th>Company</th>
                                             <th>Address</th>
                                             <th>Phone</th>
                                             <th>Email</th>
@@ -72,67 +116,19 @@ const ViewUser = () => {
                                         {myUser && myUser.map((item: any) => {
                                             return (
                                                 <tr>
-                                                    <td>{item.userId}</td>
-                                                    <td>{item.firstName} {item.middleName} {item.lastName}</td>
-                                                    <td>{item.company}</td>
+                                                    <td>1</td>
+                                                    <td>{item.firstName} {item.lastName}</td>
                                                     <td>{item.address}</td>
                                                     <td>{item.mobileNo}</td>
                                                     <td>{item.email}</td>
-                                                    <td>
-                                                        <button onClick={() => DeleteUser()} className='primary-btn-outline' style={{ fontSize: '14px', float: 'right', borderRadius: 20, padding: '8px 12px 8px 12px' }}><strong><i className='mdi mdi-cup menu-icon'></i> Delete</strong></button>&nbsp; &nbsp;
-                                                        <button onClick={() => goToEditPage('/edit', item)} className='primary-btn-outline' style={{ fontSize: '14px', float: 'right', borderRadius: 20, padding: '8px 12px 8px 12px', marginRight: '5px' }}><strong><i className='mdi mdi-pencil menu-icon'></i> Edit</strong></button>
+                                                    <td className='align-c'>
+                                                        <DeletsButton onBtnClick={() => { deleteUser(item) }} />
+                                                        &nbsp;&nbsp;
+                                                        <EditButton onBtnClick={() => {editUser(item)}}/>
                                                     </td>
                                                 </tr>
                                             )
                                         })}
-                                        {/* <tr>
-                                            <td>1</td>
-                                            <td><div className="nav-profile-image">
-                                                <img src="/images/face1.jpg" alt="profile" />
-                                                <input className="d-none" type="file" />&nbsp;
-                                                Mrityunjoy Deka
-                                            </div></td>
-                                            <td>Storeflex</td>
-                                            <td>UP, Noida</td>
-                                            <td>9998887777</td>
-                                            <td>mrityunjoy@storeflex.co</td>
-                                            <td>
-                                                <button className='primary-btn-outline' style={{ fontSize: '14px', float: 'right', borderRadius: 20, paddingLeft: '12px', paddingRight: '12px' }}><i className='mdi mdi-cup menu-icon'></i> Delete</button>
-                                                <button className='primary-btn-outline' style={{ fontSize: '14px', float: 'right', borderRadius: 20, paddingLeft: '12px', paddingRight: '12px' }}><i className='mdi mdi-pencil menu-icon'></i> Edit</button> &nbsp; &nbsp;
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td><div className="nav-profile-image">
-                                                <img src="/images/face1.jpg" alt="profile" />
-                                                <input className="d-none" type="file" /> &nbsp;
-                                                Subham
-                                            </div></td>
-                                            <td>Reliance Digital</td>
-                                            <td>Assam, Guwahati</td>
-                                            <td>78956476589</td>
-                                            <td>info@reliance.co</td>
-                                            <td>
-                                                <button className='primary-btn-outline' style={{ fontSize: '14px', float: 'right', borderRadius: 20, paddingLeft: '12px', paddingRight: '12px' }}><i className='mdi mdi-cup menu-icon'></i> Delete</button>
-                                                <button className='primary-btn-outline' style={{ fontSize: '14px', float: 'right', borderRadius: 20, paddingLeft: '12px', paddingRight: '12px' }}><i className='mdi mdi-pencil menu-icon'></i> Edit</button> &nbsp; &nbsp;
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td><div className="nav-profile-image">
-                                                <img src="/images/face1.jpg " alt="profile" />
-                                                <input className="d-none" type="file" /> &nbsp;
-                                                Imon Gogoi
-                                            </div></td>
-                                            <td>Hajmola India Ltd.</td>
-                                            <td>WB, Kolkata</td>
-                                            <td>9888978976</td>
-                                            <td>imon@hajmola.in</td>
-                                            <td>
-                                                <button className='primary-btn-outline' style={{ fontSize: '14px', float: 'right', borderRadius: 20, paddingLeft: '12px', paddingRight: '12px' }}><i className='mdi mdi-cup menu-icon'></i> Delete</button>
-                                                <button className='primary-btn-outline' style={{ fontSize: '14px', float: 'right', borderRadius: 20, paddingLeft: '12px', paddingRight: '12px' }}><i className='mdi mdi-pencil menu-icon'></i> Edit</button> &nbsp; &nbsp;
-                                            </td>
-                                        </tr> */}
                                     </tbody>
                                 </Table>
                             </div>

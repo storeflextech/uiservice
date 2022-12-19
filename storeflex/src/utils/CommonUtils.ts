@@ -9,9 +9,21 @@ export const regex_phone = /^[0-9]{10}$/;
 export const regex_gstid = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
 export const regex_city = /^[A-Za-z]+$/;
 export const regex_pincode = /^[0-9]{6}(?:-[0-9]{5})?$/;
+export const regex_availableSpace = /^[1-9]\d{2,5}$/;
+export const regex_rate = /^[1-9]\d{1,3}$/
 
 export const validateCharacterLength = (text:string = '', minLen:number = 4, maxLen:number = 20) => {
     const isValid = (text?.length < minLen || text?.length > maxLen)?false:true;
+    return isValid;
+}
+
+export const validateAreaSpace = (price:any) => {
+    const isValid = regex_availableSpace.test(price)?true:false;
+    return isValid;
+}
+
+export const validateRate = (price:any) => {
+    const isValid = regex_rate.test(price)?true:false;
     return isValid;
 }
 

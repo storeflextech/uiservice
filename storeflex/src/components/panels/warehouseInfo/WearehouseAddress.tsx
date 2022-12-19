@@ -2,21 +2,25 @@ import React from "react";
 import { Address} from '../../../utils/ResponseSchema';
 import AddressDetails from '../../atoms/addressforms/AddressDetails';
 
+interface WearehouseAddressProps {
+    onWearehouseAddressUpdate?: (data: any) => void;
+}
 
-const WearehouseAddress = () => {
+const WearehouseAddress = (props: WearehouseAddressProps) => {
 
     const onAddressUpdate = (data: Address) => {
-        // const addressData = {} as Address;
-        // addressData.addressType = data.addressType;
-        // addressData.city = data.city;
-        // addressData.country = data.country;
-        // addressData.state = data.state;
-        // addressData.pincode = data.pincode;
-        // addressData.plotNo = data.plotNo;
-        // addressData.houseNo = data.houseNo;
-        // addressData.streetDetails = data.streetDetails;
-        // console.log(addressData);
-        // setCompanyAddressInfo(addressData);
+        const addressData = {} as Address;
+        addressData.addressType = data.addressType;
+        addressData.city = data.city;
+        addressData.country = data.country;
+        addressData.state = data.state;
+        addressData.pincode = data.pincode;
+        addressData.plotNo = data.plotNo;
+        addressData.houseNo = data.houseNo;
+        addressData.streetDetails = data.streetDetails;
+        if(props?.onWearehouseAddressUpdate) {
+            props.onWearehouseAddressUpdate(addressData);
+        }
     }
     return (
         <>
@@ -33,8 +37,8 @@ const WearehouseAddress = () => {
                         state={'NA'}
                         zip={''}
                         country={'01'}
-                        countryCode={'IND'}
-                        addressTypeHide={true}
+                        countryCode={'01'}
+                        addressTypeHide={false}
                         onUpdate={onAddressUpdate}
                     />
                 </div>

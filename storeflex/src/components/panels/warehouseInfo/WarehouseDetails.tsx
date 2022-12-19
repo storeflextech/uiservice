@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { Grid } from '@mui/material';
 import InputBox from '../../atoms/textfield/InputBox';
 import { InputError } from '../../atoms/textfield/InputError';
@@ -7,15 +7,46 @@ import { objectData } from '../../../utils/ResponseSchema';
 import { validateCharacterLength, validateGst } from "../../../utils/CommonUtils";
 
 
-const WearehouseBeginningSection = () => {
+interface WarehouseDetailsProps {
+    onWarehouseDetailsUpdate?: (data: any) => void;
+}
 
+const WarehouseDetails = (props: WarehouseDetailsProps) => {
     const [companyCode, setCompanyCode] = useState('');
     const [warehouseNameInfo, setWarehouseNameInfo] = useState<objectData>({});
     const [gstIdInfo, setGstIdInfo] = useState<objectData>({});
     const [warehouseDecInfo, setWarehouseDecInfo] = useState<objectData>({});
+    const [onUpdateInfo , setonUpdateInfo] = useState(false);
+
+    useEffect(() => {
+        if(onUpdateInfo) {
+            setonUpdateInfo(false);
+            onChangeUpdateInfo();
+        }
+    }, [onUpdateInfo]);
+
+    const getVal = (obj: objectData) => {
+        if(obj.isUpdated) {
+            return obj.val
+        } else {
+            return undefined;
+        }
+    }
+    const onChangeUpdateInfo = () => {
+        if(props?.onWarehouseDetailsUpdate) {
+            const obj = {
+                clientId: companyCode,
+                warehouseName: getVal(warehouseNameInfo),
+                descp: getVal(warehouseDecInfo),
+                warehouseTaxId: getVal(gstIdInfo)
+            };
+            props.onWarehouseDetailsUpdate(obj);
+        }
+    }
 
     const companyChange = (companyId: string) => {
         setCompanyCode(companyId);
+        setonUpdateInfo(true);
     }
 
     const validateWarehouseName = (event: any) => {
@@ -30,13 +61,14 @@ const WearehouseBeginningSection = () => {
            obj.error = 'Please enter valid name ';
         }
         setWarehouseNameInfo(obj);
-        // setonUpdateInfo(true);
+        setonUpdateInfo(true);
     }
 
     const onGstIdChange = (event: any) => {
         const obj = {
             val: event.target.value || '',
-            error: ''
+            error: '',
+            isUpdated: true,
         } as objectData;
         if (!obj.val) {
             obj.error = "*GST number is mandatory"
@@ -46,6 +78,7 @@ const WearehouseBeginningSection = () => {
             obj.error = '';
         }
         setGstIdInfo(obj);
+        setonUpdateInfo(true);
     }
 
     const validateWarehouseDec = (event: any) => {
@@ -60,7 +93,7 @@ const WearehouseBeginningSection = () => {
            obj.error = 'Please enter description ';
         }
         setWarehouseDecInfo(obj);
-        // setonUpdateInfo(true);
+        setonUpdateInfo(true);
     }
 
     return (
@@ -125,4 +158,4 @@ const WearehouseBeginningSection = () => {
     )
 }
 
-export default WearehouseBeginningSection;
+export default WarehouseDetails;

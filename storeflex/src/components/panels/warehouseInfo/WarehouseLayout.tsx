@@ -1,149 +1,200 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Grid  } from '@mui/material';
 import InputBox from '../../atoms/textfield/InputBox';
+import Api from "../../../api/Api";
+import { WarehouseCategories } from "../../../utils/ResponseSchema";
 
-const WarehouseLayout = () => {
+
+interface WarehouseLayoutProps {
+    onWarehouseLayoutUpdate?: (data: any) => void;
+}
+
+const WarehouseLayout = (props: WarehouseLayoutProps) => {
+
+    const api = new Api();
+    const [industriesCategories, setIndustriesCategories] = useState({});
+    const [storagesCategories, setStoragesCategories] = useState({});
+    const [facilitiesCategories, setFacilitiesCategories] = useState({});
+    const [onUpdateInfo , setonUpdateInfo] = useState(false);
+
+    const [whCategories , setWhCategories] = useState<WarehouseCategories>();
+
+    useEffect(() => {
+        if(onUpdateInfo) {
+            setonUpdateInfo(false);
+            onChangeUpdateInfo();
+        }
+        if(!whCategories) {
+            getWhCategories();
+        }
+    },[onUpdateInfo]);
+
+    const filterCode = (obj: any) => {
+        const codeArry: string[] = [];
+        Object.entries(obj).forEach((item) => {
+            if(item[1]) {
+                codeArry.push(item[0]);
+            }
+        })
+        if(codeArry.length > 0) {
+            return codeArry.join('|');
+        } else {
+            return '';
+        }
+    }
+
+    const onChangeUpdateInfo = () => {
+        if(props?.onWarehouseLayoutUpdate) {
+            const obj = {
+                industryId: filterCode(industriesCategories),
+                storagesId: filterCode(storagesCategories),
+                facilitiesId: filterCode(facilitiesCategories)
+            };
+            props.onWarehouseLayoutUpdate(obj);
+        }
+    }
+    const getWhCategories = () => {
+        api.getWarehouseCategories().then((resp: WarehouseCategories ) => {
+            if(resp?.methodReturnValue) {
+                setWhCategories(resp);
+            }
+        }).catch((error)=>{
+            console.log(' getWhCategories : getWarehouseCategories error >> ', error);
+        });
+      }
+
+    const onChangeIndustriesCategories = (evn: any) => {
+        const tragetCode =  evn?.target?.id || 'NA';
+        const isSelected = evn?.target?.checked || false;
+        setIndustriesCategories({...industriesCategories, [tragetCode]: isSelected});
+        setonUpdateInfo(true);
+    }
+
+    const onChangeStoragesCategories = (evn: any) => {
+        const tragetCode =  evn?.target?.id || 'NA';
+        const isSelected = evn?.target?.checked || false;
+        setStoragesCategories({...storagesCategories, [tragetCode]: isSelected});
+        setonUpdateInfo(true);
+    }
+
+    const onChangeFacilitiesCategories = (evn: any) => {
+        const tragetCode =  evn?.target?.id || 'NA';
+        const isSelected = evn?.target?.checked || false;
+        setFacilitiesCategories({...facilitiesCategories, [tragetCode]: isSelected});
+        setonUpdateInfo(true);
+    }
+
+    const showIndustriesCategories = () => {
+
+        if(whCategories?.methodReturnValue?.industries) {
+            const obj = Object.entries(whCategories?.methodReturnValue?.industries);
+            return (
+                <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
+                <Grid item xs={12}>
+                    <label className="f-bold" htmlFor="">{whCategories?.methodReturnValue.industry}</label>
+                </Grid>
+                {
+                    obj.map((item, index) => {
+                        const keyId = item[0];
+                        return(
+                            <Grid key={keyId} item xs={4}>
+                                <div>
+                                    <label>
+                                        <input type="checkbox" id={item[0]} name={item[0]} onChange={onChangeIndustriesCategories}/>
+                                        <span className="p-left-sm">{item[1]}</span>
+                                    </label>
+                                </div>
+                            </Grid>
+                        )
+                    })
+                }
+            </Grid>
+            )
+        } else {
+            return (<> </>)
+        }
+    }
+    const showStoragesCategories = () => {
+
+        if(whCategories?.methodReturnValue?.storages) {
+            const obj = Object.entries(whCategories?.methodReturnValue?.storages);
+            return (
+                <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
+                <Grid item xs={12}>
+                    <label className="f-bold" htmlFor="">{whCategories?.methodReturnValue.storage}</label>
+                </Grid>
+                {
+                    obj.map((item, index) => {
+                        const keyId = item[0];
+                        return(
+                            <Grid key={keyId} item xs={4}>
+                                <div>
+                                    <label>
+                                        <input type="checkbox" id={item[0]} name={item[0]} onChange={onChangeStoragesCategories}/>
+                                        <span className="p-left-sm">{item[1]}</span>
+                                    </label>
+                                </div>
+                            </Grid>
+                        )
+                    })
+                }
+            </Grid>
+            )
+        } else {
+            return (<> </>)
+        }
+    }
+    const showFacilitiesCategories = () => {
+
+        if(whCategories?.methodReturnValue?.facilities) {
+            const obj = Object.entries(whCategories?.methodReturnValue?.facilities);
+            return (
+                <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
+                <Grid item xs={12}>
+                    <label className="f-bold" htmlFor="">{whCategories?.methodReturnValue.facility}</label>
+                </Grid>
+                {
+                    obj.map((item, index) => {
+                        const keyId = item[0];
+                        return(
+                            <Grid key={keyId} item xs={4}>
+                                <div>
+                                    <label>
+                                        <input type="checkbox" id={item[0]} name={item[0]} onChange={onChangeFacilitiesCategories}/>
+                                        <span className="p-left-sm">{item[1]}</span>
+                                    </label>
+                                </div>
+                            </Grid>
+                        )
+                    })
+                }
+            </Grid>
+            )
+        } else {
+            return (<> </>)
+        } 
+    }
+    
     return (
         <>
             <div className='m-bot-lg'>
                 <div className='primary-gradient m-bot-md'>
                     <div className='font-white p-sm f-18px f-bold'>Warehouse Layout (select all that apply)</div>
                 </div>
-
                 <div className='p-md'>
                     <div>
                         <div>
-
-                            <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-                                <Grid item xs={12}>
-                                    <label htmlFor="">Industries Served*</label>
-
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> Agriculture & Prepared Products
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> Consumer Products & Mass Merchandising
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> Machinery
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> Apparel, Footwear & Textiles
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> Electronics
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> Petroleum, Natural Gas & Minerals
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> Automotive & Aerospace
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> Industrial & Manufacturing Materials
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> Pharmaceuticals, Health & Chemicals
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> Base Metals
-                                </Grid>
-
-                            </Grid>
-
+                            {showIndustriesCategories()}
+                            <br />
+                            <br />
+                            {showStoragesCategories()}
+                            <br />
+                            <br />
+                            {showFacilitiesCategories()}
                             <br />
                             <br />
 
                             <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-                                <Grid item xs={12}>
-                                    <label htmlFor="">Storage Layouts*</label>
-
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> Floor Space
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> Pick Module(s)
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> Gated Access
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> Security System
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> Racking
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> Dedicated Room(s)
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> On Site Guards
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> Video Surveillance
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> Secured Room(s)
-                                </Grid>
-
-                            </Grid>
-
-
-                            <br />
-                            <br />
-
-                            <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-                                <Grid item xs={12}>
-                                    <label htmlFor="">Facility Qualifications</label>
-
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> Dry-Ambient
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> HazMat Certified
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> Food Grade
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> Temperature Controlled
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> AIB Certified
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> ISO 9001
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> Frozen-Refrigerated
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> CBP Bonded
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> C-TPAT
-                                </Grid>
-
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> FDA Registered
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> Foreign Trade Zone (FTZ)
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="checkbox" name="week" id="" /> TAPA
-                                </Grid>
-
-                            </Grid>
-                            
-                            <br />
-                            <br />
-
-                            <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-                                
                             <Grid item xs={3}>
                                     <InputBox data={{ name: '', label: '#Dock High Doors', value: '' }}
                                     // onChange={validateAddress}
@@ -169,8 +220,6 @@ const WarehouseLayout = () => {
                                     />
                                    
                                 </Grid>
-                             
-
                             </Grid>
 
                         </div>

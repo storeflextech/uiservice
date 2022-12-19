@@ -27,6 +27,7 @@ import PrivacyPolicy from '../pages/privacy';
 import paymentStatus from '../pages/paymentStatus';
 import MyOrders from '../pages/myOrders';
 import ViewUser from '../pages/viewuser';
+import editCompanyUser from '../pages/editCompanyUser';
 import DiscoverMore from '../pages/discovermore';
 import Bookings from '../pages/bookings';
 import PaymentHistory from '../pages/paymentHistory'
@@ -192,6 +193,10 @@ export const PAGES = {
     VIEW_USER:{
         path:'/viewuser',
         Component: ViewUser
+    },
+    EDIT_COMPANY_USER: {
+        path: '/editCompanyUser',
+        Component: editCompanyUser
     },
     DISCOVER_MORE:{
         path:'/discovermore',

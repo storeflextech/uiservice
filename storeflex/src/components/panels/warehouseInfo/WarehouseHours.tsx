@@ -1,9 +1,50 @@
-import React from "react";
-import { Grid, TextareaAutosize, Button } from '@mui/material';
-import InputBox from '../../atoms/textfield/InputBox';
-import GetState from '../../atoms/state/GetState';
+import React, { useState, useEffect } from "react";
+import { Grid } from '@mui/material';
 
-const WarehouseHours = () => {
+interface WarehouseHoursProps {
+    onWarehouseHoursUpdate?: (data: any) => void;
+}
+
+const WarehouseHours = (props: WarehouseHoursProps) => {
+
+    const [allDay, setAllDay] = useState(false);
+    const [days, setDays] = useState({});
+    const [onUpdateInfo, setonUpdateInfo] = useState(false);
+
+    useEffect(() => {
+        if (onUpdateInfo) {
+            setonUpdateInfo(false);
+            onChangeUpdateInfo();
+        }
+    }, [onUpdateInfo]);
+
+    const onChangeUpdateInfo = () => {
+        // if(props?.onWarehouseHoursUpdate) {
+        //     const obj = {
+        //     };
+        //     // props.onWarehouseHoursUpdate(obj);
+        // }
+    }
+
+    const selectDayRange = (day: string) => {
+        if (day === 'alldays') {
+            setAllDay(true);
+        } else {
+            setAllDay(false);
+        }
+    }
+    const selectDays = (evn: any) => {
+        const traget = evn.target.value;
+        const status = evn.target.checked || false;
+        setDays({ ...days, [traget]: status })
+    }
+
+    const checkSelectedDays = () => {
+        if (allDay) {
+            return allDay;
+        }
+    }
+
     return (
         <>
             <div className='m-bot-lg'>
@@ -17,77 +58,75 @@ const WarehouseHours = () => {
 
                             <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                                 <Grid item xs={4}>
-                                <input type="radio" name="week" id="" /> Select Days Of Works
-
+                                    <input type="radio" name="week" id="days" onChange={() => { selectDayRange('days') }} /> Select Days Of Works
                                 </Grid>
                                 <Grid item xs={4}>
-                                    <input type="radio" name="week" id="" /> Available 7 days a week
-                                </Grid>
-                            </Grid>
-
-                            <Grid container spacing={2}  columns={{ xs: 6, sm: 12, md: 12 }} sx={{ p: 2 }}>
-                                <Grid item xs={1}>
-                                <input type="checkbox" name="" id="" /> Mon
-                                </Grid>
-
-                                <Grid item xs={1}>
-                                <input type="checkbox" name="" id="" /> Tues
-                                </Grid>
-
-                                <Grid item xs={1}>
-                                <input type="checkbox" name="" id="" /> Wed
-                                </Grid>
-
-                                <Grid item xs={1}>
-                                <input type="checkbox" name="" id="" /> Thu
-                                </Grid>
-                                <Grid item xs={1}>
-                                <input type="checkbox" name="" id="" /> Fri
-                                </Grid>
-                                <Grid item xs={1}>
-                                <input type="checkbox" name="" id="" /> Sat
-                                </Grid>
-                                <Grid item xs={1}>
-                                <input type="checkbox" name="" id="" /> Sun
-                                </Grid>
-
-
-                            </Grid>
-
-                            <br/>
-                            <br/>
-                            <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-                                <Grid item xs={4}>
-                                <input type="radio" name="time" id="" /> Select Time Range
-
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <input type="radio" name="time" id="" /> Available 24x7
+                                    <input type="radio" name="week" id="alldays" onChange={() => { selectDayRange('alldays') }} /> Available 24x7
                                 </Grid>
                             </Grid>
 
                             <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }} sx={{ p: 2 }}>
-                                <Grid item xs={2}>
-                                    <label htmlFor="">From</label>
-                                <input type="time" className="form-control" name="" id="" />    
+                                <Grid item xs={1}>
+                                    <input type="checkbox" name="mon" id="mon" value='Mon' onChange={selectDays} checked={checkSelectedDays()} /> Mon
                                 </Grid>
 
-                                <Grid item xs={2}>
-                                    <label htmlFor="">To</label>
-                                <input type="time" className="form-control" name="" id="" /> 
+                                <Grid item xs={1}>
+                                    <input type="checkbox" name="tue" id="tue" value='Tue' onChange={selectDays} checked={checkSelectedDays()} /> Tue
                                 </Grid>
 
+                                <Grid item xs={1}>
+                                    <input type="checkbox" name="wed" id="wed" value='Wed' onChange={selectDays} checked={checkSelectedDays()} /> Wed
+                                </Grid>
 
-
+                                <Grid item xs={1}>
+                                    <input type="checkbox" name="thu" id="thu" value='Thu' onChange={selectDays} checked={checkSelectedDays()} /> Thu
+                                </Grid>
+                                <Grid item xs={1}>
+                                    <input type="checkbox" name="fri" id="fri" value='Fri' onChange={selectDays} checked={checkSelectedDays()} /> Fri
+                                </Grid>
+                                <Grid item xs={1}>
+                                    <input type="checkbox" name="sat" id="sat" value='Sat' onChange={selectDays} checked={checkSelectedDays()} /> Sat
+                                </Grid>
+                                <Grid item xs={1}>
+                                    <input type="checkbox" name="sun" id="sun" value='Sun' onChange={selectDays} checked={checkSelectedDays()} /> Sun
+                                </Grid>
                             </Grid>
 
+                            <br />
+                            <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
+                                <Grid item xs={4}>
+                                    <input type="radio" name="time" id="" /> Select Time Range
 
+                                </Grid>
+                            </Grid>
+                            {checkSelectedDays()
+                                ? <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }} sx={{ p: 2 }}>
+                                    <Grid item xs={2}>
+                                        <label htmlFor="">From</label>
+                                        <input type="time" className="form-control" name="" id="" readOnly={true} />
+                                    </Grid>
+
+                                    <Grid item xs={2}>
+                                        <label htmlFor="">To</label>
+                                        <input type="time" className="form-control" name="" id="" readOnly={true} />
+                                    </Grid>
+                                </Grid>
+                                :
+                                <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }} sx={{ p: 2 }}>
+                                    <Grid item xs={2}>
+                                        <label htmlFor="">From</label>
+                                        <input type="time" className="form-control" name="" id="" readOnly={false} />
+                                    </Grid>
+
+                                    <Grid item xs={2}>
+                                        <label htmlFor="">To</label>
+                                        <input type="time" className="form-control" name="" id="" readOnly={false} />
+                                    </Grid>
+                                </Grid>
+                            }
                         </div>
                     </div>
-
                 </div>
-
-
             </div>
         </>
     )
