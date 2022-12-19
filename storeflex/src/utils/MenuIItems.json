@@ -231,19 +231,8 @@
                 {
                     "Label": "Company",
                     "Name": "BusinessMenu",
-                    "NavigateTo": "self",
-                    "SubMenu": [
-                        {
-                            "Label": "Update Company",
-                            "Name": "",
-                            "NavigateTo": "/update-business"
-                        },
-                        {
-                            "Label": "View Company",
-                            "Name": "",
-                            "NavigateTo": "/view-business"
-                        }
-                    ],
+                    "NavigateTo": "/business/view",
+                    "SubMenu": [],
                     "Icon": "mdi mdi-chart-areaspline menu-icon"
                 },
                 {
@@ -254,22 +243,12 @@
                         {
                             "Label": "Add Warehouse",
                             "Name": "",
-                            "NavigateTo": "/add-warehouse"
-                        },
-                        {
-                            "Label": "Delete Warehouse",
-                            "Name": "",
-                            "NavigateTo": "/delete-warehouse"
+                            "NavigateTo": "/warehouse/add"
                         },
                         {
                             "Label": "View Warehouse",
                             "Name": "",
-                            "NavigateTo": "/view-warehouse"
-                        },
-                        {
-                            "Label": "Update Warehouse",
-                            "Name": "",
-                            "NavigateTo": "/update-warehouse"
+                            "NavigateTo": "/warehouse/view"
                         }
                     ],
                     "Icon": "mdi mdi-home-analytics menu-icon"
@@ -277,20 +256,16 @@
                 {
                     "Label": "User Management",
                     "Name": "UserManagementMenu",
-                    "NavigateTo": "self",
-                    "SubMenu": [
-                        {
-                            "Label": "Add User",
-                            "Name": "",
-                            "NavigateTo": "/add-user"
-                        },
-                        {
-                            "Label": "Delete User",
-                            "Name": "",
-                            "NavigateTo": "/delete-user"
-                        }
-                    ],
+                    "NavigateTo": "/viewuser",
+                    "SubMenu": [],
                     "Icon": "mdi mdi-account-multiple-outline menu-icon"
+                },
+                {
+                    "Label": "Bookings",
+                    "Name": "BookingDetailsMenu",
+                    "NavigateTo":"/bookings",
+                    "SubMenu":[],
+                    "Icon": "mdi mdi-checkbox-marked-outline menu-icon"
                 },
                 {
                     "Label": "Payment Details",
@@ -298,19 +273,14 @@
                     "NavigateTo": "self",
                     "SubMenu": [
                         {
-                            "Label": "Add Payment",
+                            "Label": "My Payment",
                             "Name": "",
                             "NavigateTo": "/add-payment"
                         },
                         {
-                            "Label": "Delete Payment",
+                            "Label": "Payment Receivables",
                             "Name": "",
-                            "NavigateTo": "/delete-payment"
-                        },
-                        {
-                            "Label": "Update Payment",
-                            "Name": "",
-                            "NavigateTo": "/update-payment"
+                            "NavigateTo": "/paymentHistory"
                         }
                     ],
                     "Icon": "mdi mdi-cash menu-icon"
@@ -422,27 +392,22 @@
                     "Icon": "mdi mdi-view-module menu-icon"
                 },
                 {
-                    "Label": "Search",
-                    "Name": "SearchMenu",
+                    "Label": "Company",
+                    "Name": "BusinessMenu",
                     "NavigateTo": "self",
                     "SubMenu": [
                         {
-                            "Label": "Search By State",
-                            "Name": "SearchByStateMenu",
-                            "NavigateTo": "/search-warehouse"
+                            "Label": "Add Company",
+                            "Name": "",
+                            "NavigateTo": "/business/add"
                         },
                         {
-                            "Label": "Search By City",
-                            "Name": "SearchByCityMenu",
-                            "NavigateTo": "/search-business"
-                        },
-                        {
-                            "Label": "Search By Pin",
-                            "Name": "SearchByPinMenu",
-                            "NavigateTo": "/search-warehouse"
+                            "Label": "View Company",
+                            "Name": "",
+                            "NavigateTo": "/business/view"
                         }
                     ],
-                    "Icon": "mdi mdi-magnify menu-icon"
+                    "Icon": "mdi mdi-chart-areaspline menu-icon"
                 },
                 {
                     "Label": "Profile",
@@ -463,41 +428,62 @@
                     "Icon": "mdi mdi-account-box menu-icon"
                 },
                 {
-                    "Label": "My Bookings",
-                    "Name": "MyBookingsMenu",
-                    "NavigateTo": "self",
-                    "SubMenu": [
-                        {
-                            "Label": "Current Bookings",
-                            "Name": "CurrentBookingsMenu",
-                            "NavigateTo": "/my-bookings"
-                        },
-                        {
-                            "Label": "Past Bookings",
-                            "Name": "PastBookingsMenu",
-                            "NavigateTo": "/my-bookings"
-                        },
-                        {
-                            "Label": "Future Bookings",
-                            "Name": "FutureBookingsMenu",
-                            "NavigateTo": "/my-bookings"
-                        }
-                    ],
+                    "Label": "Bookings",
+                    "Name": "BookingDetailsMenu",
+                    "NavigateTo":"/bookings",
+                    "SubMenu":[],
                     "Icon": "mdi mdi-checkbox-marked-outline menu-icon"
                 },
                 {
-                    "Label": "My Payments",
-                    "Name": "MyPaymentsMenu",
+                    "Label": "Order Details",
+                    "Name": "OrderDetailsMenu",
+                    "NavigateTo":"/myorders",
+                    "SubMenu":[],
+                    "Icon": "mdi mdi-briefcase-check menu-icon"
+                },
+                {
+                    "Label": "Payment Details",
+                    "Name": "PaymentDetailsMenu",
                     "NavigateTo": "self",
                     "SubMenu": [
                         {
-                            "Label": "Payment Invoices",
+                            "Label": "My Payment",
                             "Name": "",
-                            "NavigateTo": "/payment-invoice"
+                            "NavigateTo": "/add-payment"
+                        },
+                        {
+                            "Label": "Payment History",
+                            "Name": "",
+                            "NavigateTo": "/paymentHistory"
                         }
                     ],
                     "Icon": "mdi mdi-cash menu-icon"
-                } 
+                },
+                {
+                 "Label": "Search",
+                    "Name": "SearchMenu",
+                    "NavigateTo": "/search-new",
+                    "SubMenu": [],
+                    "Icon": "mdi mdi-magnify menu-icon"
+                },
+                {
+                    "Label": "Reports",
+                    "Name": "ReportMenu",
+                    "NavigateTo": "self",
+                    "SubMenu": [
+                        {
+                            "Label": "Company Report",
+                            "Name": "BusinessReportMenu",
+                            "NavigateTo": "/business-report"
+                        },
+                        {
+                            "Label": "Warehouse Report",
+                            "Name": "WarehouseReportMenu",
+                            "NavigateTo": "/warehouse-report"
+                        }
+                    ],
+                    "Icon": "mdi mdi-chart-pie menu-icon"
+                }
             ]
         } 
     }
