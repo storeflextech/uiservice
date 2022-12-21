@@ -95,7 +95,7 @@ const WarehouseHours = (props: WarehouseHoursProps) => {
                             <br />
                             <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                                 <Grid item xs={4}>
-                                    <input type="radio" name="time" id="" /> Select Time Range
+                                    <input type="radio" name="time" id="" disabled={checkSelectedDays() ? true : false} /> Select Time Range
 
                                 </Grid>
                             </Grid>
@@ -103,12 +103,12 @@ const WarehouseHours = (props: WarehouseHoursProps) => {
                                 ? <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }} sx={{ p: 2 }}>
                                     <Grid item xs={2}>
                                         <label htmlFor="">From</label>
-                                        <input type="time" className="form-control" name="" id="" readOnly={true} />
+                                        <input type="time" className="form-control" name="" id="" readOnly={true} value="00:00" />
                                     </Grid>
 
                                     <Grid item xs={2}>
                                         <label htmlFor="">To</label>
-                                        <input type="time" className="form-control" name="" id="" readOnly={true} />
+                                        <input type="time" className="form-control" name="" id="" readOnly={true} value="00:00" />
                                     </Grid>
                                 </Grid>
                                 :

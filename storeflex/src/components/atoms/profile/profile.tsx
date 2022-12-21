@@ -42,18 +42,21 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
             buttons: {
                 buttonOne: {
                     text: "Existing Company",
-                    value: true,
+                    value: "ec",
                     visible: true,
+                    className: "sf-btn",
                 },
                 buttonTwo: {
                     text: "New Company",
-                    value: false,
+                    value: "nc",
                     visible: true,
+                    className: "sf-btn",
                 }
             }
         }).then(function (value) {
-            if (value) { window.location.href = "/warehouse/add"; }
-            else { window.location.href = "/business/add"; }
+            if (value == "ec") { window.location.href = "/warehouse/add"; }
+            else if (value == "nc") { window.location.href = "/business/add"; }
+            else { window.location.href = ""; }
 
         });
     }
