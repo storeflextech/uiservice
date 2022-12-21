@@ -85,6 +85,7 @@ export class ApiConfig {
     getCompaniesApi = '/clients';
     addCompanyUrl = '/client';
     updateCompanyApi = '/clientUpdate';
+    uploadCompanyPhotoApi = '/uploadClientProfilePic';
     searchwarehouse = '/searchwarehouse';
     getWarehouseByClientIdUrl = '/warehouseByClientId';
     getWarehouseAdminUrl = '/warehouses';
@@ -92,5 +93,6 @@ export class ApiConfig {
     getViewUserUrl = '/storeflexusers';
     getCompanyListApi = '/clientDropList';
     getWarehouseCategoriesApi = '/categories'
+
 
 }

@@ -98,6 +98,26 @@ export default class Api {
         }
     }
 
+    async uploadCompanyPhoto(postData: any, clientId: string): Promise<any>{
+        console.log(' >>>>>>>  postData >>' , postData);
+        const url = `${this.baseUrl}${this.apiUrl.uploadCompanyPhotoApi}?clientId=${clientId}` ;
+        try {
+            const config = {
+                headers: { 'content-type': 'multipart/form-data' }
+            }
+            const response = await axios.post(url, postData, config);
+            if (response.status === 200) {
+                return Promise.resolve(response?.data);
+            } else {
+                console.log(' error : uploadCompanyPhoto ', response);
+                return Promise.reject(response);
+            }
+        }
+        catch (error) {
+            console.log(' error : uploadCompanyPhoto', error);
+            return Promise.reject(error);
+        }
+    }
     async updateCompany(postData: AddCompanyPostData): Promise<any>{
         const url = this.baseUrl+this.apiUrl.addCompanyUrl;
         try {
