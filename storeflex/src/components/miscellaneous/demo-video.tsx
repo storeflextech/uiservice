@@ -25,15 +25,21 @@ const DemoVideo = () => {
                   </span>
                   <div className="section-title">
                     <span className="wow zoomIn" data-wow-delay=".2s">Create your own experience</span>
-                    <h2 className="wow fadeInUp" data-wow-delay=".4s">Watch Our intro video</h2>
-                    <p className="wow fadeInUp" data-wow-delay=".6s">There are many variations of passages of
-                      Lorem
-                      Ipsum available, but the majority have suffered alteration in some form.</p>
+                    <h2 className="wow fadeInUp" data-wow-delay=".4s">Introducing StoreFlex</h2>
+                    <p className="wow fadeInUp" data-wow-delay=".6s"><h6>Fostering creativity, innovation, and groundbreaking solutions for the world's leading warehouses.</h6>
+                    </p>
                   </div>
                   <div className="intro-video-play">
                     <div className="play-thumb wow zoomIn" data-wow-delay=".2s">
-                      <a href="https://www.youtube.com/watch?v=r44RKWyfcFw&fbclid=IwAR21beSJORalzmzokxDRcGfkZA1AtRTE__l5N4r09HcGS5Y6vOluyouM9EM"
-                        className="glightbox video"><i className="lni lni-play"></i></a>
+                      <iframe
+                        width="560"
+                        height="315"
+                        src="https://www.youtube.com/embed/r44RKWyfcFw"
+                        title="YouTube video player"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen>
+                      </iframe>
                     </div>
                   </div>
                 </div>

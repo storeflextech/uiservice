@@ -20,7 +20,7 @@ interface AddressDetailsProps {
     country?: string;
     plotNo?: string | number;
     houseNo?: string | number;
-    streetDetails?: string| number;
+    streetDetails?: string | number;
     onUpdate?: (data: any) => void;
 }
 
@@ -28,29 +28,29 @@ const AddressDetails = (props: AddressDetailsProps) => {
     // const api = new Api();
     const [countryCode, setCountryCode] = useState('01');
     const [stateInfo, setStateInfo] = useState<objectData>({});
-    const [addressTypeInfo, setAddressTypeInfo] = useState<objectData>({val: 'COR'});
+    const [addressTypeInfo, setAddressTypeInfo] = useState<objectData>({ val: 'COR' });
     const [cityInfo, setCityInfo] = useState<objectData>({});
     const [pinCode, setPinCode] = useState<objectData>({});
     const [plotInfo, setPlotInfo] = useState<objectData>({});
     const [houseInfo, setHouseInfo] = useState<objectData>({});
     const [streetInfo, setStreetInfo] = useState<objectData>({});
 
-    const [onUpdateInfo , setonUpdateInfo] = useState(false);
+    const [onUpdateInfo, setonUpdateInfo] = useState(false);
 
     useEffect(() => {
-        if(props?.countryCode !== countryCode) {
+        if (props?.countryCode !== countryCode) {
             setCountryCode(props.countryCode || '01');
             // getStates(countryCode);
         }
 
-        if(onUpdateInfo) {
+        if (onUpdateInfo) {
             setonUpdateInfo(false);
             onChangeUpdateInfo();
         }
-    }, [props.countryCode, countryCode, onUpdateInfo ]);
+    }, [props.countryCode, countryCode, onUpdateInfo]);
 
     const getVal = (obj: objectData) => {
-        if(obj.isUpdated) {
+        if (obj.isUpdated) {
             return obj.val
         } else {
             return undefined;
@@ -58,7 +58,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
     }
 
     const onChangeUpdateInfo = () => {
-        if(props?.onUpdate) {
+        if (props?.onUpdate) {
             const addressData = {
                 addressType: getVal(addressTypeInfo),
                 country: 'IND',
@@ -103,7 +103,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
         setStateInfo(obj);
         setonUpdateInfo(true);
     }
-    
+
     const validateStreet = (event: any) => {
         const obj = {
             val: event.target.value,
@@ -113,12 +113,12 @@ const AddressDetails = (props: AddressDetailsProps) => {
         if (validateCharacterLength(obj.val, 4, 80)) {
             obj.error = '';
         } else {
-           obj.error = 'Minimum 6 letters and maximum 80 letters required';
+            obj.error = 'Minimum 6 letters and maximum 80 letters required';
         }
         setStreetInfo(obj);
         setonUpdateInfo(true);
     }
-    
+
 
     const validatePin = (event: any) => {
         const obj = {
@@ -176,7 +176,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
     }
 
     const showAddressType = () => {
-        if(props?.addressTypeHide) {
+        if (props?.addressTypeHide) {
             return (<> </>)
         } else {
             <Grid container className='mt-1'>
@@ -197,16 +197,16 @@ const AddressDetails = (props: AddressDetailsProps) => {
             {showAddressType()}
             <Grid container className='p-top-md' spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                 <Grid item xs={3}>
-                    <InputBox data={{ name: 'plotno', label: 'Plot no', value: plotInfo.val }}
+                    <InputBox data={{ name: 'plotno', label: 'Plot No', value: plotInfo.val }}
                         onChange={validatePlotNo}
                     />
-                     {plotInfo.error && <p className="text-red">{plotInfo.error}</p>}
+                    {plotInfo.error && <p className="text-red">{plotInfo.error}</p>}
                 </Grid>
                 <Grid item xs={3}>
-                    <InputBox data={{ name: 'houseno', label: 'House no', value: houseInfo.val }}
+                    <InputBox data={{ name: 'houseno', label: 'House No', value: houseInfo.val }}
                         onChange={validateHouseNo}
                     />
-                     {houseInfo.error && <p className="text-red">{houseInfo.error}</p>}
+                    {houseInfo.error && <p className="text-red">{houseInfo.error}</p>}
                 </Grid>
                 <Grid item xs={6}>
                     <InputBox data={{ name: 'street', label: 'Street', value: streetInfo.val }}
@@ -219,13 +219,13 @@ const AddressDetails = (props: AddressDetailsProps) => {
                 <Grid item xs={6}>
                     <div> State </div>
                     <div className='p-top-sm'>
-                        {<GetState countryCode={countryCode} onChange={onStateChange} stateCodeDefault={props?.state}/>}
+                        {<GetState countryCode={countryCode} onChange={onStateChange} stateCodeDefault={props?.state} />}
                     </div>
                 </Grid>
                 <Grid item xs={6}>
                     <div> City </div>
                     <div className='p-top-sm'>
-                        {<GetCity state={stateInfo.val || ''} onChange={onCityChange}/>}
+                        {<GetCity state={stateInfo.val || ''} onChange={onCityChange} />}
                     </div>
                 </Grid>
             </Grid>
@@ -237,7 +237,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
                     </div>
                 </Grid>
                 <Grid item xs={6}>
-                        <InputBox data={{ name: 'pincode', label: 'Pincode*', value: pinCode.val || props.zip }}
+                    <InputBox data={{ name: 'pincode', label: 'Pincode*', value: pinCode.val || props.zip }}
                         onChange={validatePin}
                     />
                     {pinCode.error && <p className="text-red">{pinCode.error}</p>}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -32,7 +32,7 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
     };
 
     const onMenuItemClick = (value: string) => {
-        if(value === 'list_popup') {
+        if (value === 'list_popup') {
             createSwalButton()
         } else {
             navigate(value);
@@ -43,6 +43,12 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
         sessionStorage.setItem('isLoggedIn', 'false');
         navigate(pagePath);
     }
+
+    useEffect(() => {
+        window.addEventListener('popstate', (e) => {
+            window.history.go(1);
+        });
+    }, []);
 
     const createSwalButton = async () => {
         let swalButton1 = await swal({
@@ -70,19 +76,19 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
     }
     const showProfileMenuList = () => {
         let menulist;
-        if(userType === 'SL') {
+        if (userType === 'SL') {
             menulist = PrifileMenuList.SL;
-        } else if(userType === 'CL') {
+        } else if (userType === 'CL') {
             menulist = PrifileMenuList.CL;
-        } else if(userType === 'CU') {
+        } else if (userType === 'CU') {
             menulist = PrifileMenuList.CU;
         } else {
             menulist = [];
         }
         return (
             menulist.map((item, index) => {
-            const keyId = `p_item_${index}`;
-            return (
+                const keyId = `p_item_${index}`;
+                return (
                     <MenuItem key={keyId}>
                         <ListItemText>
                             <span onClick={() => { onMenuItemClick(item.url) }}>{item.label}</span>
@@ -129,7 +135,7 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-            {showProfileMenuList()}
+                {showProfileMenuList()}
             </Menu>
         );
     }
