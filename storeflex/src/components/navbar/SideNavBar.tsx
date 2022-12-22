@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Collapse } from 'react-bootstrap';
 import './index.scss';
-import MenuItems from '../../utils/MenuIItems.json';
+import MenuItems from './SideNavList.json';
 import Api from '../../api/Api';
 
 const SideNavBar = (props) => {
