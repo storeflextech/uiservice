@@ -105,10 +105,10 @@ const AddUser = () => {
     return (
       <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
         <Grid item xs={6}>
-                    <div> User Type </div>
-                    <div className='p-top-md'>
-                        {<UserType />}
-                    </div>
+          <div> User Type </div>
+          <div className='p-top-md'>
+            {<UserType />}
+          </div>
         </Grid>
         <Grid item xs={3}>
           <div>Company</div>
@@ -117,7 +117,7 @@ const AddUser = () => {
           </div>
         </Grid>
         <Grid item xs={3}>
-          <div>Profile Photo</div>
+          <div>Profile Photo (optional)</div>
           <div className='p-top-md'>
             <input type="file" className="form-control" />
           </div>

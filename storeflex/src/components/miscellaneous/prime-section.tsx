@@ -51,6 +51,13 @@ const PrimeSection = () => {
         Swal({
           title: 'We are sorry',
           text: 'We were not able to find a match. Please try another Search Word',
+          buttons: {
+            buttonOne: {
+              text: "OK",
+              visible: true,
+              className: "sf-btn",
+            }
+          }
         })
       }
     })
@@ -59,6 +66,13 @@ const PrimeSection = () => {
         Swal({
           title: 'We are sorry',
           text: 'We were not able to find a match. Please try another Search Word',
+          buttons: {
+            buttonOne: {
+              text: "OK",
+              visible: true,
+              className: "sf-btn",
+            }
+          }
         })
 
       })
@@ -81,11 +95,11 @@ const PrimeSection = () => {
                 <div className="home-slider">
                   <div className="header-text align-items-center">
                     <h1>
-                    {homeContent?.homeTitleText}
+                      {homeContent?.homeTitleText}
                       <br />
                       <h4>
                         <i>
-                        {" "}
+                          {" "}
                           {homeContent?.homeSubTitleText}
                         </i>
                       </h4>
@@ -95,7 +109,7 @@ const PrimeSection = () => {
                           className="btn primary-btn"
                           onClick={() => goToNextPage("/discovermore")}
                         >
-                          
+
                           {homeContent?.discoverMoreBtn}
                         </a>
                       </div>

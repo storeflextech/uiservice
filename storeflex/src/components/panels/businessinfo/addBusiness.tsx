@@ -5,7 +5,7 @@ import InputBox from '../../atoms/textfield/InputBox';
 import { InputError } from '../../atoms/textfield/InputError';
 import Accordion from 'react-bootstrap/Accordion';
 import AddressDetails from '../../atoms/addressforms/AddressDetails';
-import { BusinessDetails, Address, Contact} from '../../../utils/ResponseSchema';
+import { BusinessDetails, Address, Contact } from '../../../utils/ResponseSchema';
 import { validateCharacterLength, validateWebUrl, validateGst, validatePhone } from '../../../utils/CommonUtils';
 import Api from '../../../../src/api/Api';
 import { AddCompanyPostData } from '../../../../src/api/ApiConfig';
@@ -28,15 +28,15 @@ const AddBusiness = (props: AddBusinessProps) => {
     const [businessProfile, setBusinessProfile] = useState(profile);
     const [isLoader, setLoaderState] = useState(false);
 
-     // Conpany Information 
-     const [companyNameInfo, setCompanyNameInfo] = useState<objectData>({});
-     const [companyUrlInfo, setCompanyUrlInfo] = useState<objectData>({});
-     const [gstIdInfo, setGstIdInfo] = useState<objectData>({});
-     const [companyDescription, setCompanyDescription] = useState<objectData>({});
-     const [photoName, setPhotoName] = useState<objectData>({});
-     // const [photoUrl, setPhotoUrl] = useState<objectData>({ val: ''});
-     const [photoObj, setPhotoObj] = useState<File>();
-     
+    // Conpany Information 
+    const [companyNameInfo, setCompanyNameInfo] = useState<objectData>({});
+    const [companyUrlInfo, setCompanyUrlInfo] = useState<objectData>({});
+    const [gstIdInfo, setGstIdInfo] = useState<objectData>({});
+    const [companyDescription, setCompanyDescription] = useState<objectData>({});
+    const [photoName, setPhotoName] = useState<objectData>({});
+    // const [photoUrl, setPhotoUrl] = useState<objectData>({ val: ''});
+    const [photoObj, setPhotoObj] = useState<File>();
+
     // Address Information 
     const [companyAddressInfo, setCompanyAddressInfo] = useState<Address>({});
 
@@ -51,12 +51,12 @@ const AddBusiness = (props: AddBusinessProps) => {
     const selectedCountryCode = '01';
 
     useEffect(() => {
-        if(photoObj && photoObj.name) {
+        if (photoObj && photoObj.name) {
             imageUrl = URL.createObjectURL(photoObj);
             upladPhoto();
             return () => URL.revokeObjectURL(imageUrl);
         }
-    },[photoObj])
+    }, [photoObj])
 
     const onCompanyNameChange = (event: any) => {
         const obj = {
@@ -225,7 +225,7 @@ const AddBusiness = (props: AddBusinessProps) => {
     }
 
     const onPhotoUploadChange = (event: any) => {
-        if(event?.target?.files[0]) {
+        if (event?.target?.files[0]) {
             setPhotoObj(event.target.files[0]);
         }
     }
@@ -241,20 +241,20 @@ const AddBusiness = (props: AddBusinessProps) => {
         api.uploadCompanyPhoto(postData, clientId).then((response) => {
             setLoaderState(false);
             console.log(' upladPhoto res >>>>>> ', response);
-        }).catch((error)=>{
+        }).catch((error) => {
             setLoaderState(false);
             console.log(' upladPhoto erroor ', error);
         });
     }
     const onSave = () => {
-        const postData = {} as AddCompanyPostData ;
+        const postData = {} as AddCompanyPostData;
         postData.compyName = companyNameInfo.val;
         postData.compyDesc = companyDescription.val;
         postData.url = companyUrlInfo.val;
         postData.gstNo = gstIdInfo.val;
         postData.addresses = [companyAddressInfo];
-        postData.contact = [ buildContactInfo()];
-        
+        postData.contact = [buildContactInfo()];
+
         setLoaderState(true);
 
         api.addCompany(postData).then((response) => {
@@ -264,7 +264,7 @@ const AddBusiness = (props: AddBusinessProps) => {
                 icon: "success",
             });
             console.log(' Company creation res >>>>>> ', response);
-        }).catch((error)=>{
+        }).catch((error) => {
             setLoaderState(false);
             console.log(' Company creation erroor ', error);
         });
@@ -280,18 +280,18 @@ const AddBusiness = (props: AddBusinessProps) => {
                                 <InputBox data={{ name: 'companyname', label: 'Company Name*', value: businessProfile.name }}
                                     onChange={onCompanyNameChange} onBlur={handelOnBlur}
                                 />
-                                <InputError errorText={companyNameInfo.error}/>
+                                <InputError errorText={companyNameInfo.error} />
 
                                 <InputBox data={{ name: 'companyurl', label: 'Company URL*', value: businessProfile.weburl }}
                                     onChange={onCompanyUrlChange} onBlur={handelOnBlur}
                                 />
-                                 <InputError errorText={companyUrlInfo.error}/>
+                                <InputError errorText={companyUrlInfo.error} />
 
                                 <InputBox data={{ name: 'gstid', label: 'GST Number*', value: businessProfile.gstn }}
                                     onChange={onGstIdChange} onBlur={handelOnBlur}
                                 />
-                                <InputError errorText={gstIdInfo.error}/>
-                                
+                                <InputError errorText={gstIdInfo.error} />
+
                                 <Grid item xs={12}>
                                     <div> Business Description </div>
                                 </Grid>
@@ -312,8 +312,8 @@ const AddBusiness = (props: AddBusinessProps) => {
                                     onChange={onPhotoNameChange} onBlur={handelOnBlur}
                                 />
                                 <img src={imageUrl} alt="company phots" style={{ width: '100%', height: '20vh', marginTop: '10px' }} />
-                                <input type="file" id="companyphoto" name="companyphoto" 
-                                accept="image/*" onChange={onPhotoUploadChange}></input>
+                                <input type="file" id="companyphoto" name="companyphoto"
+                                    accept="image/*" onChange={onPhotoUploadChange}></input>
                             </Grid>
                         </Grid>
                     </div>
@@ -325,7 +325,7 @@ const AddBusiness = (props: AddBusinessProps) => {
         return (
             <div>
                 <div className='m-bot-md'>
-                    
+
                     <div className='p-md'>
                         {
                             <AddressDetails
@@ -352,7 +352,7 @@ const AddBusiness = (props: AddBusinessProps) => {
                                 <InputBox data={{ name: 'contactname', label: 'Contact Name*', value: '' }}
                                     onChange={onContactNameChange}
                                 />
-                                 {contactNameInfo.error && <p className="text-red">{contactNameInfo.error}</p>}
+                                {contactNameInfo.error && <p className="text-red">{contactNameInfo.error}</p>}
                             </Grid>
                         </Grid>
                         <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }} className='p-top-md'>
@@ -371,20 +371,20 @@ const AddBusiness = (props: AddBusinessProps) => {
                         </Grid>
                         <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }} className='p-top-md'>
                             <Grid item xs={6}>
-                                <InputBox data={{ type: 'number', name: 'landlineext', label: 'Landline Extension*', value: '' }}
+                                <InputBox data={{ type: 'number', name: 'landlineext', label: 'Landline Extension', value: '' }}
                                     onChange={onLandlineExtChange} />
                                 {landLineExtInfo.error && <p className="text-red">{landLineExtInfo.error}</p>}
                             </Grid>
                             <Grid item xs={6}>
-                                <InputBox data={{ type: 'number', name: 'landlineno', label: 'Landline No.*', value: '' }}
+                                <InputBox data={{ type: 'number', name: 'landlineno', label: 'Landline No.', value: '' }}
                                     onChange={onLandlineNoChange}
                                 />
-                                 {landLineNoInfo.error && <p className="text-red">{landLineNoInfo.error}</p>}
+                                {landLineNoInfo.error && <p className="text-red">{landLineNoInfo.error}</p>}
                             </Grid>
                         </Grid>
                     </div>
                 </div>
-               
+
             </div>
         );
     }
@@ -407,7 +407,7 @@ const AddBusiness = (props: AddBusinessProps) => {
                 <Accordion.Item eventKey="0">
                     <Accordion.Header className='sf-ac'>
                         <div className='primary-gradient'>
-                        <div className='font-white p-sm f-18px f-bold'>Company Information</div>
+                            <div className='font-white p-sm f-18px f-bold'>Company Information</div>
                         </div>
                     </Accordion.Header>
                     <Accordion.Body>
@@ -416,9 +416,9 @@ const AddBusiness = (props: AddBusinessProps) => {
                 </Accordion.Item>
                 <Accordion.Item eventKey="1">
                     <Accordion.Header className='sf-ac'>
-                    <div className='primary-gradient'>
-                        <div className='font-white p-sm f-18px f-bold'>Address Information</div>
-                    </div>
+                        <div className='primary-gradient'>
+                            <div className='font-white p-sm f-18px f-bold'>Address Information</div>
+                        </div>
                     </Accordion.Header>
                     <Accordion.Body>
                         <> {showAddressInformation()}</>
@@ -426,9 +426,9 @@ const AddBusiness = (props: AddBusinessProps) => {
                 </Accordion.Item>
                 <Accordion.Item eventKey="2">
                     <Accordion.Header className='sf-ac'>
-                    <div className='primary-gradient'>
-                        <div className='font-white p-sm f-18px f-bold'>Contact Information</div>
-                    </div>
+                        <div className='primary-gradient'>
+                            <div className='font-white p-sm f-18px f-bold'>Contact Information</div>
+                        </div>
                     </Accordion.Header>
                     <Accordion.Body>
                         <> {showContactInformation()}</>
@@ -436,9 +436,9 @@ const AddBusiness = (props: AddBusinessProps) => {
                 </Accordion.Item>
             </Accordion>
             <div className='p-md align-r' style={{ float: 'right' }}>
-                    <button className='btn primary-btn-outline rounded-full' onClick={() => { setStep(2) }}> Cancel </button>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <button className="btn primary-btn rounded-full" onClick={() => { onSave() }}> Save </button>
+                <button className='btn primary-btn-outline rounded-full' onClick={() => { setStep(2) }}> Cancel </button>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <button className="btn primary-btn rounded-full" onClick={() => { onSave() }}> Save </button>
             </div>
         </>
 
