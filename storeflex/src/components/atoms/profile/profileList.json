@@ -1,0 +1,108 @@
+{
+    "SL": [
+        {
+            "label": "Dashboard",
+            "url": "/dashboard"
+        },
+        {
+            "label": "Search Space",
+            "url": "/search-new"
+        },
+        {
+            "label": "Orders",
+            "url": "/myorders"
+        },
+        {
+            "label": "Wishlists",
+            "url": "/cart"
+        },
+        {
+            "label": "List Space",
+            "url": "list_popup"
+        },
+        {
+            "label": "Bookings",
+            "url": "/bookings"
+        },
+        {
+            "label": "Edit Profile",
+            "url": "/view-profile"
+        },
+        {
+            "label": "Contact Us",
+            "url": "/contactus"
+        },
+        {
+            "label": "FAQ",
+            "url": "/faq"
+        },
+        {
+            "label": "Log out",
+            "url": "/home"
+        }
+    ],
+    "CL": [
+        {
+            "label": "Dashboard",
+            "url": "/dashboard"
+        },
+        {
+            "label": "Search Space",
+            "url": "/search-new"
+        },
+        {
+            "label": "Orders",
+            "url": "/myorders"
+        },
+        {
+            "label": "List Space",
+            "url": "list_popup"
+        },
+        {
+            "label": "Edit Profile",
+            "url": "/view-profile"
+        },
+        {
+            "label": "Contact Us",
+            "url": "/contactus"
+        },
+        {
+            "label": "FAQ",
+            "url": "/faq"
+        },
+        {
+            "label": "Log out",
+            "url": "/home"
+        }
+    ],
+    "CU": [
+        {
+            "label": "Dashboard",
+            "url": "/dashboard"
+        },
+        {
+            "label": "Search Space",
+            "url": "/search-new"
+        },
+        {
+            "label": "Orders",
+            "url": "/myorders"
+        },
+        {
+            "label": "Edit Profile",
+            "url": "/view-profile"
+        },
+        {
+            "label": "Contact Us",
+            "url": "/contactus"
+        },
+        {
+            "label": "FAQ",
+            "url": "/faq"
+        },
+        {
+            "label": "Log out",
+            "url": "/home"
+        }
+    ]
+}

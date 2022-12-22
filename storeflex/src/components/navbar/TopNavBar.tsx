@@ -5,16 +5,18 @@ import { ProfileMenu } from '../atoms/profile/profile';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { getUserType } from '../../utils/CommonUtils';
 
 const TopNavBar = () => {
   // const navigate = useNavigate();
   const isAuthenticated = getUserLoggedIn();
+  const userPrifile = getUserType();
   const path = window.location.pathname;
   const signOut = () => {
     if(isAuthenticated) {
       return (
         <div>
-          <ProfileMenu isSigned={true} profileImg={'/images/face1.jpg'}/>
+          <ProfileMenu isSigned={true} userType={userPrifile} profileImg={'/images/face1.jpg'}/>
         </div>
       )
     } else {
