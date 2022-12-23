@@ -89,6 +89,7 @@ export class ApiConfig {
     searchwarehouse = '/searchwarehouse';
     getWarehouseByClientIdUrl = '/warehouseByClientId';
     getWarehouseAdminUrl = '/warehouses';
+    addWarehouseUrl = '/warehouses';
     enquiry = '/enquiry';
     getViewUserUrl = '/storeflexusers';
     getCompanyListApi = '/clientDropList';

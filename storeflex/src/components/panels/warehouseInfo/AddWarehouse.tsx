@@ -1,31 +1,79 @@
-import React  from 'react';
-import WearehouseAddress from './WearehouseAddress';
-import WearehousePricing from './WearehousePricing';
-import WarehouseHours from './WarehouseHours';
-import WarehouseLayout from './WarehouseLayout';
+import React, {useEffect, useState}  from 'react';
 import { Button } from '@mui/material';
+import swal from 'sweetalert';
 import Footer from '../../footer/footer';
-import WarehouseDetails from './WarehouseDetails';
+import Api from '../../../../src/api/Api';
+import LoaderSpinner from '../../atoms/spinner/spinner';
+import WearehouseAddress from './component/WearehouseAddress';
+import WearehousePricing from './component/WearehousePricing';
+import WarehouseHours from './component/WarehouseHours';
+import WarehouseLayout from './component/WarehouseLayout';
+import WarehouseDetails from './component/WarehouseDetails';
+import { AddWarehousePostData } from '../../../api/ApiConfig'; 
+import { WhDetail } from './component/WarehouseDetails';
+import { Address } from '../../../utils/ResponseSchema';
 
 const AddWarehouse = () => {
 
-    const onWarehouseDetailsUpdate = (data: any) => {
+    const api = new Api();
+    const [isLoader, setLoaderState] = useState(false);
+    const [whDetails, setWhDetails] = useState<WhDetail>({});
+    const [whAddress, setWhAddress] = useState<Address>({});
+    const [whPricing, setWhPricing] = useState();
+    const [whHours, setWhHours] = useState();
+    const [whLayout, setLayout] = useState();
+
+    const onWarehouseDetailsUpdate = (data: WhDetail) => {
+        setWhDetails(data);
         console.log(' onWarehouseDetailsUpdate >>> ', data);
     }
-    const onWearehouseAddressUpdate = (data: any) => {
+    const onWearehouseAddressUpdate = (data: Address) => {
+        setWhAddress(data);
         console.log(' onWearehouseAddressUpdate >>> ', data);
     }
     const onWearehousePricingUpdate = (data: any) => {
+        setWhPricing(data);
         console.log(' onWearehousePricingUpdate >>> ', data);
     }
     const onWarehouseHoursUpdate = (data: any) => {
+        setWhHours(data);
         console.log(' onWarehouseHoursUpdate >>> ', data);
     }
     const onWarehouseLayoutUpdate = (data: any) => {
+        setLayout(data);
         console.log(' onWarehouseLayoutUpdate >>> ', data);
+    }
+
+    const addWarehouse = () => {
+
+        const buildPostData = {} as AddWarehousePostData;
+        buildPostData.clientId = whDetails?.clientId;
+        buildPostData.warehouseName = whDetails?.warehouseName;
+        buildPostData.warehouseTaxId = whDetails?.warehouseTaxId;
+        buildPostData.descp = whDetails?.descp;
+        buildPostData.addresse = [whAddress];
+        buildPostData.facilitiesId = '';
+        buildPostData.industryId = '';
+        buildPostData.storagesId = '';
+
+        setLoaderState(true);
+        api.addWarehouse(buildPostData).then((resp) => {
+            setLoaderState(false);
+            if(resp && resp.methodReturnValue.clientId) {
+                  // upladPhoto(imageData, resp.methodReturnValue.clientId);
+            }
+            swal('Success! Your warehouse has been added successfully!', {
+                icon: "success",
+            });
+            console.log(' addWarehouse creation res >>>>>> ', resp);
+        }).catch((error) => {
+            setLoaderState(false);
+            console.log(' addWarehouse creation erroor ', error);
+        });
     }
     return (
         <>
+        {isLoader && <LoaderSpinner />}
         {<WarehouseDetails onWarehouseDetailsUpdate={onWarehouseDetailsUpdate}/>}
         {<WearehouseAddress onWearehouseAddressUpdate={onWearehouseAddressUpdate}/>}
         {<WearehousePricing onWearehousePricingUpdate={onWearehousePricingUpdate}/>}

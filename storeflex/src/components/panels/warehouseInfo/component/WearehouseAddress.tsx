@@ -1,6 +1,6 @@
 import React from "react";
-import { Address} from '../../../utils/ResponseSchema';
-import AddressDetails from '../../atoms/addressforms/AddressDetails';
+import { Address} from '../../../../utils/ResponseSchema';
+import AddressDetails from '../../../atoms/addressforms/AddressDetails';
 
 interface WearehouseAddressProps {
     onWearehouseAddressUpdate?: (data: any) => void;

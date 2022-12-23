@@ -1,16 +1,22 @@
 import React, {useState, useEffect} from "react";
 import { Grid } from '@mui/material';
-import InputBox from '../../atoms/textfield/InputBox';
-import { InputError } from '../../atoms/textfield/InputError';
-import GetCompany from "../../atoms/company/GetCompany";
-import { objectData } from '../../../utils/ResponseSchema';
-import { validateCharacterLength, validateGst } from "../../../utils/CommonUtils";
+import InputBox from '../../../atoms/textfield/InputBox';
+import { InputError } from '../../../atoms/textfield/InputError';
+import GetCompany from "../../../atoms/company/GetCompany";
+import { objectData } from '../../../../utils/ResponseSchema';
+import { validateCharacterLength, validateGst } from "../../../../utils/CommonUtils";
 
 
 interface WarehouseDetailsProps {
     onWarehouseDetailsUpdate?: (data: any) => void;
 }
 
+export interface WhDetail {
+    clientId?: string;
+    warehouseName?: string;
+    descp?: string;
+    warehouseTaxId?:string;
+}
 const WarehouseDetails = (props: WarehouseDetailsProps) => {
     const [companyCode, setCompanyCode] = useState('');
     const [warehouseNameInfo, setWarehouseNameInfo] = useState<objectData>({});
@@ -39,7 +45,7 @@ const WarehouseDetails = (props: WarehouseDetailsProps) => {
                 warehouseName: getVal(warehouseNameInfo),
                 descp: getVal(warehouseDecInfo),
                 warehouseTaxId: getVal(gstIdInfo)
-            };
+            } as WhDetail;
             props.onWarehouseDetailsUpdate(obj);
         }
     }
