@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
 import { Grid  } from '@mui/material';
-import InputBox from '../../atoms/textfield/InputBox';
-import Api from "../../../api/Api";
-import { WarehouseCategories } from "../../../utils/ResponseSchema";
+import InputBox from '../../../atoms/textfield/InputBox';
+import Api from "../../../../api/Api";
+import { WarehouseCategories } from "../../../../utils/ResponseSchema";
 
 
 interface WarehouseLayoutProps {
