@@ -4,7 +4,7 @@ export const CHARACTER_ONLY = /^[A-Za-z ,.'-]+$/;
 export const regex_email = /^((^<>()\[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 export const regex_specialChar = /^[A-Za-z ]+$/;
 export const regex_pass = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})/gm;
-export const regex_url = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[~%\w-_]*)?\??(?:[-=&;%@.\w_]*)#?(?:[\w]*))?)/;
+export const regex_url = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/;
 export const regex_phone = /^[0-9]{10}$/;
 export const regex_gstid = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
 export const regex_city = /^[A-Za-z]+$/;
@@ -14,6 +14,11 @@ export const regex_rate = /^[1-9]\d{1,3}$/
 
 export const validateCharacterLength = (text:string = '', minLen:number = 4, maxLen:number = 20) => {
     const isValid = (text?.length < minLen || text?.length > maxLen)?false:true;
+    return isValid;
+}
+
+export const validateCharacterOnly = (text:any) =>{
+    const isValid = CHARACTER_ONLY.test(text)?false:true;
     return isValid;
 }
 

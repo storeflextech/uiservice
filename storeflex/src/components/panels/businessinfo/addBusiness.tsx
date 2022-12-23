@@ -6,17 +6,19 @@ import { InputError } from '../../atoms/textfield/InputError';
 import Accordion from 'react-bootstrap/Accordion';
 import AddressDetails from '../../atoms/addressforms/AddressDetails';
 import { BusinessDetails, Address, Contact } from '../../../utils/ResponseSchema';
-import { validateCharacterLength, validateWebUrl, validateGst, validatePhone } from '../../../utils/CommonUtils';
+import { validateCharacterLength, validateWebUrl, validateGst, validatePhone, CHARACTER_ONLY, validateCharacterOnly } from '../../../utils/CommonUtils';
 import Api from '../../../../src/api/Api';
 import { AddCompanyPostData } from '../../../../src/api/ApiConfig';
 import LoaderSpinner from '../../atoms/spinner/spinner';
 import { objectData } from '../../../utils/ResponseSchema';
+import { UploadImage } from '../../atoms/image/image';
 
 
 interface AddBusinessProps {
     profileData?: BusinessDetails;
     onSave?(isSaved: boolean): void;
     action?: string;
+    onAddBusinessUpdate?: (data:any) => void;
 }
 
 let imageUrl = '/assets/images/placeholder.png';
@@ -33,9 +35,7 @@ const AddBusiness = (props: AddBusinessProps) => {
     const [companyUrlInfo, setCompanyUrlInfo] = useState<objectData>({});
     const [gstIdInfo, setGstIdInfo] = useState<objectData>({});
     const [companyDescription, setCompanyDescription] = useState<objectData>({});
-    const [photoName, setPhotoName] = useState<objectData>({});
-    // const [photoUrl, setPhotoUrl] = useState<objectData>({ val: ''});
-    const [photoObj, setPhotoObj] = useState<File>();
+    const [imageData, setImageData] = useState<File>();
 
     // Address Information 
     const [companyAddressInfo, setCompanyAddressInfo] = useState<Address>({});
@@ -47,16 +47,34 @@ const AddBusiness = (props: AddBusinessProps) => {
     const [landLineExtInfo, setLandLineExtInfo] = useState<objectData>({});
     const [landLineNoInfo, setLandLineNoInfo] = useState<objectData>({});
 
+    const [onUpdateInfo, setonUpdateInfo] = useState(false);
+
     const maxiLength = 500;
     const selectedCountryCode = '01';
 
-    useEffect(() => {
-        if (photoObj && photoObj.name) {
-            imageUrl = URL.createObjectURL(photoObj);
-            upladPhoto();
-            return () => URL.revokeObjectURL(imageUrl);
+    useEffect(()=>{
+        if (onUpdateInfo){
+            setonUpdateInfo(false);
+            onChangeUpdateInfo();
         }
-    }, [photoObj])
+    }, [onUpdateInfo]);
+
+    const getVal = (obj:objectData)=>{
+        if(obj.isUpdated){
+            return obj.val
+        }else{
+            return undefined;
+        }
+    }
+
+    const onChangeUpdateInfo=()=>{
+        if(props?.onAddBusinessUpdate){
+            const obj = {
+                profileData: getVal(contactNameInfo)
+            };
+            props.onAddBusinessUpdate(obj);
+        }
+    }
 
     const onCompanyNameChange = (event: any) => {
         const obj = {
@@ -65,9 +83,11 @@ const AddBusiness = (props: AddBusinessProps) => {
         } as objectData;
         if (!obj.val) {
             obj.error = " *Company Name is required. ";
-        } else if (!validateCharacterLength(obj.val, 4, 50)) {
+        }  else if(validateCharacterOnly(obj.val)){
+            obj.error = 'Alphabets Only';
+        }else if (!validateCharacterLength(obj.val, 4, 50)) {
             obj.error = " Company Name must be between 4 characters to 50 characters."
-        } else {
+        }else{
             obj.error = '';
         }
         setCompanyNameInfo(obj);
@@ -129,10 +149,12 @@ const AddBusiness = (props: AddBusinessProps) => {
             val: event.target.value || '',
             error: ''
         } as objectData;
-        if (validateCharacterLength(obj.val, 4, 30)) {
-            obj.error = '';
-        } else {
-            obj.error = 'Alphabets only'
+        if  (!obj.val){
+            obj.error = 'This field can not be empty';
+        }else if(validateCharacterOnly(obj.val)){
+            obj.error = 'Alphabets Only';
+        } else if (!validateCharacterLength(obj.val, 4, 30)){
+            obj.error = 'Contact Name should be between 4 to 30 character';
         }
         setContactNameInfo(obj);
     }
@@ -209,42 +231,23 @@ const AddBusiness = (props: AddBusinessProps) => {
         contactInfo.landLine = landLineNoInfo.val;
         return contactInfo;
     }
-    const onPhotoNameChange = (event: any) => {
-        const obj = {
-            val: event.target.value || '',
-            error: ''
-        } as objectData;
-        // if (!obj.val) {
-        //     obj.error = "*Enter Phone Number";
-        // } else if (!validatePhone(obj.val)) {
-        //     obj.error = "Enter a valid Phone Number"
-        // } else {
-        //     obj.error = '';
-        // }
-        // setPhotoName(obj);
-    }
 
-    const onPhotoUploadChange = (event: any) => {
-        if (event?.target?.files[0]) {
-            setPhotoObj(event.target.files[0]);
+    const onPhotoUploadChange = (file: any) => {
+        if(file) {
+            setImageData(file);
         }
     }
-    const upladPhoto = (data?: any) => {
-        const formData = new FormData();
-        formData.append('imagefile', JSON.stringify(photoObj));
-        setLoaderState(true);
-        const postData = {
-            clientPhoto: formData
+    const upladPhoto = (imagefile?: any, clientId?: string) => {
+        if(imagefile && clientId) {
+            setLoaderState(true);
+            api.uploadCompanyPhoto(imagefile, clientId).then((response) => {
+                setLoaderState(false);
+                console.log(' upladPhoto res >>>>>> ', response);
+            }).catch((error) => {
+                setLoaderState(false);
+                console.log(' upladPhoto erroor ', error);
+            });
         }
-        const clientId = 'CL-113';
-
-        api.uploadCompanyPhoto(postData, clientId).then((response) => {
-            setLoaderState(false);
-            console.log(' upladPhoto res >>>>>> ', response);
-        }).catch((error) => {
-            setLoaderState(false);
-            console.log(' upladPhoto erroor ', error);
-        });
     }
     const onSave = () => {
         const postData = {} as AddCompanyPostData;
@@ -257,13 +260,16 @@ const AddBusiness = (props: AddBusinessProps) => {
 
         setLoaderState(true);
 
-        api.addCompany(postData).then((response) => {
+        api.addCompany(postData).then((resp) => {
             setLoaderState(false); setStep(3);
-            upladPhoto();
+            if(resp && resp.methodReturnValue.clientId && imageData) {
+                 upladPhoto(imageData, resp.methodReturnValue.clientId);
+                 // for testin only upladPhoto(imageData, 'CL-166');
+            }
             swal('Success! Your company has been created successfully!', {
                 icon: "success",
             });
-            console.log(' Company creation res >>>>>> ', response);
+            console.log(' Company creation res >>>>>> ', resp);
         }).catch((error) => {
             setLoaderState(false);
             console.log(' Company creation erroor ', error);
@@ -308,12 +314,7 @@ const AddBusiness = (props: AddBusinessProps) => {
                                 </Grid>
                             </Grid>
                             <Grid item xs={3}>
-                                <InputBox data={{ name: 'photoname', label: 'Photo Name', value: businessProfile.weburl }}
-                                    onChange={onPhotoNameChange} onBlur={handelOnBlur}
-                                />
-                                <img src={imageUrl} alt="company phots" style={{ width: '100%', height: '20vh', marginTop: '10px' }} />
-                                <input type="file" id="companyphoto" name="companyphoto"
-                                    accept="image/*" onChange={onPhotoUploadChange}></input>
+                                <UploadImage name={'companyphoto'} onImageChange={onPhotoUploadChange}/>
                             </Grid>
                         </Grid>
                     </div>

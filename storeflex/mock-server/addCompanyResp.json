@@ -1,0 +1,38 @@
+{
+    "methodReturnValue": {
+        "clientId": "CL-166",
+        "compyName": "Store flex company",
+        "compyDesc": "Testing Testing",
+        "url": "www.store.com",
+        "gstNo": "24AAACC4175D1Z4",
+        "createBy": "ADMIN",
+        "createDate": "2022-12-23",
+        "status": true,
+        "addresses": [
+            {
+                "addressId": "99581ed0-7cdc-428f-8b48-32f3e45984e2",
+                "city": "2222",
+                "country": "IND",
+                "createBy": "ADMIN",
+                "createDate": "2022-12-23",
+                "updatedBy": null
+            }
+        ],
+        "contact": [
+            {
+                "contactId": "44c4da51-605b-4444-90d6-5db88cff1564",
+                "contactName": "ashutosh mishra",
+                "mobileNo": "1234567890",
+                "landLine": "123456789",
+                "landLineExt": "123",
+                "emailId": "ashu3234@gmail.com",
+                "createBy": "ADMIN",
+                "createDate": "2022-12-23",
+                "updatedBy": null
+            }
+        ]
+    },
+    "statusCode": 600,
+    "message": "Client Store flex company record submitted",
+    "status": "SUCCESS"
+}
