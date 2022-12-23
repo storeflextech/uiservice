@@ -6,7 +6,7 @@ import { InputError } from '../../atoms/textfield/InputError';
 import Accordion from 'react-bootstrap/Accordion';
 import AddressDetails from '../../atoms/addressforms/AddressDetails';
 import { BusinessDetails, Address, Contact } from '../../../utils/ResponseSchema';
-import { validateCharacterLength, validateWebUrl, validateGst, validatePhone } from '../../../utils/CommonUtils';
+import { validateCharacterLength, validateWebUrl, validateGst, validatePhone, CHARACTER_ONLY, validateCharacterOnly } from '../../../utils/CommonUtils';
 import Api from '../../../../src/api/Api';
 import { AddCompanyPostData } from '../../../../src/api/ApiConfig';
 import LoaderSpinner from '../../atoms/spinner/spinner';
@@ -17,6 +17,7 @@ interface AddBusinessProps {
     profileData?: BusinessDetails;
     onSave?(isSaved: boolean): void;
     action?: string;
+    onAddBusinessUpdate?: (data:any) => void;
 }
 
 let imageUrl = '/assets/images/placeholder.png';
@@ -47,6 +48,8 @@ const AddBusiness = (props: AddBusinessProps) => {
     const [landLineExtInfo, setLandLineExtInfo] = useState<objectData>({});
     const [landLineNoInfo, setLandLineNoInfo] = useState<objectData>({});
 
+    const [onUpdateInfo, setonUpdateInfo] = useState(false);
+
     const maxiLength = 500;
     const selectedCountryCode = '01';
 
@@ -58,6 +61,30 @@ const AddBusiness = (props: AddBusinessProps) => {
         }
     }, [photoObj])
 
+    useEffect(()=>{
+        if (onUpdateInfo){
+            setonUpdateInfo(false);
+            onChangeUpdateInfo();
+        }
+    }, [onUpdateInfo]);
+
+    const getVal = (obj:objectData)=>{
+        if(obj.isUpdated){
+            return obj.val
+        }else{
+            return undefined;
+        }
+    }
+
+    const onChangeUpdateInfo=()=>{
+        if(props?.onAddBusinessUpdate){
+            const obj = {
+                profileData: getVal(contactNameInfo)
+            };
+            props.onAddBusinessUpdate(obj);
+        }
+    }
+
     const onCompanyNameChange = (event: any) => {
         const obj = {
             val: event.target.value || '',
@@ -65,9 +92,11 @@ const AddBusiness = (props: AddBusinessProps) => {
         } as objectData;
         if (!obj.val) {
             obj.error = " *Company Name is required. ";
-        } else if (!validateCharacterLength(obj.val, 4, 50)) {
+        }  else if(validateCharacterOnly(obj.val)){
+            obj.error = 'Alphabets Only';
+        }else if (!validateCharacterLength(obj.val, 4, 50)) {
             obj.error = " Company Name must be between 4 characters to 50 characters."
-        } else {
+        }else{
             obj.error = '';
         }
         setCompanyNameInfo(obj);
@@ -129,10 +158,12 @@ const AddBusiness = (props: AddBusinessProps) => {
             val: event.target.value || '',
             error: ''
         } as objectData;
-        if (validateCharacterLength(obj.val, 4, 30)) {
-            obj.error = '';
-        } else {
-            obj.error = 'Alphabets only'
+        if  (!obj.val){
+            obj.error = 'This field can not be empty';
+        }else if(validateCharacterOnly(obj.val)){
+            obj.error = 'Alphabets Only';
+        } else if (!validateCharacterLength(obj.val, 4, 30)){
+            obj.error = 'Contact Name should be between 4 to 30 character';
         }
         setContactNameInfo(obj);
     }
