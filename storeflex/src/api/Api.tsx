@@ -85,7 +85,7 @@ export default class Api {
         const url = this.baseUrl+this.apiUrl.addCompanyUrl;
         try {
             const response = await axios.post(url, postData);
-            if (response.status === 200) {
+            if (response?.data?.statusCode === 600) {
                 return Promise.resolve(response?.data);
             } else {
                 console.log(' error : addCompany ', response);
@@ -98,15 +98,17 @@ export default class Api {
         }
     }
 
-    async uploadCompanyPhoto(postData: any, clientId: string): Promise<any>{
-        console.log(' >>>>>>>  postData >>' , postData);
+    async uploadCompanyPhoto(imageFile: any, clientId: string): Promise<any>{
+        const postData = {
+            clientPhoto: imageFile
+        }
         const url = `${this.baseUrl}${this.apiUrl.uploadCompanyPhotoApi}?clientId=${clientId}` ;
         try {
             const config = {
                 headers: { 'content-type': 'multipart/form-data' }
             }
             const response = await axios.post(url, postData, config);
-            if (response.status === 200) {
+            if (response?.data?.statusCode === 600) {
                 return Promise.resolve(response?.data);
             } else {
                 console.log(' error : uploadCompanyPhoto ', response);

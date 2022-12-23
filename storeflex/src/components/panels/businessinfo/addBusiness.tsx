@@ -11,6 +11,7 @@ import Api from '../../../../src/api/Api';
 import { AddCompanyPostData } from '../../../../src/api/ApiConfig';
 import LoaderSpinner from '../../atoms/spinner/spinner';
 import { objectData } from '../../../utils/ResponseSchema';
+import { UploadImage } from '../../atoms/image/image';
 
 
 interface AddBusinessProps {
@@ -34,9 +35,7 @@ const AddBusiness = (props: AddBusinessProps) => {
     const [companyUrlInfo, setCompanyUrlInfo] = useState<objectData>({});
     const [gstIdInfo, setGstIdInfo] = useState<objectData>({});
     const [companyDescription, setCompanyDescription] = useState<objectData>({});
-    const [photoName, setPhotoName] = useState<objectData>({});
-    // const [photoUrl, setPhotoUrl] = useState<objectData>({ val: ''});
-    const [photoObj, setPhotoObj] = useState<File>();
+    const [imageData, setImageData] = useState<File>();
 
     // Address Information 
     const [companyAddressInfo, setCompanyAddressInfo] = useState<Address>({});
@@ -52,14 +51,6 @@ const AddBusiness = (props: AddBusinessProps) => {
 
     const maxiLength = 500;
     const selectedCountryCode = '01';
-
-    useEffect(() => {
-        if (photoObj && photoObj.name) {
-            imageUrl = URL.createObjectURL(photoObj);
-            upladPhoto();
-            return () => URL.revokeObjectURL(imageUrl);
-        }
-    }, [photoObj])
 
     useEffect(()=>{
         if (onUpdateInfo){
@@ -240,42 +231,23 @@ const AddBusiness = (props: AddBusinessProps) => {
         contactInfo.landLine = landLineNoInfo.val;
         return contactInfo;
     }
-    const onPhotoNameChange = (event: any) => {
-        const obj = {
-            val: event.target.value || '',
-            error: ''
-        } as objectData;
-        // if (!obj.val) {
-        //     obj.error = "*Enter Phone Number";
-        // } else if (!validatePhone(obj.val)) {
-        //     obj.error = "Enter a valid Phone Number"
-        // } else {
-        //     obj.error = '';
-        // }
-        // setPhotoName(obj);
-    }
 
-    const onPhotoUploadChange = (event: any) => {
-        if (event?.target?.files[0]) {
-            setPhotoObj(event.target.files[0]);
+    const onPhotoUploadChange = (file: any) => {
+        if(file) {
+            setImageData(file);
         }
     }
-    const upladPhoto = (data?: any) => {
-        const formData = new FormData();
-        formData.append('imagefile', JSON.stringify(photoObj));
-        setLoaderState(true);
-        const postData = {
-            clientPhoto: formData
+    const upladPhoto = (imagefile?: any, clientId?: string) => {
+        if(imagefile && clientId) {
+            setLoaderState(true);
+            api.uploadCompanyPhoto(imagefile, clientId).then((response) => {
+                setLoaderState(false);
+                console.log(' upladPhoto res >>>>>> ', response);
+            }).catch((error) => {
+                setLoaderState(false);
+                console.log(' upladPhoto erroor ', error);
+            });
         }
-        const clientId = 'CL-113';
-
-        api.uploadCompanyPhoto(postData, clientId).then((response) => {
-            setLoaderState(false);
-            console.log(' upladPhoto res >>>>>> ', response);
-        }).catch((error) => {
-            setLoaderState(false);
-            console.log(' upladPhoto erroor ', error);
-        });
     }
     const onSave = () => {
         const postData = {} as AddCompanyPostData;
@@ -288,13 +260,16 @@ const AddBusiness = (props: AddBusinessProps) => {
 
         setLoaderState(true);
 
-        api.addCompany(postData).then((response) => {
+        api.addCompany(postData).then((resp) => {
             setLoaderState(false); setStep(3);
-            upladPhoto();
+            if(resp && resp.methodReturnValue.clientId && imageData) {
+                 upladPhoto(imageData, resp.methodReturnValue.clientId);
+                 // for testin only upladPhoto(imageData, 'CL-166');
+            }
             swal('Success! Your company has been created successfully!', {
                 icon: "success",
             });
-            console.log(' Company creation res >>>>>> ', response);
+            console.log(' Company creation res >>>>>> ', resp);
         }).catch((error) => {
             setLoaderState(false);
             console.log(' Company creation erroor ', error);
@@ -339,12 +314,7 @@ const AddBusiness = (props: AddBusinessProps) => {
                                 </Grid>
                             </Grid>
                             <Grid item xs={3}>
-                                <InputBox data={{ name: 'photoname', label: 'Photo Name', value: businessProfile.weburl }}
-                                    onChange={onPhotoNameChange} onBlur={handelOnBlur}
-                                />
-                                <img src={imageUrl} alt="company phots" style={{ width: '100%', height: '20vh', marginTop: '10px' }} />
-                                <input type="file" id="companyphoto" name="companyphoto"
-                                    accept="image/*" onChange={onPhotoUploadChange}></input>
+                                <UploadImage name={'companyphoto'} onImageChange={onPhotoUploadChange}/>
                             </Grid>
                         </Grid>
                     </div>
