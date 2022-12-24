@@ -3,7 +3,7 @@ import { Button } from '@mui/material';
 import swal from 'sweetalert';
 import Footer from '../../footer/footer';
 import Api from '../../../../src/api/Api';
-import LoaderSpinner from '../../atoms/spinner/spinner';
+import { LoaderFull } from '../../atoms/loader/loader';
 import WearehouseAddress from './component/WearehouseAddress';
 import WearehousePricing from './component/WearehousePricing';
 import WarehouseHours from './component/WarehouseHours';
@@ -16,7 +16,7 @@ import { Address } from '../../../utils/ResponseSchema';
 const AddWarehouse = () => {
 
     const api = new Api();
-    const [isLoader, setLoaderState] = useState(false);
+    const [isLoader, setIsLoader] = useState(false);
     const [whDetails, setWhDetails] = useState<WhDetail>({});
     const [whAddress, setWhAddress] = useState<Address>({});
     const [whPricing, setWhPricing] = useState();
@@ -56,24 +56,23 @@ const AddWarehouse = () => {
         buildPostData.industryId = '';
         buildPostData.storagesId = '';
 
-        setLoaderState(true);
+        setIsLoader(true);
         api.addWarehouse(buildPostData).then((resp) => {
-            setLoaderState(false);
+            setIsLoader(false);
             if(resp && resp.methodReturnValue.clientId) {
                   // upladPhoto(imageData, resp.methodReturnValue.clientId);
             }
             swal('Success! Your warehouse has been added successfully!', {
                 icon: "success",
             });
-            console.log(' addWarehouse creation res >>>>>> ', resp);
         }).catch((error) => {
-            setLoaderState(false);
+            setIsLoader(false);
             console.log(' addWarehouse creation erroor ', error);
         });
     }
     return (
         <>
-        {isLoader && <LoaderSpinner />}
+        {isLoader && <LoaderFull />}
         {<WarehouseDetails onWarehouseDetailsUpdate={onWarehouseDetailsUpdate}/>}
         {<WearehouseAddress onWearehouseAddressUpdate={onWearehouseAddressUpdate}/>}
         {<WearehousePricing onWearehousePricingUpdate={onWearehousePricingUpdate}/>}
