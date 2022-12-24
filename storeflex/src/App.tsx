@@ -75,6 +75,18 @@ function App() {
               element={<PAGES.Business.Component id="EDIT" />}
             />
             <Route
+              path={PAGES.Business.PENDING.path}
+              element={<PAGES.Business.PENDING.Component />}
+            />
+            <Route
+              path={PAGES.EDIT_COMPANY_USER.path}
+              element={<PAGES.EDIT_COMPANY_USER.Component />}
+            />
+            <Route
+              path={PAGES.WAREHOUSE_DETAILS.path}
+              element={<PAGES.WAREHOUSE_DETAILS.Component />}
+            />
+            <Route
               path={PAGES.Warehouse.path}
               element={<PAGES.Warehouse.Component id="" />}
             />
@@ -90,6 +102,10 @@ function App() {
               path={PAGES.Warehouse.VIEW.path}
               element={<PAGES.Warehouse.Component id="VIEW" />}
             />
+             <Route
+              path={PAGES.Warehouse.PENDING.path}
+              element={<PAGES.Warehouse.PENDING.Component />}
+            />
             <Route
               path={PAGES.Dashboard.path}
               element={<PAGES.Dashboard.Component />}
@@ -98,6 +114,11 @@ function App() {
               path={PAGES.AddInfo.path}
               element={<PAGES.AddInfo.Component />}
             />
+            <Route
+              path={PAGES.PENDING_USER.path}
+              element={<PAGES.PENDING_USER.Component />}
+            />
+
             <Route
               path={PAGES.PgSearch.path}
               element={<PAGES.PgSearch.Component />}
@@ -116,10 +137,6 @@ function App() {
             <Route
               path={PAGES.Error.path}
               element={<PAGES.Error.Component />}
-            />
-            <Route
-              path={PAGES.PENDING_BUSINESS.path}
-              element={<PAGES.PENDING_BUSINESS.Component />}
             />
             <Route
               path={PAGES.DELETE_USER.path}
@@ -173,10 +190,7 @@ function App() {
               path={PAGES.VIEW_USER.path}
               element={<PAGES.VIEW_USER.Component />}
             />
-            <Route
-              path={PAGES.EDIT_COMPANY_USER.path}
-              element={<PAGES.EDIT_COMPANY_USER.Component />}
-            />
+            
             <Route
               path={PAGES.DISCOVER_MORE.path}
               element={<PAGES.DISCOVER_MORE.Component />}
@@ -194,16 +208,8 @@ function App() {
               element={<PAGES.USER_PROFILE.Component />}
             />
             <Route
-              path={PAGES.WAREHOUSE_DETAILS.path}
-              element={<PAGES.WAREHOUSE_DETAILS.Component />}
-            />
-            <Route
               path={PAGES.PgSearchNew.path}
               element={<PAGES.PgSearchNew.Component />}
-            />
-            <Route
-              path={PAGES.WAREHOUSE_DETAILS.path}
-              element={<PAGES.WAREHOUSE_DETAILS.Component />}
             />
             <Route
               path={PAGES.SITE_MAP.path}
