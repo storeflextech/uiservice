@@ -38,7 +38,7 @@
         },
         {
             "label": "Log out",
-            "url": "/home"
+            "url": "logout_user"
         }
     ],
     "CL": [
@@ -72,7 +72,7 @@
         },
         {
             "label": "Log out",
-            "url": "/home"
+            "url": "logout_user"
         }
     ],
     "CU": [
@@ -102,7 +102,7 @@
         },
         {
             "label": "Log out",
-            "url": "/home"
+            "url": "logout_user"
         }
     ]
 }
