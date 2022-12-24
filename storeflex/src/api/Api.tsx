@@ -17,7 +17,6 @@ export default class Api {
         this.baseUrl = process.env.REACT_APP_API_URL;
     }
 
-
     async getTest() {
         const url = this.apiUrl.testApi;
         return await axios.get(url).then((response) => {
@@ -94,6 +93,23 @@ export default class Api {
         }
         catch (error) {
             console.log(' error : addCompany', error);
+            return Promise.reject(error);
+        }
+    }
+
+    async deleteCompany(clientId: string): Promise<any>{
+        const url = `${this.baseUrl}${this.apiUrl.deleteCompanyUrl}?clientId=${clientId}`;
+        try {
+            const response = await axios.delete(url);
+            if (response?.data?.statusCode === 600) {
+                return Promise.resolve(response?.data);
+            } else {
+                console.log(' error : deleteCompany ', response);
+                return Promise.reject(response);
+            }
+        }
+        catch (error) {
+            console.log(' error : deleteCompany', error);
             return Promise.reject(error);
         }
     }

@@ -84,6 +84,7 @@ export class ApiConfig {
     getCitiesUrl = '/city';
     getCompaniesApi = '/clients';
     addCompanyUrl = '/client';
+    deleteCompanyUrl = '/client';
     updateCompanyApi = '/clientUpdate';
     uploadCompanyPhotoApi = '/uploadClientProfilePic';
     searchwarehouse = '/searchwarehouse';

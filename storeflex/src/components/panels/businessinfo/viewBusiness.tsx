@@ -12,25 +12,24 @@ import { LoaderFull } from '../../atoms/loader/loader';
 const ViewBusiness = () => {
     const api = new Api();
     const navigate = useNavigate();
-    const [loader, setLoader] = useState(false);
-    const [modalShow, setModalShow] = React.useState(false);
     const [myCompanies, setMyCompanies] = useState<Array<any>>([]);
+    const [isLoader, setIsLoader] = useState(false);
 
     var pageNo: any = '0';
-    var pageSize: any = '6';
+    var pageSize: any = '10';
 
     useEffect(() => {
         getMyCompanies(pageNo, pageSize);
     }, [])
 
     const getMyCompanies = (pageNo, pageSize) => {
-        setLoader(true);
+        setIsLoader(true);
         const data: ViewCompaniesProps = { page: pageNo, size: pageSize };
         api.getMyCompanies(data).then((response) => {
-            setLoader(false);
+            setIsLoader(false);
             setMyCompanies(response.methodReturnValue.clientList);
         }).catch((error) => {
-            setLoader(false);
+            setIsLoader(false);
             console.log(' getMyCompanies  ', error);
         });
     }
@@ -43,30 +42,35 @@ const ViewBusiness = () => {
             }
         );
     }
-
     const deleteBusiness = (company: any) => {
-
-        console.log(' @@@ ', company);
         swal({
             title: "Are you sure?",
             text: 'You are about to delete the company "' + company.compyName + '(' + company.clientId + ')" . Once deleted, you will not be able to recover this company!',
             icon: "warning",
             buttons: [true, true],
             dangerMode: true,
-        })
-            .then((willDelete) => {
-                if (willDelete) {
-                    swal('Success! Your company "' + company.compyName + '(' + company.clientId + ')" has been deleted!', {
-                        icon: "success",
+        }).then((willDelete) => {
+            if (willDelete) {
+                if(company.clientId){
+                    setIsLoader(true);
+                    api.deleteCompany(company.clientId).then((response) => {
+                        setIsLoader(false);
+                        swal('Success! Your company "' + company.compyName + '(' + company.clientId + ')" has been deleted!', {
+                            icon: "success",
+                        });
+                        let extractedArr = myCompanies.filter((item, index) => {
+                            return item.clientId !== company.clientId;
+                        });
+                        setMyCompanies(extractedArr);
+                    }).catch((error) => {
+                        setIsLoader(false);
+                        console.log(' deleteCompany erroor ', error);
                     });
-                    let extractedArr = myCompanies.filter((item, index) => {
-                        return item.clientId !== company.clientId;
-                    });
-                    setMyCompanies(extractedArr);
-                } else {
-                    // do something if required   
                 }
-            });
+            } else {
+                // do something if required   
+            }
+        });
     }
 
     const showCompanyList = () => {
@@ -93,8 +97,9 @@ const ViewBusiness = () => {
                         </thead>
                         <tbody>
                             {myCompanies && myCompanies.map((item: any) => {
+                                const keyId = `company_${item.clientId}`;
                                 return (
-                                    <tr>
+                                    <tr key={keyId}>
                                         <td>{item.clientId}</td>
                                         <td>{item.compyName}</td>
                                         <td>{item.compyDesc}<br></br>
@@ -131,7 +136,7 @@ const ViewBusiness = () => {
 
     return (
         <>
-            { loader && <LoaderFull /> }
+             {isLoader && <LoaderFull />}
             <div className='c-box-shadow-blue'>
             {showCompanyList()}
             </div>
