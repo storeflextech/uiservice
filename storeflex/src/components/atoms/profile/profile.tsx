@@ -34,7 +34,11 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
     const onMenuItemClick = (value: string) => {
         if (value === 'list_popup') {
             createSwalButton()
-        } else {
+        }
+        else if (value === 'logout_user') {
+            logout('/home')
+        }
+        else {
             navigate(value);
         }
     }
@@ -45,7 +49,7 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
     }
 
     useEffect(() => {
-        window.addEventListener('popstate', (e) => {
+        window.addEventListener('logout_user', (e) => {
             window.history.go(1);
         });
     }, []);
