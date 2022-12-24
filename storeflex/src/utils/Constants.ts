@@ -13,7 +13,7 @@ import Cart from "../pages/cart";
 import ContactUsPage from "../pages/ContactUsPage";
 import faq from "../pages/faq";
 import ErrorPage from "../pages/ErrorPage";
-import PendingBusiness from "../pages/pendingbusiness";
+import PendingBusiness from "../components/panels/businessinfo/pendingBusiness";
 import DeleteUser from "../pages/deleteuser";
 import UpdateUser from "../pages/updateuser";
 import AddPayment from "../pages/addpayment";
@@ -37,6 +37,8 @@ import WarehousePage from "../pages/WarehousePage";
 
 import WarehouseDetails from "../components/atoms/Searchresult/warehouseDetails";
 import SignInCustomer from "../pages/signin-customer";
+import PendingWarehouse from "../components/panels/warehouseInfo/pendingWarehouse";
+import PendingUser from "../pages/pendingUser";
 
 export enum USER_TYPE {
   SfUser = "SL",
@@ -91,6 +93,10 @@ export const PAGES = {
       path: "/business/edit",
       Component: BusinessPage,
     },
+    PENDING: {
+      path:"/business/pending",
+      Component: PendingBusiness,
+    }
   },
   Warehouse: {
     path: "/warehouse",
@@ -107,10 +113,18 @@ export const PAGES = {
       path: "/warehouse/view",
       Component: WarehousePage,
     },
+    PENDING:{
+      path:"/warehouse/pending",
+      Component: PendingWarehouse,
+    }
   },
   AddInfo: {
     path: "/addinfo",
     Component: AddInfo,
+  },
+  PENDING_USER:{
+    path:"/pendinguser",
+    Component: PendingUser,
   },
   PgSearch: {
     path: "/search",
@@ -136,10 +150,6 @@ export const PAGES = {
   Error: {
     path: "/error",
     Component: ErrorPage,
-  },
-  PENDING_BUSINESS: {
-    path: "/pendingbusiness",
-    Component: PendingBusiness,
   },
   DELETE_USER: {
     path: "/deleteuser",

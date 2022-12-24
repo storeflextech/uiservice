@@ -68,6 +68,11 @@
                             "Label": "View Company",
                             "Name": "",
                             "NavigateTo": "/business/view"
+                        },
+                        {
+                            "Label":"Pending Companies",
+                            "Name":"",
+                            "NavigateTo":"/business/pending"
                         }
                     ],
                     "Icon": "mdi mdi-chart-areaspline menu-icon"
@@ -86,6 +91,11 @@
                             "Label": "View Warehouse",
                             "Name": "",
                             "NavigateTo": "/warehouse/view"
+                        },
+                        {
+                            "Label": "Pending Warehouses",
+                            "Name": "",
+                            "NavigateTo": "/warehouse/pending"
                         }
                     ],
                     "Icon": "mdi mdi-home-analytics menu-icon"
@@ -104,6 +114,11 @@
                             "Label": "View User",
                             "Name": "",
                             "NavigateTo": "/viewuser"
+                        },
+                        {
+                            "Label": "Pending Users",
+                            "Name": "",
+                            "NavigateTo": "/pendinguser"
                         }
                     ],
                     "Icon": "mdi mdi-account-multiple-outline menu-icon"

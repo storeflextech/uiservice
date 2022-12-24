@@ -61,7 +61,9 @@ const WarehouseDetails = (props: WarehouseDetailsProps) => {
             error: '',
             isUpdated: true,
         } as objectData;
-        if (validateCharacterLength(obj.val, 4, 50)) {
+        if (!obj.val){
+            obj.error='This field can not be empty';
+        }else if (validateCharacterLength(obj.val, 4, 50)) {
             obj.error = '';
         } else {
            obj.error = 'Please enter valid name ';

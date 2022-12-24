@@ -6,7 +6,7 @@ import { InputError } from '../../atoms/textfield/InputError';
 import Accordion from 'react-bootstrap/Accordion';
 import AddressDetails from '../../atoms/addressforms/AddressDetails';
 import { BusinessDetails, Address, Contact } from '../../../utils/ResponseSchema';
-import { validateCharacterLength, validateWebUrl, validateGst, validatePhone, CHARACTER_ONLY, validateCharacterOnly } from '../../../utils/CommonUtils';
+import { validateCharacterLength, validateWebUrl, validateGst, validatePhone, CHARACTER_ONLY, validateCharacterOnly, validateEmail } from '../../../utils/CommonUtils';
 import Api from '../../../../src/api/Api';
 import { AddCompanyPostData } from '../../../../src/api/ApiConfig';
 import LoaderSpinner from '../../atoms/spinner/spinner';
@@ -163,7 +163,9 @@ const AddBusiness = (props: AddBusinessProps) => {
             val: event.target.value || '',
             error: ''
         } as objectData;
-        if (validatePhone(obj.val)) {
+        if (!obj.val){
+            obj.error ="This Field can not be empty";
+        }else if(validatePhone(obj.val)) {
             obj.error = '';
         } else {
             obj.error = '10 Digit Number only'
@@ -176,10 +178,13 @@ const AddBusiness = (props: AddBusinessProps) => {
             val: event.target.value || '',
             error: ''
         } as objectData;
-        if (validateCharacterLength(obj.val, 4, 30)) {
+        if (!obj.val){
+            obj.error ="This field can not be empty";
+        }
+        else if(validateEmail(obj.val)) {
             obj.error = '';
         } else {
-            obj.error = 'Alphabets only'
+            obj.error = 'Enter a valid Email'
         }
         setEmailIdInfo(obj);
     }
@@ -189,7 +194,9 @@ const AddBusiness = (props: AddBusinessProps) => {
             val: event.target.value || '',
             error: ''
         } as objectData;
-        if (validateCharacterLength(obj.val, 2, 10)) {
+        if (!obj.val){
+            obj.error = 'This field can not be empty';
+        }else if(validateCharacterLength(obj.val, 2, 10)) {
             obj.error = '';
         } else {
             obj.error = 'Number only'
@@ -201,10 +208,12 @@ const AddBusiness = (props: AddBusinessProps) => {
             val: event.target.value || '',
             error: ''
         } as objectData;
-        if (validateCharacterLength(obj.val, 2, 10)) {
+        if (!obj.val){
+            obj.error='This field can not be empty';
+        }else if (validateCharacterLength(obj.val, 2, 10)) {
             obj.error = '';
         } else {
-            obj.error = 'Number only'
+            obj.error = 'Emter a valid Landline no'
         }
         setLandLineNoInfo(obj);
     }
