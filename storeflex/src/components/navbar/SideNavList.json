@@ -65,14 +65,19 @@
                             "NavigateTo": "/business/add"
                         },
                         {
-                            "Label": "View Company",
+                            "Label": "Active Company",
                             "Name": "",
-                            "NavigateTo": "/business/view"
+                            "NavigateTo": "/business/view#active"
                         },
                         {
-                            "Label":"Pending Companies",
+                            "Label": "Pending Company",
+                            "Name": "",
+                            "NavigateTo": "/business/view#pending"
+                        },
+                        {
+                            "Label":"Inactive Companies",
                             "Name":"",
-                            "NavigateTo":"/business/pending"
+                            "NavigateTo":"/business/view#inactive"
                         }
                     ],
                     "Icon": "mdi mdi-chart-areaspline menu-icon"

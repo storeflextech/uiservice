@@ -9,22 +9,45 @@ import { ViewCompaniesProps } from '../../../api/ApiConfig';
 import { DeletsButton, EditButton } from '../../buttons/buttons';
 import { LoaderFull } from '../../atoms/loader/loader';
 
+let recordLabel = '';
+
 const ViewBusiness = () => {
+    const companyView = window.location.hash;
     const api = new Api();
     const navigate = useNavigate();
     const [myCompanies, setMyCompanies] = useState<Array<any>>([]);
     const [isLoader, setIsLoader] = useState(false);
+    const [currentView, setCurrentView] = useState('');
 
-    var pageNo: any = '0';
-    var pageSize: any = '10';
+    const pageNo = '0';
+    const numberOfRecord = '10';
 
     useEffect(() => {
-        getMyCompanies(pageNo, pageSize);
-    }, [])
+        if(companyView !== currentView) {
+            getMyCompanies(pageNo, numberOfRecord);
+            setCurrentView(companyView);
+        }
+    }, [companyView])
 
-    const getMyCompanies = (pageNo, pageSize) => {
+    const getMyCompanies = (curentPage, numberOfRecords) => {
+        // IN-PROGRESS , IN-ACTIVE , ACTIVE
+        let companyStatus = 'ACTIVE'
+        if(companyView === '#inactive') {
+            companyStatus = 'IN-ACTIVE';
+            recordLabel = ' Inactive Companies'
+        } else if(companyView === '#pending') {
+            companyStatus = 'IN-PROGRESS';
+            recordLabel = ' Pending Companies '
+        } else {
+            companyStatus = 'ACTIVE';
+            recordLabel = ' Companies Onboared '
+        }
         setIsLoader(true);
-        const data: ViewCompaniesProps = { page: pageNo, size: pageSize };
+        const data: ViewCompaniesProps = {
+            page: curentPage,
+            size: numberOfRecords,
+            status: companyStatus
+        }
         api.getMyCompanies(data).then((response) => {
             setIsLoader(false);
             setMyCompanies(response.methodReturnValue.clientList);
@@ -79,7 +102,7 @@ const ViewBusiness = () => {
                 <div>
                <div className='primary-gradient'>
                         <div className='font-white p-sm f-18px f-bold'>
-                            Companies Onboared
+                            {recordLabel}
                         </div>
                     </div>
                     <Table striped bordered hover responsive>

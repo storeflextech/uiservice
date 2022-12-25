@@ -58,26 +58,12 @@ function App() {
               path={PAGES.Error.path}
               element={<PAGES.Error.Component />}
             />
-            <Route
-              path={PAGES.Business.path}
-              element={<PAGES.Business.Component id="" />}
-            />
-            <Route
-              path={PAGES.Business.ADD.path}
-              element={<PAGES.Business.Component id="ADD" />}
-            />
-            <Route
-              path={PAGES.Business.VIEW.path}
-              element={<PAGES.Business.Component id="VIEW" />}
-            />
-            <Route
-              path={PAGES.Business.EDIT.path}
-              element={<PAGES.Business.Component id="EDIT" />}
-            />
-            <Route
-              path={PAGES.Business.PENDING.path}
-              element={<PAGES.Business.PENDING.Component />}
-            />
+            <Route path={PAGES.Business.path}>
+              <Route path={PAGES.Business.ADD.path} element={<PAGES.Business.Component id="ADD" />} />
+              <Route path={PAGES.Business.VIEW.path} element={<PAGES.Business.Component id="VIEW" />}/>
+              <Route path={PAGES.Business.EDIT.path} element={<PAGES.Business.Component id="EDIT" />}/>
+            </Route>
+            
             <Route
               path={PAGES.EDIT_COMPANY_USER.path}
               element={<PAGES.EDIT_COMPANY_USER.Component />}

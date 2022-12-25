@@ -13,7 +13,6 @@ import Cart from "../pages/cart";
 import ContactUsPage from "../pages/ContactUsPage";
 import faq from "../pages/faq";
 import ErrorPage from "../pages/ErrorPage";
-import PendingBusiness from "../components/panels/businessinfo/pendingBusiness";
 import DeleteUser from "../pages/deleteuser";
 import UpdateUser from "../pages/updateuser";
 import AddPayment from "../pages/addpayment";
@@ -92,10 +91,6 @@ export const PAGES = {
     EDIT: {
       path: "/business/edit",
       Component: BusinessPage,
-    },
-    PENDING: {
-      path:"/business/pending",
-      Component: PendingBusiness,
     }
   },
   Warehouse: {
