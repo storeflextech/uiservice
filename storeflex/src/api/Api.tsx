@@ -154,7 +154,7 @@ export default class Api {
     }
 
     async getMyCompanies(getData: ViewCompaniesProps): Promise<any> {
-        const url = this.baseUrl + this.apiUrl.getCompaniesApi + '?page=' + getData.page + '&size=' + getData.size;
+        const url = `${this.baseUrl}${this.apiUrl.getCompaniesApi}?page=${getData.page}&size=${getData.size}&status=${getData.status}`;
         try {
             const response = await axios.get(url);
             if (response.status === 200) {

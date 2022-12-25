@@ -14,6 +14,7 @@ export interface SignInProps {
 export interface ViewCompaniesProps {
     page: string;
     size: string;
+    status: string;
 }
 
 export interface GetStatesProp {
