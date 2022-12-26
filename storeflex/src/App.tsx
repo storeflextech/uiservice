@@ -88,10 +88,6 @@ function App() {
               path={PAGES.Warehouse.VIEW.path}
               element={<PAGES.Warehouse.Component id="VIEW" />}
             />
-             <Route
-              path={PAGES.Warehouse.PENDING.path}
-              element={<PAGES.Warehouse.PENDING.Component />}
-            />
             <Route
               path={PAGES.Dashboard.path}
               element={<PAGES.Dashboard.Component />}

@@ -227,10 +227,15 @@ export default class Api {
     }
 
     async getWarehouseAdmin(getData: viewWarehouseAdminProps): Promise<any> {
-        const url = this.baseUrl + this.apiUrl.getWarehouseAdminUrl + '?page=' + getData.page + '&size=' + getData.size;
+        const url = `${this.baseUrl}${this.apiUrl.getWarehouseAdminUrl}?page=${getData.page}&size=${getData.size}&status=${getData.status}`;
         try {
             const response = await axios.get(url);
-            return Promise.resolve(response);
+            if (response.status === 200){
+            return Promise.resolve(response?.data);
+            } else{
+                console.log('error: getMyWarehouses', response);
+                return Promise.reject(response);
+            }
         }
         catch (error) {
             console.log(' error : Get Warehouse', error);
