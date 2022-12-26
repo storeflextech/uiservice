@@ -4,7 +4,7 @@ import ClientDashboard from '../components/panels/dashboards/ClientDashboard';
 import CustomerDashboard from '../components/panels/dashboards/CustomerDashboard';
 import TopNavBar from '../components/navbar/TopNavBar';
 import SideNavBar from '../components/navbar/SideNavBar';
-import { AppContainer, SplitPaneContainer, BoxContainer } from '../components/containers/containers';
+import { AppContainer, SplitPaneContainer } from '../components/containers/containers';
 import { getUserType } from '../utils/CommonUtils';
 import Footer from '../components/footer/footer';
 import { USER_TYPE } from '../utils/Constants';
