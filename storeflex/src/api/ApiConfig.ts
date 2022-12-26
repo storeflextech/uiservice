@@ -61,7 +61,7 @@ export interface AddWarehousePostData {
     atgradedoors?: string;
     ceillingheight?: string;
     forkliftcapacity?: string;
-    addresse?: Address[];
+    address?: Address[];
     hours?: Hours;
     warehouseprice?: Warehouseprice;
 }

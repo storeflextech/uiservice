@@ -49,7 +49,7 @@ const AddWarehouse = () => {
         buildPostData.warehouseName = whDetails?.warehouseName;
         buildPostData.warehouseTaxId = whDetails?.warehouseTaxId;
         buildPostData.descp = whDetails?.descp;
-        buildPostData.addresse = [whAddress];
+        buildPostData.address = [whAddress];
         buildPostData.hours = whHours;
         buildPostData.facilitiesId = whLayout.facilitiesId;
         buildPostData.industryId =  whLayout.industryId;
