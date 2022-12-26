@@ -147,3 +147,10 @@ export interface WarehouseCategories {
   statusCode: number;
   status?: string;
 }
+
+export interface WhPricing {
+  space?: string;
+  rate?: string;
+  quantity?: string;
+
+}

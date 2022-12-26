@@ -1,29 +1,50 @@
 import React, { useState, useEffect } from "react";
 import { Grid } from '@mui/material';
+import InputBox from "../../../atoms/textfield/InputBox";
 
 interface WarehouseHoursProps {
     onWarehouseHoursUpdate?: (data: any) => void;
 }
 
+const daysArry = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+
 const WarehouseHours = (props: WarehouseHoursProps) => {
 
     const [allDay, setAllDay] = useState(false);
     const [days, setDays] = useState({});
-    const [onUpdateInfo, setonUpdateInfo] = useState(false);
+    const [fromTime, setFromTime] = useState('00:00');
+    const [toTime, setToTime] = useState('00:00');
+
+    const [onUpdateInfo, setOnUpdateInfo] = useState(false);
 
     useEffect(() => {
         if (onUpdateInfo) {
-            setonUpdateInfo(false);
+            setOnUpdateInfo(false);
             onChangeUpdateInfo();
         }
     }, [onUpdateInfo]);
 
     const onChangeUpdateInfo = () => {
-        // if(props?.onWarehouseHoursUpdate) {
-        //     const obj = {
-        //     };
-        //     // props.onWarehouseHoursUpdate(obj);
-        // }
+        if(props?.onWarehouseHoursUpdate) {
+            const time = `${fromTime} | ${toTime}`;
+            let selectedDays = '';
+            if(allDay ) {
+                selectedDays = 'alldays';
+            } else {
+                const dayArry: string[] = [];
+                for (const status in days) {
+                    if(days[status]) {
+                        dayArry.push(status);
+                    }
+                }
+                selectedDays = dayArry.join('|');
+            }
+            const obj = {
+                days : selectedDays,
+                time
+            };
+            props.onWarehouseHoursUpdate(obj);
+        }
     }
 
     const selectDayRange = (day: string) => {
@@ -32,17 +53,81 @@ const WarehouseHours = (props: WarehouseHoursProps) => {
         } else {
             setAllDay(false);
         }
+        setOnUpdateInfo(true);
     }
     const selectDays = (evn: any) => {
         const traget = evn.target.value;
         const status = evn.target.checked || false;
-        setDays({ ...days, [traget]: status })
+        setDays({ ...days, [traget]: status });
+        setOnUpdateInfo(true);
     }
 
-    const checkSelectedDays = () => {
+    const checkSelectedDays = (dayName: string) => {
         if (allDay) {
-            return allDay;
+            return true;
+        } else {
+            return days[dayName] ? true : false;
         }
+    }
+
+    const getMeridian = (time: string) => {
+        let timeVal = time;
+        if(time) {
+            const splitTime = timeVal.split(':');
+            const hours = Number(splitTime[0]);
+            // const minutes = Number(splitTime[1]);
+            if(hours < 12 ) {
+                timeVal = `${timeVal}:AM`;
+                return timeVal;
+            } else {
+                timeVal = `${timeVal}:PM`; 
+                return timeVal;
+            }
+        } else {
+            return "0:00";
+        }
+    }
+
+    const onToTimeChange = (event: any) => {
+        if(event.target.value) {
+            const time = getMeridian(event.target.value);
+            setToTime(time);
+            setOnUpdateInfo(true);
+        }
+    }
+    const onFromTimeChange = (event: any) => {
+        if(event.target.value) {
+            const time = getMeridian(event.target.value)
+            setFromTime(time);
+            setOnUpdateInfo(true);
+        }
+    }
+
+    const showTime = () => {
+        const desabled = allDay;
+        return(
+            <div>
+                <Grid className='mt-1' container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
+                <Grid item xs={3}>
+                    <div> Select Time Range </div>
+                </Grid>
+                <Grid item xs={8}>
+                    <div className='sf-flex'>
+                        <div className="m-right-md">
+                            <InputBox data={{ type: 'time',  name: 'fromdate', label: 'From', isDisabled: desabled}}
+                                onChange={onFromTimeChange} 
+                            />
+                        </div>
+                        <div>
+                            <InputBox data={{ type: 'time',  name: 'todate', label: 'To', isDisabled: desabled}}
+                                onChange={onToTimeChange}
+                            />
+                        </div>
+                    </div>
+                </Grid>
+            </Grid>
+            </div>
+        )
     }
 
     return (
@@ -55,75 +140,28 @@ const WarehouseHours = (props: WarehouseHoursProps) => {
                 <div className='p-md'>
                     <div>
                         <div>
-
-                            <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-                                <Grid item xs={4}>
+                            <div className='sf-flex'>
+                                <div className="m-right-md">
                                     <input type="radio" name="week" id="days" onChange={() => { selectDayRange('days') }} /> Select Days Of Works
-                                </Grid>
-                                <Grid item xs={4}>
+                                </div>
+                                <div>
                                     <input type="radio" name="week" id="alldays" onChange={() => { selectDayRange('alldays') }} /> Available 24x7
-                                </Grid>
-                            </Grid>
-
-                            <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }} sx={{ p: 2 }}>
-                                <Grid item xs={1}>
-                                    <input type="checkbox" name="mon" id="mon" value='Mon' onChange={selectDays} checked={checkSelectedDays()} /> Mon
-                                </Grid>
-
-                                <Grid item xs={1}>
-                                    <input type="checkbox" name="tue" id="tue" value='Tue' onChange={selectDays} checked={checkSelectedDays()} /> Tue
-                                </Grid>
-
-                                <Grid item xs={1}>
-                                    <input type="checkbox" name="wed" id="wed" value='Wed' onChange={selectDays} checked={checkSelectedDays()} /> Wed
-                                </Grid>
-
-                                <Grid item xs={1}>
-                                    <input type="checkbox" name="thu" id="thu" value='Thu' onChange={selectDays} checked={checkSelectedDays()} /> Thu
-                                </Grid>
-                                <Grid item xs={1}>
-                                    <input type="checkbox" name="fri" id="fri" value='Fri' onChange={selectDays} checked={checkSelectedDays()} /> Fri
-                                </Grid>
-                                <Grid item xs={1}>
-                                    <input type="checkbox" name="sat" id="sat" value='Sat' onChange={selectDays} checked={checkSelectedDays()} /> Sat
-                                </Grid>
-                                <Grid item xs={1}>
-                                    <input type="checkbox" name="sun" id="sun" value='Sun' onChange={selectDays} checked={checkSelectedDays()} /> Sun
-                                </Grid>
-                            </Grid>
-
-                            <br />
-                            <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-                                <Grid item xs={4}>
-                                    <input type="radio" name="time" id="" disabled={checkSelectedDays() ? true : false} /> Select Time Range
-
-                                </Grid>
-                            </Grid>
-                            {checkSelectedDays()
-                                ? <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }} sx={{ p: 2 }}>
-                                    <Grid item xs={2}>
-                                        <label htmlFor="">From</label>
-                                        <input type="time" className="form-control" name="" id="" readOnly={true} value="00:00" />
-                                    </Grid>
-
-                                    <Grid item xs={2}>
-                                        <label htmlFor="">To</label>
-                                        <input type="time" className="form-control" name="" id="" readOnly={true} value="00:00" />
-                                    </Grid>
-                                </Grid>
-                                :
-                                <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }} sx={{ p: 2 }}>
-                                    <Grid item xs={2}>
-                                        <label htmlFor="">From</label>
-                                        <input type="time" className="form-control" name="" id="" readOnly={false} />
-                                    </Grid>
-
-                                    <Grid item xs={2}>
-                                        <label htmlFor="">To</label>
-                                        <input type="time" className="form-control" name="" id="" readOnly={false} />
-                                    </Grid>
-                                </Grid>
+                                </div>
+                            </div>
+                            <div className='sf-flex sf-justify p-top-md'>
+                            {
+                                daysArry.map((item, index) => {
+                                    const keyId =  item.toLowerCase();
+                                    return (
+                                        <div key={keyId}> 
+                                            <input type="checkbox" name={keyId} id={keyId} value={item} onChange={selectDays} checked={checkSelectedDays(item)} /> {item}
+                                        </div>  
+                                    )
+                                })
                             }
+                            </div>
+                            <br />
+                            {showTime()}
                         </div>
                     </div>
                 </div>
@@ -131,6 +169,5 @@ const WarehouseHours = (props: WarehouseHoursProps) => {
         </>
     )
 }
-
 
 export default WarehouseHours;

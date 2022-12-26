@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import { Grid } from '@mui/material';
 import InputBox from '../../../atoms/textfield/InputBox';
 import { validateAreaSpace, validateCharacterLength, validateRate } from '../../../../utils/CommonUtils';
-import { objectData } from '../../../../utils/ResponseSchema';
+import { objectData, WhPricing } from '../../../../utils/ResponseSchema';
 import { InputError } from '../../../atoms/textfield/InputError';
 
 interface WearehousePricingProps {
@@ -40,7 +40,7 @@ const WearehousePricing=(props: WearehousePricingProps) => {
                 space: getVal(spaceInfo),
                 rate: getVal(rateInfo),
                 quantity: getVal(quantityInfo)
-            };
+            } as WhPricing;
             props.onWearehousePricingUpdate(obj);
         }
     }

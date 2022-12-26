@@ -12,7 +12,6 @@ import Table from 'react-bootstrap/Table';
 import TopNavBar from '../components/navbar/TopNavBar';
 import SideNavBar from '../components/navbar/SideNavBar';
 import { AppContainer, SplitPaneContainer } from '../components/containers/containers';
-import Footer from '../components/footer/footer';
 import { getUserType } from '../utils/CommonUtils';
 import { viewUserProps } from '../api/ApiConfig';
 import Api from '../api/Api';
@@ -214,7 +213,6 @@ const EditCompanyUser = () => {
                     </div>
                 }
             />
-            <Footer />
         </AppContainer>
     )
 }

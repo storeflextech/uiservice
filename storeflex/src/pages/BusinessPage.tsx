@@ -4,6 +4,7 @@ import TopNavBar from '../components/navbar/TopNavBar';
 import SideNavBar from '../components/navbar/SideNavBar';
 import { AppContainer, SplitPaneContainer } from '../components/containers/containers';
 import { getUserType } from '../utils/CommonUtils';
+import Footer from '../components/footer/footer';
 
 const BusinessPage = (props) => {
     return(
@@ -15,6 +16,7 @@ const BusinessPage = (props) => {
             <BusinessInfo  action={props?.id} />
           }
       />
+      <Footer/>
   </AppContainer>
   )
 }

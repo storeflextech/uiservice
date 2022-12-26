@@ -1,5 +1,5 @@
 
-import { Address, Contact , Photo} from '../../src/utils/ResponseSchema'
+import { Address, Contact , Photo, WhPricing} from '../../src/utils/ResponseSchema'
 export interface SlLoginProps {
     username: string,
     emailId: string,
@@ -52,10 +52,13 @@ export interface AddWarehousePostData {
     warehouseName?: string;
     descp?: string;
     warehouseTaxId?: string;
+    days?: string;
+    time?: string;
     facilitiesId?: string;
     industryId?: string;
     storagesId?: string;
     addresse?: Address[];
+    pricing?: WhPricing;
 }
 
 export interface EnquiryProps {
@@ -91,7 +94,7 @@ export class ApiConfig {
     searchwarehouse = '/searchwarehouse';
     getWarehouseByClientIdUrl = '/warehouseByClientId';
     getWarehouseAdminUrl = '/warehouses';
-    addWarehouseUrl = '/warehouses';
+    addWarehouseUrl = '/warehouse';
     enquiry = '/enquiry';
     getViewUserUrl = '/storeflexusers';
     getCompanyListApi = '/clientDropList';
