@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Grid } from '@mui/material';
 import InputBox from '../../../atoms/textfield/InputBox';
 import { InputError } from '../../../atoms/textfield/InputError';
@@ -15,31 +15,31 @@ export interface WhDetail {
     clientId?: string;
     warehouseName?: string;
     descp?: string;
-    warehouseTaxId?:string;
+    warehouseTaxId?: string;
 }
 const WarehouseDetails = (props: WarehouseDetailsProps) => {
     const [companyCode, setCompanyCode] = useState('');
     const [warehouseNameInfo, setWarehouseNameInfo] = useState<objectData>({});
     const [gstIdInfo, setGstIdInfo] = useState<objectData>({});
     const [warehouseDecInfo, setWarehouseDecInfo] = useState<objectData>({});
-    const [onUpdateInfo , setonUpdateInfo] = useState(false);
+    const [onUpdateInfo, setonUpdateInfo] = useState(false);
 
     useEffect(() => {
-        if(onUpdateInfo) {
+        if (onUpdateInfo) {
             setonUpdateInfo(false);
             onChangeUpdateInfo();
         }
     }, [onUpdateInfo]);
 
     const getVal = (obj: objectData) => {
-        if(obj.isUpdated) {
+        if (obj.isUpdated) {
             return obj.val
         } else {
             return undefined;
         }
     }
     const onChangeUpdateInfo = () => {
-        if(props?.onWarehouseDetailsUpdate) {
+        if (props?.onWarehouseDetailsUpdate) {
             const obj = {
                 clientId: companyCode,
                 warehouseName: getVal(warehouseNameInfo),
@@ -61,12 +61,12 @@ const WarehouseDetails = (props: WarehouseDetailsProps) => {
             error: '',
             isUpdated: true,
         } as objectData;
-        if (!obj.val){
-            obj.error='This field can not be empty';
-        }else if (validateCharacterLength(obj.val, 4, 50)) {
+        if (!obj.val) {
+            obj.error = 'This field can not be empty';
+        } else if (validateCharacterLength(obj.val, 4, 50)) {
             obj.error = '';
         } else {
-           obj.error = 'Please enter valid name ';
+            obj.error = 'Please enter valid name ';
         }
         setWarehouseNameInfo(obj);
         setonUpdateInfo(true);
@@ -98,7 +98,7 @@ const WarehouseDetails = (props: WarehouseDetailsProps) => {
         if (validateCharacterLength(obj.val, 4, 100)) {
             obj.error = '';
         } else {
-           obj.error = 'Please enter description ';
+            obj.error = 'Please enter description ';
         }
         setWarehouseDecInfo(obj);
         setonUpdateInfo(true);
@@ -111,18 +111,18 @@ const WarehouseDetails = (props: WarehouseDetailsProps) => {
                     <div className='font-white p-sm f-18px f-bold'>Warehouse Details</div>
                 </div>
                 <div className='p-md'>
-                <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-                    <Grid item xs={4}>
-                        <div> Company </div>
-                        <div className='p-top-sm'>
-                            {<GetCompany onCompanyChange={companyChange}/>}
-                        </div>
+                    <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
+                        <Grid item xs={4}>
+                            <div> Company* </div>
+                            <div className='p-top-sm'>
+                                {<GetCompany onCompanyChange={companyChange} />}
+                            </div>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <InputBox data={{ name: 'clientid', label: 'Client ID*', value: companyCode, isDisabled: true }}
+                            />
+                        </Grid>
                     </Grid>
-                    <Grid item xs={4}>
-                        <InputBox data={{ name: 'clientid', label: 'Client ID*', value: companyCode, isDisabled: true }}
-                        />
-                    </Grid>
-                </Grid>
                 </div>
 
                 <div className='p-md'>
@@ -131,31 +131,31 @@ const WarehouseDetails = (props: WarehouseDetailsProps) => {
                             <Grid container >
                             </Grid>
                             <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-                            <Grid item xs={4}>
-                                <div>Profile Photo</div>
-                                <div className='p-top-sm'>
-                                    <input type="file" className="form-control" />
-                                </div>
-                            </Grid>
-                                
+                                <Grid item xs={4}>
+                                    <div>Profile Photo</div>
+                                    <div className='p-top-sm'>
+                                        <input type="file" className="form-control" />
+                                    </div>
+                                </Grid>
+
                                 <Grid item xs={4}>
                                     <InputBox data={{ name: 'cityname', label: 'Warehouse Name*', value: '' }}
-                                     onChange={validateWarehouseName}
+                                        onChange={validateWarehouseName}
                                     />
-                                    <InputError errorText={warehouseNameInfo.error}/>
+                                    <InputError errorText={warehouseNameInfo.error} />
                                 </Grid>
                                 <Grid item xs={4}>
                                     <InputBox data={{ name: 'gstid', label: 'GST Number*', value: '' }}
                                         onChange={onGstIdChange}
                                     />
-                                    <InputError errorText={gstIdInfo.error}/>
+                                    <InputError errorText={gstIdInfo.error} />
                                 </Grid>
 
                                 <Grid item xs={12}>
                                     <InputBox data={{ name: 'whdescription', label: 'Warehouse Description*', value: '' }}
                                         onChange={validateWarehouseDec}
                                     />
-                                     <InputError errorText={warehouseDecInfo.error}/>
+                                    <InputError errorText={warehouseDecInfo.error} />
                                 </Grid>
                             </Grid>
                         </div>
