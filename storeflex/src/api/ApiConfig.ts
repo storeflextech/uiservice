@@ -34,6 +34,7 @@ export interface ViewWarehouseProps {
 export interface viewWarehouseAdminProps{
     page:string;
     size: string;
+    status: string;
 }
 export interface AddCompanyPostData {
     clientId?: string;

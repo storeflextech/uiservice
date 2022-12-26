@@ -6,26 +6,52 @@ import swal from "sweetalert";
 import Api from "../../../api/Api";
 import { viewWarehouseAdminProps } from "../../../api/ApiConfig";
 import { responseInterceptor } from "http-proxy-middleware";
+import { LoaderFull } from "../../atoms/loader/loader";
+
+let recordLabel ='';
 
 const ViewWarehouse = () => {
+  const warehouseView = window.location.hash;
   const api = new Api();
   const navigate = useNavigate();
   const [myWarehouse, setMyWarehouse] = useState<Array<any>>([]);
+  const [isLoader,setIsLoader] = useState(false);
+  const [currentView, setCurrentView] = useState('');
+
   var page: any = "0";
   var size: any = "6";
 
   useEffect(() => {
+    if(warehouseView!==currentView)
     getWarehouseAdmin(page, size);
-  }, []);
+    setCurrentView(warehouseView);
+  }, [warehouseView]);
 
   const getWarehouseAdmin = (page, size) => {
-    const data: viewWarehouseAdminProps = { page: page, size: size };
+    //IN-PROGRESS, IN-ACTIVE, ACTIVE
+    let warehouseStatus = 'ACTIVE'
+    if(warehouseView === '#inactive'){
+      warehouseStatus ='IN-ACTIVE';
+      recordLabel = 'Inactive Warehouses'
+    }else if (warehouseView === '#pending'){
+      warehouseStatus = 'IN-PROGRESS';
+      recordLabel ='Pending Warehouses'
+    }else{
+      warehouseStatus = 'ACTIVE';
+      recordLabel = 'Active Warehouses'
+    }
+    setIsLoader(true);
+
+
+
+    
+    const data: viewWarehouseAdminProps = { page: page, size: size, status: warehouseStatus };
     api.getWarehouseAdmin(data).then((response) => {
-      console.log("Response=", response);
-      if (response.status == 200) {
-        setMyWarehouse(response.data.methodReturnValue.warehouseViewBean);
-        // setValue(false);
-      }
+      setIsLoader(false);
+      setMyWarehouse(response.data.methodReturnValue.warehouseViewBean);
+    }).catch((error)=>{
+      setIsLoader(false);
+      console.log('getMyWarhouses', error);
     });
   };
 
@@ -69,6 +95,7 @@ const ViewWarehouse = () => {
     });
   };
 
+  const showWarehouseList=()=>{
   return (
     <div className="c-box-shadow-blue">
       <Box className="m-top-md m-bot-md m-left-md m-right-md">
@@ -148,6 +175,16 @@ const ViewWarehouse = () => {
       </Box>
     </div>
   );
+              }
+  return (
+    <>
+         {isLoader && <LoaderFull />}
+        <div className='c-box-shadow-blue'>
+        {showWarehouseList()}
+        </div>
+    </>
+    
+)
 };
 
 export default ViewWarehouse;

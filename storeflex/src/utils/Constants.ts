@@ -36,7 +36,6 @@ import WarehousePage from "../pages/WarehousePage";
 
 import WarehouseDetails from "../components/atoms/Searchresult/warehouseDetails";
 import SignInCustomer from "../pages/signin-customer";
-import PendingWarehouse from "../components/panels/warehouseInfo/pendingWarehouse";
 import PendingUser from "../pages/pendingUser";
 
 export enum USER_TYPE {
@@ -108,10 +107,6 @@ export const PAGES = {
       path: "/warehouse/view",
       Component: WarehousePage,
     },
-    PENDING:{
-      path:"/warehouse/pending",
-      Component: PendingWarehouse,
-    }
   },
   AddInfo: {
     path: "/addinfo",
