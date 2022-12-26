@@ -1,5 +1,5 @@
 
-import { Address, Contact , Photo, WhPricing} from '../../src/utils/ResponseSchema'
+import { Address, Contact , Photo, Warehouseprice} from '../../src/utils/ResponseSchema'
 export interface SlLoginProps {
     username: string,
     emailId: string,
@@ -57,10 +57,23 @@ export interface AddWarehousePostData {
     facilitiesId?: string;
     industryId?: string;
     storagesId?: string;
-    addresse?: Address[];
-    pricing?: WhPricing;
+    dockhighdoors?: string;
+    atgradedoors?: string;
+    ceillingheight?: string;
+    forkliftcapacity?: string;
+    address?: Address[];
+    hours?: Hours;
+    warehouseprice?: Warehouseprice;
 }
 
+export interface Hours {
+    id?: string;
+    warehouseId?: string;
+    openday?: string;
+    starttime?: string;
+    endtime?: string;
+    openall?: boolean;
+}
 export interface EnquiryProps {
  
     firstName: string,

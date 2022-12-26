@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Grid } from '@mui/material';
 import InputBox from "../../../atoms/textfield/InputBox";
+import { Hours } from "../../../../api/ApiConfig";
 
 interface WarehouseHoursProps {
     onWarehouseHoursUpdate?: (data: any) => void;
@@ -26,7 +27,6 @@ const WarehouseHours = (props: WarehouseHoursProps) => {
 
     const onChangeUpdateInfo = () => {
         if(props?.onWarehouseHoursUpdate) {
-            const time = `${fromTime} | ${toTime}`;
             let selectedDays = '';
             if(allDay ) {
                 selectedDays = 'alldays';
@@ -39,10 +39,11 @@ const WarehouseHours = (props: WarehouseHoursProps) => {
                 }
                 selectedDays = dayArry.join('|');
             }
-            const obj = {
-                days : selectedDays,
-                time
-            };
+            const obj = {} as Hours;
+            obj.openall = allDay;
+            obj.openday = allDay ? '' : selectedDays;
+            obj.starttime = fromTime;
+            obj.endtime = toTime;
             props.onWarehouseHoursUpdate(obj);
         }
     }

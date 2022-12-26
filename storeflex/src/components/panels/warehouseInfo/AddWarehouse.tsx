@@ -6,11 +6,11 @@ import { LoaderFull } from '../../atoms/loader/loader';
 import WearehouseAddress from './component/WearehouseAddress';
 import WearehousePricing from './component/WearehousePricing';
 import WarehouseHours from './component/WarehouseHours';
-import WarehouseLayout from './component/WarehouseLayout';
+import WarehouseLayout, {WarehouseLayoutObj} from './component/WarehouseLayout';
 import WarehouseDetails from './component/WarehouseDetails';
-import { AddWarehousePostData } from '../../../api/ApiConfig'; 
+import { AddWarehousePostData, Hours } from '../../../api/ApiConfig'; 
 import { WhDetail } from './component/WarehouseDetails';
-import { Address, WhPricing } from '../../../utils/ResponseSchema';
+import { Address, Warehouseprice } from '../../../utils/ResponseSchema';
 
 const AddWarehouse = () => {
 
@@ -18,9 +18,9 @@ const AddWarehouse = () => {
     const [isLoader, setIsLoader] = useState(false);
     const [whDetails, setWhDetails] = useState<WhDetail>({});
     const [whAddress, setWhAddress] = useState<Address>({});
-    const [pricing, setPricing] = useState<WhPricing>({});
-    const [whHours, setWhHours] = useState({days: '', time: ''});
-    const [whLayout, setLayout] = useState({});
+    const [pricing, setPricing] = useState<Warehouseprice>({});
+    const [whHours, setWhHours] = useState<Hours>({});
+    const [whLayout, setLayout] = useState<WarehouseLayoutObj>({});
 
     const onWarehouseDetailsUpdate = (data: WhDetail) => {
         setWhDetails(data);
@@ -44,19 +44,21 @@ const AddWarehouse = () => {
     }
 
     const addWarehouse = () => {
-
         const buildPostData = {} as AddWarehousePostData;
         buildPostData.clientId = whDetails?.clientId;
         buildPostData.warehouseName = whDetails?.warehouseName;
         buildPostData.warehouseTaxId = whDetails?.warehouseTaxId;
         buildPostData.descp = whDetails?.descp;
-        buildPostData.addresse = [whAddress];
-        buildPostData.time = whHours?.time;
-        buildPostData.days = whHours?.days;
-        buildPostData.facilitiesId = whLayout['facilitiesId'];
-        buildPostData.industryId =  whLayout['industryId'];
-        buildPostData.storagesId = whLayout['storagesId'];
-        buildPostData.pricing = pricing;
+        buildPostData.address = [whAddress];
+        buildPostData.hours = whHours;
+        buildPostData.facilitiesId = whLayout.facilitiesId;
+        buildPostData.industryId =  whLayout.industryId;
+        buildPostData.storagesId = whLayout.storagesId;
+        buildPostData.dockhighdoors = whLayout.dockhighdoors;
+        buildPostData.atgradedoors = whLayout.atgradedoors;
+        buildPostData.ceillingheight = whLayout.ceillingheight;
+        buildPostData.forkliftcapacity = whLayout.forkliftcapacity;
+        buildPostData.warehouseprice = pricing;
 
         setIsLoader(true);
         api.addWarehouse(buildPostData).then((resp) => {

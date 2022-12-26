@@ -5,6 +5,7 @@ import { InputError } from '../../../atoms/textfield/InputError';
 import GetCompany from "../../../atoms/company/GetCompany";
 import { objectData } from '../../../../utils/ResponseSchema';
 import { validateCharacterLength, validateGst } from "../../../../utils/CommonUtils";
+import { UploadImage } from "../../../atoms/image/image";
 
 
 interface WarehouseDetailsProps {
@@ -23,6 +24,7 @@ const WarehouseDetails = (props: WarehouseDetailsProps) => {
     const [gstIdInfo, setGstIdInfo] = useState<objectData>({});
     const [warehouseDecInfo, setWarehouseDecInfo] = useState<objectData>({});
     const [onUpdateInfo , setonUpdateInfo] = useState(false);
+    const [imageData, setImageData] = useState<File>();
 
     useEffect(() => {
         if(onUpdateInfo) {
@@ -104,6 +106,12 @@ const WarehouseDetails = (props: WarehouseDetailsProps) => {
         setonUpdateInfo(true);
     }
 
+    const onPhotoUploadChange = (file: any) => {
+        if (file) {
+            setImageData(file);
+        }
+    }
+
     return (
         <>
             <div className='m-bot-lg'>
@@ -112,54 +120,48 @@ const WarehouseDetails = (props: WarehouseDetailsProps) => {
                 </div>
                 <div className='p-md'>
                 <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-                    <Grid item xs={4}>
-                        <div> Company </div>
-                        <div className='p-top-sm'>
-                            {<GetCompany onCompanyChange={companyChange}/>}
-                        </div>
+                    <Grid item xs={9}>
+                        <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
+                            <Grid item xs={6}>
+                                <div> Company </div>
+                                <div className='p-top-sm'>
+                                    {<GetCompany onCompanyChange={companyChange}/>}
+                                </div>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <InputBox data={{ name: 'clientid', label: 'Client ID*', value: companyCode, isDisabled: true }}
+                                />
+                            </Grid>
+                        </Grid>
+                        <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
+                            <Grid item xs={6}>
+                                <InputBox data={{ name: 'cityname', label: 'Warehouse Name*', value: '' }}
+                                    onChange={validateWarehouseName}
+                                />
+                                <InputError errorText={warehouseNameInfo.error}/>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <InputBox data={{ name: 'gstid', label: 'GST Number*', value: '' }}
+                                    onChange={onGstIdChange}
+                                />
+                                <InputError errorText={gstIdInfo.error}/>
+                            </Grid>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={4}>
-                        <InputBox data={{ name: 'clientid', label: 'Client ID*', value: companyCode, isDisabled: true }}
-                        />
+                    <Grid item xs={3}>
+                        <UploadImage name={'companyphoto'} onImageChange={onPhotoUploadChange} />
                     </Grid>
                 </Grid>
                 </div>
-
                 <div className='p-md'>
-                    <div>
-                        <div>
-                            <Grid container >
-                            </Grid>
-                            <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-                            <Grid item xs={4}>
-                                <div>Profile Photo</div>
-                                <div className='p-top-sm'>
-                                    <input type="file" className="form-control" />
-                                </div>
-                            </Grid>
-                                
-                                <Grid item xs={4}>
-                                    <InputBox data={{ name: 'cityname', label: 'Warehouse Name*', value: '' }}
-                                     onChange={validateWarehouseName}
-                                    />
-                                    <InputError errorText={warehouseNameInfo.error}/>
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <InputBox data={{ name: 'gstid', label: 'GST Number*', value: '' }}
-                                        onChange={onGstIdChange}
-                                    />
-                                    <InputError errorText={gstIdInfo.error}/>
-                                </Grid>
-
-                                <Grid item xs={12}>
-                                    <InputBox data={{ name: 'whdescription', label: 'Warehouse Description*', value: '' }}
-                                        onChange={validateWarehouseDec}
-                                    />
-                                     <InputError errorText={warehouseDecInfo.error}/>
-                                </Grid>
-                            </Grid>
-                        </div>
-                    </div>
+                    <Grid container spacing={0} columns={{ xs: 6, sm: 12, md: 12 }}>
+                        <Grid item xs={12}>
+                            <InputBox data={{ name: 'whdescription', label: 'Warehouse Description*', value: '' }}
+                                onChange={validateWarehouseDec}
+                            />
+                            <InputError errorText={warehouseDecInfo.error}/>
+                        </Grid>
+                    </Grid>
                 </div>
             </div>
         </>
