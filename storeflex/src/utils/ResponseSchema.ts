@@ -148,9 +148,13 @@ export interface WarehouseCategories {
   status?: string;
 }
 
-export interface WhPricing {
-  space?: string;
-  rate?: string;
-  quantity?: string;
-
+export interface Warehouseprice {
+  priceId?: string;
+  availspace?: string;
+  ratesqtft?: string;
+  minordersqt?: string;
+  createBy?: string;
+  createDate?: string;
+  updatedBy?: string;
+  updateDate?: string;
 }

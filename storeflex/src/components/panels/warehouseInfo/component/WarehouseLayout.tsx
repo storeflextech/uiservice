@@ -4,7 +4,15 @@ import InputBox from '../../../atoms/textfield/InputBox';
 import Api from "../../../../api/Api";
 import { WarehouseCategories } from "../../../../utils/ResponseSchema";
 
-
+export interface  WarehouseLayoutObj {
+    industryId?: string;
+    storagesId?: string;
+    facilitiesId?: string;
+    dockhighdoors?: string;
+    atgradedoors?: string;
+    ceillingheight?: string;
+    forkliftcapacity?: string;
+};
 interface WarehouseLayoutProps {
     onWarehouseLayoutUpdate?: (data: any) => void;
 }
@@ -16,6 +24,10 @@ const WarehouseLayout = (props: WarehouseLayoutProps) => {
     const [storagesCategories, setStoragesCategories] = useState({});
     const [facilitiesCategories, setFacilitiesCategories] = useState({});
     const [onUpdateInfo , setonUpdateInfo] = useState(false);
+    const [dockHighDoors, setDockHighdoors] = useState('');
+    const [atGradeDoors, setAtGradeDoors] = useState('');
+    const [ceillingHeight, setCeillingHeight] = useState('');
+    const [forkLiftCapacity, setForkLiftCapacity] = useState('');
 
     const [whCategories , setWhCategories] = useState<WarehouseCategories>();
 
@@ -48,8 +60,12 @@ const WarehouseLayout = (props: WarehouseLayoutProps) => {
             const obj = {
                 industryId: filterCode(industriesCategories),
                 storagesId: filterCode(storagesCategories),
-                facilitiesId: filterCode(facilitiesCategories)
-            };
+                facilitiesId: filterCode(facilitiesCategories),
+                dockhighdoors: dockHighDoors,
+                atgradedoors: atGradeDoors,
+                ceillingheight: ceillingHeight,
+                forkliftcapacity: forkLiftCapacity
+            } as WarehouseLayoutObj
             props.onWarehouseLayoutUpdate(obj);
         }
     }
@@ -82,6 +98,25 @@ const WarehouseLayout = (props: WarehouseLayoutProps) => {
         const isSelected = evn?.target?.checked || false;
         setFacilitiesCategories({...facilitiesCategories, [tragetCode]: isSelected});
         setonUpdateInfo(true);
+    }
+
+    const onChangeFearureChange = (evt: any) => {
+       if(evt?.target?.value) {
+            const name = evt.target.name;
+            const value = evt.target.value
+            if(name === 'dockhighdoors') {
+                setDockHighdoors(value);
+            } else if(name === 'atgradedoors') {
+                setAtGradeDoors(value);
+            } else if(name === 'ceillingheight') {
+                setCeillingHeight(value);
+            } else if(name === 'forkliftcapacity') {
+                setForkLiftCapacity(value);
+            } else {
+                return false;
+            }
+            setonUpdateInfo(true);
+       }
     }
 
     const showIndustriesCategories = () => {
@@ -196,29 +231,25 @@ const WarehouseLayout = (props: WarehouseLayoutProps) => {
 
                             <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                             <Grid item xs={3}>
-                                    <InputBox data={{ name: '', label: '#Dock High Doors', value: '' }}
-                                    // onChange={validateAddress}
+                                    <InputBox data={{ name: 'dockhighdoors', label: '#Dock High Doors', value: '' }}
+                                     onChange={onChangeFearureChange}
                                     />
-                                    {/* {address && <p className="text-red">{address}</p>} */}
                                 </Grid>
                                 <Grid item xs={3}>
-                                    <InputBox data={{ name: '', label: '#At Grade Doors', value: '' }}
-                                    // onChange={validateAddress}
+                                    <InputBox data={{ name: 'atgradedoors', label: '#At Grade Doors', value: '' }}
+                                        onChange={onChangeFearureChange}
                                     />
-                                    {/* {address && <p className="text-red">{address}</p>} */}
                                 </Grid>
 
                                 <Grid item xs={3}>
-                                    <InputBox data={{ name: '', label: 'Clear Ceilling Height (feet)', value: '' }}
-                                    // onChange={validateZipCode}
+                                    <InputBox data={{ name: 'ceillingheight', label: 'Clear Ceilling Height (feet)', value: '' }}
+                                        onChange={onChangeFearureChange}
                                     />
-                                   
                                 </Grid>
                                 <Grid item xs={3}>
-                                    <InputBox data={{ name: '', label: 'Max Forklift Capacity (Lbs)', value: '' }}
-                                    // onChange={validateZipCode}
+                                    <InputBox data={{ name: 'forkliftcapacity', label: 'Max Forklift Capacity (Lbs)', value: '' }}
+                                        onChange={onChangeFearureChange}
                                     />
-                                   
                                 </Grid>
                             </Grid>
 

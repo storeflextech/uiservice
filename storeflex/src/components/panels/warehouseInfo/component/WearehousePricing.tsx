@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
 import { Grid } from '@mui/material';
 import InputBox from '../../../atoms/textfield/InputBox';
-import { validateAreaSpace, validateCharacterLength, validateRate } from '../../../../utils/CommonUtils';
-import { objectData, WhPricing } from '../../../../utils/ResponseSchema';
+import { validateAreaSpace, validateRate } from '../../../../utils/CommonUtils';
+import { objectData, Warehouseprice } from '../../../../utils/ResponseSchema';
 import { InputError } from '../../../atoms/textfield/InputError';
 
 interface WearehousePricingProps {
@@ -36,11 +36,10 @@ const WearehousePricing=(props: WearehousePricingProps) => {
     }
     const onChangeUpdateInfo = () => {
         if(props?.onWearehousePricingUpdate) {
-            const obj = {
-                space: getVal(spaceInfo),
-                rate: getVal(rateInfo),
-                quantity: getVal(quantityInfo)
-            } as WhPricing;
+            const obj = {} as Warehouseprice;
+            obj.availspace = getVal(spaceInfo);
+            obj.ratesqtft = getVal(rateInfo);
+            obj.minordersqt = getVal(quantityInfo);
             props.onWearehousePricingUpdate(obj);
         }
     }
