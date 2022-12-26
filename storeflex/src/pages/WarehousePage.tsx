@@ -1,9 +1,10 @@
 import React from 'react';
 import TopNavBar from '../components/navbar/TopNavBar';
 import SideNavBar from '../components/navbar/SideNavBar';
-import { AppContainer, SplitPaneContainer, BoxContainer } from '../components/containers/containers';
+import { AppContainer, SplitPaneContainer } from '../components/containers/containers';
 import { getUserType } from '../utils/CommonUtils';
 import WarehouseInfo from '../components/panels/warehouseInfo/warehouseinfo';
+import Footer from '../components/footer/footer';
 
 const WarehousePage = (props) => {
     return(
@@ -13,6 +14,7 @@ const WarehousePage = (props) => {
           left={<SideNavBar userType={getUserType()}/>}
           right={<WarehouseInfo  action={props?.id} />}
       />
+      <Footer/>
   </AppContainer>
   )
 }

@@ -1,7 +1,6 @@
 import React, {useEffect, useState}  from 'react';
 import { Button } from '@mui/material';
 import swal from 'sweetalert';
-import Footer from '../../footer/footer';
 import Api from '../../../../src/api/Api';
 import { LoaderFull } from '../../atoms/loader/loader';
 import WearehouseAddress from './component/WearehouseAddress';
@@ -11,7 +10,7 @@ import WarehouseLayout from './component/WarehouseLayout';
 import WarehouseDetails from './component/WarehouseDetails';
 import { AddWarehousePostData } from '../../../api/ApiConfig'; 
 import { WhDetail } from './component/WarehouseDetails';
-import { Address } from '../../../utils/ResponseSchema';
+import { Address, WhPricing } from '../../../utils/ResponseSchema';
 
 const AddWarehouse = () => {
 
@@ -19,9 +18,9 @@ const AddWarehouse = () => {
     const [isLoader, setIsLoader] = useState(false);
     const [whDetails, setWhDetails] = useState<WhDetail>({});
     const [whAddress, setWhAddress] = useState<Address>({});
-    const [whPricing, setWhPricing] = useState();
-    const [whHours, setWhHours] = useState();
-    const [whLayout, setLayout] = useState();
+    const [pricing, setPricing] = useState<WhPricing>({});
+    const [whHours, setWhHours] = useState({days: '', time: ''});
+    const [whLayout, setLayout] = useState({});
 
     const onWarehouseDetailsUpdate = (data: WhDetail) => {
         setWhDetails(data);
@@ -32,7 +31,7 @@ const AddWarehouse = () => {
         console.log(' onWearehouseAddressUpdate >>> ', data);
     }
     const onWearehousePricingUpdate = (data: any) => {
-        setWhPricing(data);
+        setPricing(data);
         console.log(' onWearehousePricingUpdate >>> ', data);
     }
     const onWarehouseHoursUpdate = (data: any) => {
@@ -52,9 +51,12 @@ const AddWarehouse = () => {
         buildPostData.warehouseTaxId = whDetails?.warehouseTaxId;
         buildPostData.descp = whDetails?.descp;
         buildPostData.addresse = [whAddress];
-        buildPostData.facilitiesId = '';
-        buildPostData.industryId = '';
-        buildPostData.storagesId = '';
+        buildPostData.time = whHours?.time;
+        buildPostData.days = whHours?.days;
+        buildPostData.facilitiesId = whLayout['facilitiesId'];
+        buildPostData.industryId =  whLayout['industryId'];
+        buildPostData.storagesId = whLayout['storagesId'];
+        buildPostData.pricing = pricing;
 
         setIsLoader(true);
         api.addWarehouse(buildPostData).then((resp) => {
@@ -81,9 +83,8 @@ const AddWarehouse = () => {
         <div className='p-top-md align-c'>
             <Button className='sf-btn' variant="contained" onClick={() => { alert('Cancel') }}> Cancel </Button>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <Button className="btn primary-btn sf-btn" variant="contained" onClick={() => {}}> Save </Button>
+            <Button className="btn primary-btn sf-btn" variant="contained" onClick={() => { addWarehouse ()}}> Save </Button>
         </div>
-        <Footer/>
         </>
     )
 }

@@ -12,7 +12,6 @@ import { AddCompanyPostData } from '../../../../src/api/ApiConfig';
 import LoaderSpinner from '../../atoms/spinner/spinner';
 import { objectData } from '../../../utils/ResponseSchema';
 import { UploadImage } from '../../atoms/image/image';
-import { Value } from 'sass';
 
 
 interface AddBusinessProps {
