@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Tooltip } from '@mui/material';
 import { useNavigate } from "react-router-dom";
-import Table from 'react-bootstrap/Table';
 import swal from 'sweetalert';
-import Pagination from 'react-bootstrap/Pagination';
 import Api from '../../../../src/api/Api';
 import { ViewCompaniesProps } from '../../../api/ApiConfig';
-import { DeletsButton, EditButton } from '../../buttons/buttons';
 import { LoaderFull } from '../../atoms/loader/loader';
 
 import { DataGrid } from "@mui/x-data-grid";
@@ -102,20 +99,29 @@ const ViewBusiness = () => {
         });
     };
 
-    
+    const [hoveredRow, setHoveredRow] = useState(null);
+    const onMouseEnterRow = (event) => {
+        const id = event.currentTarget.getAttribute("data-id"); 
+        setHoveredRow(id);
+        };
+    const onMouseLeaveRow = () => {
+        setHoveredRow(null);
+        };
+    const [deleteLogoStatus, setDeleteLogoStatus] = useState(false);
+    const [editLogoStatus, setEditLogoStatus] = useState(false);
 
     const columns = [
         { field: "clientId", headerName: "Company Id", width: 100 },
-        { field: "compyName", headerName: "Company Name", width: 300 },
-        { field: "compyDesc", headerName: "Description", width: 300 },
-        { field: "url", headerName: "Company Url", width: 300},
-        { field: "addresses", headerName: "Address", width: 300,},
-        { field: "contact", headerName: "Email/Phone", width: 300},
+        { field: "compyName", headerName: "Company Name", width: 150 },
+        { field: "compyDesc", headerName: "Description", width: 150 },
+        { field: "url", headerName: "Company Url", width: 250},
+        { field: "addresses", headerName: "Address", width: 200,},
+        { field: "contact", headerName: "Email/Phone", width: 250},
        
         {
           field: "actions",
           headerName: "ACTIONS",
-          width: 120,
+          width: 100,
           sortable: false,
           disableColumnMenu: true,
           renderCell: (params) => {
@@ -138,13 +144,16 @@ const ViewBusiness = () => {
                 >
                   <IconButton
                     style={{
-                      
-                    }}
+                        backgroundColor:
+                        editLogoStatus && params.id === hoveredRow ? "#008CBA" : "",
+                        color:
+                        editLogoStatus && params.id === hoveredRow ? "white" : "",
+                      }}
                     onMouseEnter={() => {
-                      
+                        setEditLogoStatus(true);
                     }}
                     onMouseLeave={() => {
-                     
+                        setEditLogoStatus(false);
                     }}
                     onClick={() => {
                         editBusiness(params.row);
@@ -162,13 +171,18 @@ const ViewBusiness = () => {
                 >
                   <IconButton
                     style={{
-                      
-                    }}
+                        backgroundColor:
+                          deleteLogoStatus && params.id === hoveredRow
+                            ? "#f44336"
+                            : "",
+                        color:
+                          deleteLogoStatus && params.id === hoveredRow ? "white" : "",
+                      }}
                     onMouseEnter={() => {
-                      
+                        setDeleteLogoStatus(true);
                     }}
                     onMouseLeave={() => {
-                      
+                        setDeleteLogoStatus(false);
                     }}
                     onClick={() => {
                         deleteBusiness(params.row)
@@ -186,82 +200,34 @@ const ViewBusiness = () => {
     const showCompanyList = () => {
         return (
             <Box className='m-top-md m-bot-md m-left-md m-right-md'>
-                <div>
                <div className='primary-gradient'>
                         <div className='font-white p-sm f-18px f-bold'>
                             {recordLabel}
                         </div>
-                    </div>
-                    {/* <Table striped bordered hover responsive>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Address</th>
-                                <th>Email / Phone</th>
-                                <th style={{ textAlign: 'center' }}>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {myCompanies && myCompanies.map((item: any) => {
-                                const keyId = `company_${item.clientId}`;
-                                return (
-                                    <tr key={keyId}> 
-                                        <td>{item.clientId}</td>
-                                        <td>{item.compyName}</td>
-                                        <td>{item.compyDesc}<br></br>
-                                        {item.url}
-                                        </td>
-                                        <td>{item.addresses[0].addressType + ':' + item.addresses[0].streetDetails + ',' + item.addresses[0].city + ',' + item.addresses[0].pincode}</td>
-                                        <td>{item.contact[0].contactName} / {item.contact[0].mobileNo}</td>
-                                        <td className='align-c'>
-                                            <DeletsButton onBtnClick={() => {deleteBusiness(item)}}/>
-                                            <EditButton onBtnClick={() => {editBusiness(item)}}/>
-                                        </td>
-                                    </tr>
-                                )
-                            })}
-                        </tbody>
-                    </Table> */}
-                    {/* <div className='pt-1' style={{ alignContent: 'center',float:'right' }}>
-                        <Pagination>
-                            <Pagination.Prev />
-                            <Pagination.Ellipsis />
-                            <Pagination.Item>{3}</Pagination.Item>
-                            <Pagination.Item>{4}</Pagination.Item>
-                            <Pagination.Item>{5}</Pagination.Item>
-                            <Pagination.Ellipsis />
-                            <Pagination.Next />
-                        </Pagination>
-                    </div> */}
-
-                    <div style={{ height: 370, width: "100%" }}>
-        <DataGrid
-          rows={myCompanies && myCompanies.map((item: any) => ({
-            id: item.clientId,
-            clientId: item.clientId,
-            compyName: item.compyName,
-            compyDesc: item.compyDesc,
-            url: item.url,
-            addresses: item.addresses[0].addressType + ':' + item.addresses[0].streetDetails + ',' + item.addresses[0].city + ',' + item.addresses[0].pincode,
-            contact: item.contact[0].contactName + '/' + item.contact[0].mobileNo,
-            
-            
-          }))}
-          componentsProps={{
-            row: {
-             
-            },
-          }}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-          disableSelectionOnClick
-        />
-      </div>
-
                 </div>
+            <div style={{ height: 370, width: "100%" }}>
+                <DataGrid getRowHeight={() => 'auto'}
+                    rows={myCompanies && myCompanies.map((item: any) => ({
+                        id: item.clientId,
+                        clientId: item.clientId,
+                        compyName: item.compyName,
+                        compyDesc: item.compyDesc,
+                        url: item.url,
+                        addresses: item.addresses[0].addressType + ':' + item.addresses[0].streetDetails + ',' + item.addresses[0].city + ',' + item.addresses[0].pincode,
+                        contact: item.contact[0].contactName + '/' + item.contact[0].mobileNo,
+                    }))}
+                    componentsProps={{
+                    row: {
+                        onMouseEnter: onMouseEnterRow,
+                        onMouseLeave: onMouseLeaveRow,
+                    },
+                    }}
+                    columns={columns}
+                    pageSize={5}
+                    rowsPerPageOptions={[5]}
+                    disableSelectionOnClick
+                />
+            </div>   
             </Box>
         )
     }
