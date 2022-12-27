@@ -1,11 +1,21 @@
+
 import React, {useState, useEffect} from "react";
 import { Grid  } from '@mui/material';
 import InputBox from '../../atoms/textfield/InputBox';
 import Api from "../../../api/Api";
 import { WarehouseCategories } from "../../../utils/ResponseSchema";
+import { InputError } from "../../atoms/textfield/InputError";
+import { Value } from "sass";
+import { alerts } from "typed-scss-modules/dist/lib/core";
+import { validateCharacterLength, validateAreaSpace} from "../../../utils/CommonUtils";
+import { objectData } from "../../../utils/ResponseSchema";
+import { DOM_KEY_LOCATION } from "@testing-library/user-event/dist/keyboard/types";
 
 
 interface WarehouseLayoutProps {
+    
+    quantity?: number;
+    space?: number;
     onWarehouseLayoutUpdate?: (data: any) => void;
 }
 
@@ -19,6 +29,11 @@ const WarehouseLayout = (props: WarehouseLayoutProps) => {
 
     const [whCategories , setWhCategories] = useState<WarehouseCategories>();
 
+    const [facilityQualifications ,setFacilityQualifications]= useState<objectData>({});  
+    const[Dock,setDock]=useState<objectData>({});
+    const[high,sethigh]=useState<objectData>({});
+    const[Door,setDoor]=useState<objectData>({});
+
     useEffect(() => {
         if(onUpdateInfo) {
             setonUpdateInfo(false);
@@ -28,6 +43,9 @@ const WarehouseLayout = (props: WarehouseLayoutProps) => {
             getWhCategories();
         }
     },[onUpdateInfo]);
+
+
+
 
     const filterCode = (obj: any) => {
         const codeArry: string[] = [];
@@ -81,6 +99,71 @@ const WarehouseLayout = (props: WarehouseLayoutProps) => {
         const tragetCode =  evn?.target?.id || 'NA';
         const isSelected = evn?.target?.checked || false;
         setFacilitiesCategories({...facilitiesCategories, [tragetCode]: isSelected});
+        setonUpdateInfo(true); 
+    }
+
+    const validateFacilityQualifications = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: '',
+            isUpdated: true,
+        } as objectData;
+        if (!obj.val) {
+            obj.error = " *this space can't be empty ";
+        } else if (!validateAreaSpace(obj.val)) {
+            obj.error = "Available numbers is 1-10";
+        } else {
+            obj.error = '';
+        }
+        setFacilityQualifications(obj);
+        setonUpdateInfo(true);
+    }
+    const validateDock = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: '',
+            isUpdated: true,
+        } as objectData;
+        if (!obj.val) {
+            obj.error = " *this space can't be empty ";
+        } else if (!validateAreaSpace(obj.val)) {
+            obj.error = "Available numbers is 1-10";
+        } else {
+            obj.error = '';
+        }
+        setDock(obj);
+        setonUpdateInfo(true);
+    }
+    const validatehigh = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: '',
+            isUpdated: true,
+        } as objectData;
+        if (!obj.val) {
+            obj.error = " *this space can't be empty ";
+        } else if (!validateAreaSpace(obj.val)) {
+            obj.error = "Available numbers is 1-10";
+        } else {
+            obj.error = '';
+        }
+        sethigh(obj);
+        setonUpdateInfo(true);
+    }
+    const validateDoor = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: '',
+            isUpdated: true,
+        } as objectData;
+        if (!obj.val) {
+            obj.error = " *this space can't be empty ";
+        } else if (!validateAreaSpace(obj.val)) {
+            obj.error = "Available numbers is 1-10";
+        } else {
+            obj.error = '';
+        }
+        setDoor(obj);
         setonUpdateInfo(true);
     }
 
@@ -196,29 +279,31 @@ const WarehouseLayout = (props: WarehouseLayoutProps) => {
 
                             <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                             <Grid item xs={3}>
-                                    <InputBox data={{ name: '', label: '#Dock High Doors', value: '' }}
-                                    // onChange={validateAddress}
+                                    <InputBox data={{ name: '', label: '#Dock High Doors', value: ' ' }}
+                                     onChange={validateFacilityQualifications}
+                                     
                                     />
-                                    {/* {address && <p className="text-red">{address}</p>} */}
-                                </Grid>
-                                <Grid item xs={3}>
+                                    <InputError errorText={facilityQualifications.error}/>
+                                    
+                                    </Grid>
+                                   <Grid item xs={3}>
                                     <InputBox data={{ name: '', label: '#At Grade Doors', value: '' }}
-                                    // onChange={validateAddress}
+                                    onChange={validateDock}
                                     />
-                                    {/* {address && <p className="text-red">{address}</p>} */}
+                                  <InputError errorText={Dock.error}/>
                                 </Grid>
 
                                 <Grid item xs={3}>
                                     <InputBox data={{ name: '', label: 'Clear Ceilling Height (feet)', value: '' }}
-                                    // onChange={validateZipCode}
+                                    onChange={validatehigh}
                                     />
-                                   
+                                   <InputError errorText={high.error}/>
                                 </Grid>
                                 <Grid item xs={3}>
                                     <InputBox data={{ name: '', label: 'Max Forklift Capacity (Lbs)', value: '' }}
-                                    // onChange={validateZipCode}
+                                    onChange={validateDoor}
                                     />
-                                   
+                                   <InputError errorText={Door.error}/>
                                 </Grid>
                             </Grid>
 
