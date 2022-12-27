@@ -6,26 +6,53 @@ import swal from "sweetalert";
 import Api from "../../../api/Api";
 import { viewWarehouseAdminProps } from "../../../api/ApiConfig";
 import { responseInterceptor } from "http-proxy-middleware";
+import { LoaderFull } from "../../atoms/loader/loader";
+
+let recordLabel = '';
 
 const ViewWarehouse = () => {
+  const warehouseView = window.location.hash;
   const api = new Api();
   const navigate = useNavigate();
   const [myWarehouse, setMyWarehouse] = useState<Array<any>>([]);
+  const [isLoader, setIsLoader] = useState(false);
+  const [currentView, setCurrentView] = useState('');
+
   var page: any = "0";
   var size: any = "6";
 
   useEffect(() => {
-    getWarehouseAdmin(page, size);
-  }, []);
+    if (warehouseView !== currentView)
+      getWarehouseAdmin(page, size);
+    setCurrentView(warehouseView);
+  }, [warehouseView]);
 
   const getWarehouseAdmin = (page, size) => {
-    const data: viewWarehouseAdminProps = { page: page, size: size };
+    //IN-PROGRESS, IN-ACTIVE, ACTIVE
+    let warehouseStatus = 'ACTIVE'
+    if (warehouseView === '#inactive') {
+      warehouseStatus = 'IN-ACTIVE';
+      recordLabel = 'Inactive Warehouses'
+    } else if (warehouseView === '#pending') {
+      warehouseStatus = 'IN-PROGRESS';
+      recordLabel = 'Pending Warehouses'
+    } else {
+      warehouseStatus = 'ACTIVE';
+      recordLabel = 'Active Warehouses'
+    }
+    setIsLoader(true);
+
+
+
+
+    const data: viewWarehouseAdminProps = { page: page, size: size, status: warehouseStatus };
     api.getWarehouseAdmin(data).then((response) => {
-      console.log("Response=", response);
-      if (response.status == 200) {
-        setMyWarehouse(response.data.methodReturnValue.warehouseViewBean);
-        // setValue(false);
-      }
+      setIsLoader(false);
+      setMyWarehouse(response.methodReturnValue.warehouseViewBean);
+
+    }).catch((error) => {
+      setIsLoader(false);
+      console.log('getMyWarhouses', error);
     });
   };
 
@@ -51,10 +78,10 @@ const ViewWarehouse = () => {
       if (willDelete) {
         swal(
           'Success! Your warehouse "' +
-            warehouse.warehouseName +
-            "(" +
-            warehouse.warehouseId +
-            ')" has been deleted!',
+          warehouse.warehouseName +
+          "(" +
+          warehouse.warehouseId +
+          ')" has been deleted!',
           {
             icon: "success",
           }
@@ -69,85 +96,96 @@ const ViewWarehouse = () => {
     });
   };
 
-  return (
-    <div className="c-box-shadow-blue">
-      <Box className="m-top-md m-bot-md m-left-md m-right-md">
-        <div>
-          <div className="primary-gradient">
-            <div className="font-white p-sm f-18px f-bold">Warehouses</div>
+  const showWarehouseList = () => {
+    return (
+      <div className="c-box-shadow-blue">
+        <Box className="m-top-md m-bot-md m-left-md m-right-md">
+          <div>
+            <div className="primary-gradient">
+              <div className="font-white p-sm f-18px f-bold">Warehouses</div>
+            </div>
+            <Table striped bordered hover responsive="md">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Client ID</th>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>House No</th>
+                  <th>Plot No</th>
+                  <th>Street Address</th>
+                  <th>City</th>
+                  <th>State</th>
+                  <th>Pin</th>
+                  <th style={{ textAlign: "center" }}>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {myWarehouse &&
+                  myWarehouse.map((item: any) => {
+                    return (
+                      <tr>
+                        <td>{item.warehouseId}</td>
+                        <td>{item.clientId}</td>
+                        <td>{item.warehouseName}</td>
+                        <td>{item.descp}</td>
+                        <td>{item.houseNo}</td>
+                        <td>{item.plotNo}</td>
+                        <td>{item.streetAddrs}</td>
+                        <td>{item.city}</td>
+                        <td>{item.state}</td>
+                        <td>{item.pincode}</td>
+                        <td>
+                          <button
+                            onClick={() => DeleteWarehouse(item)}
+                            className="primary-btn-outline"
+                            style={{
+                              fontSize: "14px",
+                              float: "right",
+                              borderRadius: 20,
+                              padding: "8px 12px 8px 12px",
+                            }}
+                          >
+                            <strong>
+                              <i className="mdi mdi-cup menu-icon"></i> Delete
+                            </strong>
+                          </button>
+                          &nbsp; &nbsp;
+                          <button
+                            onClick={() => goToEditPage("/warehouse/edit", item)}
+                            className="primary-btn-outline"
+                            style={{
+                              fontSize: "14px",
+                              float: "right",
+                              borderRadius: 20,
+                              padding: "8px 12px 8px 12px",
+                              marginRight: "5px",
+                            }}
+                          >
+                            <strong>
+                              <i className="mdi mdi-pencil menu-icon"></i> Edit
+                            </strong>
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+              </tbody>
+            </Table>
           </div>
-          <Table striped bordered hover responsive="md">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Client ID</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>House No</th>
-                <th>Plot No</th>
-                <th>Street Address</th>
-                <th>City</th>
-                <th>State</th>
-                <th>Pin</th>
-                <th style={{ textAlign: "center" }}>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {myWarehouse &&
-                myWarehouse.map((item: any) => {
-                  return (
-                    <tr>
-                      <td>{item.warehouseId}</td>
-                      <td>{item.clientId}</td>
-                      <td>{item.warehouseName}</td>
-                      <td>{item.descp}</td>
-                      <td>{item.houseNo}</td>
-                      <td>{item.plotNo}</td>
-                      <td>{item.streetAddrs}</td>
-                      <td>{item.city}</td>
-                      <td>{item.state}</td>
-                      <td>{item.pincode}</td>
-                      <td>
-                        <button
-                          onClick={() => DeleteWarehouse(item)}
-                          className="primary-btn-outline"
-                          style={{
-                            fontSize: "14px",
-                            float: "right",
-                            borderRadius: 20,
-                            padding: "8px 12px 8px 12px",
-                          }}
-                        >
-                          <strong>
-                            <i className="mdi mdi-cup menu-icon"></i> Delete
-                          </strong>
-                        </button>
-                        &nbsp; &nbsp;
-                        <button
-                          onClick={() => goToEditPage("/warehouse/edit", item)}
-                          className="primary-btn-outline"
-                          style={{
-                            fontSize: "14px",
-                            float: "right",
-                            borderRadius: 20,
-                            padding: "8px 12px 8px 12px",
-                            marginRight: "5px",
-                          }}
-                        >
-                          <strong>
-                            <i className="mdi mdi-pencil menu-icon"></i> Edit
-                          </strong>
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
-            </tbody>
-          </Table>
-        </div>
-      </Box>
-    </div>
-  );
+        </Box>
+      </div>
+    );
+  }
+  return (
+    <>
+      {isLoader && <LoaderFull />}
+      <div className='c-box-shadow-blue'>
+        {showWarehouseList()}
+      </div>
+    </>
+
+  )
 };
 
 export default ViewWarehouse;

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Content from '../../cms/Content.json';
 import {CmsContext} from '../../context/ContextProvider';
+import { ChevronRight, ChevronLeft } from '../buttons/buttons';
 
 export const AppContainer = (props) => {
     return(
@@ -13,14 +14,35 @@ export const AppContainer = (props) => {
 }
 
 export const SplitPaneContainer = (props) => {
+
+    const [menuOpen, setMenuOpen] = useState(true);
+    const onChevronClick = () => {
+    setMenuOpen(!menuOpen);
+    }
+    const showChevron = () => {
+        if(menuOpen) {
+            return(
+            <ChevronLeft onBtnClick={onChevronClick}/>
+            )
+        } else {
+            return(
+                <ChevronRight onBtnClick={onChevronClick}/>
+            )
+        }
+    }
     return(
-        <div className="sf-split-pane-container">
-            <div className="sf-splitPane-left sf-box-shadow-orange">
-                {props.left}
+        <div className='sf-main-container'>
+            <div className='side-nav-icon'>
+                {showChevron()}
             </div>
-            <div className="sf-splitPane-right sf-box-shadow-orange">
-                {props.right}
-            </div>
+            <div className="sf-split-pane-container">
+                <div className={`${menuOpen ? 'side-nav-show' : 'side-nav-hide'} sf-splitPane-left`}>
+                    {props.left}
+                </div>
+                <div className="sf-splitPane-right sf-box-shadow-orange">
+                    {props.right}
+                </div>
+        </div>
         </div>
     )
 }

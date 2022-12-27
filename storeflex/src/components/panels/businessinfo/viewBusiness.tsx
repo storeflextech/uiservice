@@ -32,6 +32,7 @@ const ViewBusiness = () => {
         }
     }, [companyView])
 
+
     const getMyCompanies = (curentPage, numberOfRecords) => {
         // IN-PROGRESS , IN-ACTIVE , ACTIVE
         let companyStatus = 'ACTIVE'
@@ -201,7 +202,8 @@ const ViewBusiness = () => {
         return (
             <Box className='m-top-md m-bot-md m-left-md m-right-md'>
                <div className='primary-gradient'>
-                        <div className='font-white p-sm f-18px f-bold'>
+                        <div className='font-white p-turing
+                        sm f-18px f-bold'>
                             {recordLabel}
                         </div>
                 </div>

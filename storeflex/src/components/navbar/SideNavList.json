@@ -93,14 +93,19 @@
                             "NavigateTo": "/warehouse/add"
                         },
                         {
-                            "Label": "View Warehouse",
+                            "Label": "Active Warehouse",
                             "Name": "",
-                            "NavigateTo": "/warehouse/view"
+                            "NavigateTo": "/warehouse/view#active"
                         },
                         {
                             "Label": "Pending Warehouses",
                             "Name": "",
-                            "NavigateTo": "/warehouse/pending"
+                            "NavigateTo": "/warehouse/view#pending"
+                        },
+                        {
+                            "Label": "Inactive Warehouses",
+                            "Name": "",
+                            "NavigateTo": "/warehouse/view#inactive"
                         }
                     ],
                     "Icon": "mdi mdi-home-analytics menu-icon"
