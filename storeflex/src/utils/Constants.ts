@@ -36,7 +36,6 @@ import WarehousePage from "../pages/WarehousePage";
 
 import WarehouseDetails from "../components/atoms/Searchresult/warehouseDetails";
 import SignInCustomer from "../pages/signin-customer";
-import PendingUser from "../pages/pendingUser";
 
 export enum USER_TYPE {
   SfUser = "SL",
@@ -111,10 +110,6 @@ export const PAGES = {
   AddInfo: {
     path: "/addinfo",
     Component: AddInfo,
-  },
-  PENDING_USER:{
-    path:"/pendinguser",
-    Component: PendingUser,
   },
   PgSearch: {
     path: "/search",
