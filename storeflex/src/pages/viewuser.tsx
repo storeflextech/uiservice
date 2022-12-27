@@ -14,8 +14,14 @@ import { isTypeNode } from 'typescript';
 import { DeletsButton, EditButton } from '../components/buttons/buttons';
 import swal from 'sweetalert';
 import GetCompany from '../components/atoms/company/GetCompany';
+import { LoaderFull } from '../components/atoms/loader/loader';
+
+let recordLabel ='';
 
 const ViewUser = () => {
+    const userView = window.location.hash;
+    const [currentView,setCurrentView] =useState('');
+    const [isLoader,setIsLoader]= useState(false);
     const api = new Api();
     const navigate = useNavigate();
     const [myUser, setmyUser] = useState<Array<any>>([]);
@@ -25,15 +31,36 @@ const ViewUser = () => {
         getViewUser(page, size);
     }, [])
 
+    useEffect(()=>{
+        if (userView!== currentView)
+        getViewUser(page,size);
+        setCurrentView(userView);
+    },[userView]);
+
     const getViewUser = (page, size) => {
-        const data: viewUserProps = { page: page, size: size };
+        //IN-Progress, In-Active, Active
+        let userStatus = 'ACTIVE'
+        if (userView==='#active'){
+            userStatus = 'IN-ACTIVE';
+            recordLabel = 'Inactive Users'
+        }else if (userView=== '#pending'){
+            userStatus = 'IN-PROGRESS';
+            recordLabel = 'Pending Users'
+        }else{
+            userStatus = 'ACTIVE';
+            recordLabel = 'Active Users'
+        }
+        setIsLoader(true);
+
+        const data: viewUserProps = { page: page, size: size, status: userStatus };
         api.getViewUser(data).then((response) => {
-            console.log("Response=", response);
-            if (response.status == 200) {
-                setmyUser(response.data.methodReturnValue)
-            }
+            setIsLoader(false);
+            setmyUser(response.methodReturnValue);  
+        }).catch((error)=>{
+            setIsLoader(false);
+            console.log('getUsers', error);
         });
-    }
+    };
 
     const goToEditPage = (pagePath: any, record: object) => {
         navigate(pagePath, {
@@ -79,6 +106,7 @@ const ViewUser = () => {
             });
     }
 
+    const showUserList= ()=>{
     return (
         <AppContainer>
             <TopNavBar />
@@ -138,6 +166,14 @@ const ViewUser = () => {
             />
             <Footer />
         </AppContainer>
+    )}
+    return(
+        <>
+      {isLoader && <LoaderFull />}
+      <div className='c-box-shadow-blue'>
+        {showUserList()}
+      </div>
+    </>
     )
 }
 

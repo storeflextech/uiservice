@@ -121,14 +121,19 @@
                             "NavigateTo": "/addinfo"
                         },
                         {
-                            "Label": "View User",
+                            "Label": "Active User",
                             "Name": "",
-                            "NavigateTo": "/viewuser"
+                            "NavigateTo": "/viewuser#active"
                         },
                         {
                             "Label": "Pending Users",
                             "Name": "",
-                            "NavigateTo": "/pendinguser"
+                            "NavigateTo": "/viewuser#pending"
+                        },
+                        {
+                            "Label": "Inactive Users",
+                            "Name": "",
+                            "NavigateTo": "/viewuser#inactive"
                         }
                     ],
                     "Icon": "mdi mdi-account-multiple-outline menu-icon"

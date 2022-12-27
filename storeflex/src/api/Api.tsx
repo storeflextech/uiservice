@@ -276,10 +276,10 @@ export default class Api {
         }
     }
     async getViewUser(getData: viewUserProps): Promise<any> {
-        const url = this.baseUrl + this.apiUrl.getViewUserUrl + '?page=' + getData.page + '&size=' + getData.size;
+        const url = `${this.baseUrl}${this.apiUrl.getViewUserUrl}?page=${getData.page}&size=${getData.size}&status=${getData.status}`;
         try {
             const response = await axios.get(url);
-            if (response.status === 200) {
+            if (response?.data?.statusCode === 600) {
                 return Promise.resolve(response?.data);
             } else {
                 console.log(' error : getViewUser ', response);

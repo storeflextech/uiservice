@@ -89,6 +89,7 @@ export interface EnquiryProps {
 export interface viewUserProps {
     page:string;
     size: string;
+    status: string;
 }
 
 export class ApiConfig {
