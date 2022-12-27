@@ -309,7 +309,7 @@ const AddBusiness = (props: AddBusinessProps) => {
                                 />
                                 <InputError errorText={companyNameInfo.error} />
 
-                                <InputBox data={{ name: 'companyurl', label: 'Company URL*', value: businessProfile.weburl }}
+                                <InputBox data={{ name: 'companyurl', label: 'Company URL', value: businessProfile.weburl }}
                                     onChange={onCompanyUrlChange} onBlur={handelOnBlur}
                                 />
                                 <InputError errorText={companyUrlInfo.error} />
