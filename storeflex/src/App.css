@@ -27,7 +27,9 @@
 .p-no {
   padding: 0px !important;
 }
-
+.p-left-xxsm {
+  padding-left: 8px;
+}
 .m-top-sm {
   margin-top: 8px;
 }

@@ -6,7 +6,7 @@ import { Grid, TextareaAutosize, Button } from '@mui/material';
 import InputBox from '../../atoms/textfield/InputBox';
 import AddressDetails from '../../atoms/addressforms/AddressDetails';
 import { BusinessDetails, EditBusinessDetails, ClientList, Address, Contact} from '../../../utils/ResponseSchema';
-import { validateCharacterLength, validatePhone, validateWebUrl, validateGst } from '../../../utils/CommonUtils';
+import { validateCharacterLength, validatePhone, validateWebUrl, validateGst, validateEmail } from '../../../utils/CommonUtils';
 import { LoaderFull } from '../../atoms/loader/loader';
 import { objectData } from '../../../utils/ResponseSchema';
 import { InputError } from '../../atoms/textfield/InputError';
@@ -199,10 +199,13 @@ const EditBusiness = (props: EditBusinessProps) => {
             val: event.target.value || '',
             error: ''
         } as objectData;
-        if (validateCharacterLength(obj.val, 4, 30)) {
+        if (!obj.val){
+            obj.error ="This field can not be empty";
+        }
+        else if(validateEmail(obj.val)) {
             obj.error = '';
         } else {
-            obj.error = 'Alphabets only'
+            obj.error = 'Enter a valid Email'
         }
         setEmailIdInfo(obj);
     }
@@ -212,7 +215,9 @@ const EditBusiness = (props: EditBusinessProps) => {
             val: event.target.value || '',
             error: ''
         } as objectData;
-        if (validateCharacterLength(obj.val, 2, 10)) {
+        if (!obj.val){
+            obj.error = 'This field can not be empty';
+        }else if(validateCharacterLength(obj.val, 2, 10)) {
             obj.error = '';
         } else {
             obj.error = 'Number only'
@@ -224,10 +229,12 @@ const EditBusiness = (props: EditBusinessProps) => {
             val: event.target.value || '',
             error: ''
         } as objectData;
-        if (validateCharacterLength(obj.val, 2, 10)) {
+        if (!obj.val){
+            obj.error='This field can not be empty';
+        }else if (validateCharacterLength(obj.val, 2, 10)) {
             obj.error = '';
         } else {
-            obj.error = 'Number only'
+            obj.error = 'Emter a valid Landline no'
         }
         setLandLineNoInfo(obj);
     }

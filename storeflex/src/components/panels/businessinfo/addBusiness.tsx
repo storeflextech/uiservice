@@ -6,7 +6,7 @@ import { InputError } from '../../atoms/textfield/InputError';
 import Accordion from 'react-bootstrap/Accordion';
 import AddressDetails from '../../atoms/addressforms/AddressDetails';
 import { BusinessDetails, Address, Contact } from '../../../utils/ResponseSchema';
-import { validateCharacterLength, validateWebUrl, validateGst, validatePhone, CHARACTER_ONLY, validateCharacterOnly } from '../../../utils/CommonUtils';
+import { validateCharacterLength, validateWebUrl, validateGst, validatePhone, CHARACTER_ONLY, validateCharacterOnly, validateEmail } from '../../../utils/CommonUtils';
 import Api from '../../../../src/api/Api';
 import { AddCompanyPostData } from '../../../../src/api/ApiConfig';
 import LoaderSpinner from '../../atoms/spinner/spinner';
@@ -18,7 +18,7 @@ interface AddBusinessProps {
     profileData?: BusinessDetails;
     onSave?(isSaved: boolean): void;
     action?: string;
-    onAddBusinessUpdate?: (data:any) => void;
+    onAddBusinessUpdate?: (data: any) => void;
 }
 
 let imageUrl = '/assets/images/placeholder.png';
@@ -52,23 +52,23 @@ const AddBusiness = (props: AddBusinessProps) => {
     const maxiLength = 500;
     const selectedCountryCode = '01';
 
-    useEffect(()=>{
-        if (onUpdateInfo){
+    useEffect(() => {
+        if (onUpdateInfo) {
             setonUpdateInfo(false);
             onChangeUpdateInfo();
         }
     }, [onUpdateInfo]);
 
-    const getVal = (obj:objectData)=>{
-        if(obj.isUpdated){
+    const getVal = (obj: objectData) => {
+        if (obj.isUpdated) {
             return obj.val
-        }else{
+        } else {
             return undefined;
         }
     }
 
-    const onChangeUpdateInfo=()=>{
-        if(props?.onAddBusinessUpdate){
+    const onChangeUpdateInfo = () => {
+        if (props?.onAddBusinessUpdate) {
             const obj = {
                 profileData: getVal(contactNameInfo)
             };
@@ -83,11 +83,11 @@ const AddBusiness = (props: AddBusinessProps) => {
         } as objectData;
         if (!obj.val) {
             obj.error = " *Company Name is required. ";
-        }  else if(validateCharacterOnly(obj.val)){
+        } else if (validateCharacterOnly(obj.val)) {
             obj.error = 'Alphabets Only';
-        }else if (!validateCharacterLength(obj.val, 4, 50)) {
+        } else if (!validateCharacterLength(obj.val, 4, 50)) {
             obj.error = " Company Name must be between 4 characters to 50 characters."
-        }else{
+        } else {
             obj.error = '';
         }
         setCompanyNameInfo(obj);
@@ -149,11 +149,11 @@ const AddBusiness = (props: AddBusinessProps) => {
             val: event.target.value || '',
             error: ''
         } as objectData;
-        if  (!obj.val){
+        if (!obj.val) {
             obj.error = 'This field can not be empty';
-        }else if(validateCharacterOnly(obj.val)){
+        } else if (validateCharacterOnly(obj.val)) {
             obj.error = 'Alphabets Only';
-        } else if (!validateCharacterLength(obj.val, 4, 30)){
+        } else if (!validateCharacterLength(obj.val, 4, 30)) {
             obj.error = 'Contact Name should be between 4 to 30 character';
         }
         setContactNameInfo(obj);
@@ -163,7 +163,9 @@ const AddBusiness = (props: AddBusinessProps) => {
             val: event.target.value || '',
             error: ''
         } as objectData;
-        if (validatePhone(obj.val)) {
+        if (!obj.val) {
+            obj.error = "This Field can not be empty";
+        } else if (validatePhone(obj.val)) {
             obj.error = '';
         } else {
             obj.error = '10 Digit Number only'
@@ -176,10 +178,13 @@ const AddBusiness = (props: AddBusinessProps) => {
             val: event.target.value || '',
             error: ''
         } as objectData;
-        if (validateCharacterLength(obj.val, 4, 30)) {
+        if (!obj.val) {
+            obj.error = "This field can not be empty";
+        }
+        else if (validateEmail(obj.val)) {
             obj.error = '';
         } else {
-            obj.error = 'Alphabets only'
+            obj.error = 'Enter a valid Email'
         }
         setEmailIdInfo(obj);
     }
@@ -189,7 +194,9 @@ const AddBusiness = (props: AddBusinessProps) => {
             val: event.target.value || '',
             error: ''
         } as objectData;
-        if (validateCharacterLength(obj.val, 2, 10)) {
+        if (!obj.val) {
+            obj.error = 'This field can not be empty';
+        } else if (validateCharacterLength(obj.val, 2, 10)) {
             obj.error = '';
         } else {
             obj.error = 'Number only'
@@ -201,10 +208,12 @@ const AddBusiness = (props: AddBusinessProps) => {
             val: event.target.value || '',
             error: ''
         } as objectData;
-        if (validateCharacterLength(obj.val, 2, 10)) {
+        if (!obj.val) {
+            obj.error = 'This field can not be empty';
+        } else if (validateCharacterLength(obj.val, 2, 10)) {
             obj.error = '';
         } else {
-            obj.error = 'Number only'
+            obj.error = 'Emter a valid Landline no'
         }
         setLandLineNoInfo(obj);
     }
@@ -233,12 +242,12 @@ const AddBusiness = (props: AddBusinessProps) => {
     }
 
     const onPhotoUploadChange = (file: any) => {
-        if(file) {
+        if (file) {
             setImageData(file);
         }
     }
     const upladPhoto = (imagefile?: any, clientId?: string) => {
-        if(imagefile && clientId) {
+        if (imagefile && clientId) {
             setLoaderState(true);
             api.uploadCompanyPhoto(imagefile, clientId).then((response) => {
                 setLoaderState(false);
@@ -262,12 +271,24 @@ const AddBusiness = (props: AddBusinessProps) => {
 
         api.addCompany(postData).then((resp) => {
             setLoaderState(false); setStep(3);
-            if(resp && resp.methodReturnValue.clientId && imageData) {
-                 upladPhoto(imageData, resp.methodReturnValue.clientId);
-                 // for testin only upladPhoto(imageData, 'CL-166');
+            if (resp && resp.methodReturnValue.clientId && imageData) {
+                upladPhoto(imageData, resp.methodReturnValue.clientId);
+                // for testin only upladPhoto(imageData, 'CL-166');
             }
-            swal('Success! Your company has been created successfully!', {
+            swal({
+                text: 'Success! Your company has been created successfully!\n Please sign the contract sent to your ' + emailIdInfo.val,
                 icon: "success",
+                buttons: {
+                    buttonOne: {
+                        text: "OK",
+                        value: "ok",
+                        visible: true,
+                        className: "sf-btn",
+                    }
+                }
+            }).then(function (value) {
+                if (value == "ok") { window.location.href = "/business/view"; }
+                else { window.location.href = "/business/view"; }
             });
             console.log(' Company creation res >>>>>> ', resp);
         }).catch((error) => {
@@ -314,7 +335,7 @@ const AddBusiness = (props: AddBusinessProps) => {
                                 </Grid>
                             </Grid>
                             <Grid item xs={3}>
-                                <UploadImage name={'companyphoto'} onImageChange={onPhotoUploadChange}/>
+                                <UploadImage name={'companyphoto'} onImageChange={onPhotoUploadChange} />
                             </Grid>
                         </Grid>
                     </div>

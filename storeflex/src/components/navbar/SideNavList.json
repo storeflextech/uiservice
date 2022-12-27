@@ -65,9 +65,19 @@
                             "NavigateTo": "/business/add"
                         },
                         {
-                            "Label": "View Company",
+                            "Label": "Active Company",
                             "Name": "",
-                            "NavigateTo": "/business/view"
+                            "NavigateTo": "/business/view#active"
+                        },
+                        {
+                            "Label": "Pending Company",
+                            "Name": "",
+                            "NavigateTo": "/business/view#pending"
+                        },
+                        {
+                            "Label":"Inactive Companies",
+                            "Name":"",
+                            "NavigateTo":"/business/view#inactive"
                         }
                     ],
                     "Icon": "mdi mdi-chart-areaspline menu-icon"
@@ -83,9 +93,19 @@
                             "NavigateTo": "/warehouse/add"
                         },
                         {
-                            "Label": "View Warehouse",
+                            "Label": "Active Warehouse",
                             "Name": "",
-                            "NavigateTo": "/warehouse/view"
+                            "NavigateTo": "/warehouse/view#active"
+                        },
+                        {
+                            "Label": "Pending Warehouses",
+                            "Name": "",
+                            "NavigateTo": "/warehouse/view#pending"
+                        },
+                        {
+                            "Label": "Inactive Warehouses",
+                            "Name": "",
+                            "NavigateTo": "/warehouse/view#inactive"
                         }
                     ],
                     "Icon": "mdi mdi-home-analytics menu-icon"
@@ -104,6 +124,11 @@
                             "Label": "View User",
                             "Name": "",
                             "NavigateTo": "/viewuser"
+                        },
+                        {
+                            "Label": "Pending Users",
+                            "Name": "",
+                            "NavigateTo": "/pendinguser"
                         }
                     ],
                     "Icon": "mdi mdi-account-multiple-outline menu-icon"

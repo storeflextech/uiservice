@@ -1,6 +1,6 @@
 // import React from 'react';
 import axios from 'axios';
-import { ApiConfig, SlLoginProps, SignInProps, GetStatesProp, GetCitiesProp, AddCompanyPostData, ViewCompaniesProps, ViewWarehouseProps, viewWarehouseAdminProps, EnquiryProps, viewUserProps } from './ApiConfig';
+import { ApiConfig, SlLoginProps, SignInProps, GetStatesProp, GetCitiesProp, AddCompanyPostData, ViewCompaniesProps, ViewWarehouseProps, viewWarehouseAdminProps, EnquiryProps, viewUserProps, AddWarehousePostData } from './ApiConfig';
 
 
 // let axiosConfig = {
@@ -16,7 +16,6 @@ export default class Api {
         this.apiUrl = new ApiConfig();
         this.baseUrl = process.env.REACT_APP_API_URL;
     }
-
 
     async getTest() {
         const url = this.apiUrl.testApi;
@@ -98,6 +97,23 @@ export default class Api {
         }
     }
 
+    async deleteCompany(clientId: string): Promise<any>{
+        const url = `${this.baseUrl}${this.apiUrl.deleteCompanyUrl}?clientId=${clientId}`;
+        try {
+            const response = await axios.delete(url);
+            if (response?.data?.statusCode === 600) {
+                return Promise.resolve(response?.data);
+            } else {
+                console.log(' error : deleteCompany ', response);
+                return Promise.reject(response);
+            }
+        }
+        catch (error) {
+            console.log(' error : deleteCompany', error);
+            return Promise.reject(error);
+        }
+    }
+
     async uploadCompanyPhoto(imageFile: any, clientId: string): Promise<any>{
         const postData = {
             clientPhoto: imageFile
@@ -138,7 +154,7 @@ export default class Api {
     }
 
     async getMyCompanies(getData: ViewCompaniesProps): Promise<any> {
-        const url = this.baseUrl + this.apiUrl.getCompaniesApi + '?page=' + getData.page + '&size=' + getData.size;
+        const url = `${this.baseUrl}${this.apiUrl.getCompaniesApi}?page=${getData.page}&size=${getData.size}&status=${getData.status}`;
         try {
             const response = await axios.get(url);
             if (response.status === 200) {
@@ -170,6 +186,22 @@ export default class Api {
             return Promise.reject(error);
         }
     }
+    async addWarehouse(postData: AddWarehousePostData): Promise<any> {
+        const url = `${this.baseUrl}${this.apiUrl.addWarehouseUrl}`;
+        try {
+            const response = await axios.post(url, postData);
+            if (response?.data?.statusCode === 600) {
+                return Promise.resolve(response?.data);
+            } else {
+                console.log(' error : addWarehouse ', response);
+                return Promise.reject(response);
+            }
+        }
+        catch (error) {
+            console.log(' error : addWarehouse', error);
+            return Promise.reject(error);
+        }
+    }
     async searchwarehouse(getData: any): Promise<any> {
         const url = this.baseUrl + this.apiUrl.searchwarehouse + '?pincode=' + getData + '&page=0&size=10';
         try {
@@ -195,10 +227,15 @@ export default class Api {
     }
 
     async getWarehouseAdmin(getData: viewWarehouseAdminProps): Promise<any> {
-        const url = this.baseUrl + this.apiUrl.getWarehouseAdminUrl + '?page=' + getData.page + '&size=' + getData.size;
+        const url = `${this.baseUrl}${this.apiUrl.getWarehouseAdminUrl}?page=${getData.page}&size=${getData.size}&status=${getData.status}`;
         try {
             const response = await axios.get(url);
-            return Promise.resolve(response);
+            if (response.status === 200){
+            return Promise.resolve(response?.data);
+            } else{
+                console.log('error: getMyWarehouses', response);
+                return Promise.reject(response);
+            }
         }
         catch (error) {
             console.log(' error : Get Warehouse', error);
@@ -242,7 +279,13 @@ export default class Api {
         const url = this.baseUrl + this.apiUrl.getViewUserUrl + '?page=' + getData.page + '&size=' + getData.size;
         try {
             const response = await axios.get(url);
-            return Promise.resolve(response);
+            if (response.status === 200) {
+                return Promise.resolve(response?.data);
+            } else {
+                console.log(' error : getViewUser ', response);
+                return Promise.reject(response);
+            }
+           
         }
         catch (error) {
             console.log(' error : View User', error);

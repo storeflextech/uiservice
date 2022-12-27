@@ -1,5 +1,5 @@
 
-import { Address, Contact , Photo} from '../../src/utils/ResponseSchema'
+import { Address, Contact , Photo, Warehouseprice} from '../../src/utils/ResponseSchema'
 export interface SlLoginProps {
     username: string,
     emailId: string,
@@ -14,6 +14,7 @@ export interface SignInProps {
 export interface ViewCompaniesProps {
     page: string;
     size: string;
+    status: string;
 }
 
 export interface GetStatesProp {
@@ -33,6 +34,7 @@ export interface ViewWarehouseProps {
 export interface viewWarehouseAdminProps{
     page:string;
     size: string;
+    status: string;
 }
 export interface AddCompanyPostData {
     clientId?: string;
@@ -51,12 +53,28 @@ export interface AddWarehousePostData {
     warehouseName?: string;
     descp?: string;
     warehouseTaxId?: string;
+    days?: string;
+    time?: string;
     facilitiesId?: string;
     industryId?: string;
     storagesId?: string;
-    addresse?: Address[];
+    dockhighdoors?: string;
+    atgradedoors?: string;
+    ceillingheight?: string;
+    forkliftcapacity?: string;
+    address?: Address[];
+    hours?: Hours;
+    warehouseprice?: Warehouseprice;
 }
 
+export interface Hours {
+    id?: string;
+    warehouseId?: string;
+    openday?: string;
+    starttime?: string;
+    endtime?: string;
+    openall?: boolean;
+}
 export interface EnquiryProps {
  
     firstName: string,
@@ -84,11 +102,13 @@ export class ApiConfig {
     getCitiesUrl = '/city';
     getCompaniesApi = '/clients';
     addCompanyUrl = '/client';
+    deleteCompanyUrl = '/client';
     updateCompanyApi = '/clientUpdate';
     uploadCompanyPhotoApi = '/uploadClientProfilePic';
     searchwarehouse = '/searchwarehouse';
     getWarehouseByClientIdUrl = '/warehouseByClientId';
     getWarehouseAdminUrl = '/warehouses';
+    addWarehouseUrl = '/warehouse';
     enquiry = '/enquiry';
     getViewUserUrl = '/storeflexusers';
     getCompanyListApi = '/clientDropList';
