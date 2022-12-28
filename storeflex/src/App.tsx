@@ -97,11 +97,6 @@ function App() {
               element={<PAGES.AddInfo.Component />}
             />
             <Route
-              path={PAGES.PENDING_USER.path}
-              element={<PAGES.PENDING_USER.Component />}
-            />
-
-            <Route
               path={PAGES.PgSearch.path}
               element={<PAGES.PgSearch.Component />}
             />

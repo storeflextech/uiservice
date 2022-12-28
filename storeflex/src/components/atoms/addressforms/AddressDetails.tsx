@@ -209,7 +209,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
                     {houseInfo.error && <p className="text-red">{houseInfo.error}</p>}
                 </Grid>
                 <Grid item xs={6}>
-                    <InputBox data={{ name: 'street', label: 'Street', value: streetInfo.val }}
+                    <InputBox data={{ name: 'street', label: 'Street*', value: streetInfo.val }}
                         onChange={validateStreet}
                     />
                     {streetInfo.error && <p className="text-red">{streetInfo.error}</p>}
@@ -217,13 +217,13 @@ const AddressDetails = (props: AddressDetailsProps) => {
             </Grid>
             <Grid className='mt-1' container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                 <Grid item xs={6}>
-                    <div> State </div>
+                    <div> State* </div>
                     <div className='p-top-sm'>
                         {<GetState countryCode={countryCode} onChange={onStateChange} stateCodeDefault={props?.state} />}
                     </div>
                 </Grid>
                 <Grid item xs={6}>
-                    <div> City </div>
+                    <div> City* </div>
                     <div className='p-top-sm'>
                         {<GetCity state={stateInfo.val || ''} onChange={onCityChange} />}
                     </div>
@@ -231,7 +231,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
             </Grid>
             <Grid className='mt-1' container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                 <Grid item xs={6}>
-                    <div> Country </div>
+                    <div> Country* </div>
                     <div className='p-top-sm'>
                         {<GetCountry country={countryCode} />}
                     </div>

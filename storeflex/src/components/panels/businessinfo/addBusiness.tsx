@@ -276,7 +276,7 @@ const AddBusiness = (props: AddBusinessProps) => {
                 // for testin only upladPhoto(imageData, 'CL-166');
             }
             swal({
-                text: 'Success! Your company has been created successfully!\n Please sign the contract sent to your ' + emailIdInfo.val,
+                text: 'Success! Your company has been created successfully!\n Please sign the contract sent to ' + emailIdInfo.val,
                 icon: "success",
                 buttons: {
                     buttonOne: {
@@ -287,8 +287,8 @@ const AddBusiness = (props: AddBusinessProps) => {
                     }
                 }
             }).then(function (value) {
-                if (value == "ok") { window.location.href = "/business/view"; }
-                else { window.location.href = "/business/view"; }
+                if (value == "ok") { window.location.href = "/business/view#pending"; }
+                else { window.location.href = "/business/view#pendig"; }
             });
             console.log(' Company creation res >>>>>> ', resp);
         }).catch((error) => {
@@ -309,7 +309,7 @@ const AddBusiness = (props: AddBusinessProps) => {
                                 />
                                 <InputError errorText={companyNameInfo.error} />
 
-                                <InputBox data={{ name: 'companyurl', label: 'Company URL*', value: businessProfile.weburl }}
+                                <InputBox data={{ name: 'companyurl', label: 'Company URL', value: businessProfile.weburl }}
                                     onChange={onCompanyUrlChange} onBlur={handelOnBlur}
                                 />
                                 <InputError errorText={companyUrlInfo.error} />

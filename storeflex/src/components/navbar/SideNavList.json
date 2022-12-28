@@ -65,17 +65,17 @@
                             "NavigateTo": "/business/add"
                         },
                         {
-                            "Label": "Active Company",
+                            "Label": "Active",
                             "Name": "",
                             "NavigateTo": "/business/view#active"
                         },
                         {
-                            "Label": "Pending Company",
+                            "Label": "Pending",
                             "Name": "",
                             "NavigateTo": "/business/view#pending"
                         },
                         {
-                            "Label":"Inactive Companies",
+                            "Label":"Inactive",
                             "Name":"",
                             "NavigateTo":"/business/view#inactive"
                         }
@@ -93,17 +93,17 @@
                             "NavigateTo": "/warehouse/add"
                         },
                         {
-                            "Label": "Active Warehouse",
+                            "Label": "Active",
                             "Name": "",
                             "NavigateTo": "/warehouse/view#active"
                         },
                         {
-                            "Label": "Pending Warehouses",
+                            "Label": "Pending",
                             "Name": "",
                             "NavigateTo": "/warehouse/view#pending"
                         },
                         {
-                            "Label": "Inactive Warehouses",
+                            "Label": "Inactive",
                             "Name": "",
                             "NavigateTo": "/warehouse/view#inactive"
                         }
@@ -121,14 +121,19 @@
                             "NavigateTo": "/addinfo"
                         },
                         {
-                            "Label": "View User",
+                            "Label": "Active User",
                             "Name": "",
-                            "NavigateTo": "/viewuser"
+                            "NavigateTo": "/viewuser#active"
                         },
                         {
                             "Label": "Pending Users",
                             "Name": "",
-                            "NavigateTo": "/pendinguser"
+                            "NavigateTo": "/viewuser#pending"
+                        },
+                        {
+                            "Label": "Inactive Users",
+                            "Name": "",
+                            "NavigateTo": "/viewuser#inactive"
                         }
                     ],
                     "Icon": "mdi mdi-account-multiple-outline menu-icon"

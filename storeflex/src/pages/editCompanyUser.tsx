@@ -169,6 +169,25 @@ const EditCompanyUser = () => {
                         />
                         {errors.LastName && <p className="text-red">{errors.LastName}</p>}
                     </Grid>
+                    <Grid item xs={6}>
+                        <InputBox data={{ name: '', label: 'Old Password', value: '' }}
+                        // onChange={validateLastName} onBlur={handelOnBlur}
+                        />
+                        {errors.LastName && <p className="text-red">{errors.LastName}</p>}
+                    </Grid>
+                    <Grid item xs={6}>
+                        <InputBox data={{ name: '', label: 'New Password', value: '' }}
+                        // onChange={validateLastName} onBlur={handelOnBlur}
+                        />
+                        {errors.LastName && <p className="text-red">{errors.LastName}</p>}
+                    </Grid>
+                    <Grid item xs={6} />
+                    <Grid item xs={6}>
+                        <InputBox data={{ name: '', label: 'Confirm Password', value: '' }}
+                        // onChange={validateLastName} onBlur={handelOnBlur}
+                        />
+                        {errors.LastName && <p className="text-red">{errors.LastName}</p>}
+                    </Grid>
                 </Grid>
             </div>
 

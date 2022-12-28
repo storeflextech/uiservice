@@ -30,19 +30,19 @@ const UserProfile = () => {
 
     useEffect(() => {
         roleCheck();
-      }, [""]);
+    }, [""]);
 
-      const roleCheck=()=>{
-        if(getUserType()== 'CU'){
+    const roleCheck = () => {
+        if (getUserType() == 'CU') {
             setRoleCheck(true)
         }
-        if(getUserType()== 'CL'){
+        if (getUserType() == 'CL') {
             setCompanyCheck(true)
             setRoleCheck(true)
         }
 
 
-      }
+    }
 
 
 
@@ -330,6 +330,38 @@ const UserProfile = () => {
                                                                     />
                                                                 </Form.Group>
 
+                                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                                                    <Form.Label>Old Password</Form.Label>
+                                                                    <Form.Control
+                                                                        className='font-weight-bold'
+                                                                        type="password"
+                                                                        onChange={handleInput}
+                                                                        value={''}
+                                                                        autoFocus
+                                                                    />
+                                                                </Form.Group>
+
+                                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                                                    <Form.Label>New Password</Form.Label>
+                                                                    <Form.Control
+                                                                        className='font-weight-bold'
+                                                                        type="password"
+                                                                        onChange={handleInput}
+                                                                        value={''}
+                                                                        autoFocus
+                                                                    />
+                                                                </Form.Group>
+
+                                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                                                    <Form.Label>Confirm Password</Form.Label>
+                                                                    <Form.Control
+                                                                        className='font-weight-bold'
+                                                                        type="password"
+                                                                        onChange={handleInput}
+                                                                        value={''}
+                                                                        autoFocus
+                                                                    />
+                                                                </Form.Group>
 
                                                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                                                     <Form.Label>Address</Form.Label>

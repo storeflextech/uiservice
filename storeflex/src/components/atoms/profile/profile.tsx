@@ -49,8 +49,8 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
     }
 
     useEffect(() => {
-        window.addEventListener('logout_user', (e) => {
-            window.history.go(1);
+        window.addEventListener('popstate', (e) => {
+            window.history.go(0);
         });
     }, []);
 

@@ -80,8 +80,8 @@ export default class Api {
         }
     }
 
-    async addCompany(postData: AddCompanyPostData): Promise<any>{
-        const url = this.baseUrl+this.apiUrl.addCompanyUrl;
+    async addCompany(postData: AddCompanyPostData): Promise<any> {
+        const url = this.baseUrl + this.apiUrl.addCompanyUrl;
         try {
             const response = await axios.post(url, postData);
             if (response?.data?.statusCode === 600) {
@@ -97,7 +97,7 @@ export default class Api {
         }
     }
 
-    async deleteCompany(clientId: string): Promise<any>{
+    async deleteCompany(clientId: string): Promise<any> {
         const url = `${this.baseUrl}${this.apiUrl.deleteCompanyUrl}?clientId=${clientId}`;
         try {
             const response = await axios.delete(url);
@@ -114,11 +114,11 @@ export default class Api {
         }
     }
 
-    async uploadCompanyPhoto(imageFile: any, clientId: string): Promise<any>{
+    async uploadCompanyPhoto(imageFile: any, clientId: string): Promise<any> {
         const postData = {
             clientPhoto: imageFile
         }
-        const url = `${this.baseUrl}${this.apiUrl.uploadCompanyPhotoApi}?clientId=${clientId}` ;
+        const url = `${this.baseUrl}${this.apiUrl.uploadCompanyPhotoApi}?clientId=${clientId}`;
         try {
             const config = {
                 headers: { 'content-type': 'multipart/form-data' }
@@ -136,8 +136,8 @@ export default class Api {
             return Promise.reject(error);
         }
     }
-    async updateCompany(postData: AddCompanyPostData): Promise<any>{
-        const url = this.baseUrl+this.apiUrl.addCompanyUrl;
+    async updateCompany(postData: AddCompanyPostData): Promise<any> {
+        const url = this.baseUrl + this.apiUrl.addCompanyUrl;
         try {
             const response = await axios.post(url, postData);
             if (response.status === 200) {
@@ -230,10 +230,10 @@ export default class Api {
         const url = `${this.baseUrl}${this.apiUrl.getWarehouseAdminUrl}?page=${getData.page}&size=${getData.size}&status=${getData.status}`;
         try {
             const response = await axios.get(url);
-            if (response.status === 200){
-            return Promise.resolve(response?.data);
-            } else{
-                console.log('error: getMyWarehouses', response);
+            if (response?.data?.statusCode === 600) {
+                return Promise.resolve(response?.data);
+            } else {
+                console.log(' error : getWarehouseAdmin ', response);
                 return Promise.reject(response);
             }
         }
@@ -276,16 +276,16 @@ export default class Api {
         }
     }
     async getViewUser(getData: viewUserProps): Promise<any> {
-        const url = this.baseUrl + this.apiUrl.getViewUserUrl + '?page=' + getData.page + '&size=' + getData.size;
+        const url = `${this.baseUrl}${this.apiUrl.getViewUserUrl}?page=${getData.page}&size=${getData.size}&status=${getData.status}`;
         try {
             const response = await axios.get(url);
-            if (response.status === 200) {
+            if (response?.data?.statusCode === 600) {
                 return Promise.resolve(response?.data);
             } else {
                 console.log(' error : getViewUser ', response);
                 return Promise.reject(response);
             }
-           
+
         }
         catch (error) {
             console.log(' error : View User', error);
