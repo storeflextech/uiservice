@@ -65,17 +65,17 @@
                             "NavigateTo": "/business/add"
                         },
                         {
-                            "Label": "Active Company",
+                            "Label": "Active",
                             "Name": "",
                             "NavigateTo": "/business/view#active"
                         },
                         {
-                            "Label": "Pending Company",
+                            "Label": "Pending",
                             "Name": "",
                             "NavigateTo": "/business/view#pending"
                         },
                         {
-                            "Label":"Inactive Companies",
+                            "Label":"Inactive",
                             "Name":"",
                             "NavigateTo":"/business/view#inactive"
                         }
@@ -93,17 +93,17 @@
                             "NavigateTo": "/warehouse/add"
                         },
                         {
-                            "Label": "Active Warehouse",
+                            "Label": "Active",
                             "Name": "",
                             "NavigateTo": "/warehouse/view#active"
                         },
                         {
-                            "Label": "Pending Warehouses",
+                            "Label": "Pending",
                             "Name": "",
                             "NavigateTo": "/warehouse/view#pending"
                         },
                         {
-                            "Label": "Inactive Warehouses",
+                            "Label": "Inactive",
                             "Name": "",
                             "NavigateTo": "/warehouse/view#inactive"
                         }
