@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Box } from "@mui/material";
+import { Box, Tooltip } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import Table from "react-bootstrap/Table";
 import swal from "sweetalert";
 import Api from "../../../api/Api";
 import { viewWarehouseAdminProps } from "../../../api/ApiConfig";
 import { responseInterceptor } from "http-proxy-middleware";
 import { LoaderFull } from "../../atoms/loader/loader";
+
+import { DataGrid } from "@mui/x-data-grid";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 
 let recordLabel = '';
 
@@ -42,9 +46,6 @@ const ViewWarehouse = () => {
     }
     setIsLoader(true);
 
-
-
-
     const data: viewWarehouseAdminProps = { page: page, size: size, status: warehouseStatus };
     api.getWarehouseAdmin(data).then((response) => {
       setIsLoader(false);
@@ -56,20 +57,23 @@ const ViewWarehouse = () => {
     });
   };
 
-  const goToEditPage = (pagePath: any, record: object) => {
-    navigate(pagePath, {
-      state: { editRecord: record },
-    });
-  };
+  const goToEditPage = (warehouse: any) => {
+    const pagePath = '/warehouse/edit'
+    navigate(pagePath,
+        {
+            state: { editRecord: warehouse },
+        }
+    );
+}
 
-  const DeleteWarehouse = (warehouse: any) => {
+  const DeleteWarehouse = (warehouse: any) => { 
     swal({
       title: "Are you sure?",
       text:
         ' You are about to delete the warehouse "' +
         warehouse.warehouseName +
         "(" +
-        warehouse.warehouseId +
+        warehouse.id +
         ')". Once deleted, you will not be able to recover this warehouse!',
       icon: "success",
       buttons: [true, true],
@@ -80,14 +84,14 @@ const ViewWarehouse = () => {
           'Success! Your warehouse "' +
           warehouse.warehouseName +
           "(" +
-          warehouse.warehouseId +
+          warehouse.id +
           ')" has been deleted!',
           {
             icon: "success",
           }
         );
         let extractedArr = myWarehouse.filter((item, index) => {
-          return item.warehouseId != warehouse.warehouseId;
+          return item.warehouseId != warehouse.id;
         });
         setMyWarehouse(extractedArr);
       } else {
@@ -96,83 +100,141 @@ const ViewWarehouse = () => {
     });
   };
 
+  const [hoveredRow, setHoveredRow] = useState(null);
+    const onMouseEnterRow = (event) => {
+        const id = event.currentTarget.getAttribute("data-id"); 
+        setHoveredRow(id);
+        };
+    const onMouseLeaveRow = () => {
+        setHoveredRow(null);
+        };
+    const [deleteLogoStatus, setDeleteLogoStatus] = useState(false);
+    const [editLogoStatus, setEditLogoStatus] = useState(false);
+
+  const columns = [
+    { field: "id", headerName: "ID", width: 80 },
+    { field: "clientId", headerName: "Client ID", width: 100 },
+    { field: "warehouseName", headerName: "Warehouse Name", width: 150 },
+    { field: "descp", headerName: "Description", width: 250},
+    { field: "houseNo", headerName: "House No", width: 100},
+    { field: "plotNo", headerName: "Plot No", width: 100},
+    { field: "streetAddrs", headerName: "Street Address", width: 150},
+    { field: "city", headerName:"City", width: 100},
+    { field: "state", headerName: "State", width: 100},
+    { field: "pincode", headerName: "Pin Code", width: 100},
+   
+    {
+      field: "actions",
+      headerName: "ACTIONS",
+      width: 100,
+      sortable: false,
+      disableColumnMenu: true,
+      renderCell: (params) => {
+        return (
+          <Box
+            sx={{
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Tooltip
+              title="Edit"
+              placement="left"
+              arrow
+              enterDelay={100}
+              leaveDelay={100}
+            >
+              <IconButton
+                style={{
+                    backgroundColor:
+                    editLogoStatus && params.id === hoveredRow ? "#008CBA" : "",
+                    color:
+                    editLogoStatus && params.id === hoveredRow ? "white" : "",
+                  }}
+                onMouseEnter={() => {
+                    setEditLogoStatus(true);
+                }}
+                onMouseLeave={() => {
+                    setEditLogoStatus(false);
+                }}
+                onClick={() => {
+                  goToEditPage(params.row);
+                }}
+              >
+            <EditIcon/>
+              </IconButton>
+            </Tooltip>
+            <Tooltip
+              title="Delete"
+              placement="top"
+              arrow
+              enterDelay={100}
+              leaveDelay={100}
+            >
+              <IconButton
+                style={{
+                    backgroundColor:
+                      deleteLogoStatus && params.id === hoveredRow
+                        ? "#f44336"
+                        : "",
+                    color:
+                      deleteLogoStatus && params.id === hoveredRow ? "white" : "",
+                  }}
+                onMouseEnter={() => {
+                    setDeleteLogoStatus(true);
+                }}
+                onMouseLeave={() => {
+                    setDeleteLogoStatus(false);
+                }}
+                onClick={() => {
+                  DeleteWarehouse(params.row)
+                }}
+              >
+                <DeleteIcon/>
+              </IconButton>
+            </Tooltip>
+          </Box>
+        );
+      },
+    },
+  ];
+
   const showWarehouseList = () => {
     return (
       <div className="c-box-shadow-blue">
         <Box className="m-top-md m-bot-md m-left-md m-right-md">
-          <div>
             <div className="primary-gradient">
-              <div className="font-white p-sm f-18px f-bold">Warehouses</div>
+              <div className="font-white p-sm f-18px f-bold">{recordLabel}</div>
             </div>
-            <Table striped bordered hover responsive="md">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Client ID</th>
-                  <th>Name</th>
-                  <th>Description</th>
-                  <th>House No</th>
-                  <th>Plot No</th>
-                  <th>Street Address</th>
-                  <th>City</th>
-                  <th>State</th>
-                  <th>Pin</th>
-                  <th style={{ textAlign: "center" }}>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {myWarehouse &&
-                  myWarehouse.map((item: any) => {
-                    return (
-                      <tr>
-                        <td>{item.warehouseId}</td>
-                        <td>{item.clientId}</td>
-                        <td>{item.warehouseName}</td>
-                        <td>{item.descp}</td>
-                        <td>{item.houseNo}</td>
-                        <td>{item.plotNo}</td>
-                        <td>{item.streetAddrs}</td>
-                        <td>{item.city}</td>
-                        <td>{item.state}</td>
-                        <td>{item.pincode}</td>
-                        <td>
-                          <button
-                            onClick={() => DeleteWarehouse(item)}
-                            className="primary-btn-outline"
-                            style={{
-                              fontSize: "14px",
-                              float: "right",
-                              borderRadius: 20,
-                              padding: "8px 12px 8px 12px",
-                            }}
-                          >
-                            <strong>
-                              <i className="mdi mdi-cup menu-icon"></i> Delete
-                            </strong>
-                          </button>
-                          &nbsp; &nbsp;
-                          <button
-                            onClick={() => goToEditPage("/warehouse/edit", item)}
-                            className="primary-btn-outline"
-                            style={{
-                              fontSize: "14px",
-                              float: "right",
-                              borderRadius: 20,
-                              padding: "8px 12px 8px 12px",
-                              marginRight: "5px",
-                            }}
-                          >
-                            <strong>
-                              <i className="mdi mdi-pencil menu-icon"></i> Edit
-                            </strong>
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })}
-              </tbody>
-            </Table>
-          </div>
+            <div style={{ height: 370, width: "100%" }}>
+                <DataGrid getRowHeight={() => 'auto'}
+                    rows={myWarehouse && myWarehouse.map((item: any) => ({
+                        id: item.warehouseId,
+                        clientId: item.clientId,
+                        warehouseName: item.warehouseName,
+                        descp: item.descp,
+                        houseNo: item.houseNo,
+                        plotNo: item.plotNo,
+                        streetAddrs: item.streetAddrs,
+                        city:item.city,
+                        state: item.state,
+                        pincode:item.pincode,
+                    }))}
+                    componentsProps={{
+                    row: {
+                        onMouseEnter: onMouseEnterRow,
+                        onMouseLeave: onMouseLeaveRow,
+                    },
+                    }}
+                    columns={columns}
+                    pageSize={5}
+                    rowsPerPageOptions={[5]}
+                    disableSelectionOnClick
+                />
+            </div>   
         </Box>
       </div>
     );
