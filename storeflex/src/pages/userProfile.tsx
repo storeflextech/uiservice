@@ -9,6 +9,9 @@ import Footer from '../components/footer/footer';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import { isReadable } from 'stream';
+import swal from 'sweetalert';
+import InputBox from '../components/atoms/textfield/InputBox';
 
 
 const UserProfile = () => {
@@ -425,6 +428,20 @@ const UserProfile = () => {
 
 
                                                                 </div>
+                                                                <Button variant="secondary" className='btn sf-btn text-capitalize' onClick={() => swal({
+                                                                    title: "An input!",
+                                                                    text: "Write something interesting:",
+                                                                }).then(function (inputValue) {
+                                                                    if (inputValue === null) return false;
+
+                                                                    if (inputValue === "") {
+                                                                        return false
+                                                                    }
+
+                                                                    swal("Your password has been changed successfully!", "" + "", "success");
+                                                                })}>
+                                                                    Change Password
+                                                                </Button>
 
 
 
@@ -457,11 +474,11 @@ const UserProfile = () => {
                                 </div>
                             </div>
                         </Box>
-                    </div>
+                    </div >
                 }
             />
-            <Footer />
-        </AppContainer>
+            < Footer />
+        </AppContainer >
     )
 }
 
