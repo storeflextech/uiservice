@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Grid } from "@mui/material";
 import InputBox from "../../atoms/textfield/InputBox";
-
 import { EditWarehouseDetails } from "../../../utils/ResponseSchema";
+import { UploadImage } from "../../atoms/image/image";
 
 interface EditWarehouseProps {
   profileData?: EditWarehouseDetails;
@@ -77,7 +77,12 @@ const EditWarehouse = (props: EditWarehouseProps) => {
     //     console.log(' Company Edit Inforamtion erroor ', error);
     // });
   };
-
+  const [imageData, setImageData] = useState<File>();
+  const onPhotoUploadChange = (file: any) => {
+      if (file) {
+          setImageData(file);
+        }
+      }
   const showWarehouseDetails = () => {
     return (
       <>
@@ -93,7 +98,22 @@ const EditWarehouse = (props: EditWarehouseProps) => {
                     isDisabled: true,
                   }}
                 />
+                <InputBox
+                  data={{
+                    name: "clientid",
+                    label: "Client ID*",
+                    value: warehouseDetails.clientId,
+                  }}
+                />
+                <InputBox
+                    data={{
+                      name: "cityname",
+                      label: "Warehouse Name*",
+                      value: warehouseDetails.warehouseName,
+                    }}
+                  />
               </Grid>
+              
               <Grid item xs={4}>
                 <InputBox
                   data={{
@@ -103,15 +123,26 @@ const EditWarehouse = (props: EditWarehouseProps) => {
                     isDisabled: true,
                   }}
                 />
+                <InputBox
+                    data={{ name: "gstid", label: "GST Number*", value: "" }}
+                  />
+                  <InputBox
+                    data={{
+                      name: "whdescription",
+                      label: "Warehouse Description*",
+                      value: warehouseDetails.descp,
+                    }}
+                  />
               </Grid>
               <Grid item xs={4}>
-                <InputBox
-                  data={{
-                    name: "clientid",
-                    label: "Client ID*",
-                    value: warehouseDetails.clientId,
-                  }}
-                />
+                  <div>Profile Photo</div>
+                  <div className="p-top-sm">
+                  <UploadImage name={'companyphoto'} onImageChange={onPhotoUploadChange} />
+
+                  </div>
+                </Grid>
+              <Grid item xs={4}>
+                
               </Grid>
             </Grid>
           </div>
@@ -120,40 +151,14 @@ const EditWarehouse = (props: EditWarehouseProps) => {
             <div>
               <Grid container></Grid>
               <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-                <Grid item xs={4}>
-                  <div>Profile Photo</div>
-                  <div className="p-top-sm">
-                    <InputBox
-                      data={{
-                        name: "profilePhotoName",
-                        value: warehouseDetails.profilePicName,
-                      }}
-                    />
-                  </div>
-                </Grid>
+                
 
                 <Grid item xs={4}>
-                  <InputBox
-                    data={{
-                      name: "cityname",
-                      label: "Warehouse Name*",
-                      value: warehouseDetails.warehouseName,
-                    }}
-                  />
+                  
                 </Grid>
+                
                 <Grid item xs={4}>
-                  <InputBox
-                    data={{ name: "gstid", label: "GST Number*", value: "" }}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <InputBox
-                    data={{
-                      name: "whdescription",
-                      label: "Warehouse Description*",
-                      value: warehouseDetails.descp,
-                    }}
-                  />
+                  
                 </Grid>
               </Grid>
             </div>
@@ -168,13 +173,7 @@ const EditWarehouse = (props: EditWarehouseProps) => {
         <div className="p-md">
           <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
             <Grid item xs={4}>
-              <InputBox
-                data={{
-                  name: "plotNo",
-                  label: "Plot No*",
-                  value: warehouseDetails.plotNo,
-                }}
-              />
+              
             </Grid>
             <Grid item xs={4}>
               <InputBox
