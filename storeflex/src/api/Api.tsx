@@ -1,6 +1,6 @@
 // import React from 'react';
 import axios from 'axios';
-import { ApiConfig, SlLoginProps, SignInProps, GetStatesProp, GetCitiesProp, AddCompanyPostData, ViewCompaniesProps, ViewWarehouseProps, viewWarehouseAdminProps, EnquiryProps, viewUserProps, AddWarehousePostData } from './ApiConfig';
+import { ApiConfig, SlLoginProps, SignInProps, GetStatesProp, GetCitiesProp, AddCompanyPostData, ViewCompaniesProps, ViewWarehouseProps, viewWarehouseAdminProps, EnquiryProps, viewUserProps, WarehousePostData } from './ApiConfig';
 
 
 // let axiosConfig = {
@@ -186,7 +186,7 @@ export default class Api {
             return Promise.reject(error);
         }
     }
-    async addWarehouse(postData: AddWarehousePostData): Promise<any> {
+    async addWarehouse(postData: WarehousePostData): Promise<any> {
         const url = `${this.baseUrl}${this.apiUrl.addWarehouseUrl}`;
         try {
             const response = await axios.post(url, postData);
