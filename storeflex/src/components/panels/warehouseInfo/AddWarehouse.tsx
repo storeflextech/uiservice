@@ -8,7 +8,7 @@ import WearehousePricing from './component/WearehousePricing';
 import WarehouseHours from './component/WarehouseHours';
 import WarehouseLayout, {WarehouseLayoutObj} from './component/WarehouseLayout';
 import WarehouseDetails from './component/WarehouseDetails';
-import { AddWarehousePostData, Hours } from '../../../api/ApiConfig'; 
+import { WarehousePostData, Hours } from '../../../api/ApiConfig'; 
 import { WhDetail } from './component/WarehouseDetails';
 import { Address, Warehouseprice } from '../../../utils/ResponseSchema';
 
@@ -44,7 +44,7 @@ const AddWarehouse = () => {
     }
 
     const addWarehouse = () => {
-        const buildPostData = {} as AddWarehousePostData;
+        const buildPostData = {} as WarehousePostData;
         buildPostData.clientId = whDetails?.clientId;
         buildPostData.warehouseName = whDetails?.warehouseName;
         buildPostData.warehouseTaxId = whDetails?.warehouseTaxId;

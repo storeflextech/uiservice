@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import Api from "../../../api/Api";
 import { viewWarehouseAdminProps } from "../../../api/ApiConfig";
-import { responseInterceptor } from "http-proxy-middleware";
 import { LoaderFull } from "../../atoms/loader/loader";
 
 import { DataGrid } from "@mui/x-data-grid";
@@ -161,7 +160,7 @@ const ViewWarehouse = () => {
                     setEditLogoStatus(false);
                 }}
                 onClick={() => {
-                  goToEditPage(params.row);
+                  goToEditPage(params.row.itemObj);
                 }}
               >
             <EditIcon/>
@@ -222,6 +221,7 @@ const ViewWarehouse = () => {
                         city:item.city,
                         state: item.state,
                         pincode:item.pincode,
+                        itemObj: item,
                     }))}
                     componentsProps={{
                     row: {
@@ -243,7 +243,7 @@ const ViewWarehouse = () => {
     <>
       {isLoader && <LoaderFull />}
       <div className='c-box-shadow-blue'>
-        {showWarehouseList()}
+        {myWarehouse.length > 0 && showWarehouseList()}
       </div>
     </>
 
