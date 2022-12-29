@@ -8,6 +8,7 @@ import './profile.scss';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 import PrifileMenuList from './profileList.json';
+import { Button } from 'react-bootstrap';
 
 interface ProfileMenuProps {
     isSigned?: boolean;
@@ -147,6 +148,8 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
     return (
         <>
             <div className='sf-flex profile-menu-container'>
+                <Button className='btn primary-btn sf-btn' onClick={() => window.location.href = '/business/add'}>StoreFlex Your Space</Button>
+                &nbsp;&nbsp;&nbsp;&nbsp;
                 <IconButton size="large" edge="start" color="inherit" aria-label="profile" onClick={handleClick} >
                     <ProfileBtn showProfileImg={isSigned} profileImg={profileImgUrl} />
                 </IconButton>
