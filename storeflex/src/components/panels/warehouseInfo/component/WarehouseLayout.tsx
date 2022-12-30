@@ -3,6 +3,10 @@ import { Grid } from '@mui/material';
 import InputBox from '../../../atoms/textfield/InputBox';
 import Api from "../../../../api/Api";
 import { WarehouseCategories } from "../../../../utils/ResponseSchema";
+import { objectData } from "../../../../utils/ResponseSchema";
+import { InputError } from "../../../atoms/textfield/InputError";
+import { validateAreaSpace, validateCharacterLength, validateGst , validateCharacterOnly } from "../../../../utils/CommonUtils";
+
 
 export interface WarehouseLayoutObj {
     industryId?: string;
@@ -23,14 +27,16 @@ const WarehouseLayout = (props: WarehouseLayoutProps) => {
     const [industriesCategories, setIndustriesCategories] = useState({});
     const [storagesCategories, setStoragesCategories] = useState({});
     const [facilitiesCategories, setFacilitiesCategories] = useState({});
-    const [onUpdateInfo, setonUpdateInfo] = useState(false);
-    const [dockHighDoors, setDockHighdoors] = useState('');
-    const [atGradeDoors, setAtGradeDoors] = useState('');
-    const [ceillingHeight, setCeillingHeight] = useState('');
-    const [forkLiftCapacity, setForkLiftCapacity] = useState('');
+
+    const [onUpdateInfo , setonUpdateInfo] = useState(false);
+    const [dockHighDoorsInfo, setDockHighdoorsInfo] = useState<objectData>({});
+    const [atGradeDoorsInfo, setatGradeDoorsInfo] = useState<objectData>({});
+    const [ceillingHeightInfo, setceillingHeightInfo] = useState<objectData>({});
+    const [forkLiftCapacityInfo, setForkLiftCapacityInfo] = useState<objectData>({});
+    const [whCategories , setWhCategories] = useState<WarehouseCategories>();
 
     const [whCategories, setWhCategories] = useState<WarehouseCategories>();
-
+    
     useEffect(() => {
         if (onUpdateInfo) {
             setonUpdateInfo(false);
@@ -55,16 +61,82 @@ const WarehouseLayout = (props: WarehouseLayoutProps) => {
         }
     }
 
+    const onDockHighDoors = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: '',
+            
+        } as objectData;
+        if (!obj.val) {
+            obj.error = " *This field can not be empty ";
+        } else if (!validateCharacterOnly(obj.val)) {
+            obj.error = 'Numbers Only';
+        } else if (!validateCharacterLength(obj.val, 1, 10)){
+            obj.error = 'Numbers should be between 1 to 10 chatacter ';
+        }
+        setDockHighdoorsInfo(obj);
+        
+    }
+    const onAtGradeDoors = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: '',
+            
+        } as objectData;
+        if (!obj.val) {
+            obj.error = " *This field can not be empty ";
+        } else if (!validateCharacterOnly(obj.val)) {
+            obj.error = 'Numbers Only';
+        } else if (!validateCharacterLength(obj.val, 1, 10)){
+            obj.error = 'Numbers should be between 1 to 10 chatacter ';
+        }
+        setatGradeDoorsInfo(obj);
+        
+    }
+
+    const onceillingHeight = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: '',
+           
+        } as objectData;
+        if (!obj.val) {
+            obj.error = " *This field can not be empty ";
+        } else if (!validateCharacterOnly(obj.val)) {
+            obj.error = 'Numbers Only';
+        } else if (!validateCharacterLength(obj.val, 1, 10)){
+            obj.error = 'Numbers should be between 1 to 10 chatacter ';
+        }
+        setceillingHeightInfo(obj);
+        
+    }
+    const onforkLiftCapacity = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: '',
+            
+        } as objectData;
+        if (!obj.val) {
+            obj.error = " *This field can not be empty ";
+        } else if (!validateCharacterOnly(obj.val)) {
+            obj.error = 'Numbers Only';
+        } else if (!validateCharacterLength(obj.val, 1, 10)){
+            obj.error = 'Numbers should be between 1 to 10 chatacter ';
+        }
+        setForkLiftCapacityInfo(obj);
+        
+    }
+
     const onChangeUpdateInfo = () => {
         if (props?.onWarehouseLayoutUpdate) {
             const obj = {
                 industryId: filterCode(industriesCategories),
                 storagesId: filterCode(storagesCategories),
                 facilitiesId: filterCode(facilitiesCategories),
-                dockhighdoors: dockHighDoors,
-                atgradedoors: atGradeDoors,
-                ceillingheight: ceillingHeight,
-                forkliftcapacity: forkLiftCapacity
+                dockhighdoors: dockHighDoorsInfo,
+                atgradedoors: atGradeDoorsInfo,
+                ceillingheight: ceillingHeightInfo,
+                forkliftcapacity: forkLiftCapacityInfo,
             } as WarehouseLayoutObj
             props.onWarehouseLayoutUpdate(obj);
         }
@@ -105,19 +177,14 @@ const WarehouseLayout = (props: WarehouseLayoutProps) => {
         if (evt?.target?.value) {
             const name = evt.target.name;
             const value = evt.target.value
-            if (name === 'dockhighdoors') {
-                setDockHighdoors(value);
-                if (value > 10 || value == 0)
-                    setErrorMessage("Dock High Doors should be between 1-10")
-                else {
-                    setErrorMessage("")
-                }
-            } else if (name === 'atgradedoors') {
-                setAtGradeDoors(value);
-            } else if (name === 'ceillingheight') {
-                setCeillingHeight(value);
-            } else if (name === 'forkliftcapacity') {
-                setForkLiftCapacity(value);
+            if(name === 'dockhighdoors') {
+                setDockHighdoorsInfo(value);
+            } else if(name === 'atgradedoors') {
+                setatGradeDoorsInfo(value);
+            } else if(name === 'ceillingheight') {
+                setceillingHeightInfo(value);
+            } else if(name === 'forkliftcapacity') {
+                setForkLiftCapacityInfo(value);
             } else {
                 return false;
             }
@@ -238,25 +305,28 @@ const WarehouseLayout = (props: WarehouseLayoutProps) => {
                             <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                                 <Grid item xs={3}>
                                     <InputBox data={{ name: 'dockhighdoors', label: '#Dock High Doors', value: '' }}
-                                        onChange={onChangeFearureChange}
+                                     onChange={onDockHighDoors}
                                     />
-                                    {errorMessage && <div className="text-red"> {errorMessage} </div>}
+                                    {dockHighDoorsInfo.error && <p className="text-red">{dockHighDoorsInfo.error}</p>} 
                                 </Grid>
                                 <Grid item xs={3}>
                                     <InputBox data={{ name: 'atgradedoors', label: '#At Grade Doors', value: '' }}
-                                        onChange={onChangeFearureChange}
+                                        onChange={onAtGradeDoors}
                                     />
+                                    {atGradeDoorsInfo.error && <p className="text-red">{atGradeDoorsInfo.error}</p>}
                                 </Grid>
 
                                 <Grid item xs={3}>
                                     <InputBox data={{ name: 'ceillingheight', label: 'Clear Ceilling Height (feet)', value: '' }}
-                                        onChange={onChangeFearureChange}
+                                        onChange={onceillingHeight}
                                     />
+                                    {ceillingHeightInfo.error && <p className="text-red">{ceillingHeightInfo.error}</p>}
                                 </Grid>
                                 <Grid item xs={3}>
                                     <InputBox data={{ name: 'forkliftcapacity', label: 'Max Forklift Capacity (Lbs)', value: '' }}
-                                        onChange={onChangeFearureChange}
+                                        onChange={onforkLiftCapacity}
                                     />
+                                    {forkLiftCapacityInfo.error && <p className="text-red">{forkLiftCapacityInfo.error}</p>}
                                 </Grid>
                             </Grid>
 
