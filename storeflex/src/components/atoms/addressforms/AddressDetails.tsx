@@ -29,7 +29,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
     const [houseInfo, setHouseInfo] = useState<objectData>({});
     const [streetInfo, setStreetInfo] = useState<objectData>({});
 
-    const [onUpdateInfo, setonUpdateInfo] = useState(false);
+    const [onUpdateInfo, setOnUpdateInfo] = useState(false);
 
     useEffect(() => {
         if (props?.countryCode !== countryCode) {
@@ -38,7 +38,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
         }
 
         if (onUpdateInfo) {
-            setonUpdateInfo(false);
+            setOnUpdateInfo(false);
             onChangeUpdateInfo();
         }
     }, [props.countryCode, countryCode, onUpdateInfo]);
@@ -80,7 +80,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
             obj.error = 'Select city'
         }
         setCityInfo(obj);
-        setonUpdateInfo(true);
+        setOnUpdateInfo(true);
     }
 
     const onStateChange = (stageCodeVal: string) => {
@@ -95,7 +95,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
             obj.error = 'Select state'
         }
         setStateInfo(obj);
-        setonUpdateInfo(true);
+        setOnUpdateInfo(true);
     }
 
     const validateStreet = (event: any) => {
@@ -110,7 +110,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
             obj.error = 'Minimum 6 letters and maximum 80 letters required';
         }
         setStreetInfo(obj);
-        setonUpdateInfo(true);
+        setOnUpdateInfo(true);
     }
 
 
@@ -126,7 +126,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
             obj.error = 'Enter valid pincode.';
         }
         setPinCode(obj);
-        setonUpdateInfo(true);
+        setOnUpdateInfo(true);
     }
 
     const validatePlotNo = (event: any) => {
@@ -141,7 +141,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
             obj.error = 'Minimum 4 character required';
         }
         setPlotInfo(obj);
-        setonUpdateInfo(true);
+        setOnUpdateInfo(true);
     }
 
     const validateHouseNo = (event: any) => {
@@ -156,7 +156,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
             obj.error = 'Minimum 4 character required';
         }
         setHouseInfo(obj);
-        setonUpdateInfo(true);
+        setOnUpdateInfo(true);
     }
 
     const selectAddressType = (event: any) => {
@@ -166,7 +166,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
             isUpdated: true,
         } as objectData;
         setAddressTypeInfo(obj);
-        setonUpdateInfo(true);
+        setOnUpdateInfo(true);
     }
 
     const showAddressType = () => {
@@ -219,7 +219,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
                 <Grid item xs={6}>
                     <div> City* </div>
                     <div className='p-top-sm'>
-                        {<GetCity state={data?.state || ''} onChange={onCityChange} />}
+                        {<GetCity stateCode={stateInfo?.val || ''} onChange={onCityChange} />}
                     </div>
                 </Grid>
             </Grid>
