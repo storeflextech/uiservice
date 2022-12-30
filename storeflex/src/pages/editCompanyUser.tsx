@@ -196,11 +196,6 @@ const EditCompanyUser = () => {
             <div className='p-top-md'>
                 <div>{
                     <AddressDetails
-                        addresLine1={''}
-                        city={''}
-                        state={''}
-                        zip={''}
-                        country={''}
                         countryCode={'01'}
                     />}</div>
             </div>

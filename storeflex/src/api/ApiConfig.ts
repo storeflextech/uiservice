@@ -110,6 +110,7 @@ export class ApiConfig {
     uploadCompanyPhotoApi = '/uploadClientProfilePic';
     searchwarehouse = '/searchwarehouse';
     getWarehouseByClientIdUrl = '/warehouseByClientId';
+    getWarehouseByIdUrl = '/warehouseById';
     getWarehouseAdminUrl = '/warehouses';
     addWarehouseUrl = '/warehouse';
     enquiry = '/enquiry';

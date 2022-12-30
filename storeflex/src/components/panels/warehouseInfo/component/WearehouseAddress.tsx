@@ -3,7 +3,8 @@ import { Address} from '../../../../utils/ResponseSchema';
 import AddressDetails from '../../../atoms/addressforms/AddressDetails';
 
 interface WearehouseAddressProps {
-    onWearehouseAddressUpdate?: (data: any) => void;
+    onWearehouseAddressUpdate?: (data: Address) => void;
+    data?: Address;
 }
 
 const WearehouseAddress = (props: WearehouseAddressProps) => {
@@ -24,7 +25,6 @@ const WearehouseAddress = (props: WearehouseAddressProps) => {
     }
     return (
         <>
-
             <div>
                 <div className='primary-gradient'>
                     <div className='font-white p-sm f-18px f-bold'>Where's warehouse located?</div>
@@ -32,14 +32,9 @@ const WearehouseAddress = (props: WearehouseAddressProps) => {
 
                 <div className='p-md'>
                     <AddressDetails
-                        addresLine1={'NA'}
-                        city={'NA'}
-                        state={'NA'}
-                        zip={''}
-                        country={'01'}
-                        countryCode={'01'}
                         addressTypeHide={false}
                         onUpdate={onAddressUpdate}
+                        data={props.data}
                     />
                 </div>
             </div>
