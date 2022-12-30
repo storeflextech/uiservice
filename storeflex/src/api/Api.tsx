@@ -226,6 +226,23 @@ export default class Api {
         }
     }
 
+    async getWarehouseById(whId: string): Promise<any> {
+        const url = `${this.baseUrl}${ this.apiUrl.getWarehouseByIdUrl}?warehouseId=${whId}`;
+        try {
+            const response = await axios.get(url);
+            if (response?.data?.statusCode === 600) {
+                return Promise.resolve(response?.data);
+            } else {
+                console.log(' error : getWarehouseById ', response);
+                return Promise.reject(response);
+            }
+        }
+        catch (error) {
+            console.log(' error : getWarehouseById', error);
+            return Promise.reject(error);
+        }
+    }
+
     async getWarehouseAdmin(getData: viewWarehouseAdminProps): Promise<any> {
         const url = `${this.baseUrl}${this.apiUrl.getWarehouseAdminUrl}?page=${getData.page}&size=${getData.size}&status=${getData.status}`;
         try {

@@ -4,7 +4,8 @@ import { GetCitiesProp } from '../../../api/ApiConfig';
 import Api from '../../../../src/api/Api';
 
 interface GetCityProps {
-  state: string;
+  stateCode: string;
+  defaultCity?: string;
   onChange?: (codeVal: string) => void;
 }
 
@@ -16,10 +17,10 @@ const GetCity = (props: GetCityProps) => {
   const [cityName, setCityName] = useState('Select City');
 
   useEffect(() => {
-    if(props.state) {
-      getCities(props.state);
+    if(props.stateCode) {
+      getCities(props.stateCode);
     }
-  }, [props.state]);
+  }, [props.stateCode]);
 
   const getCities = (stateCode: string) => {
     const data: GetCitiesProp = { state: stateCode };
