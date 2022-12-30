@@ -33,8 +33,23 @@ const EditWarehouse = (props: EditWarehouseProps) => {
   const [whLayout, setLayout] = useState<WarehouseLayoutObj>({});
 
     useEffect(() => {
-      warehouseDataFormatter(location.state.editRecord);
+      const whId = location.state.editRecord;
+      getWarehouseDataById(whId);
     }, []);
+
+    const getWarehouseDataById = (whId: string) => {
+      setIsLoader(true);
+      api.getWarehouseById(whId).then((resp) => {
+          setIsLoader(false);
+          if(resp.methodReturnValue) {
+            warehouseDataFormatter(resp.methodReturnValue);
+          }
+         
+      }).catch((error) => {
+          setIsLoader(false);
+          console.log(' addWarehouse creation erroor ', error);
+      });
+    }
 
     const warehouseDataFormatter = (data: WarehousePostData) => {
       console.log(' >>>>> warehouseDataFormatter ' , data);
@@ -47,6 +62,19 @@ const EditWarehouse = (props: EditWarehouseProps) => {
       whDetailObj.warehouseTaxId = data?.warehouseTaxId;
       whDetailObj.descp = data.descp;
       onWarehouseDetailsUpdate(whDetailObj);
+
+      const address = data?.address?.[0];
+      const whAddressObj = {} as Address;
+      whAddressObj.addressId = address?.addressId;
+      whAddressObj.addressType = address?.addressType;
+      whAddressObj.city = address?.city;
+      whAddressObj.country = address?.country;
+      whAddressObj.houseNo = address?.houseNo;
+      whAddressObj.pincode = address?.pincode;
+      whAddressObj.plotNo = address?.plotNo;
+      whAddressObj.state = address?.state;
+      whAddressObj.streetDetails = address?.streetDetails;
+      onWearehouseAddressUpdate(whAddressObj);
     };
 
     const onWarehouseDetailsUpdate = (data: WhDetail) => {
@@ -105,7 +133,7 @@ const EditWarehouse = (props: EditWarehouseProps) => {
         <>
         {isLoader && <LoaderFull />}
         {<WarehouseDetails data={whDetails} onWarehouseDetailsUpdate={onWarehouseDetailsUpdate} isDisabled={true}/>}
-        {<WearehouseAddress onWearehouseAddressUpdate={onWearehouseAddressUpdate}/>}
+        {<WearehouseAddress data={whAddress} onWearehouseAddressUpdate={onWearehouseAddressUpdate}/>}
         {<WearehousePricing onWearehousePricingUpdate={onWearehousePricingUpdate}/>}
         {<WarehouseHours onWarehouseHoursUpdate={onWarehouseHoursUpdate}/>}
         {<WarehouseLayout onWarehouseLayoutUpdate={onWarehouseLayoutUpdate}/>}

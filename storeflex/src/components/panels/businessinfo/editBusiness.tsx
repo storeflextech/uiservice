@@ -380,11 +380,6 @@ const EditBusiness = (props: EditBusinessProps) => {
                 <div className='p-md'>
                     {
                         <AddressDetails
-                            addresLine1={businessProfile.address}
-                            city={businessProfile.city}
-                            state={businessProfile.state}
-                            zip={businessProfile.pincode}
-                            country={'01'}
                             countryCode={selectedCountryCode}
                             onUpdate={onAddressUpdate}
                         />

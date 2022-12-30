@@ -160,7 +160,7 @@ const ViewWarehouse = () => {
                     setEditLogoStatus(false);
                 }}
                 onClick={() => {
-                  goToEditPage(params.row.itemObj);
+                  goToEditPage(params.id);
                 }}
               >
             <EditIcon/>
