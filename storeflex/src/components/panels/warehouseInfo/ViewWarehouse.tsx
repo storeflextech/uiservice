@@ -59,13 +59,13 @@ const ViewWarehouse = () => {
   const goToEditPage = (warehouse: any) => {
     const pagePath = '/warehouse/edit'
     navigate(pagePath,
-        {
-            state: { editRecord: warehouse },
-        }
+      {
+        state: { editRecord: warehouse },
+      }
     );
-}
+  }
 
-  const DeleteWarehouse = (warehouse: any) => { 
+  const DeleteWarehouse = (warehouse: any) => {
     swal({
       title: "Are you sure?",
       text:
@@ -100,28 +100,17 @@ const ViewWarehouse = () => {
   };
 
   const [hoveredRow, setHoveredRow] = useState(null);
-    const onMouseEnterRow = (event) => {
-        const id = event.currentTarget.getAttribute("data-id"); 
-        setHoveredRow(id);
-        };
-    const onMouseLeaveRow = () => {
-        setHoveredRow(null);
-        };
-    const [deleteLogoStatus, setDeleteLogoStatus] = useState(false);
-    const [editLogoStatus, setEditLogoStatus] = useState(false);
+  const onMouseEnterRow = (event) => {
+    const id = event.currentTarget.getAttribute("data-id");
+    setHoveredRow(id);
+  };
+  const onMouseLeaveRow = () => {
+    setHoveredRow(null);
+  };
+  const [deleteLogoStatus, setDeleteLogoStatus] = useState(false);
+  const [editLogoStatus, setEditLogoStatus] = useState(false);
 
   const columns = [
-    { field: "id", headerName: "ID", width: 80 },
-    { field: "clientId", headerName: "Client ID", width: 100 },
-    { field: "warehouseName", headerName: "Warehouse Name", width: 150 },
-    { field: "descp", headerName: "Description", width: 250},
-    { field: "houseNo", headerName: "House No", width: 100},
-    { field: "plotNo", headerName: "Plot No", width: 100},
-    { field: "streetAddrs", headerName: "Street Address", width: 150},
-    { field: "city", headerName:"City", width: 100},
-    { field: "state", headerName: "State", width: 100},
-    { field: "pincode", headerName: "Pin Code", width: 100},
-   
     {
       field: "actions",
       headerName: "ACTIONS",
@@ -148,22 +137,22 @@ const ViewWarehouse = () => {
             >
               <IconButton
                 style={{
-                    backgroundColor:
+                  backgroundColor:
                     editLogoStatus && params.id === hoveredRow ? "#008CBA" : "",
-                    color:
+                  color:
                     editLogoStatus && params.id === hoveredRow ? "white" : "",
-                  }}
+                }}
                 onMouseEnter={() => {
-                    setEditLogoStatus(true);
+                  setEditLogoStatus(true);
                 }}
                 onMouseLeave={() => {
-                    setEditLogoStatus(false);
+                  setEditLogoStatus(false);
                 }}
                 onClick={() => {
                   goToEditPage(params.id);
                 }}
               >
-            <EditIcon/>
+                <EditIcon />
               </IconButton>
             </Tooltip>
             <Tooltip
@@ -175,66 +164,76 @@ const ViewWarehouse = () => {
             >
               <IconButton
                 style={{
-                    backgroundColor:
-                      deleteLogoStatus && params.id === hoveredRow
-                        ? "#f44336"
-                        : "",
-                    color:
-                      deleteLogoStatus && params.id === hoveredRow ? "white" : "",
-                  }}
+                  backgroundColor:
+                    deleteLogoStatus && params.id === hoveredRow
+                      ? "#f44336"
+                      : "",
+                  color:
+                    deleteLogoStatus && params.id === hoveredRow ? "white" : "",
+                }}
                 onMouseEnter={() => {
-                    setDeleteLogoStatus(true);
+                  setDeleteLogoStatus(true);
                 }}
                 onMouseLeave={() => {
-                    setDeleteLogoStatus(false);
+                  setDeleteLogoStatus(false);
                 }}
                 onClick={() => {
                   DeleteWarehouse(params.row)
                 }}
               >
-                <DeleteIcon/>
+                <DeleteIcon />
               </IconButton>
             </Tooltip>
           </Box>
         );
       },
     },
+    { field: "id", headerName: "ID", width: 80 },
+    { field: "clientId", headerName: "Client ID", width: 100 },
+    { field: "warehouseName", headerName: "Warehouse Name", width: 150 },
+    { field: "descp", headerName: "Description", width: 250 },
+    { field: "houseNo", headerName: "House No", width: 100 },
+    { field: "plotNo", headerName: "Plot No", width: 100 },
+    { field: "streetAddrs", headerName: "Street Address", width: 150 },
+    { field: "city", headerName: "City", width: 100 },
+    { field: "state", headerName: "State", width: 100 },
+    { field: "pincode", headerName: "Pin Code", width: 100 },
   ];
 
   const showWarehouseList = () => {
     return (
       <div className="c-box-shadow-blue">
         <Box className="m-top-md m-bot-md m-left-md m-right-md">
-            <div className="primary-gradient">
-              <div className="font-white p-sm f-18px f-bold">{recordLabel}</div>
-            </div>
-            <div style={{ height: 370, width: "100%" }}>
-                <DataGrid getRowHeight={() => 'auto'}
-                    rows={myWarehouse && myWarehouse.map((item: any) => ({
-                        id: item.warehouseId,
-                        clientId: item.clientId,
-                        warehouseName: item.warehouseName,
-                        descp: item.descp,
-                        houseNo: item.houseNo,
-                        plotNo: item.plotNo,
-                        streetAddrs: item.streetAddrs,
-                        city:item.city,
-                        state: item.state,
-                        pincode:item.pincode,
-                        itemObj: item,
-                    }))}
-                    componentsProps={{
-                    row: {
-                        onMouseEnter: onMouseEnterRow,
-                        onMouseLeave: onMouseLeaveRow,
-                    },
-                    }}
-                    columns={columns}
-                    pageSize={5}
-                    rowsPerPageOptions={[5]}
-                    disableSelectionOnClick
-                />
-            </div>   
+          <div className="primary-gradient">
+            <div className="font-white p-sm f-18px f-bold">{recordLabel}</div>
+          </div>
+          <div style={{ height: 370, width: "100%" }}>
+            <DataGrid getRowHeight={() => 'auto'}
+              rows={myWarehouse && myWarehouse.map((item: any) => ({
+                id: item.warehouseId,
+                clientId: item.clientId,
+                warehouseName: item.warehouseName,
+                descp: item.descp,
+                houseNo: item.houseNo,
+                plotNo: item.plotNo,
+                streetAddrs: item.streetAddrs,
+                city: item.city,
+                state: item.state,
+                pincode: item.pincode,
+                itemObj: item,
+              }))}
+              componentsProps={{
+                row: {
+                  onMouseEnter: onMouseEnterRow,
+                  onMouseLeave: onMouseLeaveRow,
+                },
+              }}
+              columns={columns}
+              pageSize={5}
+              rowsPerPageOptions={[5]}
+              disableSelectionOnClick
+            />
+          </div>
         </Box>
       </div>
     );
