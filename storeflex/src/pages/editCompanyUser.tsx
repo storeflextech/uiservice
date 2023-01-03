@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid } from '@mui/material';
 import AddressDetails from '../components/atoms/addressforms/AddressDetails';
 import InputBox from '../components/atoms/textfield/InputBox';
 import { UserType, CompanyName } from '../components/atoms/adduser/UserHelper';
-import { validateCharacterLength, validateSpecialCharExistance, validatePhone } from '../utils/CommonUtils';
+import { validateCharacterLength, validateSpecialCharExistance, validatePhone, validateEmail } from '../utils/CommonUtils';
 import { Button } from '@mui/material';
 import GetCompany from '../components/atoms/company/GetCompany';
 import { Box } from '@mui/material';
-// import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
 import TopNavBar from '../components/navbar/TopNavBar';
 import SideNavBar from '../components/navbar/SideNavBar';
@@ -21,9 +21,19 @@ import { DeletsButton, EditButton } from '../components/buttons/buttons';
 import swal from 'sweetalert';
 import { UploadImage } from '../components/atoms/image/image';
 
+import {EditCompanyUserDetails} from '../utils/ResponseSchema';
+import {CompanyUserPostData} from '../api/ApiConfig';
 
+interface EditCompanyUser {
+    profileData?: EditCompanyUserDetails;
+    onSave?(isSaved: boolean): void;
+    action?: string;
+  }
 
-const EditCompanyUser = () => {
+const EditCompanyUser = (props: EditCompanyUser) => { 
+
+    const location = useLocation();
+
     const [values, setValues] = useState({
         FirstName: "",
         LastName: "",
@@ -43,6 +53,35 @@ const EditCompanyUser = () => {
         if (file) {
             setImageData(file);
         }
+    }
+
+    const profile = {} as EditCompanyUserDetails;
+    const [companyUserProfile, setCompanyUserProfile] = useState(profile);
+
+    useEffect(() => {
+        companyUserDataFormatter(location.state.editRecord);
+    }, [])
+
+    const companyUserDataFormatter = (data: CompanyUserPostData) => {
+        let companyUserDataDetails: EditCompanyUserDetails = {
+            userId: data.userId || '',
+            address: data.address || '',
+            city: data.city || '',
+            country: data.country || '',
+            email: data.email || '',
+            firstName: data.firstName || '',
+            houseNo: data.houseNo || '',
+            lastName: data.lastName || '',
+            middleName: data.middleName || '',
+            mobileNo: data.mobileNo || '',
+            photoName: data.photoName || '',
+            pincode: data.pincode || '',
+            roleType: data.roleType || '',
+            status: data.status || '',
+            userPhoto: data.userPhoto || '',
+            
+        }
+        setCompanyUserProfile(companyUserDataDetails);
     }
 
     //Validate First name
@@ -113,6 +152,23 @@ const EditCompanyUser = () => {
             errors.Phone = ""
             document.getElementsByName("phone")[0].style.border = "2px solid dodgerblue"
         }
+    };
+    const validate_email = (event: any) => {
+        const email = event.target.value;
+        setValues({
+            ...values,
+            [event.target.name] : event.target.value,
+        });
+        if(!email) {
+            errors.Email = "*Email is required."
+            document.getElementsByName("email")[0].style.border = "2px solid red";
+        } else if(!validateEmail(email)) {
+            errors.Email = "*Valid email is required."
+            document.getElementsByName("email")[0].style.border = "2px solid red";
+        } else {
+            errors.Email = ""
+            document.getElementsByName("email")[0].style.border = "2px solid dodgerblue";
+        }
     }
     // const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     //     const {name, value } = e.currentTarget;
@@ -132,11 +188,11 @@ const EditCompanyUser = () => {
                     <div className='p-top-md'>
                         {<UserType />}
                     </div>
-                    <InputBox data={{ name: 'firstname', label: 'First  Name*', value: values.FirstName }}
+                    <InputBox data={{ name: 'firstname', label: 'First  Name*', value: companyUserProfile.firstName }}
                             onChange={validateFirstName} onBlur={handelOnBlur}
                         />
                         {errors.FirstName && <p className="text-red">{errors.FirstName}</p>}
-                    <InputBox data={{ name: 'lastname', label: 'Last  Name*', value: values.LastName }}
+                    <InputBox data={{ name: 'lastname', label: 'Last  Name*', value: companyUserProfile.lastName }}
                             onChange={validateLastName} onBlur={handelOnBlur}
                         />
                         {errors.LastName && <p className="text-red">{errors.LastName}</p>}
@@ -175,16 +231,16 @@ const EditCompanyUser = () => {
                         
                     </Grid>
                     <Grid item xs={6}>
-                        <InputBox data={{ name: 'phone', label: 'Phone*', value: values.Phone }}
+                        <InputBox data={{ name: 'phone', label: 'Phone*', value: companyUserProfile.mobileNo }}
                             onChange={validatePhone} onBlur={handelOnBlur}
                         />
                         {errors.Phone && <p className="text-red">{errors.Phone}</p>}
                     </Grid>
                     <Grid item xs={6}>
-                        <InputBox data={{ name: 'email', label: 'Email*', value: values.LastName }}
-                            onChange={validateLastName} onBlur={handelOnBlur}
+                        <InputBox data={{ name: 'email', label: 'Email*', value: companyUserProfile.email }}
+                            onChange={validate_email} onBlur={handelOnBlur}
                         />
-                        {errors.LastName && <p className="text-red">{errors.LastName}</p>}
+                        {errors.Email && <p className="text-red">{errors.Email}</p>}
                     </Grid>
                 </Grid>
             </div>
@@ -194,10 +250,44 @@ const EditCompanyUser = () => {
     const addAddress = () => {
         return (
             <div className='p-top-md'>
-                <div>{
+                {/* <div>{
                     <AddressDetails
                         countryCode={'01'}
-                    />}</div>
+                    />}</div> */}
+                <Grid container className='p-top-md' spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
+                    <Grid item xs={3}>
+                        <InputBox data={{ name: 'plotno', label: 'Plot No', value: companyUserProfile.houseNo }}
+                        />
+                    </Grid>
+                    <Grid item xs={3}>
+                        <InputBox data={{ name: 'houseno', label: 'House No', value: companyUserProfile.houseNo }}
+                        />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <InputBox data={{ name: 'street', label: 'Street*', value: companyUserProfile.houseNo }}
+                        />
+                    </Grid>
+                </Grid>
+                <Grid container className='p-top-md' spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
+                    <Grid item xs={6}>
+                        <InputBox data={{ name: 'state', label: 'State*', value: companyUserProfile.country }}
+                        />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <InputBox data={{ name: 'city', label: 'City*', value: companyUserProfile.city }}
+                        />
+                    </Grid>
+                </Grid>
+                <Grid container className='p-top-md' spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
+                    <Grid item xs={6}>
+                        <InputBox data={{ name: 'country', label: 'Country*', value: companyUserProfile.country }}
+                        />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <InputBox data={{ name: 'pincode', label: 'Pin Code*', value: companyUserProfile.pincode }}
+                        />
+                    </Grid>
+                </Grid>
             </div>
         )
     }

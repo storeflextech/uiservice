@@ -63,6 +63,24 @@ export interface EditWarehouseDetails {
   companyName: string;
 }
 
+export interface EditCompanyUserDetails {
+  userId: string;
+  address: string;
+  city: string;
+  country: string;
+  email: string;
+  firstName: string;
+  houseNo: string | number;
+  lastName: string;
+  middleName: string;
+  mobileNo: string;
+  photoName: string;
+  pincode: string | number;
+  roleType: string;
+  status: string;
+  userPhoto: string;
+}
+
 export interface StateList {
   [key: string]: string;
 }
