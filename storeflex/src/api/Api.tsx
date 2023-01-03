@@ -1,6 +1,6 @@
 // import React from 'react';
 import axios from 'axios';
-import { ApiConfig, SlLoginProps, SignInProps, GetStatesProp, GetCitiesProp, AddCompanyPostData, ViewCompaniesProps, ViewWarehouseProps, viewWarehouseAdminProps, EnquiryProps, viewUserProps, AddWarehousePostData } from './ApiConfig';
+import { ApiConfig, SlLoginProps, SignInProps, GetStatesProp, GetCitiesProp, AddCompanyPostData, ViewCompaniesProps, ViewWarehouseProps, viewWarehouseAdminProps, EnquiryProps, viewUserProps, WarehousePostData } from './ApiConfig';
 
 
 // let axiosConfig = {
@@ -186,7 +186,7 @@ export default class Api {
             return Promise.reject(error);
         }
     }
-    async addWarehouse(postData: AddWarehousePostData): Promise<any> {
+    async addWarehouse(postData: WarehousePostData): Promise<any> {
         const url = `${this.baseUrl}${this.apiUrl.addWarehouseUrl}`;
         try {
             const response = await axios.post(url, postData);
@@ -222,6 +222,23 @@ export default class Api {
         }
         catch (error) {
             console.log(' error : Get Warehouse', error);
+            return Promise.reject(error);
+        }
+    }
+
+    async getWarehouseById(whId: string): Promise<any> {
+        const url = `${this.baseUrl}${ this.apiUrl.getWarehouseByIdUrl}?warehouseId=${whId}`;
+        try {
+            const response = await axios.get(url);
+            if (response?.data?.statusCode === 600) {
+                return Promise.resolve(response?.data);
+            } else {
+                console.log(' error : getWarehouseById ', response);
+                return Promise.reject(response);
+            }
+        }
+        catch (error) {
+            console.log(' error : getWarehouseById', error);
             return Promise.reject(error);
         }
     }

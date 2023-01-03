@@ -48,11 +48,13 @@ export interface AddCompanyPostData {
     contact?: Contact[];
 }
 
-export interface AddWarehousePostData {
+export interface WarehousePostData {
     clientId?: string;
+    clientName?: string;
     warehouseName?: string;
     descp?: string;
     warehouseTaxId?: string;
+    warehouseId?: string;
     days?: string;
     time?: string;
     facilitiesId?: string;
@@ -108,6 +110,7 @@ export class ApiConfig {
     uploadCompanyPhotoApi = '/uploadClientProfilePic';
     searchwarehouse = '/searchwarehouse';
     getWarehouseByClientIdUrl = '/warehouseByClientId';
+    getWarehouseByIdUrl = '/warehouseById';
     getWarehouseAdminUrl = '/warehouses';
     addWarehouseUrl = '/warehouse';
     enquiry = '/enquiry';

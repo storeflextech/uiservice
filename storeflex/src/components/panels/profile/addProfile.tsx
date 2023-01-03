@@ -180,11 +180,6 @@ const AddProfile = (props: AddProfileProps) => {
             <div className='p-md'>
                 <div>{
                     <AddressDetails
-                        addresLine1={businessProfile.address}
-                        city={businessProfile.city}
-                        state={businessProfile.state}
-                        zip={businessProfile.zip}
-                        country={businessProfile.country}
                         countryCode={'01'}
                     />}</div>
                 <Grid container spacing={2} columns={{ xs: 12, sm: 12, md: 12 }}>

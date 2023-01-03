@@ -6,6 +6,7 @@ import { UserType, CompanyName } from './UserHelper';
 import { validateCharacterLength, validateSpecialCharExistance, validatePhone } from '../../../../src/utils/CommonUtils';
 import { Button } from '@mui/material';
 import GetCompany from '../company/GetCompany';
+import { UploadImage } from "../../atoms/image/image";
 
 const AddUser = () => {
   const [values, setValues] = useState({
@@ -101,27 +102,61 @@ const AddUser = () => {
     console.log(' #### name ', name);
     console.log(' #### name ', value);
   }
+  const [imageData, setImageData] = useState<File>();
+
+  const onPhotoUploadChange = (file: any) => {
+    if (file) {
+        setImageData(file);
+    }
+}
   const selectDetails = () => {
     return (
-      <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-        <Grid item xs={6}>
+      <Grid container spacing={2} columns={{ xs: 4, sm: 12, md: 12 }}>
+        <Grid item xs={5}>
           <div> User Type </div>
           <div className='p-top-md'>
             {<UserType />}
+
+            <Grid container spacing={0} columns={{ xs: 6, sm: 12, md: 12 }}></Grid>
+             <InputBox data={{ name: 'firstname', label: 'First  Name*', value: values.FirstName }}
+              onChange={validateFirstName} onBlur={handelOnBlur}
+            />
+            {errors.FirstName && <p className="text-red">{errors.FirstName}</p>}
+
+            <InputBox data={{ name: 'phone', label: 'Phone*', value: values.Phone }}
+              onChange={validatePhone} onBlur={handelOnBlur}
+            />
+            {errors.Phone && <p className="text-red">{errors.Phone}</p>}
+
+
           </div>
         </Grid>
-        <Grid item xs={3}>
+
+       <Grid item xs={4}>
           <div>Company</div>
           <div className='p-top-md'>
             {<GetCompany />}
+
+            <InputBox data={{ name: 'lastname', label: 'Last  Name*', value: values.LastName }}
+              onChange={validateLastName} onBlur={handelOnBlur}
+            />
+            {errors.LastName && <p className="text-red">{errors.LastName}</p>}
+            <InputBox data={{ name: 'email', label: 'Email*', value: values.LastName }}
+              onChange={validateLastName} onBlur={handelOnBlur}
+            />
+            {errors.LastName && <p className="text-red">{errors.LastName}</p>}
           </div>
         </Grid>
+
         <Grid item xs={3}>
           <div>Profile Photo (optional)</div>
           <div className='p-top-md'>
-            <input type="file" className="form-control" />
+          <UploadImage name={'companyphoto'} onImageChange={onPhotoUploadChange} />
+          
+            
           </div>
         </Grid>
+        
       </Grid>
     )
   }
@@ -129,33 +164,10 @@ const AddUser = () => {
   const userInfo = () => {
     return (
       <div className='p-top-md'>
-        <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-          <Grid item xs={6}>
-
-            <InputBox data={{ name: 'firstname', label: 'First  Name*', value: values.FirstName }}
-              onChange={validateFirstName} onBlur={handelOnBlur}
-            />
-            {errors.FirstName && <p className="text-red">{errors.FirstName}</p>}
+        <Grid container spacing={2} columns={{ xs: 4, sm: 12, md: 12 }}>
+          
           </Grid>
-
-          <Grid item xs={6}>
-            <InputBox data={{ name: 'lastname', label: 'Last  Name*', value: values.LastName }}
-              onChange={validateLastName} onBlur={handelOnBlur}
-            />
-            {errors.LastName && <p className="text-red">{errors.LastName}</p>}
-          </Grid>
-          <Grid item xs={6}>
-            <InputBox data={{ name: 'phone', label: 'Phone*', value: values.Phone }}
-              onChange={validatePhone} onBlur={handelOnBlur}
-            />
-            {errors.Phone && <p className="text-red">{errors.Phone}</p>}
-          </Grid>
-          <Grid item xs={6}>
-            <InputBox data={{ name: 'email', label: 'Email*', value: values.LastName }}
-              onChange={validateLastName} onBlur={handelOnBlur}
-            />
-            {errors.LastName && <p className="text-red">{errors.LastName}</p>}
-          </Grid>
+          <Grid item xs={4}>
         </Grid>
       </div>
 
@@ -166,11 +178,6 @@ const AddUser = () => {
       <div className='p-top-md'>
         <div>{
           <AddressDetails
-            addresLine1={''}
-            city={''}
-            state={''}
-            zip={''}
-            country={''}
             countryCode={'01'}
           />}</div>
       </div>

@@ -6,12 +6,18 @@ import { InputError } from '../../atoms/textfield/InputError';
 import Accordion from 'react-bootstrap/Accordion';
 import AddressDetails from '../../atoms/addressforms/AddressDetails';
 import { BusinessDetails, Address, Contact } from '../../../utils/ResponseSchema';
-import { validateCharacterLength, validateWebUrl, validateGst, validatePhone, CHARACTER_ONLY, validateCharacterOnly, validateEmail } from '../../../utils/CommonUtils';
+import { validateCharacterLength, validateWebUrl, validateGst, validatePhone, CHARACTER_ONLY, validateCharacterOnly, validateEmail, validateCompanyName } from '../../../utils/CommonUtils';
 import Api from '../../../../src/api/Api';
 import { AddCompanyPostData } from '../../../../src/api/ApiConfig';
 import LoaderSpinner from '../../atoms/spinner/spinner';
 import { objectData } from '../../../utils/ResponseSchema';
 import { UploadImage } from '../../atoms/image/image';
+import { getValue } from '@testing-library/user-event/dist/utils';
+import { CompanyName } from '../../atoms/adduser/UserHelper';
+import { stringify } from 'querystring';
+import { gridDensityValueSelector } from '@mui/x-data-grid';
+import { Value } from 'sass';
+import { Pin } from '@mui/icons-material';
 
 
 interface AddBusinessProps {
@@ -258,43 +264,76 @@ const AddBusiness = (props: AddBusinessProps) => {
             });
         }
     }
+
     const onSave = () => {
-        const postData = {} as AddCompanyPostData;
-        postData.compyName = companyNameInfo.val;
-        postData.compyDesc = companyDescription.val;
-        postData.url = companyUrlInfo.val;
-        postData.gstNo = gstIdInfo.val;
-        postData.addresses = [companyAddressInfo];
-        postData.contact = [buildContactInfo()];
+        if (!companyNameInfo.val) {
+            alert('Company Name is required')
+        }
+        else if (!gstIdInfo.val) {
+            alert('GST is required')
+        }
+        else if (!companyAddressInfo.streetDetails) {
+            alert('Street is required')
+        }
+        else if (!companyAddressInfo.state) {
+            alert('State is required')
+        }
+        else if (!companyAddressInfo.city) {
+            alert('City is required')
+        }
+        else if (!companyAddressInfo.country) {
+            alert('Country is required')
+        }
+        else if (!companyAddressInfo.pincode) {
+            alert('Pincode is required')
+        }
+        else if (!contactNameInfo.val) {
+            alert('Contact Name is required')
+        }
+        else if (!mobileNoInfo.val) {
+            alert('Phone No. is required')
+        }
+        else if (!emailIdInfo.val) {
+            alert('Email ID is required')
+        }
+        else {
+            const postData = {} as AddCompanyPostData;
+            postData.compyName = companyNameInfo.val;
+            postData.compyDesc = companyDescription.val;
+            postData.url = companyUrlInfo.val;
+            postData.gstNo = gstIdInfo.val;
+            postData.addresses = [companyAddressInfo];
+            postData.contact = [buildContactInfo()];
 
-        setLoaderState(true);
+            setLoaderState(true);
 
-        api.addCompany(postData).then((resp) => {
-            setLoaderState(false); setStep(3);
-            if (resp && resp.methodReturnValue.clientId && imageData) {
-                upladPhoto(imageData, resp.methodReturnValue.clientId);
-                // for testin only upladPhoto(imageData, 'CL-166');
-            }
-            swal({
-                text: 'Success! Your company has been created successfully!\n Please sign the contract sent to ' + emailIdInfo.val,
-                icon: "success",
-                buttons: {
-                    buttonOne: {
-                        text: "OK",
-                        value: "ok",
-                        visible: true,
-                        className: "sf-btn",
-                    }
+            api.addCompany(postData).then((resp) => {
+                setLoaderState(false); setStep(3);
+                if (resp && resp.methodReturnValue.clientId && imageData) {
+                    upladPhoto(imageData, resp.methodReturnValue.clientId);
+                    // for testin only upladPhoto(imageData, 'CL-166');
                 }
-            }).then(function (value) {
-                if (value == "ok") { window.location.href = "/business/view#pending"; }
-                else { window.location.href = "/business/view#pendig"; }
+                swal({
+                    text: 'Success! Your company has been created successfully!\n Please sign the contract sent to ' + emailIdInfo.val,
+                    icon: "success",
+                    buttons: {
+                        buttonOne: {
+                            text: "OK",
+                            value: "ok",
+                            visible: true,
+                            className: "sf-btn",
+                        }
+                    }
+                }).then(function (value) {
+                    if (value == "ok") { window.location.href = "/business/view#pending"; }
+                    else { window.location.href = "/business/view#pendig"; }
+                });
+                console.log(' Company creation res >>>>>> ', resp);
+            }).catch((error) => {
+                setLoaderState(false);
+                console.log(' Company creation erroor ', error);
             });
-            console.log(' Company creation res >>>>>> ', resp);
-        }).catch((error) => {
-            setLoaderState(false);
-            console.log(' Company creation erroor ', error);
-        });
+        }
     }
 
     const showCompanyInformation = () => {
@@ -351,11 +390,6 @@ const AddBusiness = (props: AddBusinessProps) => {
                     <div className='p-md'>
                         {
                             <AddressDetails
-                                addresLine1={businessProfile.address}
-                                city={businessProfile.city}
-                                state={businessProfile.state}
-                                zip={businessProfile.zip}
-                                country={businessProfile.country}
                                 countryCode={selectedCountryCode}
                                 onUpdate={onAddressUpdate}
                             />}
@@ -460,7 +494,7 @@ const AddBusiness = (props: AddBusinessProps) => {
             <div className='p-md align-r' style={{ float: 'right' }}>
                 <button className='btn primary-btn-outline rounded-full' onClick={() => { setStep(2) }}> Cancel </button>
                 <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                <button className="btn primary-btn rounded-full" onClick={() => { onSave() }}> Save </button>
+                <button className="btn primary-btn rounded-full" onClick={() => onSave()}> Save </button>
             </div>
         </>
 
