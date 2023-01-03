@@ -32,6 +32,7 @@ const EditBusiness = (props: EditBusinessProps) => {
     const [companyUrlInfo, setCompanyUrlInfo] = useState<objectData>({});
     const [businessPhoneInfo, setBusinessPhoneInfo] = useState<objectData>({});
     const [gstIdInfo, setGstIdInfo] = useState<objectData>({});
+    const[addressTypeInfo, setAddressTypeInfo]= useState<objectData>({});
 
     // Address Information 
     const [companyAddressInfo, setCompanyAddressInfo] = useState<Address>({});
@@ -238,6 +239,15 @@ const EditBusiness = (props: EditBusinessProps) => {
         }
         setLandLineNoInfo(obj);
     }
+    const selectAddressType = (event: any) => {
+        const obj = {
+            val: event.target.value || '',
+            error: '',
+            isUpdated: true,
+        } as objectData;
+        setAddressTypeInfo(obj);
+        // setOnUpdateInfo(true);
+    }
 
     const onAddressUpdate = (data: Address) => {
         const addressData = {} as Address;
@@ -331,7 +341,17 @@ const EditBusiness = (props: EditBusinessProps) => {
         return (
             <div className='m-bot-md'>
                 <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-                            <Grid item xs={9}>
+                            <Grid item xs={4}>
+                                <div style={{ marginBottom: '8px' }}>
+                                    <div className='pb-2'>Status</div>
+                                        <select name="addresstype" className="form-control" onChange={selectAddressType}>
+                                            <option value="ACT">Active</option>
+                                            <option value="INP">In-Progress</option>
+                                            <option value="INA">In-Active</option>
+                                        </select>
+                                </div>
+                                </Grid>
+                                <Grid item xs={9}>
                                 <InputBox data={{ name: 'companyname', label: 'Company Name*', value: businessProfile.compyName }}
                                     onChange={onCompanyNameChange} onBlur={handelOnBlur}
                                 />
