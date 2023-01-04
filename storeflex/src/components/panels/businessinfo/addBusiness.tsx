@@ -234,7 +234,7 @@ const AddBusiness = (props: AddBusinessProps) => {
         addressData.plotNo = data.plotNo;
         addressData.houseNo = data.houseNo;
         addressData.streetDetails = data.streetDetails;
-        console.log(addressData);
+        console.log(' <<< onAddressUpdate >>>', addressData);
         setCompanyAddressInfo(addressData);
     }
     const buildContactInfo = () => {
@@ -392,7 +392,8 @@ const AddBusiness = (props: AddBusinessProps) => {
                             <AddressDetails
                                 countryCode={selectedCountryCode}
                                 onUpdate={onAddressUpdate}
-                            />}
+                            />
+                        }
                     </div>
                 </div>
             </div>
@@ -462,7 +463,7 @@ const AddBusiness = (props: AddBusinessProps) => {
             <Accordion defaultActiveKey="0">
                 <Accordion.Item eventKey="0">
                     <Accordion.Header className='sf-ac'>
-                        <div className='primary-gradient'>
+                        <div className='primary-gradient w100'>
                             <div className='font-white p-sm f-18px f-bold'>Company Information</div>
                         </div>
                     </Accordion.Header>
@@ -472,7 +473,7 @@ const AddBusiness = (props: AddBusinessProps) => {
                 </Accordion.Item>
                 <Accordion.Item eventKey="1">
                     <Accordion.Header className='sf-ac'>
-                        <div className='primary-gradient'>
+                        <div className='primary-gradient w100'>
                             <div className='font-white p-sm f-18px f-bold'>Address Information</div>
                         </div>
                     </Accordion.Header>
@@ -482,7 +483,7 @@ const AddBusiness = (props: AddBusinessProps) => {
                 </Accordion.Item>
                 <Accordion.Item eventKey="2">
                     <Accordion.Header className='sf-ac'>
-                        <div className='primary-gradient'>
+                        <div className='primary-gradient w100'>
                             <div className='font-white p-sm f-18px f-bold'>Contact Information</div>
                         </div>
                     </Accordion.Header>

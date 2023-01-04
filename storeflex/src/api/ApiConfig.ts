@@ -123,6 +123,7 @@ export class ApiConfig {
     getCitiesUrl = '/city';
     getCompaniesApi = '/clients';
     addCompanyUrl = '/client';
+    getCompanyByIdUrl = '/client';
     deleteCompanyUrl = '/client';
     updateCompanyApi = '/clientUpdate';
     uploadCompanyPhotoApi = '/uploadClientProfilePic';

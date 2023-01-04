@@ -72,7 +72,12 @@ export default class Api {
         const url = this.baseUrl + this.apiUrl.getCitiesUrl + '?stateCode=' + requestObject.state;
         try {
             const response = await axios.get(url);
-            return Promise.resolve(response);
+            if (response?.data?.statusCode === 600) {
+                return Promise.resolve(response?.data);
+            } else {
+                console.log(' error : getCitiesByState ', response);
+                return Promise.reject(response);
+            }
         }
         catch (error) {
             console.log(' error : Get Company', error);
@@ -183,6 +188,23 @@ export default class Api {
         }
         catch (error) {
             console.log(' error : getCompanyList', error);
+            return Promise.reject(error);
+        }
+    }
+    
+    async getCompanyById(chId: string): Promise<any> {
+        const url = `${this.baseUrl}${ this.apiUrl.getCompanyByIdUrl}?clientId=${chId}`;
+        try {
+            const response = await axios.get(url);
+            if (response?.data?.statusCode === 600) {
+                return Promise.resolve(response?.data);
+            } else {
+                console.log(' error : getCompanyById ', response);
+                return Promise.reject(response);
+            }
+        }
+        catch (error) {
+            console.log(' error : getCompanyById', error);
             return Promise.reject(error);
         }
     }

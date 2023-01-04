@@ -15,9 +15,14 @@ const GetCity = (props: GetCityProps) => {
   const [citiesList, setCitiesList] = useState([]);
   const [cityCode, setCityCode] = useState('');
   const [cityName, setCityName] = useState('Select City');
+  const [stateCode, setStateCode] = useState('');
 
   useEffect(() => {
-    if(props.stateCode) {
+    if(props.stateCode !== stateCode) {
+      setStateCode(props.stateCode);
+      setCityCode('');
+      setCityName('Select City');
+      setCitiesList([]);
       getCities(props.stateCode);
     }
   }, [props.stateCode]);
@@ -25,7 +30,7 @@ const GetCity = (props: GetCityProps) => {
   const getCities = (stateCode: string) => {
     const data: GetCitiesProp = { state: stateCode };
     api.getCitiesByState(data).then((response) => {
-      setCitiesList(response.data.methodReturnValue); 
+      setCitiesList(response.methodReturnValue); 
     }).catch((error)=>{
       setCitiesList([]);
       console.log(' getCitiesByState error >> ', error);
@@ -55,7 +60,7 @@ const GetCity = (props: GetCityProps) => {
         <Select autoWidth={false} value={cityCode} onChange={handleChange} displayEmpty
           inputProps={{ 'aria-label': 'Select City' }}
         >
-          <MenuItem value={''}>
+          <MenuItem value={cityCode}>
             <em>{cityName}</em>
           </MenuItem>
           {citiesList.map((item, index) => {
