@@ -21,16 +21,16 @@ import { DeletsButton, EditButton } from '../components/buttons/buttons';
 import swal from 'sweetalert';
 import { UploadImage } from '../components/atoms/image/image';
 
-import {EditCompanyUserDetails} from '../utils/ResponseSchema';
-import {CompanyUserPostData} from '../api/ApiConfig';
+import { EditCompanyUserDetails } from '../utils/ResponseSchema';
+import { CompanyUserPostData } from '../api/ApiConfig';
 
 interface EditCompanyUser {
     profileData?: EditCompanyUserDetails;
     onSave?(isSaved: boolean): void;
     action?: string;
-  }
+}
 
-const EditCompanyUser = (props: EditCompanyUser) => { 
+const EditCompanyUser = (props: EditCompanyUser) => {
 
     const location = useLocation();
 
@@ -79,7 +79,7 @@ const EditCompanyUser = (props: EditCompanyUser) => {
             roleType: data.roleType || '',
             status: data.status || '',
             userPhoto: data.userPhoto || '',
-            
+
         }
         setCompanyUserProfile(companyUserDataDetails);
     }
@@ -157,12 +157,12 @@ const EditCompanyUser = (props: EditCompanyUser) => {
         const email = event.target.value;
         setValues({
             ...values,
-            [event.target.name] : event.target.value,
+            [event.target.name]: event.target.value,
         });
-        if(!email) {
+        if (!email) {
             errors.Email = "*Email is required."
             document.getElementsByName("email")[0].style.border = "2px solid red";
-        } else if(!validateEmail(email)) {
+        } else if (!validateEmail(email)) {
             errors.Email = "*Valid email is required."
             document.getElementsByName("email")[0].style.border = "2px solid red";
         } else {
@@ -183,35 +183,48 @@ const EditCompanyUser = (props: EditCompanyUser) => {
     const selectDetails = () => {
         return (
             <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
+                <Grid item xs={4}>
+                    <div style={{ marginBottom: '8px' }}>
+                        <div className='pb-2'>Status</div>
+                        <select name="addresstype" className="form-control" onChange={() => { }}>
+                            <option value="ACT">Active</option>
+                            <option value="INP">In-Progress</option>
+                            <option value="INA">In-Active</option>
+                        </select>
+                    </div>
+                </Grid>
+                <Grid item xs={6}></Grid>
                 <Grid item xs={6}>
                     <div> User Type </div>
                     <div className='p-top-md'>
                         {<UserType />}
                     </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
                     <InputBox data={{ name: 'firstname', label: 'First  Name*', value: companyUserProfile.firstName }}
-                            onChange={validateFirstName} onBlur={handelOnBlur}
-                        />
-                        {errors.FirstName && <p className="text-red">{errors.FirstName}</p>}
-                    <InputBox data={{ name: 'lastname', label: 'Last  Name*', value: companyUserProfile.lastName }}
-                            onChange={validateLastName} onBlur={handelOnBlur}
-                        />
-                        {errors.LastName && <p className="text-red">{errors.LastName}</p>}
+                        onChange={validateFirstName} onBlur={handelOnBlur}
+                    />
+                    {errors.FirstName && <p className="text-red">{errors.FirstName}</p>}
                 </Grid>
                 <Grid item xs={3}>
                     <div>Company</div>
                     <div className='p-top-md'>
                         {<GetCompany />}
                     </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <InputBox data={{ name: 'lastname', label: 'Last  Name*', value: companyUserProfile.lastName }}
+                        onChange={validateLastName} onBlur={handelOnBlur}
+                    />
+                    {errors.LastName && <p className="text-red">{errors.LastName}</p>}
                 </Grid>
 
-                
+
 
 
                 <Grid item xs={3}>
                     <div>Profile Photo</div>
                     <div className='p-top-md'>
-                    <UploadImage name={'companyphoto'} onImageChange={onPhotoUploadChange} />
-                        
+                        <UploadImage name={'companyphoto'} onImageChange={onPhotoUploadChange} />
+
                     </div>
                 </Grid>
             </Grid>
@@ -224,11 +237,11 @@ const EditCompanyUser = (props: EditCompanyUser) => {
                 <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                     <Grid item xs={4}>
 
-                        
+
                     </Grid>
 
                     <Grid item xs={4}>
-                        
+
                     </Grid>
                     <Grid item xs={6}>
                         <InputBox data={{ name: 'phone', label: 'Phone*', value: companyUserProfile.mobileNo }}
