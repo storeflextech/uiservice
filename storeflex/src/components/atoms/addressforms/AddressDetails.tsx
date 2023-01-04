@@ -53,6 +53,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
     const onChangeUpdateInfo = () => {
         if (props?.onUpdate) {
             const addressData = {
+                addressId: data?.addressId,
                 addressType: getVal(addressTypeInfo),
                 country: 'IND',
                 city: getVal(cityInfo),
