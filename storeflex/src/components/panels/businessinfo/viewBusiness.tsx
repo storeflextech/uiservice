@@ -61,11 +61,11 @@ const ViewBusiness = () => {
         });
     }
 
-    const editBusiness = (company: any) => {
+    const editBusiness = (companyId: any) => {
         const pagePath = '/business/edit'
         navigate(pagePath,
             {
-                state: { editRecord: company },
+                state: { editRecord: companyId },
             }
         );
     }
@@ -159,7 +159,7 @@ const ViewBusiness = () => {
                                     setEditLogoStatus(false);
                                 }}
                                 onClick={() => {
-                                    editBusiness(params.row);
+                                    editBusiness(params.id);
                                 }}
                             >
                                 <EditIcon />

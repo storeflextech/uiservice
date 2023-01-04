@@ -1,38 +1,41 @@
 {
     "methodReturnValue": {
-        "clientId": "CL-166",
-        "compyName": "Store flex company",
-        "compyDesc": "Testing Testing",
+        "clientId": "CL-299",
+        "compyName": "Store flex company one",
+        "compyDesc": "testing",
         "url": "www.store.com",
-        "gstNo": "24AAACC4175D1Z4",
+        "gstNo": "25AAACC4175D1Z4",
         "createBy": "ADMIN",
-        "createDate": "2022-12-23",
-        "status": true,
+        "createDate": "2023-01-04",
+        "status": "IN-PROGRESS",
         "addresses": [
             {
-                "addressId": "99581ed0-7cdc-428f-8b48-32f3e45984e2",
+                "addressId": "1dbbc038-eba0-4c08-a0d9-4318d8db74ce",
+                "streetDetails": "Bamburgh cirddd",
                 "city": "2222",
+                "state": "GHY",
                 "country": "IND",
+                "pincode": "211330",
                 "createBy": "ADMIN",
-                "createDate": "2022-12-23",
+                "createDate": "2023-01-04",
                 "updatedBy": null
             }
         ],
         "contact": [
             {
-                "contactId": "44c4da51-605b-4444-90d6-5db88cff1564",
+                "contactId": "a695faa8-ddd4-4a32-85eb-b2913418a1da",
                 "contactName": "ashutosh mishra",
-                "mobileNo": "1234567890",
-                "landLine": "123456789",
+                "mobileNo": "5427705839",
+                "landLine": "2334467899",
                 "landLineExt": "123",
-                "emailId": "ashu3234@gmail.com",
+                "emailId": "abc@att.com",
                 "createBy": "ADMIN",
-                "createDate": "2022-12-23",
+                "createDate": "2023-01-04",
                 "updatedBy": null
             }
         ]
     },
     "statusCode": 600,
-    "message": "Client Store flex company record submitted",
+    "message": "Client Store flex company one record submitted",
     "status": "SUCCESS"
 }

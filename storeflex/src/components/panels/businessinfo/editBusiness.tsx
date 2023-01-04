@@ -52,8 +52,23 @@ const EditBusiness = (props: EditBusinessProps) => {
     const [charCount, setCharCount] = useState(0);
 
     useEffect(() => {
-        companyDataFormatter(location.state.editRecord);
-    }, [])
+        const chId = location.state.editRecord;
+        getWarehouseDataById(chId);
+      }, []);
+  
+      const getWarehouseDataById = (chId: string) => {
+        setLoader(true);
+        api.getCompanyById(chId).then((resp) => {
+            setLoader(false);
+            if(resp.methodReturnValue) {
+                companyDataFormatter(resp.methodReturnValue);
+            }
+           
+        }).catch((error) => {
+            setLoader(false);
+            console.log(' addWarehouse creation erroor ', error);
+        });
+    }
 
     const companyDataFormatter = (data: ClientList) => {
         console.log(' companyDataFormatter >>> ', data);
@@ -461,10 +476,10 @@ const EditBusiness = (props: EditBusinessProps) => {
              { loader && <LoaderFull /> }
              <Accordion defaultActiveKey="0">
                 <Accordion.Item eventKey="0">
-                    <Accordion.Header className='sf-ac'>
-                <div className='primary-gradient'>
-                    <div className='font-white p-sm f-18px f-bold'>Edit Business Information</div>
-                </div>
+                <Accordion.Header className='sf-ac'>
+                    <div className='primary-gradient w100'>
+                        <div className='font-white p-sm f-18px f-bold'>Edit Business Information</div>
+                    </div>
                 </Accordion.Header>
                 <Accordion.Body>
                 <div className='p-md'>
@@ -474,7 +489,7 @@ const EditBusiness = (props: EditBusinessProps) => {
                 </Accordion.Item>
                 <Accordion.Item eventKey="1">
                     <Accordion.Header className='sf-ac'>
-                <div className='primary-gradient'>
+                <div className='primary-gradient w100'>
                     <div className='font-white p-sm f-18px f-bold'>Edit Business Address</div>
                 </div>
                 </Accordion.Header>
@@ -486,7 +501,7 @@ const EditBusiness = (props: EditBusinessProps) => {
                 </Accordion.Item> 
                 <Accordion.Item eventKey="2">
                     <Accordion.Header className='sf-ac'>
-                    <div className='primary-gradient'>
+                    <div className='primary-gradient w100'>
                         <div className='font-white p-sm f-18px f-bold'>Edit Contact Information</div>
                     </div>
                     </Accordion.Header>

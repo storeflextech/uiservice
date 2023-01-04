@@ -13,7 +13,7 @@ interface AddressDetailsProps {
     addressTypeHide?: boolean;
     countryCode?: string;
     country?: string;
-    onUpdate?: (data: any) => void;
+    onUpdate?: (data: Address) => void;
     data?: Address;
 }
 
@@ -36,12 +36,11 @@ const AddressDetails = (props: AddressDetailsProps) => {
             setCountryCode(props.countryCode || '01');
             // getStates(countryCode);
         }
-
         if (onUpdateInfo) {
             setOnUpdateInfo(false);
             onChangeUpdateInfo();
         }
-    }, [props.countryCode, countryCode, onUpdateInfo]);
+    }, [props.countryCode, onUpdateInfo]);
 
     const getVal = (obj: objectData) => {
         if (obj.isUpdated) {
@@ -115,6 +114,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
 
 
     const validatePin = (event: any) => {
+        console.log(' validatePin' ,  event.target.value)
         const obj = {
             val: event.target.value,
             error: '',
