@@ -126,17 +126,6 @@ const WarehouseDetails = (props: WarehouseDetailsProps) => {
                     <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                         <Grid item xs={9}>
                             <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-                                <Grid item xs={4}>
-                                    <div style={{ marginBottom: '8px' }}>
-                                        <div className='pb-2'>Status</div>
-                                        <select name="addresstype" className="form-control" onChange={() => { }}>
-                                            <option value="ACT">Active</option>
-                                            <option value="INP">In-Progress</option>
-                                            <option value="INA">In-Active</option>
-                                        </select>
-                                    </div>
-                                </Grid>
-                                <Grid item xs={6}></Grid>
                                 <Grid item xs={6}>
                                     {props.isDisabled &&
                                         <InputBox data={{
