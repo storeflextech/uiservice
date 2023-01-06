@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { validateMinLen, setUserLoggedIn, setUserType, getRedirectionPage } from '../utils/CommonUtils';
+import { validateMinLen, setUserLoggedIn, setUserName,setUserType, getRedirectionPage } from '../utils/CommonUtils';
 import Api from '../api/Api';
 import { SignInProps } from '../api/ApiConfig';
 import GoogleLogin from 'react-google-login';
@@ -49,6 +49,7 @@ const SignInCustomer = () => {
         console.log(' signIn >>>>>> ', response);
         if (response && response.status === 200 && response?.data?.statusCode === 600) {
           setUserLoggedIn('true');
+          setUserName(data.username);
           const redirectUrl = getRedirectionPage(response?.data?.methodReturnValue?.redirect)
           window.location.href = redirectUrl;
         } else {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -73,12 +73,13 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
                 }
             }
         }).then(function (value) {
-            if (value == "ec") { window.location.href = "/warehouse/add"; }
-            else if (value == "nc") { window.location.href = "/business/add"; }
+            if (value === "ec") { window.location.href = "/warehouse/add"; }
+            else if (value === "nc") { window.location.href = "/business/add"; }
             else { window.location.href = ""; }
 
         });
     }
+    
     const showProfileMenuList = () => {
         let menulist;
         if (userType === 'SL') {
@@ -144,12 +145,13 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
             </Menu>
         );
     }
+    
 
     return (
         <>
-            <div className='sf-flex profile-menu-container'>
-                <Button className='btn primary-btn sf-btn' onClick={() => window.location.href = '/business/add'}>StoreFlex Your Space</Button>
-                &nbsp;&nbsp;&nbsp;&nbsp;
+            <div className='sf-flex profile-menu-container'> 
+            <span style={{'color':'white'}}>Welcome {sessionStorage.getItem("userName")}</span>
+             {userType === 'CU' ? <Button className='btn primary-btn sf-btn' onClick={() => window.location.href = '/business/add'}>StoreFlex Your Space</Button> :''} 
                 <IconButton size="large" edge="start" color="inherit" aria-label="profile" onClick={handleClick} >
                     <ProfileBtn showProfileImg={isSigned} profileImg={profileImgUrl} />
                 </IconButton>
