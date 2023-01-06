@@ -50,7 +50,7 @@ const AddWarehouse = () => {
 
     const addWarehouse = () => {
         
-        if(!whDetails?.warehouseName){
+         if(!whDetails?.warehouseName){
             alert('Warehouse Name is Required');
         }
         else if(!whDetails?.descp){
