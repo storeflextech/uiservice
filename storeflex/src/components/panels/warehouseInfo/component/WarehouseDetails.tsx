@@ -29,13 +29,17 @@ const WarehouseDetails = (props: WarehouseDetailsProps) => {
     const [warehouseDecInfo, setWarehouseDecInfo] = useState<objectData>({});
     const [onUpdateInfo, setonUpdateInfo] = useState(false);
     const [imageData, setImageData] = useState<File>();
+    const [whData, setWhData] = useState<WhDetail>();
 
     useEffect(() => {
         if (onUpdateInfo) {
             setonUpdateInfo(false);
             onChangeUpdateInfo();
         }
-    }, [onUpdateInfo]);
+        if(props?.data?.clientId && (props?.data?.clientId !== whData?.clientId)) {
+            setWhData(props.data);
+        }
+    }, [onUpdateInfo, props?.data?.clientId]);
 
     const getVal = (obj: objectData) => {
         if (obj.isUpdated) {
@@ -46,12 +50,13 @@ const WarehouseDetails = (props: WarehouseDetailsProps) => {
     }
     const onChangeUpdateInfo = () => {
         if (props?.onWarehouseDetailsUpdate) {
-            const obj = {
-                clientId: companyCode,
-                warehouseName: getVal(warehouseNameInfo),
-                descp: getVal(warehouseDecInfo),
-                warehouseTaxId: getVal(gstIdInfo)
-            } as WhDetail;
+            const obj = {} as WhDetail;
+            obj.clientId = whData?.clientId;
+            obj.warehouseId = whData?.warehouseId;
+            obj.clientName = whData?.clientName;
+            obj.descp = getVal(warehouseDecInfo);
+            obj.warehouseName = getVal(warehouseNameInfo);
+            obj.warehouseTaxId = getVal(gstIdInfo);
             props.onWarehouseDetailsUpdate(obj);
         }
     }
@@ -141,7 +146,7 @@ const WarehouseDetails = (props: WarehouseDetailsProps) => {
                                     {props.isDisabled &&
                                         <InputBox data={{
                                             name: 'company', label: 'Company*',
-                                            value: props?.data?.clientName, isDisabled: props.isDisabled
+                                            value: whData?.clientName, isDisabled: props.isDisabled
                                         }}
                                         />
                                     }
@@ -157,7 +162,7 @@ const WarehouseDetails = (props: WarehouseDetailsProps) => {
                                 <Grid item xs={6}>
                                     <InputBox data={{
                                         name: 'clientid', label: 'Client ID*',
-                                        value: props?.data?.clientId, isDisabled: props.isDisabled
+                                        value: whData?.clientId, isDisabled: props.isDisabled
                                     }}
                                     />
                                 </Grid>
@@ -166,7 +171,7 @@ const WarehouseDetails = (props: WarehouseDetailsProps) => {
                                 <Grid item xs={6}>
                                     <InputBox data={{
                                         name: 'cityname', label: 'Warehouse Name*',
-                                        value: props?.data?.warehouseName
+                                        value: whData?.warehouseName
                                     }}
                                         onChange={validateWarehouseName}
                                     />
@@ -175,7 +180,7 @@ const WarehouseDetails = (props: WarehouseDetailsProps) => {
                                 <Grid item xs={6}>
                                     <InputBox data={{
                                         name: 'gstid', label: 'GST Number*',
-                                        value: props?.data?.warehouseTaxId, isDisabled: props.isDisabled
+                                        value: whData?.warehouseTaxId, isDisabled: props.isDisabled
                                     }}
                                         onChange={onGstIdChange}
                                     />
@@ -187,7 +192,7 @@ const WarehouseDetails = (props: WarehouseDetailsProps) => {
                                     <Grid item xs={6}>
                                         <InputBox data={{
                                             name: 'Warehouseid', label: 'Warehouse Id*',
-                                            value: props?.data?.warehouseId, isDisabled: props.isDisabled
+                                            value: whData?.warehouseId, isDisabled: props.isDisabled
                                         }}
                                             onChange={validateWarehouseDec}
                                         />
@@ -197,7 +202,7 @@ const WarehouseDetails = (props: WarehouseDetailsProps) => {
                                 <Grid item xs={6}>
                                     <InputBox data={{
                                         name: 'whdescription', label: 'Warehouse Description*',
-                                        value: props?.data?.descp
+                                        value: whData?.descp
                                     }}
                                         onChange={validateWarehouseDec}
                                     />

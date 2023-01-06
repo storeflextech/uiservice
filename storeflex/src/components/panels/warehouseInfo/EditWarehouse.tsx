@@ -47,7 +47,7 @@ const EditWarehouse = (props: EditWarehouseProps) => {
          
       }).catch((error) => {
           setIsLoader(false);
-          console.log(' addWarehouse creation erroor ', error);
+          console.log(' updateWarehouse creation erroor ', error);
       });
     }
 
@@ -98,7 +98,7 @@ const EditWarehouse = (props: EditWarehouseProps) => {
         console.log(' onWarehouseLayoutUpdate >>> ', data);
     }
 
-    const addWarehouse = () => {
+    const updateWarehouse = () => {
         const buildPostData = {} as WarehousePostData;
         buildPostData.clientId = whDetails?.clientId;
         buildPostData.warehouseName = whDetails?.warehouseName;
@@ -126,7 +126,7 @@ const EditWarehouse = (props: EditWarehouseProps) => {
             });
         }).catch((error) => {
             setIsLoader(false);
-            console.log(' addWarehouse creation erroor ', error);
+            console.log(' updateWarehouse creation erroor ', error);
         });
     }
     return (
@@ -140,7 +140,7 @@ const EditWarehouse = (props: EditWarehouseProps) => {
         <div className='p-top-md align-c'>
             <Button className='sf-btn' variant="contained" onClick={() => { alert('Cancel') }}> Cancel </Button>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <Button className="btn primary-btn sf-btn" variant="contained" onClick={() => { addWarehouse ()}}> Save </Button>
+            <Button className="btn primary-btn sf-btn" variant="contained" onClick={() => { updateWarehouse ()}}> Update </Button>
         </div>
         </>
     )

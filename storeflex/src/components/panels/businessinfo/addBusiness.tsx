@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, TextareaAutosize } from '@mui/material';
+import { Grid, TextareaAutosize, Button } from '@mui/material';
 import swal from 'sweetalert';
 import InputBox from '../../atoms/textfield/InputBox';
 import { InputError } from '../../atoms/textfield/InputError';
@@ -492,10 +492,10 @@ const AddBusiness = (props: AddBusinessProps) => {
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
-            <div className='p-md align-r' style={{ float: 'right' }}>
-                <button className='btn primary-btn-outline rounded-full' onClick={() => { setStep(2) }}> Cancel </button>
+            <div className='p-top-md align-c'>
+                <Button className='sf-btn' variant="contained" onClick={() => { setStep(2) }}> Cancel </Button>
                 <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                <button className="btn primary-btn rounded-full" onClick={() => onSave()}> Save </button>
+                <Button className="btn primary-btn sf-btn" variant="contained" onClick={() => { onSave ()}}> Save </Button>
             </div>
         </>
 

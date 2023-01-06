@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from "react-router-dom";
 import Api from '../../../../src/api/Api';
 import swal from 'sweetalert';
-import { Grid, TextareaAutosize, Button } from '@mui/material';
+import { Grid, TextareaAutosize } from '@mui/material';
 import InputBox from '../../atoms/textfield/InputBox';
 import AddressDetails from '../../atoms/addressforms/AddressDetails';
-import { BusinessDetails, EditBusinessDetails, ClientList, Address, Contact} from '../../../utils/ResponseSchema';
+import {EditBusinessDetails, Address, Contact} from '../../../utils/ResponseSchema';
 import { validateCharacterLength, validatePhone, validateWebUrl, validateGst, validateEmail } from '../../../utils/CommonUtils';
 import { LoaderFull } from '../../atoms/loader/loader';
 import { objectData } from '../../../utils/ResponseSchema';
@@ -47,9 +47,9 @@ const EditBusiness = (props: EditBusinessProps) => {
 
     const maxiLength = 500;
 
-     const profile = {} as EditBusinessDetails;
-    const [businessProfile, setBusinessProfile] = useState(profile);
-    const [charCount, setCharCount] = useState(0);
+    const [businessProfile, setBusinessProfile] = useState<AddCompanyPostData>({});
+
+    const businessDescriptionText = 'Add your business description';
 
     useEffect(() => {
         const chId = location.state.editRecord;
@@ -70,24 +70,10 @@ const EditBusiness = (props: EditBusinessProps) => {
         });
     }
 
-    const companyDataFormatter = (data: ClientList) => {
+    const companyDataFormatter = (data: AddCompanyPostData) => {
         console.log(' companyDataFormatter >>> ', data);
-        let companyDetails: EditBusinessDetails = {
-            clientId: data.clientId || '',
-            addressId: data.addresses[0].addressId || '',
-            contactId: data.contact[0].contactId || '',
-            compyName: data.compyName || '',
-            compyDesc: data.compyDesc || '',
-            url: data.url || '',
-            phone: data.contact[0]?.mobileNo || '',
-            gstn: data.gstNo || '',
-            address: data.addresses[0].streetDetails || '',
-            pincode: data.addresses[0].pincode || '',
-            city: data.addresses[0].city || '',
-            state: data.addresses[0].state || '',
-            country: 'IND'
-        }
-        setBusinessProfile(companyDetails);
+        // const companyDetails = {} as AddCompanyPostData;
+        setBusinessProfile(data);
     }
 
     const goToNextPage = (pagePath: string) => {
@@ -266,6 +252,7 @@ const EditBusiness = (props: EditBusinessProps) => {
 
     const onAddressUpdate = (data: Address) => {
         const addressData = {} as Address;
+        addressData.addressId = data.addressId;
         addressData.addressType = data.addressType;
         addressData.city = data.city;
         addressData.country = data.country;
@@ -293,25 +280,8 @@ const EditBusiness = (props: EditBusinessProps) => {
             error: '',
             isUpdated: true,
         } as objectData;
-        // if (!obj.val) {
-        //     obj.error = "*GST number is mandatory"
-        // } else if (!validateGst(obj.val)) {
-        //     obj.error = "Enter a valid GST number"
-        // } else {
-        //     obj.error = '';
-        // }
         setCompanyDescription(obj);
     }
- 
-    // const buildContactInfo = () => {
-    //     const contactInfo = {} as Contact;
-    //     // contactInfo.contactName = contactNameInfo.val;
-    //     // contactInfo.mobileNo = mobileNoInfo.val;
-    //     // contactInfo.emailId = emailIdInfo.val;
-    //     // contactInfo.landLineExt = landLineExtInfo.val;
-    //     // contactInfo.landLine = landLineNoInfo.val;
-    //     return contactInfo;
-    // }
 
     const getVal = (obj: objectData) => {
         if(obj.isUpdated) {
@@ -328,12 +298,15 @@ const EditBusiness = (props: EditBusinessProps) => {
         postData.compyDesc = getVal(companyDescription);
         postData.url = getVal(companyUrlInfo);
         postData.gstNo = getVal(gstIdInfo);
+
         if( Object.keys(companyAddressInfo).length > 0) {
             postData.addresses = [companyAddressInfo];
-            postData.addresses[0].addressId = businessProfile.addressId;
         };
-        postData.contact = [buildContactInfo()]
-        // postData.contact = [ buildContactInfo()];
+
+        const contactInfo = buildContactInfo();
+        if( Object.keys(contactInfo).length > 0) {
+            postData.contact = [contactInfo]
+        };
         
         setLoader(true);
         api.updateCompany(postData).then((response) => {
@@ -377,7 +350,7 @@ const EditBusiness = (props: EditBusinessProps) => {
                                 />
                                  <InputError errorText={companyUrlInfo.error}/>
 
-                                <InputBox data={{ name: 'gstid', label: 'GST Number*', value: businessProfile.gstn }}
+                                <InputBox data={{ name: 'gstid', label: 'GST Number*', value: businessProfile.gstNo }}
                                     onChange={onGstIdChange} onBlur={handelOnBlur}
                                 />
                                 <InputError errorText={gstIdInfo.error}/>
@@ -391,8 +364,8 @@ const EditBusiness = (props: EditBusinessProps) => {
                                         maxRows={4}
                                         maxLength={maxiLength}
                                         onChange={onCompanyDescriptionChange}
-                                        aria-label='Add your business description'
-                                        placeholder='Add your business description'
+                                        aria-label={businessDescriptionText}
+                                        placeholder={businessProfile.compyDesc || businessDescriptionText}
                                         style={{ width: '100%' }}
                                     />
                                 </Grid>
@@ -410,6 +383,7 @@ const EditBusiness = (props: EditBusinessProps) => {
     }
 
     const showBusinessAddress = () => {
+        const addInfo = businessProfile.addresses?.[0] || {};
         return (
             <>
                 <div className='p-md'>
@@ -417,6 +391,7 @@ const EditBusiness = (props: EditBusinessProps) => {
                         <AddressDetails
                             countryCode={selectedCountryCode}
                             onUpdate={onAddressUpdate}
+                            data={addInfo}
                         />
                     }
                 </div>
@@ -425,13 +400,14 @@ const EditBusiness = (props: EditBusinessProps) => {
     }
 
     const showCompanyContact = () => {
+        const contactData = businessProfile?.contact?.[0];
         return (
             <div>
                 <div className='m-bot-md'>
                     <div className='m-bot-md p-md'>
                         <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }} className='p-top-md'>
                             <Grid item xs={12}>
-                                <InputBox data={{ name: 'contactname', label: 'Contact Name*', value: '' }}
+                                <InputBox data={{ name: 'contactname', label: 'Contact Name*', value: contactData?.contactName }}
                                     onChange={onContactNameChange}
                                 />
                                  {contactNameInfo.error && <p className="text-red">{contactNameInfo.error}</p>}
@@ -439,13 +415,13 @@ const EditBusiness = (props: EditBusinessProps) => {
                         </Grid>
                         <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }} className='p-top-md'>
                             <Grid item xs={6}>
-                                <InputBox data={{ type: 'number', name: 'mobileno', label: 'Mobile No.*', value: '' }}
+                                <InputBox data={{ type: 'number', name: 'mobileno', label: 'Mobile No.*', value: contactData?.mobileNo }}
                                     onChange={onMobileNoChange}
                                 />
                                 {mobileNoInfo.error && <p className="text-red">{mobileNoInfo.error}</p>}
                             </Grid>
                             <Grid item xs={6} >
-                                <InputBox data={{ name: 'emailid', label: 'Email*', value: '' }}
+                                <InputBox data={{ name: 'emailid', label: 'Email*', value: contactData?.emailId }}
                                     onChange={onEmailIdChange}
                                 />
                                 {emailIdInfo.error && <p className="text-red">{emailIdInfo.error}</p>}
@@ -453,12 +429,12 @@ const EditBusiness = (props: EditBusinessProps) => {
                         </Grid>
                         <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }} className='p-top-md'>
                             <Grid item xs={6}>
-                                <InputBox data={{ type: 'number', name: 'landlineext', label: 'Landline Extension*', value: '' }}
+                                <InputBox data={{ type: 'number', name: 'landlineext', label: 'Landline Extension*', value: contactData?.landLineExt }}
                                     onChange={onLandlineExtChange} />
                                 {landLineExtInfo.error && <p className="text-red">{landLineExtInfo.error}</p>}
                             </Grid>
                             <Grid item xs={6}>
-                                <InputBox data={{ type: 'number', name: 'landlineno', label: 'Landline No.*', value: '' }}
+                                <InputBox data={{ type: 'number', name: 'landlineno', label: 'Landline No.*', value: contactData?.landLine }}
                                     onChange={onLandlineNoChange}
                                 />
                                  {landLineNoInfo.error && <p className="text-red">{landLineNoInfo.error}</p>}
