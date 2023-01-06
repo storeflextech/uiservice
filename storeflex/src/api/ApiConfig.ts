@@ -69,6 +69,24 @@ export interface WarehousePostData {
     warehouseprice?: Warehouseprice;
 }
 
+export interface CompanyUserPostData {
+    userId?: string;
+    address?: string;
+    city?: string;
+    country?: string;
+    email?: string;
+    firstName?: string;
+    houseNo?: string;
+    lastName?: string;
+    middleName?: string;
+    mobileNo?: string;
+    photoName?: string;
+    pincode?: string;
+    roleType?: string;
+    status?: string;
+    userPhoto?: string;
+}
+
 export interface Hours {
     id?: string;
     warehouseId?: string;
@@ -105,6 +123,7 @@ export class ApiConfig {
     getCitiesUrl = '/city';
     getCompaniesApi = '/clients';
     addCompanyUrl = '/client';
+    getCompanyByIdUrl = '/client';
     deleteCompanyUrl = '/client';
     updateCompanyApi = '/clientUpdate';
     uploadCompanyPhotoApi = '/uploadClientProfilePic';

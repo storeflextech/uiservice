@@ -29,13 +29,17 @@ const WarehouseDetails = (props: WarehouseDetailsProps) => {
     const [warehouseDecInfo, setWarehouseDecInfo] = useState<objectData>({});
     const [onUpdateInfo, setonUpdateInfo] = useState(false);
     const [imageData, setImageData] = useState<File>();
+    const [whData, setWhData] = useState<WhDetail>();
 
     useEffect(() => {
         if (onUpdateInfo) {
             setonUpdateInfo(false);
             onChangeUpdateInfo();
         }
-    }, [onUpdateInfo]);
+        if(props?.data?.clientId && (props?.data?.clientId !== whData?.clientId)) {
+            setWhData(props.data);
+        }
+    }, [onUpdateInfo, props?.data?.clientId]);
 
     const getVal = (obj: objectData) => {
         if (obj.isUpdated) {
@@ -46,12 +50,13 @@ const WarehouseDetails = (props: WarehouseDetailsProps) => {
     }
     const onChangeUpdateInfo = () => {
         if (props?.onWarehouseDetailsUpdate) {
-            const obj = {
-                clientId: companyCode,
-                warehouseName: getVal(warehouseNameInfo),
-                descp: getVal(warehouseDecInfo),
-                warehouseTaxId: getVal(gstIdInfo)
-            } as WhDetail;
+            const obj = {} as WhDetail;
+            obj.clientId = whData?.clientId;
+            obj.warehouseId = whData?.warehouseId;
+            obj.clientName = whData?.clientName;
+            obj.descp = getVal(warehouseDecInfo);
+            obj.warehouseName = getVal(warehouseNameInfo);
+            obj.warehouseTaxId = getVal(gstIdInfo);
             props.onWarehouseDetailsUpdate(obj);
         }
     }
@@ -126,13 +131,26 @@ const WarehouseDetails = (props: WarehouseDetailsProps) => {
                     <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                         <Grid item xs={9}>
                             <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
+                                <Grid item xs={4}>
+                                    <div style={{ marginBottom: '8px' }}>
+                                        <div className='pb-2'>Status</div>
+                                        <select name="addresstype" className="form-control" onChange={() => { }}>
+                                            <option value="ACT">Active</option>
+                                            <option value="INP">In-Progress</option>
+                                            <option value="INA">In-Active</option>
+                                        </select>
+                                    </div>
+                                </Grid>
+                                <Grid item xs={6}></Grid>
                                 <Grid item xs={6}>
-                                    {props.isDisabled && 
-                                        <InputBox data={{ name: 'company', label: 'Company*', 
-                                        value: props?.data?.clientName, isDisabled: props.isDisabled }}
+                                    {props.isDisabled &&
+                                        <InputBox data={{
+                                            name: 'company', label: 'Company*',
+                                            value: whData?.clientName, isDisabled: props.isDisabled
+                                        }}
                                         />
-                                    } 
-                                    {!props.isDisabled && 
+                                    }
+                                    {!props.isDisabled &&
                                         <div>
                                             <div> Company* </div>
                                             <div className='p-top-sm'>
@@ -142,22 +160,28 @@ const WarehouseDetails = (props: WarehouseDetailsProps) => {
                                     }
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <InputBox data={{ name: 'clientid', label: 'Client ID*', 
-                                    value: props?.data?.clientId, isDisabled: props.isDisabled }}
+                                    <InputBox data={{
+                                        name: 'clientid', label: 'Client ID*',
+                                        value: whData?.clientId, isDisabled: props.isDisabled
+                                    }}
                                     />
                                 </Grid>
                             </Grid>
                             <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                                 <Grid item xs={6}>
-                                    <InputBox data={{ name: 'cityname', label: 'Warehouse Name*',  
-                                    value: props?.data?.warehouseName }}
+                                    <InputBox data={{
+                                        name: 'cityname', label: 'Warehouse Name*',
+                                        value: whData?.warehouseName
+                                    }}
                                         onChange={validateWarehouseName}
                                     />
                                     <InputError errorText={warehouseNameInfo.error} />
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <InputBox data={{ name: 'gstid', label: 'GST Number*', 
-                                     value: props?.data?.warehouseTaxId, isDisabled: props.isDisabled }}
+                                    <InputBox data={{
+                                        name: 'gstid', label: 'GST Number*',
+                                        value: whData?.warehouseTaxId, isDisabled: props.isDisabled
+                                    }}
                                         onChange={onGstIdChange}
                                     />
                                     <InputError errorText={gstIdInfo.error} />
@@ -165,17 +189,21 @@ const WarehouseDetails = (props: WarehouseDetailsProps) => {
                             </Grid>
                             <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
                                 {props.isDisabled &&
-                                <Grid item xs={6}>
-                                <InputBox data={{ name: 'Warehouseid', label: 'Warehouse Id*', 
-                                    value: props?.data?.warehouseId, isDisabled: props.isDisabled }}
-                                        onChange={validateWarehouseDec}
-                                    />
-                                    <InputError errorText={warehouseDecInfo.error} />
-                                </Grid>
+                                    <Grid item xs={6}>
+                                        <InputBox data={{
+                                            name: 'Warehouseid', label: 'Warehouse Id*',
+                                            value: whData?.warehouseId, isDisabled: props.isDisabled
+                                        }}
+                                            onChange={validateWarehouseDec}
+                                        />
+                                        <InputError errorText={warehouseDecInfo.error} />
+                                    </Grid>
                                 }
                                 <Grid item xs={6}>
-                                    <InputBox data={{ name: 'whdescription', label: 'Warehouse Description*', 
-                                        value: props?.data?.descp }}
+                                    <InputBox data={{
+                                        name: 'whdescription', label: 'Warehouse Description*',
+                                        value: whData?.descp
+                                    }}
                                         onChange={validateWarehouseDec}
                                     />
                                     <InputError errorText={warehouseDecInfo.error} />

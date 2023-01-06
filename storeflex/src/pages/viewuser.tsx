@@ -42,13 +42,13 @@ const ViewUser = () => {
         let userStatus = 'ACTIVE'
         if (userView==='#active'){
             userStatus = 'IN-ACTIVE';
-            recordLabel = 'Inactive Users'
+            recordLabel = 'Active Users'
         }else if (userView=== '#pending'){
             userStatus = 'IN-PROGRESS';
             recordLabel = 'Pending Users'
         }else{
-            userStatus = 'ACTIVE';
-            recordLabel = 'Active Users'
+            userStatus = '#inactive';
+            recordLabel = 'Inactive Users'
         }
         setIsLoader(true);
 
@@ -62,17 +62,17 @@ const ViewUser = () => {
         });
     };
 
-    const goToEditPage = (pagePath: any, record: object) => {
-        navigate(pagePath, {
-            state: { editRecord: record },
-        });
-    }
+    // const goToEditPage = (pagePath: any, record: object) => {
+    //     navigate(pagePath, {
+    //         state: { editRecord: record },
+    //     });
+    // }
     
     const goToNextPage = (pagePath: string) => {
         navigate(pagePath);
     }
 
-    const editUser = (user: any) => {
+    const editUser = (user: any) => { console.log(user);
         const pagePath = '/editCompanyUser'
         navigate(pagePath,
             {
@@ -82,11 +82,9 @@ const ViewUser = () => {
     }
 
     const deleteUser = (user: any) => {
-
-        console.log(' @@@ ', user);
         swal({
             title: "Are you sure?",
-            text: 'You are about to delete the user. Once deleted, you will not be able to recover this user!',
+            text: 'You are about to delete the' + user.firstName + ' Once deleted, you will not be able to recover this user!',
             icon: "warning",
             buttons: [true, true],
             dangerMode: true,
@@ -118,7 +116,7 @@ const ViewUser = () => {
                             <div>
                                 <div className='primary-gradient'>
                                     <div className='font-white p-sm f-18px f-bold'>
-                                        Active Users
+                                        {recordLabel}
                                         <button className="primary-btn-outline" onClick={() => { goToNextPage('/addinfo') }} style={{ fontSize: '14px', float: 'right', borderRadius: 20, paddingLeft: '12px', paddingRight: '12px' }} ><i className='mdi mdi-plus menu-icon'></i> Add New</button>
                                     </div>
                                 </div>

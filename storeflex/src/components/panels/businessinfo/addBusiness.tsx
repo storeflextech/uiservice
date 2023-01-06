@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, TextareaAutosize } from '@mui/material';
+import { Grid, TextareaAutosize, Button } from '@mui/material';
 import swal from 'sweetalert';
 import InputBox from '../../atoms/textfield/InputBox';
 import { InputError } from '../../atoms/textfield/InputError';
@@ -234,7 +234,7 @@ const AddBusiness = (props: AddBusinessProps) => {
         addressData.plotNo = data.plotNo;
         addressData.houseNo = data.houseNo;
         addressData.streetDetails = data.streetDetails;
-        console.log(addressData);
+        console.log(' <<< onAddressUpdate >>>', addressData);
         setCompanyAddressInfo(addressData);
     }
     const buildContactInfo = () => {
@@ -392,7 +392,8 @@ const AddBusiness = (props: AddBusinessProps) => {
                             <AddressDetails
                                 countryCode={selectedCountryCode}
                                 onUpdate={onAddressUpdate}
-                            />}
+                            />
+                        }
                     </div>
                 </div>
             </div>
@@ -462,7 +463,7 @@ const AddBusiness = (props: AddBusinessProps) => {
             <Accordion defaultActiveKey="0">
                 <Accordion.Item eventKey="0">
                     <Accordion.Header className='sf-ac'>
-                        <div className='primary-gradient'>
+                        <div className='primary-gradient w100'>
                             <div className='font-white p-sm f-18px f-bold'>Company Information</div>
                         </div>
                     </Accordion.Header>
@@ -472,7 +473,7 @@ const AddBusiness = (props: AddBusinessProps) => {
                 </Accordion.Item>
                 <Accordion.Item eventKey="1">
                     <Accordion.Header className='sf-ac'>
-                        <div className='primary-gradient'>
+                        <div className='primary-gradient w100'>
                             <div className='font-white p-sm f-18px f-bold'>Address Information</div>
                         </div>
                     </Accordion.Header>
@@ -482,7 +483,7 @@ const AddBusiness = (props: AddBusinessProps) => {
                 </Accordion.Item>
                 <Accordion.Item eventKey="2">
                     <Accordion.Header className='sf-ac'>
-                        <div className='primary-gradient'>
+                        <div className='primary-gradient w100'>
                             <div className='font-white p-sm f-18px f-bold'>Contact Information</div>
                         </div>
                     </Accordion.Header>
@@ -491,10 +492,10 @@ const AddBusiness = (props: AddBusinessProps) => {
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
-            <div className='p-md align-r' style={{ float: 'right' }}>
-                <button className='btn primary-btn-outline rounded-full' onClick={() => { setStep(2) }}> Cancel </button>
+            <div className='p-top-md align-c'>
+                <Button className='sf-btn' variant="contained" onClick={() => { setStep(2) }}> Cancel </Button>
                 <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                <button className="btn primary-btn rounded-full" onClick={() => onSave()}> Save </button>
+                <Button className="btn primary-btn sf-btn" variant="contained" onClick={() => { onSave ()}}> Save </Button>
             </div>
         </>
 
