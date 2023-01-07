@@ -77,7 +77,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
         if (validateCity(obj.val)) {
             obj.error = '';
         } else {
-            obj.error = 'Select city'
+            obj.error = 'Select City'
         }
         setCityInfo(obj);
         setOnUpdateInfo(true);
@@ -92,7 +92,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
         if (obj.val) {
             obj.error = '';
         } else {
-            obj.error = 'Select state'
+            obj.error = 'Select State'
         }
         setStateInfo(obj);
         setOnUpdateInfo(true);
@@ -115,7 +115,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
 
 
     const validatePin = (event: any) => {
-        console.log(' validatePin' ,  event.target.value)
+        console.log(' validatePin', event.target.value)
         const obj = {
             val: event.target.value,
             error: '',
@@ -136,10 +136,10 @@ const AddressDetails = (props: AddressDetailsProps) => {
             error: '',
             isUpdated: true,
         } as objectData;
-        if (validateCharacterLength(obj.val, 4, 15)) {
+        if (validateCharacterLength(obj.val, 1, 15)) {
             obj.error = '';
         } else {
-            obj.error = 'Minimum 4 character required';
+            obj.error = 'Minimum 1 character required';
         }
         setPlotInfo(obj);
         setOnUpdateInfo(true);
@@ -151,10 +151,10 @@ const AddressDetails = (props: AddressDetailsProps) => {
             error: '',
             isUpdated: true,
         } as objectData;
-        if (validateCharacterLength(obj.val, 2, 15)) {
+        if (validateCharacterLength(obj.val, 1, 15)) {
             obj.error = '';
         } else {
-            obj.error = 'Minimum 4 character required';
+            obj.error = 'Minimum 1 character required';
         }
         setHouseInfo(obj);
         setOnUpdateInfo(true);
