@@ -24,8 +24,7 @@ const AddWarehouse = () => {
     const [pricing, setPricing] = useState<Warehouseprice>({});
     const [whHours, setWhHours] = useState<Hours>({});
     const [whLayout, setLayout] = useState<WarehouseLayoutObj>({});
-    
-    const[gstid, setGstId]= useState<WhDetail>({});
+
 
     const onWarehouseDetailsUpdate = (data: WhDetail) => {
         setWhDetails(data);
@@ -97,7 +96,7 @@ const AddWarehouse = () => {
         }
       
          else{
-            const buildPostData = {} as WarehousePostData;
+        const buildPostData = {} as WarehousePostData;
         buildPostData.clientId = whDetails?.clientId;
         buildPostData.warehouseName = whDetails?.warehouseName;
         buildPostData.warehouseTaxId = whDetails?.warehouseTaxId;
