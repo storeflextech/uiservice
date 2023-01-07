@@ -124,6 +124,10 @@ export const getUserLoggedIn = () => {
     }
 }
 
+export const setUserName = (val: string) => {
+    sessionStorage.setItem('userName', String(val));
+}
+
 export const setUserType = (val: string) => {
     sessionStorage.setItem('userType', String(val));
 }
