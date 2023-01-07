@@ -89,11 +89,33 @@ const AddWarehouse = () => {
             alert('At grade door is required');
         }
         else if(!whLayout?.ceillingheight){
-            alert('Ceilling height is required');
+            alert('Clear Ceilling Height is required');
         }
         else if(!whLayout?.forkliftcapacity){
-            alert('Fork lift capacity is required');
+            alert('Max Forklift Capacity is required');
         }
+        else if(!pricing?.availspace){
+            alert('Total Available Space is required');
+        }
+        else if(!pricing?.ratesqtft){
+            alert('Rate(Rs)/sq.ft/month is required');
+        }
+        else if(!pricing?.minordersqt){
+            alert('Minimum Order Quantity is required');
+        }
+        else if(!whHours?.starttime){
+            alert('Facility houres is required');
+        }
+        else if (!whLayout?.facilitiesId){
+            alert('Facility qualifications is required');
+        }
+        else if (!whLayout?.storagesId){
+            alert('Storage layout is required');
+        }
+        else if(!whLayout?.industryId){
+            alert('Industries served is required');
+        }
+       
       
          else{
         const buildPostData = {} as WarehousePostData;
