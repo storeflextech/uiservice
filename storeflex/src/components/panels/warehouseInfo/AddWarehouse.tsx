@@ -111,8 +111,6 @@ const AddWarehouse = () => {
         buildPostData.ceillingheight = whLayout.ceillingheight;
         buildPostData.forkliftcapacity = whLayout.forkliftcapacity;
        
-        
-
         setIsLoader(true);
         api.addWarehouse(buildPostData).then((resp) => {
             setIsLoader(false);

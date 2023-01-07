@@ -53,7 +53,6 @@ const EditWarehouse = (props: EditWarehouseProps) => {
 
     const warehouseDataFormatter = (data: WarehousePostData) => {
         console.log(' >>>>> warehouseDataFormatter ', data);
-        // setWarehouseDetails(warehouseData);
         const whDetailObj = {} as WhDetail;
         whDetailObj.clientId = data?.clientId;
         whDetailObj.clientName = data?.clientName;
@@ -103,6 +102,7 @@ const EditWarehouse = (props: EditWarehouseProps) => {
         buildPostData.clientId = whDetails?.clientId;
         buildPostData.warehouseName = whDetails?.warehouseName;
         buildPostData.warehouseTaxId = whDetails?.warehouseTaxId;
+        buildPostData.warehouseId = whDetails.warehouseId;
         buildPostData.descp = whDetails?.descp;
         buildPostData.address = [whAddress];
         buildPostData.hours = whHours;
