@@ -50,6 +50,11 @@ export enum ACTIONS_TYPE {
   view = "VIEW",
 }
 
+export enum ROLE_TYPE {
+  admin = 'ADMIN',
+  guest = 'GUEST',
+}
+
 export const PAGES = {
   Home: {
     path: "/home",
