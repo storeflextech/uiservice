@@ -323,7 +323,7 @@ const EditCompanyUser = (props: EditCompanyUser) => {
                         <div className='p-top-md align-c'>
                             <Button className='sf-btn' variant="contained" onClick={() => { alert('Cancel') }}> Cancel </Button>
                             <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                            <Button className="btn primary-btn sf-btn" variant="contained" onClick={() => { }}> Save </Button>
+                            <Button className="btn primary-btn sf-btn" variant="contained" onClick={() => { }}> Update </Button>
                         </div>
                     </div>
                 }
