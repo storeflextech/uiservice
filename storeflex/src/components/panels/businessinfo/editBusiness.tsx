@@ -305,6 +305,7 @@ const EditBusiness = (props: EditBusinessProps) => {
 
         const contactInfo = buildContactInfo();
         if( Object.keys(contactInfo).length > 0) {
+            contactInfo.contactId = businessProfile?.contact?.[0].contactId;
             postData.contact = [contactInfo]
         };
         
