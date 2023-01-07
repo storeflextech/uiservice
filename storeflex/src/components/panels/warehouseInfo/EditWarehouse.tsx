@@ -121,8 +121,15 @@ const EditWarehouse = (props: EditWarehouseProps) => {
             if (resp && resp.methodReturnValue.clientId) {
                 // upladPhoto(imageData, resp.methodReturnValue.clientId);
             }
-            swal('Success! Your warehouse has been added successfully!', {
+            swal('Success! Your warehouse has been updated successfully!', {
                 icon: "success",
+                buttons: {
+                    buttonOne: {
+                        text: "OK",
+                        visible: true,
+                        className: "sf-btn",
+                    }
+                }
             });
         }).catch((error) => {
             setIsLoader(false);
