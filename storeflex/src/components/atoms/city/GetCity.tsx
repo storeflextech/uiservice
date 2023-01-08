@@ -4,7 +4,7 @@ import { GetCitiesProp } from '../../../api/ApiConfig';
 import Api from '../../../../src/api/Api';
 
 interface GetCityProps {
-  stateCode: string;
+  stateCode?: string;
   defaultCity?: string;
   onChange?: (codeVal: string) => void;
 }
@@ -18,7 +18,7 @@ const GetCity = (props: GetCityProps) => {
   const [stateCode, setStateCode] = useState('');
 
   useEffect(() => {
-    if(props.stateCode !== stateCode) {
+    if(props.stateCode  && props.stateCode !== stateCode) {
       setStateCode(props.stateCode);
       setCityCode('');
       setCityName('Select City');
@@ -26,6 +26,18 @@ const GetCity = (props: GetCityProps) => {
       getCities(props.stateCode);
     }
   }, [props.stateCode]);
+
+  useEffect(() => {
+    if(citiesList.length > 0) {
+      setCityNameAndCode(cityCode, false);
+    }
+  },[citiesList]);
+
+  useEffect(() => {
+    if(props?.defaultCity && props.defaultCity !== cityCode) {
+      setCityCode(props.defaultCity);
+    }
+  },[props.defaultCity]);
 
   const getCities = (stateCode: string) => {
     const data: GetCitiesProp = { state: stateCode };
@@ -37,13 +49,16 @@ const GetCity = (props: GetCityProps) => {
     });
   }
   const handleChange = (event: SelectChangeEvent) => {
+    setCityNameAndCode(event.target.value, true);
+  };
+  const setCityNameAndCode = (dCityCode: string, event: boolean) => {
     citiesList.map(item => {
       const itemCode = Object.keys(item).toString();
       const itemName = Object.values(item).toString();
-      if(itemCode === event.target.value) {
+      if(itemCode === dCityCode) {
          setCityName(itemName);
          setCityCode(itemCode);
-         if(props?.onChange) {
+         if(props?.onChange && event) {
             props.onChange(itemCode);
          }
          return true;

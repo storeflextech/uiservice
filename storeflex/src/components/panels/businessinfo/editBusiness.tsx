@@ -384,9 +384,9 @@ const EditBusiness = (props: EditBusinessProps) => {
     }
 
     const showBusinessAddress = () => {
-        const addInfo = businessProfile.addresses?.[0] || {};
-        return (
-            <>
+        const addInfo = businessProfile.addresses?.[0];
+        if(addInfo) {
+            return (
                 <div className='p-md'>
                     {
                         <AddressDetails
@@ -396,8 +396,10 @@ const EditBusiness = (props: EditBusinessProps) => {
                         />
                     }
                 </div>
-            </>
-        )
+            )
+        } else {
+            return( <></>)
+        }
     }
 
     const showCompanyContact = () => {
