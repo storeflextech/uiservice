@@ -156,7 +156,7 @@ const EditWarehouse = (props: EditWarehouseProps) => {
                 </div>
             </div>
             {<WarehouseDetails data={whDetails} onWarehouseDetailsUpdate={onWarehouseDetailsUpdate} isDisabled={true} />}
-            {<WearehouseAddress data={whAddress} onWearehouseAddressUpdate={onWearehouseAddressUpdate} />}
+            {<WearehouseAddress editMode={true} data={whAddress} onWearehouseAddressUpdate={onWearehouseAddressUpdate} />}
             {<WearehousePricing onWearehousePricingUpdate={onWearehousePricingUpdate} />}
             {<WarehouseHours onWarehouseHoursUpdate={onWarehouseHoursUpdate} />}
             {<WarehouseLayout onWarehouseLayoutUpdate={onWarehouseLayoutUpdate} />}

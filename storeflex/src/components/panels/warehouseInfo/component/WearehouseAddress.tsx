@@ -5,6 +5,7 @@ import AddressDetails from '../../../atoms/addressforms/AddressDetails';
 interface WearehouseAddressProps {
     onWearehouseAddressUpdate?: (data: Address) => void;
     data?: Address;
+    editMode?: boolean;
 }
 
 const WearehouseAddress = (props: WearehouseAddressProps) => {
@@ -32,7 +33,7 @@ const WearehouseAddress = (props: WearehouseAddressProps) => {
             props.onWearehouseAddressUpdate(addressData);
         }
     }
-    if(addressId) {
+    if(addressId || !props.editMode) {
         return (
             <div>
                 <div className='primary-gradient'>
