@@ -118,22 +118,22 @@
                         {
                             "Label": "Add User",
                             "Name": "",
-                            "NavigateTo": "/addinfo"
+                            "NavigateTo": "/user/add"
                         },
                         {
                             "Label": "Active User",
                             "Name": "",
-                            "NavigateTo": "/viewuser#active"
+                            "NavigateTo": "/user/view#active"
                         },
                         {
                             "Label": "Pending Users",
                             "Name": "",
-                            "NavigateTo": "/viewuser#pending"
+                            "NavigateTo": "/user/view#active"
                         },
                         {
                             "Label": "Inactive Users",
                             "Name": "",
-                            "NavigateTo": "/viewuser#inactive"
+                            "NavigateTo": "/user/view#inactive"
                         }
                     ],
                     "Icon": "mdi mdi-account-multiple-outline menu-icon"
