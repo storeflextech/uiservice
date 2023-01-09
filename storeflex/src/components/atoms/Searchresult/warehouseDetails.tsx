@@ -164,35 +164,30 @@ const WarehouseDetails=()=>{
                                   <tr>
                                     <th>Status</th>
                                     <td>Available</td>
-                                    <td>Mon - Saturday</td>
                                     <td></td>
                                   </tr>
 
                                   <tr>
                                     <th>Property Type</th>
                                     <td>Warehouse</td>
-                                    <td>HOA Dues</td>
-                                    <td>&#x20B9; 333/month</td>
+                                    
                                   </tr>
                                   <tr>
-                                    <th>Lot Size</th>
+                                    <th>Available Space</th>
                                     <td>9,452 Sq. Ft.</td>
-                                    <td>MLS#</td>
-                                    <td>1007135</td>
+                                    
                                   </tr>
 
                                   <tr>
                                     <th>Price/Sq.Ft.</th>
                                     <td>&#x20B9; 240</td>
-                                    <td>Table cell </td>
-                                    <td>Table cell </td>
+                                    
                                   </tr>
-                                  
                                   <tr>
                                     <th>Warehouse Layout </th>
                                     <td>Agriculture & Prepared Products</td>
-                                    <td>Base Metals</td>
-                                    <td>Electronics</td>
+                                    
+                                    
                                   </tr>
                                 </tbody>
                               </Table>
@@ -203,7 +198,7 @@ const WarehouseDetails=()=>{
 
                               <div className="col-md-12 col-lg-12 col-xl-12 border-sm-start-none border-start p-3">
                                 <div className="d-flex flex-row align-items-center mb-1">
-                                  <h4 className="mb-1 me-1">Facts and features</h4>
+                                  <h4 className="mb-1 me-1">Industry served</h4>
                                 </div>
                                 <li>Flooring: Carpet </li>
                                 <li>Heating features: Central</li>
@@ -215,7 +210,7 @@ const WarehouseDetails=()=>{
 
                               <div className="col-md-12 col-lg-12 col-xl-12 border-sm-start-none border-start p-3">
                                 <div className="d-flex flex-row align-items-center mb-1">
-                                  <h4 className="mb-1 me-1">Your personal guides</h4>
+                                  <h4 className="mb-1 me-1">Storage Layout</h4>
                                 </div>
                                 <li>Flooring: Carpet </li>
                                 <li>Heating features: Central</li>
@@ -231,7 +226,7 @@ const WarehouseDetails=()=>{
                                   <h4 className="mb-1 me-1">&#x20B9; {'155'}.00</h4>
                                   <span className="text-danger"><s>&#x20B9; 200.99</s></span>
                                 </div>
-                                <h6 className="text-success"> Few rooms left.</h6>
+                                <h6 className="text-success"> Few space left.</h6>
                                 <div className="d-flex flex-column mt-4">
 
                                   <button className="btn primary-btn rounded-full" style={{ marginTop: '5px' }} type="button" onClick={(e) => { addToCart(e, office) }}>
