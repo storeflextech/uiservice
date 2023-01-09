@@ -5,7 +5,7 @@ import swal from 'sweetalert';
 import { Grid, TextareaAutosize } from '@mui/material';
 import InputBox from '../../atoms/textfield/InputBox';
 import AddressDetails from '../../atoms/addressforms/AddressDetails';
-import {EditBusinessDetails, Address, Contact} from '../../../utils/ResponseSchema';
+import { EditBusinessDetails, Address, Contact } from '../../../utils/ResponseSchema';
 import { validateCharacterLength, validatePhone, validateWebUrl, validateGst, validateEmail } from '../../../utils/CommonUtils';
 import { LoaderFull } from '../../atoms/loader/loader';
 import { objectData } from '../../../utils/ResponseSchema';
@@ -32,7 +32,7 @@ const EditBusiness = (props: EditBusinessProps) => {
     const [companyUrlInfo, setCompanyUrlInfo] = useState<objectData>({});
     const [businessPhoneInfo, setBusinessPhoneInfo] = useState<objectData>({});
     const [gstIdInfo, setGstIdInfo] = useState<objectData>({});
-    const[addressTypeInfo, setAddressTypeInfo]= useState<objectData>({});
+    const [addressTypeInfo, setAddressTypeInfo] = useState<objectData>({});
 
     // Address Information 
     const [companyAddressInfo, setCompanyAddressInfo] = useState<Address>({});
@@ -54,16 +54,16 @@ const EditBusiness = (props: EditBusinessProps) => {
     useEffect(() => {
         const chId = location.state.editRecord;
         getWarehouseDataById(chId);
-      }, []);
-  
-      const getWarehouseDataById = (chId: string) => {
+    }, []);
+
+    const getWarehouseDataById = (chId: string) => {
         setLoader(true);
         api.getCompanyById(chId).then((resp) => {
             setLoader(false);
-            if(resp.methodReturnValue) {
+            if (resp.methodReturnValue) {
                 companyDataFormatter(resp.methodReturnValue);
             }
-           
+
         }).catch((error) => {
             setLoader(false);
             console.log(' addWarehouse creation erroor ', error);
@@ -201,10 +201,10 @@ const EditBusiness = (props: EditBusinessProps) => {
             val: event.target.value || '',
             error: ''
         } as objectData;
-        if (!obj.val){
-            obj.error ="This field can not be empty";
+        if (!obj.val) {
+            obj.error = "This field can not be empty";
         }
-        else if(validateEmail(obj.val)) {
+        else if (validateEmail(obj.val)) {
             obj.error = '';
         } else {
             obj.error = 'Enter a valid Email'
@@ -217,9 +217,9 @@ const EditBusiness = (props: EditBusinessProps) => {
             val: event.target.value || '',
             error: ''
         } as objectData;
-        if (!obj.val){
+        if (!obj.val) {
             obj.error = 'This field can not be empty';
-        }else if(validateCharacterLength(obj.val, 2, 10)) {
+        } else if (validateCharacterLength(obj.val, 2, 10)) {
             obj.error = '';
         } else {
             obj.error = 'Number only'
@@ -231,9 +231,9 @@ const EditBusiness = (props: EditBusinessProps) => {
             val: event.target.value || '',
             error: ''
         } as objectData;
-        if (!obj.val){
-            obj.error='This field can not be empty';
-        }else if (validateCharacterLength(obj.val, 2, 10)) {
+        if (!obj.val) {
+            obj.error = 'This field can not be empty';
+        } else if (validateCharacterLength(obj.val, 2, 10)) {
             obj.error = '';
         } else {
             obj.error = 'Emter a valid Landline no'
@@ -284,7 +284,7 @@ const EditBusiness = (props: EditBusinessProps) => {
     }
 
     const getVal = (obj: objectData) => {
-        if(obj.isUpdated) {
+        if (obj.isUpdated) {
             return obj.val
         } else {
             return undefined;
@@ -292,28 +292,35 @@ const EditBusiness = (props: EditBusinessProps) => {
     }
 
     const onUpdate = () => {
-        const postData = {} as AddCompanyPostData ;
+        const postData = {} as AddCompanyPostData;
         postData.clientId = businessProfile.clientId;
         postData.compyName = getVal(companyNameInfo);
         postData.compyDesc = getVal(companyDescription);
         postData.url = getVal(companyUrlInfo);
         postData.gstNo = getVal(gstIdInfo);
 
-        if( Object.keys(companyAddressInfo).length > 0) {
+        if (Object.keys(companyAddressInfo).length > 0) {
             postData.addresses = [companyAddressInfo];
         };
 
         const contactInfo = buildContactInfo();
-        if( Object.keys(contactInfo).length > 0) {
+        if (Object.keys(contactInfo).length > 0) {
             contactInfo.contactId = businessProfile?.contact?.[0].contactId;
             postData.contact = [contactInfo]
         };
-        
+
         setLoader(true);
         api.updateCompany(postData).then((response) => {
             setLoader(false);
             swal('Great! Information updated successfully!', {
                 icon: "success",
+                buttons: {
+                    buttonOne: {
+                        text: "OK",
+                        visible: true,
+                        className: "sf-btn",
+                    }
+                }
             }).then(willUpdate => {
                 if (willUpdate) {
                     goToNextPage('/business/view');
@@ -330,62 +337,62 @@ const EditBusiness = (props: EditBusinessProps) => {
         return (
             <div className='m-bot-md'>
                 <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }}>
-                            <Grid item xs={4}>
-                                <div style={{ marginBottom: '8px' }}>
-                                    <div className='pb-2'>Status</div>
-                                        <select name="addresstype" className="form-control" onChange={selectAddressType}>
-                                            <option value="ACT">Active</option>
-                                            <option value="INP">In-Progress</option>
-                                            <option value="INA">In-Active</option>
-                                        </select>
-                                </div>
-                                </Grid>
-                                <Grid item xs={9}>
-                                <InputBox data={{ name: 'companyname', label: 'Company Name*', value: businessProfile.compyName }}
-                                    onChange={onCompanyNameChange} onBlur={handelOnBlur}
-                                />
-                                <InputError errorText={companyNameInfo.error}/>
+                    <Grid item xs={4}>
+                        <div style={{ marginBottom: '8px' }}>
+                            <div className='pb-2'>Status</div>
+                            <select name="addresstype" className="form-control" onChange={selectAddressType}>
+                                <option value="ACT">Active</option>
+                                <option value="INP">In-Progress</option>
+                                <option value="INA">In-Active</option>
+                            </select>
+                        </div>
+                    </Grid>
+                    <Grid item xs={9}>
+                        <InputBox data={{ name: 'companyname', label: 'Company Name*', value: businessProfile.compyName }}
+                            onChange={onCompanyNameChange} onBlur={handelOnBlur}
+                        />
+                        <InputError errorText={companyNameInfo.error} />
 
-                                <InputBox data={{ name: 'companyurl', label: 'Company URL*', value: businessProfile.url }}
-                                    onChange={onCompanyUrlChange} onBlur={handelOnBlur}
-                                />
-                                 <InputError errorText={companyUrlInfo.error}/>
+                        <InputBox data={{ name: 'companyurl', label: 'Company URL*', value: businessProfile.url }}
+                            onChange={onCompanyUrlChange} onBlur={handelOnBlur}
+                        />
+                        <InputError errorText={companyUrlInfo.error} />
 
-                                <InputBox data={{ name: 'gstid', label: 'GST Number*', value: businessProfile.gstNo }}
-                                    onChange={onGstIdChange} onBlur={handelOnBlur}
-                                />
-                                <InputError errorText={gstIdInfo.error}/>
-                                
-                                <Grid item xs={12}>
-                                    <div> Business Description </div>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextareaAutosize
-                                        minRows={3}
-                                        maxRows={4}
-                                        maxLength={maxiLength}
-                                        onChange={onCompanyDescriptionChange}
-                                        aria-label={businessDescriptionText}
-                                        placeholder={businessProfile.compyDesc || businessDescriptionText}
-                                        style={{ width: '100%' }}
-                                    />
-                                </Grid>
-                            </Grid>
-                            <Grid item xs={3}>
-                                <InputBox data={{ name: 'photoname', label: 'Photo Name', value: businessProfile.url }}
-                                     onBlur={handelOnBlur}
-                                />
-                                <img src="/assets/images/placeholder.png" alt="Image" style={{ width: '100%', height: '25vh', marginTop: '10px' }} />
-                                <input type="file" className="form-control" />
-                            </Grid>
+                        <InputBox data={{ name: 'gstid', label: 'GST Number*', value: businessProfile.gstNo }}
+                            onChange={onGstIdChange} onBlur={handelOnBlur}
+                        />
+                        <InputError errorText={gstIdInfo.error} />
+
+                        <Grid item xs={12}>
+                            <div> Business Description </div>
                         </Grid>
+                        <Grid item xs={12}>
+                            <TextareaAutosize
+                                minRows={3}
+                                maxRows={4}
+                                maxLength={maxiLength}
+                                onChange={onCompanyDescriptionChange}
+                                aria-label={businessDescriptionText}
+                                placeholder={businessProfile.compyDesc || businessDescriptionText}
+                                style={{ width: '100%' }}
+                            />
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <InputBox data={{ name: 'photoname', label: 'Photo Name', value: businessProfile.url }}
+                            onBlur={handelOnBlur}
+                        />
+                        <img src="/assets/images/placeholder.png" alt="Image" style={{ width: '100%', height: '25vh', marginTop: '10px' }} />
+                        <input type="file" className="form-control" />
+                    </Grid>
+                </Grid>
             </div>
         )
     }
 
     const showBusinessAddress = () => {
         const addInfo = businessProfile.addresses?.[0];
-        if(addInfo) {
+        if (addInfo) {
             return (
                 <div className='p-md'>
                     {
@@ -398,7 +405,7 @@ const EditBusiness = (props: EditBusinessProps) => {
                 </div>
             )
         } else {
-            return( <></>)
+            return (<></>)
         }
     }
 
@@ -413,7 +420,7 @@ const EditBusiness = (props: EditBusinessProps) => {
                                 <InputBox data={{ name: 'contactname', label: 'Contact Name*', value: contactData?.contactName }}
                                     onChange={onContactNameChange}
                                 />
-                                 {contactNameInfo.error && <p className="text-red">{contactNameInfo.error}</p>}
+                                {contactNameInfo.error && <p className="text-red">{contactNameInfo.error}</p>}
                             </Grid>
                         </Grid>
                         <Grid container spacing={2} columns={{ xs: 6, sm: 12, md: 12 }} className='p-top-md'>
@@ -440,62 +447,62 @@ const EditBusiness = (props: EditBusinessProps) => {
                                 <InputBox data={{ type: 'number', name: 'landlineno', label: 'Landline No.*', value: contactData?.landLine }}
                                     onChange={onLandlineNoChange}
                                 />
-                                 {landLineNoInfo.error && <p className="text-red">{landLineNoInfo.error}</p>}
+                                {landLineNoInfo.error && <p className="text-red">{landLineNoInfo.error}</p>}
                             </Grid>
                         </Grid>
                     </div>
                 </div>
-               
+
             </div>
         );
     }
 
     return (
         <>
-             { loader && <LoaderFull /> }
-             <Accordion defaultActiveKey="0">
+            {loader && <LoaderFull />}
+            <Accordion defaultActiveKey="0">
                 <Accordion.Item eventKey="0">
-                <Accordion.Header className='sf-ac'>
-                    <div className='primary-gradient w100'>
-                        <div className='font-white p-sm f-18px f-bold'>Edit Business Information</div>
-                    </div>
-                </Accordion.Header>
-                <Accordion.Body>
-                <div className='p-md'>
-                    {showProfile()}
-                </div>
-                </Accordion.Body>
+                    <Accordion.Header className='sf-ac'>
+                        <div className='primary-gradient w100'>
+                            <div className='font-white p-sm f-18px f-bold'>Edit Business Information</div>
+                        </div>
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <div className='p-md'>
+                            {showProfile()}
+                        </div>
+                    </Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey="1">
                     <Accordion.Header className='sf-ac'>
-                <div className='primary-gradient w100'>
-                    <div className='font-white p-sm f-18px f-bold'>Edit Business Address</div>
-                </div>
-                </Accordion.Header>
+                        <div className='primary-gradient w100'>
+                            <div className='font-white p-sm f-18px f-bold'>Edit Business Address</div>
+                        </div>
+                    </Accordion.Header>
                     <Accordion.Body>
-                <div className='p-md'>
-                    {showBusinessAddress()}
-                </div>
-                </Accordion.Body>
-                </Accordion.Item> 
+                        <div className='p-md'>
+                            {showBusinessAddress()}
+                        </div>
+                    </Accordion.Body>
+                </Accordion.Item>
                 <Accordion.Item eventKey="2">
                     <Accordion.Header className='sf-ac'>
-                    <div className='primary-gradient w100'>
-                        <div className='font-white p-sm f-18px f-bold'>Edit Contact Information</div>
-                    </div>
+                        <div className='primary-gradient w100'>
+                            <div className='font-white p-sm f-18px f-bold'>Edit Contact Information</div>
+                        </div>
                     </Accordion.Header>
                     <Accordion.Body>
                         <> {showCompanyContact()}</>
                     </Accordion.Body>
-                </Accordion.Item>  
-                </Accordion>
-                <div className='p-md align-r' style={{ float: 'right' }}>
-                        <button className='btn primary-btn rounded-full' onClick={() => { goToNextPage('/business/view') }} style={{ marginRight: '5px' }}> Cancel </button>
-                        <button className="btn primary-btn rounded-full" onClick={() => { onUpdate() }}> Update </button>
-                    </div>
+                </Accordion.Item>
+            </Accordion>
+            <div className='p-md align-r' style={{ float: 'right' }}>
+                <button className='btn primary-btn rounded-full' onClick={() => { goToNextPage('/business/view') }} style={{ marginRight: '5px' }}> Cancel </button>
+                <button className="btn primary-btn rounded-full" onClick={() => { onUpdate() }}> Update </button>
+            </div>
 
         </>
-        
+
     );
 }
 

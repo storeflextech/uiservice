@@ -123,6 +123,13 @@ const EditWarehouse = (props: EditWarehouseProps) => {
             }
             swal('Success! Your warehouse has been added successfully!', {
                 icon: "success",
+                buttons: {
+                    buttonOne: {
+                        text: "OK",
+                        visible: true,
+                        className: "sf-btn",
+                    }
+                }
             });
         }).catch((error) => {
             setIsLoader(false);

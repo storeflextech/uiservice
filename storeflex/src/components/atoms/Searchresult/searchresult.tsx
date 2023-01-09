@@ -26,8 +26,8 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function Searchresult() {
 
   const [warehouse, setWarehouse] = useState<Array<any>>([]);
-  
-  
+
+
   const [office, setOffice] = useState<Array<any>>([]);
   const [filter, setFilter] = useState('');
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ export default function Searchresult() {
   const img2 = 'https://media.istockphoto.com/id/1165357335/photo/male-worker-working-in-warehouse.webp?s=612x612&w=is&k=20&c=zcBK2kcxFDIBbd_aKXh_-kek_MGX30smjx64GURYGAU=';
   const img3 = 'https://media.istockphoto.com/id/980114338/photo/supervisor-and-employee-at-warehouse.webp?s=612x612&w=is&k=20&c=6TtBd269scsOMBrswgxy0tsa64_MsChdpXo_oBrz8yk=';
   const img4 = 'https://media.istockphoto.com/photos/warehouse-worker-picture-id1179825208';
-  
+
 
 
 
@@ -47,10 +47,10 @@ export default function Searchresult() {
 
   useEffect(() => {
     console.log("From Search Page ==>", state);
-    const stateData:any = state;
+    const stateData: any = state;
     console.log("From Search Pageqqq ==>", stateData);
     setWarehouse(stateData);
-    
+
     const data = ([
       {
         id: 1,
@@ -96,8 +96,8 @@ export default function Searchresult() {
     ])
     setOffice(data);
 
-    
-    console.log("saved Data==>",warehouse);
+
+    console.log("saved Data==>", warehouse);
 
 
   }, [])
@@ -168,71 +168,71 @@ export default function Searchresult() {
           <section>
             <div className="container">
 
-              {warehouse.map((ware)=>(
+              {warehouse.map((ware) => (
                 <div className="row justify-content-center mb-3">
-                <div className="col-md-12 col-xl-12">
-                  <div className="card shadow-0 border rounded-3">
-                    <div className="card-body">
-                      <div className="row">
-                        <div className="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                          <div className="bg-image hover-zoom ripple rounded ripple-surface">
-                            <img src={img}
-                              className="w-100" />
-                            <a href="#!">
-                              <div className="hover-overlay">
-                                <div className="mask" style={{ backgroundColor: 'rgba(253, 253, 253, 0.15)' }}></div>
-                              </div>
-                            </a>
+                  <div className="col-md-12 col-xl-12">
+                    <div className="card shadow-0 border rounded-3">
+                      <div className="card-body">
+                        <div className="row">
+                          <div className="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                            <div className="bg-image hover-zoom ripple rounded ripple-surface">
+                              <img src={img}
+                                className="w-100" />
+                              <a href="#!">
+                                <div className="hover-overlay">
+                                  <div className="mask" style={{ backgroundColor: 'rgba(253, 253, 253, 0.15)' }}></div>
+                                </div>
+                              </a>
+                            </div>
                           </div>
-                        </div>
-                        <div className="col-md-6 col-lg-6 col-xl-6">
-                          <h5><BeenhereIcon />{ware.warehouseName}</h5>
-                          <div className="d-flex flex-row">
-                            {/* <div className="text-danger mb-1 me-2">
+                          <div className="col-md-6 col-lg-6 col-xl-6">
+                            <h5><BeenhereIcon />{ware.warehouseName}</h5>
+                            <div className="d-flex flex-row">
+                              {/* <div className="text-danger mb-1 me-2">
                                 <i className="fa fa-star"></i>
                                 <i className="fa fa-star"></i>
                                 <i className="fa fa-star"></i>
                                 <i className="fa fa-star"></i>
                               </div> */}
-                            <span>{ware.descp}</span>
-                          </div>
-                          <div className="mt-1 mb-0 text-muted small">
-                            <span>{ware.streetAddrs}, House no- {ware.houseNo}, {ware.pincode}, {ware.state}</span>
-                            {/* <span className="text-primary"> • </span>
+                              <span>{ware.descp}</span>
+                            </div>
+                            <div className="mt-1 mb-0 text-muted small">
+                              <span>{ware.streetAddrs}, House no- {ware.houseNo}, {ware.pincode}, {ware.state}</span>
+                              {/* <span className="text-primary"> • </span>
                               <span>Light weight</span>
                               <span className="text-primary"> • </span>
                               <span>Best finish<br /></span> */}
+                            </div>
+                            <div className="mb-2 text-muted small">
+                              <span>Room Size</span>
+                              <span className="text-primary"> • </span>
+                              <span>24x24</span>
+                              <span className="text-primary"> • </span>
+                              <span>10x12<br /></span>
+                            </div>
+                            <p className="text-truncate mb-4 mb-md-0">
+                              There are many variations of passages of Lorem Ipsum available, but the
+                              majority have suffered alteration in some form, by injected humour, or
+                              randomised words which don't look even slightly believable.
+                            </p>
                           </div>
-                          <div className="mb-2 text-muted small">
-                            <span>Room Size</span>
-                            <span className="text-primary"> • </span>
-                            <span>24x24</span>
-                            <span className="text-primary"> • </span>
-                            <span>10x12<br /></span>
-                          </div>
-                          <p className="text-truncate mb-4 mb-md-0">
-                            There are many variations of passages of Lorem Ipsum available, but the
-                            majority have suffered alteration in some form, by injected humour, or
-                            randomised words which don't look even slightly believable.
-                          </p>
-                        </div>
-                        <div className="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
-                          <div className="d-flex flex-row align-items-center mb-1">
-                            <h4 className="mb-1 me-1">&#x20B9; {price}.00</h4>
-                            <span className="text-danger"><s>&#x20B9; 200.99</s></span>
-                          </div>
-                          <h6 className="text-success"> Few rooms left.</h6>
-                          <div className="d-flex flex-column mt-4">
-                            <button className="btn primary-btn-outline rounded-full" type="button" onClick={WarehouseDetails}>Details</button>
-                            <button className="btn primary-btn rounded-full" style={{ marginTop: '5px' }} type="button" onClick={(e) => { addToCart(e, ware) }} >
-                              Add to wishlist
-                            </button>
+                          <div className="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+                            <div className="d-flex flex-row align-items-center mb-1">
+                              <h4 className="mb-1 me-1">&#x20B9; {price}.00</h4>
+                              <span className="text-danger"><s>&#x20B9; 200.99</s></span>
+                            </div>
+                            <h6 className="text-success"> Few rooms left.</h6>
+                            <div className="d-flex flex-column mt-4">
+                              <button className="btn primary-btn-outline rounded-full" type="button" onClick={WarehouseDetails}>Details</button>
+                              <button className="btn primary-btn rounded-full" style={{ marginTop: '5px' }} type="button" onClick={(e) => { addToCart(e, ware) }} >
+                                Proceed to Buy
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
                 </div>
               ))}
 
