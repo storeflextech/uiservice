@@ -33,6 +33,7 @@ import PaymentHistory from "../pages/paymentHistory";
 import UserProfile from "../pages/userProfile";
 import SiteMap from "../pages/SiteMap";
 import WarehousePage from "../pages/WarehousePage";
+import UserPage from "../pages/UserPage";
 
 import WarehouseDetails from "../components/atoms/Searchresult/warehouseDetails";
 import SignInCustomer from "../pages/signin-customer";
@@ -110,6 +111,22 @@ export const PAGES = {
     VIEW: {
       path: "/warehouse/view",
       Component: WarehousePage,
+    },
+  },
+  USER: {
+    path: "/user",
+    Component: UserPage,
+    ADD: {
+      path: "/user/add",
+      Component: UserPage,
+    },
+    EDIT: {
+      path: "/user/edit",
+      Component: UserPage,
+    },
+    VIEW: {
+      path: "/user/view",
+      Component: UserPage,
     },
   },
   AddInfo: {

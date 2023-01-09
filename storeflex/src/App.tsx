@@ -64,6 +64,18 @@ function App() {
               <Route path={PAGES.Business.EDIT.path} element={<PAGES.Business.Component id="EDIT" />}/>
             </Route>
             
+            <Route path={PAGES.Warehouse.path}>
+              <Route path={PAGES.Warehouse.ADD.path} element={<PAGES.Warehouse.Component id="ADD" />} />
+              <Route path={PAGES.Warehouse.VIEW.path} element={<PAGES.Warehouse.Component id="VIEW" />}/>
+              <Route path={PAGES.Warehouse.EDIT.path} element={<PAGES.Warehouse.Component id="EDIT" />}/>
+            </Route>
+
+            <Route path={PAGES.USER.path}>
+              <Route path={PAGES.USER.ADD.path} element={<PAGES.USER.Component id="ADD" />} />
+              <Route path={PAGES.USER.VIEW.path} element={<PAGES.USER.Component id="VIEW" />}/>
+              <Route path={PAGES.USER.EDIT.path} element={<PAGES.USER.Component id="EDIT" />}/>
+            </Route>
+
             <Route
               path={PAGES.EDIT_COMPANY_USER.path}
               element={<PAGES.EDIT_COMPANY_USER.Component />}
@@ -73,28 +85,8 @@ function App() {
               element={<PAGES.WAREHOUSE_DETAILS.Component />}
             />
             <Route
-              path={PAGES.Warehouse.path}
-              element={<PAGES.Warehouse.Component id="" />}
-            />
-            <Route
-              path={PAGES.Warehouse.ADD.path}
-              element={<PAGES.Warehouse.Component id="ADD" />}
-            />
-            <Route
-              path={PAGES.Warehouse.EDIT.path}
-              element={<PAGES.Warehouse.Component id="EDIT" />}
-            />
-            <Route
-              path={PAGES.Warehouse.VIEW.path}
-              element={<PAGES.Warehouse.Component id="VIEW" />}
-            />
-            <Route
               path={PAGES.Dashboard.path}
               element={<PAGES.Dashboard.Component />}
-            />
-            <Route
-              path={PAGES.AddInfo.path}
-              element={<PAGES.AddInfo.Component />}
             />
             <Route
               path={PAGES.PgSearch.path}
