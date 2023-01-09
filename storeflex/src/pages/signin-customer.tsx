@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { validateMinLen, setUserLoggedIn, setUserName,setUserType, getRedirectionPage } from '../utils/CommonUtils';
+import { validateMinLen, setUserLoggedIn, setUserName, setUserType, getRedirectionPage } from '../utils/CommonUtils';
 import Api from '../api/Api';
 import { SignInProps } from '../api/ApiConfig';
 import GoogleLogin from 'react-google-login';
@@ -31,7 +31,7 @@ const SignInCustomer = () => {
 
 
   const SubmitSignUp = () => {
-    window.location.href = '/signup-new';
+    window.location.href = '/signup';
   }
 
   const submitSignIn = () => {
@@ -82,7 +82,7 @@ const SignInCustomer = () => {
                 <div className="col-md-12 justify-content-center">
                   <div className="form-input justify-content-center">
                     <a href="/home"><img src="assets/images/white-logo.jpg" alt="Logo" style={{ height: '8vh' }} /></a>
-                    <h4 className='pb-3' style={{textAlign:'center'}}>Storeflex Customer Login</h4>
+                    <h4 className='pb-3' style={{ textAlign: 'center' }}>Storeflex Customer Login</h4>
                     <div className="input-items default">
                       <input type="text" placeholder="User ID" name="email" onChange={handleChange} />
                     </div>
@@ -134,7 +134,7 @@ const SignInCustomer = () => {
                 <div className="col-md-12">
                   <div className="form-input text-center">
                     <p className="text">
-                      By signing in you agree with the<br></br>
+                      By continuing, you have read and agree to our<br></br>
                       <a href="/termsandconditions">Terms and Conditions &nbsp;</a>
                       and
                       <a href="/privacypolicy">&nbsp; Privacy Policy</a>
