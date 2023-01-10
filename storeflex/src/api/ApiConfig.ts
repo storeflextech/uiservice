@@ -1,27 +1,27 @@
 
 import { Address, Contact , Photo, Warehouseprice} from '../../src/utils/ResponseSchema'
 export interface SlLoginProps {
-    username: string,
-    emailId: string,
-    password: string
+    username: string;
+    emailId: string;
+    password: string;
 }
 
 export interface SignInPost {
-    username?: string,
-    emailId: string,
-    password: string
+    username?: string;
+    emailId: string;
+    password: string;
 }
 
 export interface SignInResp {
-    firstName?: string,
-    middleName?: string,
-    lastName?: string,
-    mobileNo?: string,
-    email?: string,
-    status?: string,
-    roleType?: string,
-    redirectUrl?: string,
-    loginType?: string
+    firstName?: string;
+    middleName?: string;
+    lastName?: string;
+    mobileNo?: string;
+    email?: string;
+    status?: string;
+    roleType?: string;
+    redirectUrl?: string;
+    loginType?: string;
 }
 
 export interface ViewCompaniesProps {
@@ -147,8 +147,29 @@ export class ApiConfig {
     addWarehouseUrl = '/warehouse';
     enquiry = '/enquiry';
     getViewUserUrl = '/storeflexusers';
+    userUrl = '/storeflexuser';
     getCompanyListApi = '/clientDropList';
     getWarehouseCategoriesApi = '/categories'
 
+}
 
+export interface UserPostData {
+    userId?: string;
+    firstName?: string;
+    middleName?: string;
+    lastName?: string;
+    photo?: Photo[];
+    photoName?: string;
+    mobileNo?: string;
+    email?: string;
+    address?: string;
+    plotNo?: string;
+    houseNo?: string;
+    pincode?: string;
+    city?: string;
+    state?: string;
+    country?: string;
+    roleType?: string;
+    clientId?: string;
+    addresses?: Address[];
 }

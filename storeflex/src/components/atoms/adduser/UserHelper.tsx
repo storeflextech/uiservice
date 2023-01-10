@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { FormControl, Select, MenuItem, SelectChangeEvent} from '@mui/material';
+import { ROLE_TYPE } from '../../../utils/Constants';
 
 const companyData = ['Store Flex', 'Global Warehouse'];
-const userData = ['Administrator', 'Standard'];
-
 
 interface currentValue {
   state?: string;
@@ -11,24 +10,22 @@ interface currentValue {
 
 export const UserType = (props?: currentValue) => {
 
-    const [selectedUser, setSelectedUser] = useState( props?.state ? props?.state : 'Select');
+  const userData = [ { name: 'Administrator', code: ROLE_TYPE.admin}, {name:'Standard', code: ROLE_TYPE.guest}];
+  const [selectedUser, setSelectedUser] = useState(ROLE_TYPE.guest as string);
+
     const handleChange = (event: SelectChangeEvent) => {
-        setSelectedUser(event.target.value as string);
+        const user = event.target.value as string;
+        console.log(' event.target.value >>>  ', user);
+        setSelectedUser(user);
       };
     
-
     return (
         <>
           <FormControl size="small" fullWidth={true}>
-            <Select autoWidth={false} value={selectedUser} onChange={handleChange} displayEmpty
-              inputProps={{ 'aria-label': 'Without label' }}
-            >
-              <MenuItem value={selectedUser}>
-                <em>{selectedUser}</em>
-              </MenuItem>
+            <Select autoWidth={false} value={selectedUser} onChange={handleChange}>
               {userData.map((item, index) => {
                   return(
-                      <MenuItem key={index+1} value={item}>{item}</MenuItem>
+                      <MenuItem key={index+1} value={item.code}>{item.name}</MenuItem>
                   )
               })}
             </Select>
