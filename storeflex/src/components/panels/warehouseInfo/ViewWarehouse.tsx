@@ -87,6 +87,13 @@ const ViewWarehouse = () => {
           ')" has been deleted!',
           {
             icon: "success",
+            buttons: {
+              buttonOne: {
+                text: "OK",
+                visible: true,
+                className: "sf-btn",
+              }
+            }
           }
         );
         let extractedArr = myWarehouse.filter((item, index) => {

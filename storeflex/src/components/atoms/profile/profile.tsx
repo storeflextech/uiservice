@@ -9,11 +9,25 @@ import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 import PrifileMenuList from './profileList.json';
 import { Button } from 'react-bootstrap';
+import Api from '../../../api/Api';
 
 interface ProfileMenuProps {
     isSigned?: boolean;
     profileImg?: string;
     userType?: string | null;
+}
+
+interface warehouse {
+    city: any,
+    clientId: any,
+    houseNo: any,
+    pincode: any,
+    plotNo: any,
+    state: any,
+    status: any,
+    streetAddrs: any,
+    warehouseName: any,
+    warehouseId: any
 }
 
 export const ProfileMenu = (props?: ProfileMenuProps) => {
@@ -33,11 +47,30 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
     };
 
     const onMenuItemClick = (value: string) => {
+        if (value === '/search-new') {
+            const api = new Api();
+            const pin = '';
+            // const pin = '781036'
+            api.searchwarehouse(pin).then((response) => {
+                console.log('Warehouse Search >>>>', response);
+                const data: warehouse = response.data.methodReturnValue.warehouseViewBean
+                    ;
+
+                if (response.data.status == 'SUCCESS') {
+                    navigate('/search-new', { state: data });
+                    window.location.reload();
+                }
+            })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
         if (value === 'list_popup') {
             createSwalButton()
         }
         else if (value === 'logout_user') {
             logout('/home')
+            window.location.reload()
         }
         else {
             navigate(value);
@@ -79,7 +112,7 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
 
         });
     }
-    
+
     const showProfileMenuList = () => {
         let menulist;
         if (userType === 'SL') {
@@ -145,13 +178,13 @@ export const ProfileMenu = (props?: ProfileMenuProps) => {
             </Menu>
         );
     }
-    
+
 
     return (
         <>
-            <div className='sf-flex profile-menu-container'> 
-            <span style={{'color':'white'}}>Welcome {sessionStorage.getItem("userName")}</span>
-             {userType === 'CU' ? <Button className='btn primary-btn sf-btn' onClick={() => window.location.href = '/business/add'}>StoreFlex Your Space</Button> :''} 
+            <div className='sf-flex profile-menu-container'>
+                <span style={{ 'color': 'white' }}>Welcome {sessionStorage.getItem("userName")}</span>
+                {userType === 'CU' ? <Button className='btn primary-btn sf-btn' onClick={() => window.location.href = '/business/add'}>StoreFlex Your Space</Button> : ''}
                 <IconButton size="large" edge="start" color="inherit" aria-label="profile" onClick={handleClick} >
                     <ProfileBtn showProfileImg={isSigned} profileImg={profileImgUrl} />
                 </IconButton>
