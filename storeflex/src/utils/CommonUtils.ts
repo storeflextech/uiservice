@@ -1,4 +1,4 @@
-import { PAGES } from './Constants';
+import { PAGES, SESSION_TYPE } from './Constants';
 
 export const CHARACTER_ONLY = /^[A-Za-z ,.'-]+$/;
 export const regex_email = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
@@ -128,29 +128,36 @@ export const setUserName = (val: string) => {
     sessionStorage.setItem('userName', String(val));
 }
 
-export const setUserType = (val: string) => {
-    sessionStorage.setItem('userType', String(val));
-}
-
 export const getUserType = () => {
-    const userType = sessionStorage.getItem('userType');
-    return userType;
+    const data = sessionStorage.getItem(SESSION_TYPE.login_resp);
+    if( data && JSON.parse(data)) {
+        const obj = JSON.parse(data);
+        return obj.loginType;
+    } else {
+        return null;
+    }
 }
 
 export const getRedirectionPage = (redirectUrl?: string) => {
     if(redirectUrl === '/storeflexhome'){  
         return PAGES.Home.path;
     }else if(redirectUrl === '/storeflexuserdashboard'){    // Storeflex User Dashboard
-        setUserType('SL');
         return PAGES.Dashboard.path;
     }else if(redirectUrl === '/storeflexclientdashboard'){  // Storeflex Client Dashboard
-        setUserType('CL');
         return PAGES.Dashboard.path;
-    }else if(redirectUrl === '/storeflexcustdashboard'){    // Storeflex Customer Dashboard
-        setUserType('CU');
+    }else if(redirectUrl === '/storeflexcustdashboard'){    // Storeflex Customer Dashboar
         return PAGES.Dashboard.path;
     } else {
-        setUserType('NA');
         return PAGES.Home.path;      // If redirect url is missing then redirect to home
     }
+}
+
+export const sessionStorageSet = (data: any, name: string) => {
+    if(data && name) {
+        sessionStorage.setItem(name, JSON.stringify(data));
+    }
+}
+
+export const sessionStorageGet = (name: string) => {
+    return sessionStorage.getItem(name);
 }

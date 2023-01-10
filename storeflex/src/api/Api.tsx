@@ -1,6 +1,6 @@
 // import React from 'react';
 import axios from 'axios';
-import { ApiConfig, SlLoginProps, SignInProps, GetStatesProp, GetCitiesProp, AddCompanyPostData, ViewCompaniesProps, ViewWarehouseProps, viewWarehouseAdminProps, EnquiryProps, viewUserProps, WarehousePostData } from './ApiConfig';
+import { ApiConfig, SlLoginProps, SignInPost, GetStatesProp, GetCitiesProp, AddCompanyPostData, ViewCompaniesProps, ViewWarehouseProps, viewWarehouseAdminProps, EnquiryProps, viewUserProps, WarehousePostData } from './ApiConfig';
 
 
 // let axiosConfig = {
@@ -39,11 +39,16 @@ export default class Api {
         }
     }
 
-    async signIn(postData: SignInProps): Promise<any> {
-        const url = this.baseUrl + this.apiUrl.signinTestApi;
+    async signIn(postData: SignInPost, userType: string): Promise<any> {
+        const url = `${this.baseUrl}${this.apiUrl.signinApi}?userType=${userType}`;
         try {
             const response = await axios.post(url, postData);
-            return Promise.resolve(response);
+            if (response?.data?.statusCode === 600) {
+                return Promise.resolve(response?.data);
+            } else {
+                console.log(' error : signIn ', response);
+                return Promise.reject(response);
+            }
         }
         catch (error) {
             console.log(' error : signIn', error);
