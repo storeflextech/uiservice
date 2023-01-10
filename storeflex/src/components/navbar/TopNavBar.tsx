@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { getUserType } from '../../utils/CommonUtils';
+import { PAGES } from '../../utils/Constants';
 
 const TopNavBar = () => {
   // const navigate = useNavigate();
@@ -22,8 +23,8 @@ const TopNavBar = () => {
     } else {
       return (
         <div className="link-white align-c">
-          <span><a className="sign-link p-top-5" href="/signin-customer">Sign In</a></span>
-          <span><a className="sign-link p-top-5" href="/signup">Sign Up</a></span>
+          <span><a className="sign-link p-top-5" href={PAGES.SignIn.userPath}>Sign In</a></span>
+          <span><a className="sign-link p-top-5" href={PAGES.SignUp.path}>Sign Up</a></span>
         </div>
       )
     }

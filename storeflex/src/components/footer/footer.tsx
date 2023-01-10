@@ -55,7 +55,7 @@ const Footer = () => {
                   <Nav.Link onClick={() => { onLinkClick(PAGES.FAQ.path) }}>FAQ</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link onClick={() => { onLinkClick(PAGES.SignIn.path) }}>Administrator Login</Nav.Link>
+                  <Nav.Link onClick={() => { onLinkClick(PAGES.SignIn.adminPath) }}>Administrator Login</Nav.Link>
                 </Nav.Item>
               </Nav>
             </div>
