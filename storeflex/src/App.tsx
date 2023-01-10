@@ -41,6 +41,15 @@ function App() {
               path={PAGES.Error.path}
               element={<PAGES.Error.Component />}
             />
+            <Route
+              path={PAGES.TERMSANDCONDITIONS.path}
+              element={<PAGES.TERMSANDCONDITIONS.Component />}
+            />
+            <Route
+              path={PAGES.PRIVACYPOLICY.path}
+              element={<PAGES.PRIVACYPOLICY.Component />}
+            />
+            <Route path={PAGES.FAQ.path} element={<PAGES.FAQ.Component />} />
           </Routes>
         )}
         {isAuthenticated && (
@@ -60,20 +69,20 @@ function App() {
             />
             <Route path={PAGES.Business.path}>
               <Route path={PAGES.Business.ADD.path} element={<PAGES.Business.Component id="ADD" />} />
-              <Route path={PAGES.Business.VIEW.path} element={<PAGES.Business.Component id="VIEW" />}/>
-              <Route path={PAGES.Business.EDIT.path} element={<PAGES.Business.Component id="EDIT" />}/>
+              <Route path={PAGES.Business.VIEW.path} element={<PAGES.Business.Component id="VIEW" />} />
+              <Route path={PAGES.Business.EDIT.path} element={<PAGES.Business.Component id="EDIT" />} />
             </Route>
-            
+
             <Route path={PAGES.Warehouse.path}>
               <Route path={PAGES.Warehouse.ADD.path} element={<PAGES.Warehouse.Component id="ADD" />} />
-              <Route path={PAGES.Warehouse.VIEW.path} element={<PAGES.Warehouse.Component id="VIEW" />}/>
-              <Route path={PAGES.Warehouse.EDIT.path} element={<PAGES.Warehouse.Component id="EDIT" />}/>
+              <Route path={PAGES.Warehouse.VIEW.path} element={<PAGES.Warehouse.Component id="VIEW" />} />
+              <Route path={PAGES.Warehouse.EDIT.path} element={<PAGES.Warehouse.Component id="EDIT" />} />
             </Route>
 
             <Route path={PAGES.USER.path}>
               <Route path={PAGES.USER.ADD.path} element={<PAGES.USER.Component id="ADD" />} />
-              <Route path={PAGES.USER.VIEW.path} element={<PAGES.USER.Component id="VIEW" />}/>
-              <Route path={PAGES.USER.EDIT.path} element={<PAGES.USER.Component id="EDIT" />}/>
+              <Route path={PAGES.USER.VIEW.path} element={<PAGES.USER.Component id="VIEW" />} />
+              <Route path={PAGES.USER.EDIT.path} element={<PAGES.USER.Component id="EDIT" />} />
             </Route>
 
             <Route
@@ -101,7 +110,6 @@ function App() {
               path={PAGES.ContactUs.path}
               element={<PAGES.ContactUs.Component />}
             />
-            f
             <Route path={PAGES.FAQ.path} element={<PAGES.FAQ.Component />} />
             <Route
               path={PAGES.Error.path}
@@ -159,7 +167,7 @@ function App() {
               path={PAGES.VIEW_USER.path}
               element={<PAGES.VIEW_USER.Component />}
             />
-            
+
             <Route
               path={PAGES.DISCOVER_MORE.path}
               element={<PAGES.DISCOVER_MORE.Component />}
