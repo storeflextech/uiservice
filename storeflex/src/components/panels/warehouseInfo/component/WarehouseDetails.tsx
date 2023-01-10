@@ -23,13 +23,13 @@ export interface WhDetail {
     warehouseId?: string;
 }
 const WarehouseDetails = (props: WarehouseDetailsProps) => {
-    const [companyCode, setCompanyCode] = useState('');
+    // const [companyCode, setCompanyCode] = useState('');
     const [warehouseNameInfo, setWarehouseNameInfo] = useState<objectData>({});
     const [gstIdInfo, setGstIdInfo] = useState<objectData>({});
     const [warehouseDecInfo, setWarehouseDecInfo] = useState<objectData>({});
     const [onUpdateInfo, setonUpdateInfo] = useState(false);
     const [imageData, setImageData] = useState<File>();
-    const [whData, setWhData] = useState<WhDetail>();
+    const [whData, setWhData] = useState<WhDetail>({});
 
     useEffect(() => {
         if (onUpdateInfo) {
@@ -62,7 +62,10 @@ const WarehouseDetails = (props: WarehouseDetailsProps) => {
     }
 
     const companyChange = (companyId: string) => {
-        setCompanyCode(companyId);
+        // setCompanyCode(companyId);
+        const data: WhDetail = whData;
+        data.clientId = companyId;
+        setWhData(data);
         setonUpdateInfo(true);
     }
 

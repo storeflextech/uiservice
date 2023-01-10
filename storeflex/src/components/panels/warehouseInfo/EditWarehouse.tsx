@@ -53,7 +53,6 @@ const EditWarehouse = (props: EditWarehouseProps) => {
 
     const warehouseDataFormatter = (data: WarehousePostData) => {
         console.log(' >>>>> warehouseDataFormatter ', data);
-        // setWarehouseDetails(warehouseData);
         const whDetailObj = {} as WhDetail;
         whDetailObj.clientId = data?.clientId;
         whDetailObj.clientName = data?.clientName;
@@ -99,10 +98,86 @@ const EditWarehouse = (props: EditWarehouseProps) => {
     }
 
     const updateWarehouse = () => {
+
+        if(!whDetails?.warehouseName){
+            alert('Warehouse Name is Required');
+        }
+        else if(!whDetails?.warehouseId){
+            alert('Warehouse Id is Required');
+        }
+        else if(!whDetails?.warehouseTaxId){
+            alert('GST is Required');
+        }
+        else if(!whDetails?.descp){
+            alert('Warehouse Description is Required');
+        }
+        else if(!whAddress?.plotNo){
+            alert('Plot No is Required');
+        }
+        else if(!whAddress?.houseNo){
+            alert('House no is Required');
+        }
+        else if(!whAddress?.streetDetails){
+            alert('Street Details is Required');
+        }
+        else if(!whAddress?.state){
+            alert('State is Required');
+        }
+        else if(!whAddress?.city){
+            alert('City Name is Required');
+        }
+        else if(!whAddress?.country){
+            alert('Country Name is Required');
+        }
+        else if(!whAddress?.pincode){
+            alert('Pincode is Required');
+        }
+        else if(!pricing?.availspace){
+            alert('Total Available Space is required');
+        }
+        else if(!pricing?.ratesqtft){
+            alert('Rate(Rs)/sq.ft/month is required')
+        }
+        else if(!pricing?.minordersqt){
+            alert('Minimum Order Quantity is Required');
+        }
+        else if(!whHours?.openday){
+            alert('Facility Hours is Required');
+        }
+        else if(!whHours?.openall){
+            alert('Facility Hours is Required');
+        }
+        else if(!whHours?.starttime){
+            alert('Please Select time Range');
+        }
+        else if(!whLayout?.industryId){
+            alert('Industries served* is Required');
+        }
+        else if(!whLayout?.storagesId){
+            alert('Storage Layouts is Required');
+        }
+        else if(!whLayout?.facilitiesId){
+            alert('Facility Qualifications is Required');
+        }
+        else if (!whLayout?.dockhighdoors){
+            alert('Dock High Doors is Required');
+        }
+        else if(!whLayout?.atgradedoors){
+            alert('At Grade Doors is Required');
+        }
+        else if(!whLayout?.ceillingheight){
+            alert('Clear Ceilling Height is Required');
+        }
+        else if(!whLayout?.forkliftcapacity){
+            alert('Max Forklift Capacity is Required');
+        }
+        
+         else{
         const buildPostData = {} as WarehousePostData;
         buildPostData.clientId = whDetails?.clientId;
         buildPostData.warehouseName = whDetails?.warehouseName;
         buildPostData.warehouseTaxId = whDetails?.warehouseTaxId;
+        buildPostData.warehouseId = whDetails.warehouseId;
         buildPostData.descp = whDetails?.descp;
         buildPostData.address = [whAddress];
         buildPostData.hours = whHours;
@@ -128,6 +203,7 @@ const EditWarehouse = (props: EditWarehouseProps) => {
             setIsLoader(false);
             console.log(' updateWarehouse creation erroor ', error);
         });
+        }
     }
     return (
         <>
@@ -156,7 +232,7 @@ const EditWarehouse = (props: EditWarehouseProps) => {
                 </div>
             </div>
             {<WarehouseDetails data={whDetails} onWarehouseDetailsUpdate={onWarehouseDetailsUpdate} isDisabled={true} />}
-            {<WearehouseAddress data={whAddress} onWearehouseAddressUpdate={onWearehouseAddressUpdate} />}
+            {<WearehouseAddress editMode={true} data={whAddress} onWearehouseAddressUpdate={onWearehouseAddressUpdate} />}
             {<WearehousePricing onWearehousePricingUpdate={onWearehousePricingUpdate} />}
             {<WarehouseHours onWarehouseHoursUpdate={onWarehouseHoursUpdate} />}
             {<WarehouseLayout onWarehouseLayoutUpdate={onWarehouseLayoutUpdate} />}

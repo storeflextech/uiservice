@@ -305,6 +305,7 @@ const EditBusiness = (props: EditBusinessProps) => {
 
         const contactInfo = buildContactInfo();
         if( Object.keys(contactInfo).length > 0) {
+            contactInfo.contactId = businessProfile?.contact?.[0].contactId;
             postData.contact = [contactInfo]
         };
         
@@ -383,9 +384,9 @@ const EditBusiness = (props: EditBusinessProps) => {
     }
 
     const showBusinessAddress = () => {
-        const addInfo = businessProfile.addresses?.[0] || {};
-        return (
-            <>
+        const addInfo = businessProfile.addresses?.[0];
+        if(addInfo) {
+            return (
                 <div className='p-md'>
                     {
                         <AddressDetails
@@ -395,8 +396,10 @@ const EditBusiness = (props: EditBusinessProps) => {
                         />
                     }
                 </div>
-            </>
-        )
+            )
+        } else {
+            return( <></>)
+        }
     }
 
     const showCompanyContact = () => {

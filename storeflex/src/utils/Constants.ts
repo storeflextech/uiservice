@@ -1,6 +1,6 @@
 import HomePage from "../pages/HomePage";
-import SignIn from "../pages/signin-administrator";
-import SignUpNew from "../pages/signup-new";
+import SignInPage from "../pages/SigninPage";
+//import SignUpNew from "../pages/signup-new";
 import SignUp from "../pages/signup";
 import DashboardPage from "../pages/DashboardPage";
 import BusinessPage from "../pages/BusinessPage";
@@ -33,6 +33,7 @@ import PaymentHistory from "../pages/paymentHistory";
 import UserProfile from "../pages/userProfile";
 import SiteMap from "../pages/SiteMap";
 import WarehousePage from "../pages/WarehousePage";
+import UserPage from "../pages/UserPage";
 
 import WarehouseDetails from "../components/atoms/Searchresult/warehouseDetails";
 import SignInCustomer from "../pages/signin-customer";
@@ -50,6 +51,11 @@ export enum ACTIONS_TYPE {
   view = "VIEW",
 }
 
+export enum ROLE_TYPE {
+  admin = 'ADMIN',
+  guest = 'GUEST',
+}
+
 export const PAGES = {
   Home: {
     path: "/home",
@@ -57,7 +63,9 @@ export const PAGES = {
   },
   SignIn: {
     path: "/signin",
-    Component: SignIn,
+    adminPath: "/signin#admin",
+    userPath: "/signin#user",
+    Component: SignInPage,
   },
   SignInCustomer: {
     path: "/signin-customer",
@@ -66,10 +74,6 @@ export const PAGES = {
   SignUp: {
     path: "/signup",
     Component: SignUp,
-  },
-  SignUpNew: {
-    path: "/signup-new",
-    Component: SignUpNew,
   },
   Dashboard: {
     path: "/dashboard",
@@ -105,6 +109,22 @@ export const PAGES = {
     VIEW: {
       path: "/warehouse/view",
       Component: WarehousePage,
+    },
+  },
+  USER: {
+    path: "/user",
+    Component: UserPage,
+    ADD: {
+      path: "/user/add",
+      Component: UserPage,
+    },
+    EDIT: {
+      path: "/user/edit",
+      Component: UserPage,
+    },
+    VIEW: {
+      path: "/user/view",
+      Component: UserPage,
     },
   },
   AddInfo: {
@@ -217,3 +237,8 @@ export const PAGES = {
     Component: WarehouseDetails,
   },
 };
+
+export enum SESSION_TYPE {
+  login_resp = "LOGIN_RESP",
+}
+

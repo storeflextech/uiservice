@@ -6,9 +6,22 @@ export interface SlLoginProps {
     password: string
 }
 
-export interface SignInProps {
-    username: string;
-    password: string;
+export interface SignInPost {
+    username?: string,
+    emailId: string,
+    password: string
+}
+
+export interface SignInResp {
+    firstName?: string,
+    middleName?: string,
+    lastName?: string,
+    mobileNo?: string,
+    email?: string,
+    status?: string,
+    roleType?: string,
+    redirectUrl?: string,
+    loginType?: string
 }
 
 export interface ViewCompaniesProps {

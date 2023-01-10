@@ -24,8 +24,7 @@ const AddWarehouse = () => {
     const [pricing, setPricing] = useState<Warehouseprice>({});
     const [whHours, setWhHours] = useState<Hours>({});
     const [whLayout, setLayout] = useState<WarehouseLayoutObj>({});
-    
-    const[gstid, setGstId]= useState<WhDetail>({});
+
 
     const onWarehouseDetailsUpdate = (data: WhDetail) => {
         setWhDetails(data);
@@ -90,14 +89,36 @@ const AddWarehouse = () => {
             alert('At grade door is required');
         }
         else if(!whLayout?.ceillingheight){
-            alert('Ceilling height is required');
+            alert('Clear Ceilling Height is required');
         }
         else if(!whLayout?.forkliftcapacity){
-            alert('Fork lift capacity is required');
+            alert('Max Forklift Capacity is required');
         }
+        else if(!pricing?.availspace){
+            alert('Total Available Space is required');
+        }
+        else if(!pricing?.ratesqtft){
+            alert('Rate(Rs)/sq.ft/month is required');
+        }
+        else if(!pricing?.minordersqt){
+            alert('Minimum Order Quantity is required');
+        }
+        else if(!whHours?.starttime){
+            alert('Facility houres is required');
+        }
+        else if (!whLayout?.facilitiesId){
+            alert('Facility qualifications is required');
+        }
+        else if (!whLayout?.storagesId){
+            alert('Storage layout is required');
+        }
+        else if(!whLayout?.industryId){
+            alert('Industries served is required');
+        }
+       
       
          else{
-            const buildPostData = {} as WarehousePostData;
+        const buildPostData = {} as WarehousePostData;
         buildPostData.clientId = whDetails?.clientId;
         buildPostData.warehouseName = whDetails?.warehouseName;
         buildPostData.warehouseTaxId = whDetails?.warehouseTaxId;
@@ -112,8 +133,6 @@ const AddWarehouse = () => {
         buildPostData.ceillingheight = whLayout.ceillingheight;
         buildPostData.forkliftcapacity = whLayout.forkliftcapacity;
        
-        
-
         setIsLoader(true);
         api.addWarehouse(buildPostData).then((resp) => {
             setIsLoader(false);

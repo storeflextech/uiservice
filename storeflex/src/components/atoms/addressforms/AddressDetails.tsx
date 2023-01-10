@@ -30,6 +30,12 @@ const AddressDetails = (props: AddressDetailsProps) => {
     const [streetInfo, setStreetInfo] = useState<objectData>({});
 
     const [onUpdateInfo, setOnUpdateInfo] = useState(false);
+    const [addressInfo, setAddressInfo] = useState<Address>()
+
+    useEffect(() => {
+        setAddressInfo(props.data);
+        console.log('  AddressDetails  >> ', props.data);
+    },[]);
 
     useEffect(() => {
         if (props?.countryCode !== countryCode) {
@@ -220,7 +226,7 @@ const AddressDetails = (props: AddressDetailsProps) => {
                 <Grid item xs={6}>
                     <div> City* </div>
                     <div className='p-top-sm'>
-                        {<GetCity stateCode={stateInfo?.val || ''} onChange={onCityChange} />}
+                        {<GetCity stateCode={stateInfo?.val || addressInfo?.state} onChange={onCityChange} defaultCity={addressInfo?.city}/>}
                     </div>
                 </Grid>
             </Grid>
