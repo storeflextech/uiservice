@@ -1,6 +1,8 @@
 // import React from 'react';
 import axios from 'axios';
-import { ApiConfig, SlLoginProps, SignInPost, GetStatesProp, GetCitiesProp, AddCompanyPostData, ViewCompaniesProps, ViewWarehouseProps, viewWarehouseAdminProps, EnquiryProps, viewUserProps, WarehousePostData } from './ApiConfig';
+import { ApiConfig, SlLoginProps, SignInPost, GetStatesProp, GetCitiesProp, AddCompanyPostData, 
+    ViewCompaniesProps, ViewWarehouseProps, viewWarehouseAdminProps, EnquiryProps, viewUserProps, 
+    WarehousePostData, UserPostData } from './ApiConfig';
 
 
 // let axiosConfig = {
@@ -333,6 +335,23 @@ export default class Api {
         }
         catch (error) {
             console.log(' error : View User', error);
+            return Promise.reject(error);
+        }
+    }
+    async postUser(data: UserPostData, roleType: string, clientCodes: string): Promise<any> {
+        const url = `${this.baseUrl}${this.apiUrl.userUrl}?roleType=${roleType}&clientCodes=${clientCodes}`;
+        try {
+            const response = await axios.post(url, data);
+            if (response?.data?.statusCode === 600) {
+                return Promise.resolve(response?.data);
+            } else {
+                console.log(' error : postUser ', response);
+                return Promise.reject(response);
+            }
+
+        }
+        catch (error) {
+            console.log(' error : postUser ', error);
             return Promise.reject(error);
         }
     }
