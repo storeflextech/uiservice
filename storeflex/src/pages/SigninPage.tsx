@@ -17,7 +17,7 @@ const SignInPage = () => {
 
   const url = window.location.href;
 
-  if(url && url.indexOf(PAGES.SignIn.adminPath) !== -1) {
+  if (url && url.indexOf(PAGES.SignIn.adminPath) !== -1) {
     userType = USER_TYPE.SfUser;
   } else {
     userType = USER_TYPE.SfClient;
@@ -46,7 +46,7 @@ const SignInPage = () => {
 
 
   const SubmitSignUp = () => {
-    window.location.href = '/signup-new';
+    window.location.href = '/signup';
   }
 
   const submitSignIn = () => {
@@ -89,84 +89,84 @@ const SignInPage = () => {
 
   return (
     <>
-      { loader && <LoaderFull /> }
+      {loader && <LoaderFull />}
       <section className="signin-area signin-one">
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-lg-5">
-            <div className="signin-form form-style-two rounded-buttons">
-              <div className="row">
-                <div className="col-md-12 justify-content-center">
-                  <div className="form-input justify-content-center">
-                    <a href="/home"><img src="assets/images/white-logo.jpg" alt="Logo" style={{ height: '8vh' }} /></a>
-                    <h4 className='pb-3' style={{textAlign:'center'}}>
-                      Storeflex <span>{ userType === USER_TYPE.SfUser ? 'Admin' : 'User'}</span>  Login</h4>
-                    <div className="input-items default">
-                      <input type="text" placeholder="User ID" name="email" onChange={handleChange} />
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-lg-5">
+              <div className="signin-form form-style-two rounded-buttons">
+                <div className="row">
+                  <div className="col-md-12 justify-content-center">
+                    <div className="form-input justify-content-center">
+                      <a href="/home"><img src="assets/images/white-logo.jpg" alt="Logo" style={{ height: '8vh' }} /></a>
+                      <h4 className='pb-3' style={{ textAlign: 'center' }}>
+                        Storeflex <span>{userType === USER_TYPE.SfUser ? 'Admin' : 'User'}</span>  Login</h4>
+                      <div className="input-items default">
+                        <input type="text" placeholder="User ID" name="email" onChange={handleChange} />
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="col-md-12">
-                  <div className="form-input">
-                    <label>Password for your account</label>
-                    <div className="input-items default">
-                      <input type="password" placeholder="Password" name="password" onChange={handleChange} />
+                  <div className="col-md-12">
+                    <div className="form-input">
+                      <label>Password for your account</label>
+                      <div className="input-items default">
+                        <input type="password" placeholder="Password" name="password" onChange={handleChange} />
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="form-input rounded-buttons">
-                    <button onClick={() => { submitSignIn() }}
-                      className="btn primary-btn rounded-full"
-                      type="submit"
-                    >
-                      Sign In
-                    </button>
+                  <div className="col-md-6">
+                    <div className="form-input rounded-buttons">
+                      <button onClick={() => { submitSignIn() }}
+                        className="btn primary-btn rounded-full"
+                        type="submit"
+                      >
+                        Sign In
+                      </button>
+                    </div>
                   </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="form-input rounded-buttons">
-                    <button onClick={SubmitSignUp}
-                      className="btn primary-btn-outline rounded-full"
-                      type="submit"
-                    >
-                      Sign Up
-                    </button>
+                  <div className="col-md-6">
+                    <div className="form-input rounded-buttons">
+                      <button onClick={SubmitSignUp}
+                        className="btn primary-btn-outline rounded-full"
+                        type="submit"
+                      >
+                        Sign Up
+                      </button>
+                    </div>
                   </div>
-                </div>
-                <div className="col-md-12">
-                  <div className="form-input text-center">
-                    <h4 className="text">
-                      Or continue with
-                      <br></br>
-                      <GoogleLogin
-                        clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID || ""}
-                        buttonText=" Google"
-                        onSuccess={onGoogleLoginSuccess}
-                        onFailure={onGoogleLoginFailure}
-                        cookiePolicy={'single_host_origin'}
-                      />
-                    </h4>
+                  <div className="col-md-12">
+                    <div className="form-input text-center">
+                      <h4 className="text">
+                        Or continue with
+                        <br></br>
+                        <GoogleLogin
+                          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID || ""}
+                          buttonText=" Google"
+                          onSuccess={onGoogleLoginSuccess}
+                          onFailure={onGoogleLoginFailure}
+                          cookiePolicy={'single_host_origin'}
+                        />
+                      </h4>
+                    </div>
                   </div>
-                </div>
-                <div className="col-md-12">
-                  <div className="form-input text-center">
-                    <p className="text">
-                      By signing in you agree with the<br></br>
-                      <a href="/termsandconditions">Terms and Conditions &nbsp;</a>
-                      and
-                      <a href="/privacypolicy">&nbsp; Privacy Policy</a>
-                    </p>
+                  <div className="col-md-12">
+                    <div className="form-input text-center">
+                      <p className="text">
+                        By continuing, you have read and agree to our<br></br>
+                        <a href="/termsandconditions">Terms and Conditions &nbsp;</a>
+                        and
+                        <a href="/privacypolicy">&nbsp; Privacy Policy</a>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
     </>
-    
+
   )
 };
 
