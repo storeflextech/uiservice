@@ -1,3 +1,4 @@
+import { NoBackpackSharp } from '@mui/icons-material';
 import { PAGES, SESSION_TYPE } from './Constants';
 
 export const CHARACTER_ONLY = /^[A-Za-z ,.'-]+$/;
@@ -12,40 +13,40 @@ export const regex_pincode = /^[0-9]{6}(?:-[0-9]{5})?$/;
 export const regex_availableSpace = /^[1-9]\d{2,5}$/;
 export const regex_rate = /^[1-9]\d{1,3}$/
 
-export const validateCharacterLength = (text:string = '', minLen:number = 4, maxLen:number = 20) => {
-    const isValid = (text?.length < minLen || text?.length > maxLen)?false:true;
+export const validateCharacterLength = (text: string = '', minLen: number = 4, maxLen: number = 20) => {
+    const isValid = (text?.length < minLen || text?.length > maxLen) ? false : true;
     return isValid;
 }
 
-export const validateCharacterOnly = (text:any) =>{
-    const isValid = CHARACTER_ONLY.test(text)?false:true;
+export const validateCharacterOnly = (text: any) => {
+    const isValid = CHARACTER_ONLY.test(text) ? false : true;
     return isValid;
 }
 
-export const validateAreaSpace = (price:any) => {
-    const isValid = regex_availableSpace.test(price)?true:false;
+export const validateAreaSpace = (price: any) => {
+    const isValid = regex_availableSpace.test(price) ? true : false;
     return isValid;
 }
 
-export const validateRate = (price:any) => {
-    const isValid = regex_rate.test(price)?true:false;
+export const validateRate = (price: any) => {
+    const isValid = regex_rate.test(price) ? true : false;
     return isValid;
 }
 
-export const validateSpecialCharExistance= (text: string) => {
-    const isValid = (regex_specialChar.test(text))?true:false;
+export const validateSpecialCharExistance = (text: string) => {
+    const isValid = (regex_specialChar.test(text)) ? true : false;
     return isValid;
 }
 
 export const validateEmail = (email: string) => {
-    const isValid = regex_email.test(String(email).toLocaleLowerCase())?true:false;
+    const isValid = regex_email.test(String(email).toLocaleLowerCase()) ? true : false;
     return isValid;
 }
 
 export const validateMinLen = (val: string, trim?: boolean) => {
     const minLen = 4;
-    if(val) {
-        const value  = trim ? val.trim() : val;
+    if (val) {
+        const value = trim ? val.trim() : val;
         return value.length >= minLen ? true : false;
     } else {
         return false;
@@ -53,7 +54,7 @@ export const validateMinLen = (val: string, trim?: boolean) => {
 }
 
 export const validatePassword = (password: string) => {
-    const isValid = regex_pass.test(String(password))?true:false;
+    const isValid = regex_pass.test(String(password)) ? true : false;
     return isValid;
 }
 
@@ -63,53 +64,53 @@ export const validateCompanyName = (companyName: string) => {
 }
 
 export const validateWebUrl = (webUrl: string) => {
-    
-    const isValid = regex_url.test(String(webUrl))?true:false;
+
+    const isValid = regex_url.test(String(webUrl)) ? true : false;
 
     return isValid;
 }
 
 export const validatePhone = (phone: any) => {
-    const isValid = regex_phone.test(String(phone))?true:false;
-    
+    const isValid = regex_phone.test(String(phone)) ? true : false;
+
     return isValid;
 }
 
 export const validateGst = (gst: string) => {
-    
-    const isValid = regex_gstid.test(String(gst))?true: false;
+
+    const isValid = regex_gstid.test(String(gst)) ? true : false;
 
     return isValid;
 }
 
 export const validatePinCode = (pincode: any) => {
-    const isValid = regex_pincode.test(pincode)?true:false;
+    const isValid = regex_pincode.test(pincode) ? true : false;
     return isValid;
 }
 
 export const validateCity = (city?: string) => {
-    
-    const isValid = regex_city.test(String(city))?true : false;
+
+    const isValid = regex_city.test(String(city)) ? true : false;
 
     return isValid;
 }
 
 export const validateState = (state: string) => {
-    
+
     const isValid = false;
 
     return isValid;
 }
 
 export const validateCountry = (country: string) => {
-    
+
     const isValid = false;
 
     return isValid;
 }
 
 export const setUserLoggedIn = (val: string | boolean) => {
-    if(val) {
+    if (val) {
         sessionStorage.setItem('isLoggedIn', String(val));
     } else {
         sessionStorage.setItem('isLoggedIn', 'false');
@@ -117,7 +118,7 @@ export const setUserLoggedIn = (val: string | boolean) => {
 }
 export const getUserLoggedIn = () => {
     const loggedIn = sessionStorage.getItem('isLoggedIn');
-    if(loggedIn === 'true') {
+    if (loggedIn === 'true') {
         return true;
     } else {
         return false;
@@ -130,7 +131,7 @@ export const setUserName = (val: string) => {
 
 export const getUserType = () => {
     const data = sessionStorage.getItem(SESSION_TYPE.login_resp);
-    if( data && JSON.parse(data)) {
+    if (data && JSON.parse(data)) {
         const obj = JSON.parse(data);
         return obj.loginType;
     } else {
@@ -138,14 +139,54 @@ export const getUserType = () => {
     }
 }
 
+export const getUserEmail = () => {
+    const data = sessionStorage.getItem(SESSION_TYPE.login_resp);
+    if (data && JSON.parse(data)) {
+        const obj = JSON.parse(data);
+        return obj.email;
+    } else {
+        return null;
+    }
+}
+
+export const getName = () => {
+    const data = sessionStorage.getItem(SESSION_TYPE.login_resp);
+    if (data && JSON.parse(data)) {
+        const obj = JSON.parse(data);
+        return (obj.firstName + obj.lastName);
+    } else {
+        return null;
+    }
+}
+
+export const getMobileNo = () => {
+    const data = sessionStorage.getItem(SESSION_TYPE.login_resp);
+    if (data && JSON.parse(data)) {
+        const obj = JSON.parse(data);
+        return obj.mobileNo;
+    } else {
+        return null;
+    }
+}
+
+export const getroleType = () => {
+    const data = sessionStorage.getItem(SESSION_TYPE.login_resp);
+    if (data && JSON.parse(data)) {
+        const obj = JSON.parse(data);
+        return obj.roleType;
+    } else {
+        return null;
+    }
+}
+
 export const getRedirectionPage = (redirectUrl?: string) => {
-    if(redirectUrl === '/storeflexhome'){  
+    if (redirectUrl === '/storeflexhome') {
         return PAGES.Home.path;
-    }else if(redirectUrl === '/storeflexuserdashboard'){    // Storeflex User Dashboard
+    } else if (redirectUrl === '/storeflexuserdashboard') {    // Storeflex User Dashboard
         return PAGES.Dashboard.path;
-    }else if(redirectUrl === '/storeflexclientdashboard'){  // Storeflex Client Dashboard
+    } else if (redirectUrl === '/storeflexclientdashboard') {  // Storeflex Client Dashboard
         return PAGES.Dashboard.path;
-    }else if(redirectUrl === '/storeflexcustdashboard'){    // Storeflex Customer Dashboar
+    } else if (redirectUrl === '/storeflexcustdashboard') {    // Storeflex Customer Dashboar
         return PAGES.Dashboard.path;
     } else {
         return PAGES.Home.path;      // If redirect url is missing then redirect to home
@@ -153,7 +194,7 @@ export const getRedirectionPage = (redirectUrl?: string) => {
 }
 
 export const sessionStorageSet = (data: any, name: string) => {
-    if(data && name) {
+    if (data && name) {
         sessionStorage.setItem(name, JSON.stringify(data));
     }
 }

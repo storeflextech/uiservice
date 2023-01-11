@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from "react-router-dom"
 import Nav from 'react-bootstrap/Nav';
 import { PAGES } from '../../utils/Constants';
+import { getUserLoggedIn } from '../../utils/CommonUtils';
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -24,10 +25,10 @@ const Footer = () => {
                 <p className="text-center">Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum
                   has been. </p>*/}
                 <div className="social text-center mt-60">
-                  
+
                   <ul>
                     <li>
-                    <h4>Follow Us On</h4>
+                      <h4>Follow Us On</h4>
                     </li>
                     <li>
                       <a href="javascript:void(0)"> <i className="lni lni-facebook-filled"></i> </a>
@@ -44,20 +45,34 @@ const Footer = () => {
                   </ul></div>
                 {/* <!-- social --> */}
               </div>
-              <Nav className="justify-content-center">
-                <Nav.Item>
-                  <Nav.Link onClick={() => { onLinkClick(PAGES.TERMSANDCONDITIONS.path) }}>Terms of condition</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link onClick={() => { onLinkClick(PAGES.PRIVACYPOLICY.path) }}>Privacy Policy</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link onClick={() => { onLinkClick(PAGES.FAQ.path) }}>FAQ</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link onClick={() => { onLinkClick(PAGES.SignIn.adminPath) }}>Administrator Login</Nav.Link>
-                </Nav.Item>
-              </Nav>
+              {getUserLoggedIn() ?
+                <Nav className="justify-content-center">
+                  <Nav.Item>
+                    <Nav.Link onClick={() => { onLinkClick(PAGES.TERMSANDCONDITIONS.path) }}>Terms of condition</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link onClick={() => { onLinkClick(PAGES.PRIVACYPOLICY.path) }}>Privacy Policy</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link onClick={() => { onLinkClick(PAGES.FAQ.path) }}>FAQ</Nav.Link>
+                  </Nav.Item>
+                </Nav>
+                :
+                <Nav className="justify-content-center">
+                  <Nav.Item>
+                    <Nav.Link onClick={() => { onLinkClick(PAGES.TERMSANDCONDITIONS.path) }}>Terms of condition</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link onClick={() => { onLinkClick(PAGES.PRIVACYPOLICY.path) }}>Privacy Policy</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link onClick={() => { onLinkClick(PAGES.FAQ.path) }}>FAQ</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link onClick={() => { onLinkClick(PAGES.SignIn.adminPath) }}>Administrator Login</Nav.Link>
+                  </Nav.Item>
+                </Nav>
+              }
             </div>
           </div>
           {/* <!-- row --> */}
