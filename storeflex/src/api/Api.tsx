@@ -338,7 +338,7 @@ export default class Api {
             return Promise.reject(error);
         }
     }
-    async postUser(data: UserPostData, roleType: string, clientCodes: string): Promise<any> {
+    async postUser(data: UserPostData, roleType?: string, clientCodes?: string): Promise<any> {
         const url = `${this.baseUrl}${this.apiUrl.userUrl}?roleType=${roleType}&clientCodes=${clientCodes}`;
         try {
             const response = await axios.post(url, data);

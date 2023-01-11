@@ -23,14 +23,14 @@ const UserProfile = () => {
     const [CompanyCheck, setCompanyCheck] = useState(false);
     const [formData, setFormData] = useState(
         {
-            name: sessionStorage.getItem('name'),
+            name: sessionStorage.getItem('name') || '',
             company: '',
-            phone: sessionStorage.getItem('mobile'),
-            email: sessionStorage.getItem('email'),
+            phone: sessionStorage.getItem('mobile') || '',
+            email: sessionStorage.getItem('email') || '',
             city: '',
             state: '',
             zip: '',
-            roleType: sessionStorage.getItem('roleType')
+            roleType: sessionStorage.getItem('roleType') || ''
         }
     );
 
@@ -117,7 +117,7 @@ const UserProfile = () => {
                                                                 className="bg-{success} form-control font-weight-bold text-center"
                                                                 name="name"
                                                                 type="text"
-                                                                value={formData.name}
+                                                                value={formData?.name}
                                                                 onChange={handleInput}
                                                                 disabled={isDisabled}
                                                             // readOnly={true}
@@ -168,7 +168,7 @@ const UserProfile = () => {
                                                                 className="bg-{success} form-control font-weight-bold"
                                                                 type="text"
                                                                 name='phone'
-                                                                value={formData.phone}
+                                                                value={formData?.phone}
                                                                 onChange={handleInput}
                                                                 disabled={isDisabled}
                                                             />
@@ -185,7 +185,7 @@ const UserProfile = () => {
                                                                 className="bg-{success} form-control font-weight-bold"
                                                                 type="text"
                                                                 name='email'
-                                                                value={formData.email}
+                                                                value={formData?.email}
                                                                 onChange={handleInput}
                                                                 disabled={isDisabled}
                                                             />
@@ -201,7 +201,7 @@ const UserProfile = () => {
                                                                 className="bg-{success} form-control font-weight-bold"
                                                                 type="text"
                                                                 name='city'
-                                                                value={formData.city}
+                                                                value={formData?.city}
                                                                 onChange={handleInput}
                                                                 disabled={isDisabled}
                                                             />
@@ -229,7 +229,7 @@ const UserProfile = () => {
                                                                 className="bg-{success} form-control font-weight-bold"
                                                                 type="text"
                                                                 name='city'
-                                                                value={formData.state}
+                                                                value={formData?.state}
                                                                 onChange={handleInput}
                                                                 disabled={isDisabled}
                                                             />
@@ -242,7 +242,7 @@ const UserProfile = () => {
                                                                 className="bg-{success} form-control font-weight-bold"
                                                                 type="text"
                                                                 name='city'
-                                                                value={formData.zip}
+                                                                value={formData?.zip}
                                                                 onChange={handleInput}
                                                                 disabled={isDisabled}
                                                             />
@@ -257,7 +257,7 @@ const UserProfile = () => {
                                                                 className="bg-{success} form-control font-weight-bold"
                                                                 type="text"
                                                                 name='roleType'
-                                                                value={formData.roleType}
+                                                                value={formData?.roleType}
                                                                 onChange={handleInput}
                                                                 disabled={isDisabled}
                                                             />
