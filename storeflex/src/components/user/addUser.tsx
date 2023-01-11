@@ -1,19 +1,30 @@
 import React, { useState } from 'react';
 import { Grid } from '@mui/material';
+import swal from 'sweetalert';
 import AddressDetails from '../atoms/addressforms/AddressDetails';
 import InputBox from '../atoms/textfield/InputBox';
 import { UserType } from '../atoms/adduser/UserHelper';
-import { validateCharacterLength, validateSpecialCharExistance, validateEmail } from '../../../src/utils/CommonUtils';
+import { validateCharacterLength, validateSpecialCharExistance, validateEmail, validatePhone } from '../../../src/utils/CommonUtils';
 import { Button } from '@mui/material';
 import GetCompany from '../atoms/company/GetCompany';
 import { UploadImage } from '../atoms/image/image';
 import { UserPostData } from '../../api/ApiConfig';
 import { InputError } from '../atoms/textfield/InputError';
+import { Address } from '../../utils/ResponseSchema';
+import LoaderSpinner from '../atoms/spinner/spinner';
+import Api from '../../api/Api';
 
 let firstNameErr, phoneErr, lastNameErr, emailErr;
+
 const AddUser = () => {
-  
+  const api = new Api();
+  const [step, setStep] = useState(1);
   const [userPostInfo , setUserPostInfo] = useState<UserPostData>();
+  const [isLoader, setLoaderState] = useState(false);
+  
+  // Address Information 
+  const [addressInfo, setAddressInfo] = useState<Address>({});
+
   //Validate First name
   const validateFirstName = (event: any) => {
     const firstNameTemp = event.target.value;
@@ -48,15 +59,12 @@ const AddUser = () => {
     setUserPostInfo({...userPostInfo, lastName: lastNameTemp });
   }
   //Validate Phone
-  const validatePhone = (event: any) => {
+  const onMobileNoChange = (event: any) => {
     const phoneTemp = event.target.value;
     if (!phoneTemp) {
       phoneErr = "*Phone is required."
-    } else if (!validateCharacterLength(phoneTemp, 10, 10)) {
-      phoneErr = "Phone Number should contains 10 characters"
-    }
-    else if (!validateSpecialCharExistance(phoneTemp)) {
-      phoneErr = "Phone number should not contain any special characters"
+    } else if (!validatePhone(phoneTemp)) {
+      phoneErr = "Phone Number should contains 10 digit only"
     } else {
       phoneErr = '';
     }
@@ -92,11 +100,27 @@ const AddUser = () => {
   }
 
   const onUserTypeUpdate = (userType: string) => {
+    setUserPostInfo({...userPostInfo, roleType: userType });
     console.log(' << onUserTypeUpdate >> ' , userType);
   }
 
   const onCompanyChange = (id: string) => {
+    setUserPostInfo({...userPostInfo, clientId: id });
     console.log(' << onCompanyChange >> ' , id);
+  }
+
+  const onAddressUpdate = (data: Address) => {
+    const addressData = {} as Address;
+    addressData.addressType = data.addressType;
+    addressData.city = data.city;
+    addressData.country = data.country;
+    addressData.state = data.state;
+    addressData.pincode = data.pincode;
+    addressData.plotNo = data.plotNo;
+    addressData.houseNo = data.houseNo;
+    addressData.streetDetails = data.streetDetails;
+    console.log(' <<< onAddressUpdate >>>', addressData);
+    setAddressInfo(addressData);
   }
   const selectDetails = () => {
     console.log( firstNameErr, ' <<>>> ', userPostInfo);
@@ -114,7 +138,7 @@ const AddUser = () => {
              <InputError errorText={firstNameErr} />
 
             <InputBox data={{ name: 'phone', label: 'Phone*', value: userPostInfo?.mobileNo }}
-              onChange={validatePhone} onBlur={handelOnBlur}
+              onChange={onMobileNoChange} onBlur={handelOnBlur}
             />
             <InputError errorText={phoneErr} />
             </div>
@@ -144,50 +168,90 @@ const AddUser = () => {
           <UploadImage name={'companyphoto'} onImageChange={onPhotoUploadChange} />
           </div>
         </Grid>
-        
       </Grid>
     )
   }
 
-  const userInfo = () => {
-    return (
-      <div className='p-top-md'>
-        <Grid container spacing={2} columns={{ xs: 4, sm: 12, md: 12 }}>
-          
-          </Grid>
-          <Grid item xs={4}>
-        </Grid>
-      </div>
-
-    )
+  const upladPhoto = (imagefile?: any, clientId?: string) => {
+    if (imagefile && clientId) {
+        setLoaderState(true);
+        api.uploadCompanyPhoto(imagefile, clientId).then((response) => {
+            setLoaderState(false);
+            console.log(' upladPhoto res >>>>>> ', response);
+        }).catch((error) => {
+            setLoaderState(false);
+            console.log(' upladPhoto erroor ', error);
+        });
+    }
   }
+  const onSave = () => {
+    const postData = {} as UserPostData;
+    // postData.clientId = userPostInfo?.clientId;
+    // postData.roleType = userPostInfo?.roleType;
+    postData.firstName = userPostInfo?.firstName;
+    postData.lastName = userPostInfo?.lastName;
+    postData.mobileNo = userPostInfo?.mobileNo;
+    postData.email = userPostInfo?.email;
+    postData.addresses = [addressInfo];
+
+    setLoaderState(true);
+      api.postUser(postData, userPostInfo.roleType, userPostInfo.clientId).then((resp) => {
+          setLoaderState(false); setStep(3);
+          if (resp && resp.methodReturnValue.clientId && imageData) {
+              upladPhoto(imageData, resp.methodReturnValue.clientId);
+              // for testin only upladPhoto(imageData, 'CL-166');
+          }
+          swal({
+              text: 'Success! You have added profile',
+              icon: "success",
+              buttons: {
+                  buttonOne: {
+                      text: "OK",
+                      value: "ok",
+                      visible: true,
+                      className: "sf-btn",
+                  }
+              }
+          }).then(function (value) {
+              if (value === "ok") { window.location.href = "/user/view#pending"; }
+              else { window.location.href = "/user/view#pendig"; }
+          });
+          console.log(' User add res >>>>>> ', resp);
+      }).catch((error) => {
+          setLoaderState(false);
+          console.log(' User add erroor ', error);
+      });
+  }
+
   const addAddress = () => {
     return (
       <div className='p-top-md'>
-        <div>{
           <AddressDetails
-            countryCode={'01'}
-          />}</div>
+              countryCode={'01'}
+              onUpdate={onAddressUpdate}
+          />
       </div>
     )
   }
-
   return (
+    <>
+      {isLoader && <LoaderSpinner />}
+    
     <div className='c-box-shadow-blue m-bot-md'>
       <div className='primary-gradient'>
         <div className='font-white p-md f-18px f-bold'>Add User</div>
       </div>
       <div className='p-md'>
         {selectDetails()}
-        {userInfo()}
         {addAddress()}
       </div>
       <div className='p-top-md align-c'>
         <Button className='sf-btn' variant="contained" onClick={() => { alert('Cancel') }}> Cancel </Button>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <Button className="btn primary-btn sf-btn" variant="contained" onClick={() => { }}> Save </Button>
+        <Button className="btn primary-btn sf-btn" variant="contained" onClick={onSave}> Save </Button>
       </div>
     </div>
+    </>
   );
 }
 

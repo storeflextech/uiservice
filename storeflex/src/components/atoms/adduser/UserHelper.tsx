@@ -18,14 +18,14 @@ interface currentValue {
 export const UserType = (props?: UserTypeProps) => {
 
   const userData = [ { name: 'Administrator', code: ROLE_TYPE.admin}, {name:'Standard', code: ROLE_TYPE.guest}];
-  const [selectedUser, setSelectedUser] = useState(ROLE_TYPE.guest as string);
+  const [selectedUser, setSelectedUser] = useState('');
+
+  // useEffect(() => {
+  //   setSelectedUser(props?.defaultUser || ROLE_TYPE.guest as string);
+  // },[]);
 
   useEffect(() => {
-    setSelectedUser(props?.defaultUser || ROLE_TYPE.guest as string);
-  },[]);
-
-  useEffect(() => {
-    if(props?.onUpdate) {
+    if(props?.onUpdate && selectedUser) {
       props.onUpdate(selectedUser);
     }
   },[selectedUser]);
