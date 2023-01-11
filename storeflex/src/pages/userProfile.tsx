@@ -3,30 +3,34 @@ import { Box } from '@mui/material';
 import TopNavBar from '../components/navbar/TopNavBar';
 import SideNavBar from '../components/navbar/SideNavBar';
 import { AppContainer, SplitPaneContainer } from '../components/containers/containers';
-import { getUserType } from '../utils/CommonUtils';
+import { getMobileNo, getName, getroleType, getUserEmail, getUserType } from '../utils/CommonUtils';
 import Footer from '../components/footer/footer';
-
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import { isReadable } from 'stream';
 import swal from 'sweetalert';
-import InputBox from '../components/atoms/textfield/InputBox';
+import { UserType } from '../components/atoms/adduser/UserHelper';
+
 
 
 const UserProfile = () => {
+    sessionStorage.setItem('email', getUserEmail());
+    sessionStorage.setItem('name', getName());
+    sessionStorage.setItem('mobile', getMobileNo());
+    sessionStorage.setItem('roleType', getroleType());
     const [isDisabled, setIsDisabled] = useState(true);
     const [RoleCheck, setRoleCheck] = useState(false);
     const [CompanyCheck, setCompanyCheck] = useState(false);
     const [formData, setFormData] = useState(
         {
-            name: 'Mithu Zaman',
-            company: 'United Company of Skaplink',
-            phone: '9876541230',
-            email: 'company@skap.com',
-            city: 'Guwahati',
-            state: 'Assam',
-            zip: '781001'
+            name: sessionStorage.getItem('name'),
+            company: '',
+            phone: sessionStorage.getItem('mobile'),
+            email: sessionStorage.getItem('email'),
+            city: '',
+            state: '',
+            zip: '',
+            roleType: sessionStorage.getItem('roleType')
         }
     );
 
@@ -252,9 +256,10 @@ const UserProfile = () => {
                                                             <input
                                                                 className="bg-{success} form-control font-weight-bold"
                                                                 type="text"
-                                                                name='city'
-                                                                // value={getUserType()}
-                                                                disabled={true}
+                                                                name='roleType'
+                                                                value={formData.roleType}
+                                                                onChange={handleInput}
+                                                                disabled={isDisabled}
                                                             />
 
                                                         </div>
@@ -289,7 +294,7 @@ const UserProfile = () => {
                                                                             className='font-weight-bold'
                                                                             type="text"
                                                                             onChange={handleInput}
-                                                                            value={formData.name}
+                                                                            value={''}
                                                                             autoFocus
                                                                         />
                                                                     </Form.Group>
@@ -300,7 +305,7 @@ const UserProfile = () => {
                                                                             className='font-weight-bold'
                                                                             type="number"
                                                                             onChange={handleInput}
-                                                                            value={formData.phone}
+                                                                            value={''}
                                                                             autoFocus
                                                                         />
                                                                     </Form.Group>
@@ -328,7 +333,7 @@ const UserProfile = () => {
                                                                         className='font-weight-bold'
                                                                         type="email"
                                                                         onChange={handleInput}
-                                                                        value={formData.email}
+                                                                        value={''}
                                                                         autoFocus
                                                                     />
                                                                 </Form.Group>
