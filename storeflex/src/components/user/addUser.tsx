@@ -3,100 +3,81 @@ import { Grid } from '@mui/material';
 import AddressDetails from '../atoms/addressforms/AddressDetails';
 import InputBox from '../atoms/textfield/InputBox';
 import { UserType } from '../atoms/adduser/UserHelper';
-import { validateCharacterLength, validateSpecialCharExistance } from '../../../src/utils/CommonUtils';
+import { validateCharacterLength, validateSpecialCharExistance, validateEmail } from '../../../src/utils/CommonUtils';
 import { Button } from '@mui/material';
 import GetCompany from '../atoms/company/GetCompany';
 import { UploadImage } from '../atoms/image/image';
+import { UserPostData } from '../../api/ApiConfig';
+import { InputError } from '../atoms/textfield/InputError';
 
+let firstNameErr, phoneErr, lastNameErr, emailErr;
 const AddUser = () => {
-  const [values, setValues] = useState({
-    FirstName: "",
-    LastName: "",
-    Phone: "",
-    Email: "",
-  });
-  const [errors, setErrors] = useState({
-    FirstName: "",
-    LastName: "",
-    Phone: "",
-    Email: "",
-
-  });
-
+  
+  const [userPostInfo , setUserPostInfo] = useState<UserPostData>();
   //Validate First name
   const validateFirstName = (event: any) => {
-
     const firstNameTemp = event.target.value;
-    setValues({
-      ...values,
-      [event.target.name]: event.target.value,
-    });
     if (!firstNameTemp) {
-      errors.FirstName = "*Firstname is required."
-      document.getElementsByName("firstname")[0].style.border = " solid red";
-
+      firstNameErr = "*Firstname is required."
     } else if (!validateCharacterLength(firstNameTemp, 4, 50)) {
-      errors.FirstName = "Firstname should have atleast 4 letters and should not grater than 50"
-      document.getElementsByName("firstname")[0].style.border = "2px solid red";
+      firstNameErr = "Firstname should have atleast 4 letters and should not grater than 50"
     }
     else if (!validateSpecialCharExistance(firstNameTemp)) {
-      errors.FirstName = "Firstname should not contain any special character or number "
-      document.getElementsByName("firstname")[0].style.border = "2px solid red";
+      firstNameErr = "Firstname should not contain any special character or number "
     } else {
-      errors.FirstName = ""
-      document.getElementsByName("firstname")[0].style.border = "2px solid dodgerblue"
+      firstNameErr = '';
     }
-
+    console.log(' >>>>> ', firstNameErr);
+    // userPostInfo.firstName = firstName;
+    setUserPostInfo({...userPostInfo, firstName: firstNameTemp });
   }
   //Validate Last Name
   const validateLastName = (event: any) => {
     const lastNameTemp = event.target.value;
-    setValues({
-      ...values,
-      [event.target.name]: event.target.value,
-    });
     if (!lastNameTemp) {
-      errors.LastName = "*Lastname is required."
-      document.getElementsByName("lastname")[0].style.border = " solid red";
+      lastNameErr = "*Lastname is required."
     } else if (!validateCharacterLength(lastNameTemp, 2, 30)) {
-      errors.LastName = "Lastname should have atleast 2 letters and should not grater than 30"
-      document.getElementsByName("lastname")[0].style.border = "2px solid red";
+      lastNameErr = "Lastname should have atleast 2 letters and should not grater than 30"
     }
     else if (!validateSpecialCharExistance(lastNameTemp)) {
-      errors.LastName = "Lastname should not contain any special character or number "
-      document.getElementsByName("lastname")[0].style.border = "2px solid red";
+      lastNameErr = "Lastname should not contain any special character or number"
     } else {
-      errors.LastName = ""
-      document.getElementsByName("lastname")[0].style.border = "2px solid dodgerblue"
+      lastNameErr = '';
     }
+    // userPostInfo?.lastName = lastNameTemp;
+    setUserPostInfo({...userPostInfo, lastName: lastNameTemp });
   }
   //Validate Phone
   const validatePhone = (event: any) => {
     const phoneTemp = event.target.value;
-    setValues({
-      ...values,
-      [event.target.name]: event.target.value,
-    });
     if (!phoneTemp) {
-      errors.Phone = "*Phone is required."
-      document.getElementsByName("phone")[0].style.border = " solid red";
+      phoneErr = "*Phone is required."
     } else if (!validateCharacterLength(phoneTemp, 10, 10)) {
-      errors.Phone = "Phone Number should contains 10 characters"
-      document.getElementsByName("phone")[0].style.border = "2px solid red";
+      phoneErr = "Phone Number should contains 10 characters"
     }
     else if (!validateSpecialCharExistance(phoneTemp)) {
-      errors.Phone = "Phone number should not contain any special characters"
-      document.getElementsByName("phone")[0].style.border = "2px solid red";
+      phoneErr = "Phone number should not contain any special characters"
     } else {
-      errors.Phone = ""
-      document.getElementsByName("phone")[0].style.border = "2px solid dodgerblue"
+      phoneErr = '';
     }
+    // userPostInfo?.mobileNo = phoneTemp;
+    setUserPostInfo({...userPostInfo, mobileNo: phoneTemp});
   }
-  // const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //     const {name, value } = e.currentTarget;
-  //     console.log(' #### name ', name);
-  //     console.log(' #### name ', value);
-  // }
+
+  //Validate Email
+  const onEmailChanges = (event: any) => {
+    const emailTemp = event.target.value;
+      if (!emailTemp) {
+        emailErr = "This field can not be empty";
+      }
+      else if (validateEmail(emailTemp)) {
+        emailErr = '';
+      } else {
+        emailErr = 'Enter a valid Email'
+      }
+    // userPostInfo?.email = emailTemp;
+    setUserPostInfo({...userPostInfo, email: emailTemp});
+  }
   const handelOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget;
     console.log(' #### name ', name);
@@ -108,25 +89,34 @@ const AddUser = () => {
     if (file) {
         setImageData(file);
     }
-}
+  }
+
+  const onUserTypeUpdate = (userType: string) => {
+    console.log(' << onUserTypeUpdate >> ' , userType);
+  }
+
+  const onCompanyChange = (id: string) => {
+    console.log(' << onCompanyChange >> ' , id);
+  }
   const selectDetails = () => {
+    console.log( firstNameErr, ' <<>>> ', userPostInfo);
     return (
       <Grid container spacing={2} columns={{ xs: 4, sm: 12, md: 12 }}>
         <Grid item xs={5}>
           <div> User Type </div>
           <div className='p-top-md'>
-            {<UserType />}
+            {<UserType defaultUser='' onUpdate={onUserTypeUpdate}/>}
 
             <div className='p-top-md'>
-            <InputBox data={{ name: 'firstname', label: 'First  Name*', value: values.FirstName }}
+            <InputBox data={{ name: 'firstname', label: 'First  Name*', value: userPostInfo?.firstName }}
               onChange={validateFirstName} onBlur={handelOnBlur}
             />
-            {errors.FirstName && <p className="text-red">{errors.FirstName}</p>}
+             <InputError errorText={firstNameErr} />
 
-            <InputBox data={{ name: 'phone', label: 'Phone*', value: values.Phone }}
+            <InputBox data={{ name: 'phone', label: 'Phone*', value: userPostInfo?.mobileNo }}
               onChange={validatePhone} onBlur={handelOnBlur}
             />
-            {errors.Phone && <p className="text-red">{errors.Phone}</p>}
+            <InputError errorText={phoneErr} />
             </div>
           </div>
         </Grid>
@@ -134,17 +124,17 @@ const AddUser = () => {
        <Grid item xs={4}>
           <div>Company</div>
           <div className='p-top-md'>
-            {<GetCompany />}
+            {<GetCompany onCompanyChange={onCompanyChange}/>}
             <div className='p-top-md'>
-            <InputBox data={{ name: 'lastname', label: 'Last  Name*', value: values.LastName }}
+            <InputBox data={{ name: 'lastname', label: 'Last  Name*', value: userPostInfo?.lastName}}
               onChange={validateLastName} onBlur={handelOnBlur}
             />
-            {errors.LastName && <p className="text-red">{errors.LastName}</p>}
+            <InputError errorText={lastNameErr} />
             </div>
-            <InputBox data={{ name: 'email', label: 'Email*', value: values.LastName }}
-              onChange={validateLastName} onBlur={handelOnBlur}
+            <InputBox data={{ name: 'email', label: 'Email*', value: userPostInfo?.email }}
+              onChange={onEmailChanges} onBlur={handelOnBlur}
             />
-            {errors.LastName && <p className="text-red">{errors.LastName}</p>}
+            <InputError errorText={emailErr} />
           </div>
         </Grid>
 
@@ -152,8 +142,6 @@ const AddUser = () => {
           <div>Profile Photo (optional)</div>
           <div className='p-top-md'>
           <UploadImage name={'companyphoto'} onImageChange={onPhotoUploadChange} />
-          
-            
           </div>
         </Grid>
         
@@ -202,6 +190,5 @@ const AddUser = () => {
     </div>
   );
 }
-
 
 export default AddUser;
