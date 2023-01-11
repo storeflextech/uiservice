@@ -117,8 +117,8 @@ const AddUser = () => {
           <div className='p-top-md'>
             {<UserType />}
 
-            <Grid container spacing={0} columns={{ xs: 6, sm: 12, md: 12 }}></Grid>
-             <InputBox data={{ name: 'firstname', label: 'First  Name*', value: values.FirstName }}
+            <div className='p-top-md'>
+            <InputBox data={{ name: 'firstname', label: 'First  Name*', value: values.FirstName }}
               onChange={validateFirstName} onBlur={handelOnBlur}
             />
             {errors.FirstName && <p className="text-red">{errors.FirstName}</p>}
@@ -127,8 +127,7 @@ const AddUser = () => {
               onChange={validatePhone} onBlur={handelOnBlur}
             />
             {errors.Phone && <p className="text-red">{errors.Phone}</p>}
-
-
+            </div>
           </div>
         </Grid>
 
@@ -136,11 +135,12 @@ const AddUser = () => {
           <div>Company</div>
           <div className='p-top-md'>
             {<GetCompany />}
-
+            <div className='p-top-md'>
             <InputBox data={{ name: 'lastname', label: 'Last  Name*', value: values.LastName }}
               onChange={validateLastName} onBlur={handelOnBlur}
             />
             {errors.LastName && <p className="text-red">{errors.LastName}</p>}
+            </div>
             <InputBox data={{ name: 'email', label: 'Email*', value: values.LastName }}
               onChange={validateLastName} onBlur={handelOnBlur}
             />

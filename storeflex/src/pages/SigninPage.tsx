@@ -62,10 +62,10 @@ const SignInPage = () => {
       setLoader(true);
       api.signIn(data, userType).then((response) => {
         setLoader(false);
-        if (response?.methodReturnValue?.redirectUrl) {
+        if (response?.methodReturnValue) {
           setUserLoggedIn('true');
           sessionStorageSet(response.methodReturnValue, SESSION_TYPE.login_resp);
-          const redirectUrl = getRedirectionPage(response?.methodReturnValue?.redirectUrl)
+          const redirectUrl = getRedirectionPage(response?.methodReturnValue?.redirectUrl);
           window.location.href = redirectUrl;
         } else {
           setUserLoggedIn('false');

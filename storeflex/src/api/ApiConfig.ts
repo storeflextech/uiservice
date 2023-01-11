@@ -22,6 +22,8 @@ export interface SignInResp {
     roleType?: string;
     redirectUrl?: string;
     loginType?: string;
+    intent?: boolean;
+
 }
 
 export interface ViewCompaniesProps {
