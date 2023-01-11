@@ -12,7 +12,7 @@ const GetCompany = (props?: storeCompany) => {
 
     const api = new Api();
     const [companyList, setCompanyList] = useState([]);
-    const [companyName, setCompanyName] = useState<objectData>({val: 'Select Company'});
+    const [companyCode, setCompanyCode] = useState<objectData>({val: 'Select Company'});
 
     useEffect(() => {
         getCompanies();
@@ -35,7 +35,7 @@ const GetCompany = (props?: storeCompany) => {
             error: '',
             isUpdated: true,
         } as objectData;
-        setCompanyName(obj);
+        setCompanyCode(obj);
         if(props?.onCompanyChange) {
             props.onCompanyChange(obj.val)
         }
@@ -45,12 +45,7 @@ const GetCompany = (props?: storeCompany) => {
     return (
         <>
             <FormControl size="small" fullWidth={true}>
-                <Select autoWidth={false} value={companyName.val} onChange={handleChange} displayEmpty
-                    inputProps={{ 'aria-label': 'Without label' }}
-                >
-                    <MenuItem value={companyName.val}>
-                        <em>{companyName.val}</em>
-                    </MenuItem>
+                <Select autoWidth={false} value={companyCode.val} onChange={handleChange}>
                     {companyList.map((item, index) => {
                         const itemCode = Object.keys(item).toString();
                         const itemName = Object.values(item).toString();

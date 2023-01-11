@@ -1,23 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FormControl, Select, MenuItem, SelectChangeEvent} from '@mui/material';
 import { ROLE_TYPE } from '../../../utils/Constants';
 
+
 const companyData = ['Store Flex', 'Global Warehouse'];
+
+interface UserTypeProps {
+  defaultUser?: string;
+  onUpdate?:(userType: string) => void;
+}
 
 interface currentValue {
   state?: string;
+  onUpdate?:(userType: string) => void;
 }
 
-export const UserType = (props?: currentValue) => {
+export const UserType = (props?: UserTypeProps) => {
 
   const userData = [ { name: 'Administrator', code: ROLE_TYPE.admin}, {name:'Standard', code: ROLE_TYPE.guest}];
   const [selectedUser, setSelectedUser] = useState(ROLE_TYPE.guest as string);
 
-    const handleChange = (event: SelectChangeEvent) => {
-        const user = event.target.value as string;
-        console.log(' event.target.value >>>  ', user);
-        setSelectedUser(user);
-      };
+  useEffect(() => {
+    setSelectedUser(props?.defaultUser || ROLE_TYPE.guest as string);
+  },[]);
+
+  useEffect(() => {
+    if(props?.onUpdate) {
+      props.onUpdate(selectedUser);
+    }
+  },[selectedUser]);
+
+  const handleChange = (event: SelectChangeEvent) => {
+      const user = event.target.value as string;
+      setSelectedUser(user);
+  };
     
     return (
         <>
