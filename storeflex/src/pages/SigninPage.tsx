@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { validateMinLen, setUserLoggedIn, getRedirectionPage, sessionStorageSet } from '../utils/CommonUtils';
+import { validateMinLen, setUserLoggedIn, getRedirectionPage, sessionStorageSet, getLogInType } from '../utils/CommonUtils';
 import Api from '../api/Api';
 import { SignInPost } from '../api/ApiConfig';
 import { USER_TYPE, PAGES, SESSION_TYPE } from '../utils/Constants';
 import GoogleLogin from 'react-google-login';
 import { gapi } from "gapi-script";
 import { LoaderFull } from '../components/atoms/loader/loader';
+import swal from 'sweetalert';
 
 const SignInPage = () => {
   const navigate = useNavigate();
@@ -65,8 +66,40 @@ const SignInPage = () => {
         if (response?.methodReturnValue) {
           setUserLoggedIn('true');
           sessionStorageSet(response.methodReturnValue, SESSION_TYPE.login_resp);
-          const redirectUrl = getRedirectionPage(response?.methodReturnValue?.redirectUrl);
-          window.location.href = redirectUrl;
+          console.log(getLogInType());
+          if(getLogInType() === 'CL|CU') {
+            swal({
+                      title: "Welcome to storeFLEX",
+                      text: "Where you want to go....",
+                      icon: "info",
+                      dangerMode: false,
+                      buttons: ["CU Page", "CL Page"]
+                  })
+                  .then(willUpdate => {
+                      if (willUpdate) {
+                          const redirectUrl = getRedirectionPage(response?.methodReturnValue?.redirectUrl);
+                          window.location.href = redirectUrl;
+                      }
+                  });
+          } else if (getLogInType() === 'CU|CL') {
+            swal({
+              title: "Welcome to storeFLEX",
+              text: "Where you want to go....",
+              icon: "info",
+              dangerMode: false,
+              buttons: ["CU Page", "CL Page"]
+          })
+          .then(willUpdate => {
+              if (willUpdate) {
+                  const redirectUrl = getRedirectionPage(response?.methodReturnValue?.redirectUrl);
+                  window.location.href = redirectUrl;
+              }
+          });
+          }
+          else {
+            const redirectUrl = getRedirectionPage(response?.methodReturnValue?.redirectUrl);
+            window.location.href = redirectUrl;
+          }
         } else {
           setUserLoggedIn('false');
           window.location.href = '/error';
