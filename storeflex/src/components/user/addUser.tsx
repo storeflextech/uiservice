@@ -195,7 +195,7 @@ const AddUser = () => {
     postData.addresses = [addressInfo];
 
     setLoaderState(true);
-      api.postUser(postData, userPostInfo.roleType, userPostInfo.clientId).then((resp) => {
+      api.postUser(postData, userPostInfo?.roleType, userPostInfo?.clientId).then((resp) => {
           setLoaderState(false); setStep(3);
           if (resp && resp.methodReturnValue.clientId && imageData) {
               upladPhoto(imageData, resp.methodReturnValue.clientId);
